@@ -1,0 +1,55 @@
+alias g=git
+alias gh="git help"
+alias t="todo.sh"
+have timetrap && alias tt="timetrap"
+alias grep="grep --color=ALWAYS"
+alias vssh="jump vagrant && vagrant ssh && cd -"
+have checks && alias cs="git diff --name-only master | xargs -n1 checkcs"
+alias gl="git log"
+alias gg="gl --decorate --oneline --graph --date-order --all"
+alias lsd="ls -la | grep '^d'"
+alias zcl='sudo zypper clean'
+alias sa="ssh-add < /dev/null"
+alias pxargs='xargs -n 1 -P`getconf _NPROCESSORS_ONLN`'
+alias nixos-gc='sudo nix-collect-garbage -d && sudo nix-store --optimise'
+alias pl='pwd; ls'
+alias pdw="pwd"
+alias -g ll="ls -l"
+alias ls="ls -l"
+alias ls="\ls -l"
+alias pss='processes=`ps aux`; echo "$processes" | head -n1; echo "$processes" |grep'
+alias luit='LANG=zh_CN.GBK luit -encoding GBK'
+alias m='LANG=zh_CN.GBK man'
+alias -g L='| less'
+alias -g G="| grep"
+alias -g EG='|& egrep'
+alias -g NUL="> /dev/null 2>&1"
+alias -g PIPE='|'
+alias -g R=' > /c/aaa/tee.txt '
+
+alias lf="ls -CF"
+alias r='fc -s'
+alias du=du\ -k
+alias nohup="nohup "
+
+# this is not an alias
+alias = hello
+alias=x
+alias # hey x = alias y
+alias alias alias x = y alias
+
+
+alias x=y
+
+alias -g me=pfalstad gun=egsirer mjm=maruchck
+alias -g phx=phoenix.princeton.edu warc=wuarchive.wustl.edu
+alias -g M='| more' GF='| fgrep -f ~/.friends'
+alias -g PASS='<(ypcat passwd)'
+
+alias jo='
+	echo "please enter values "
+	read a 
+	read -e b 
+	echo "My values are $a and $b"'
+
+alias foo=bar -xyz
