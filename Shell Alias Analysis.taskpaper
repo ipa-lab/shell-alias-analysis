@@ -21,6 +21,16 @@ conference:
 - https://2020.msrconf.org/track/msr-2020-papers
 - Deadline: 16. January 2020
 
+background:
+- http://www.linfo.org/alias.html
+	- good description of the syntax
+	- also identifies 5 possible use cases for aliases:
+		- reducing amount of typing
+		- specifying default options
+		- correcting spelling mistakes
+		- increasing safety by making commands interactive (alias rm="rm -i")
+		- standardizing names across multiple operating systems
+
 Research Questions:
 /Users/mcschroeder/Desktop/WhatsApp\ Image\ 2019-11-22\ at\ 15.39.53.jpeg
 RQ1) What are the most aliased commands? + anomaly detection in subgraphs
