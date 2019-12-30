@@ -45,7 +45,11 @@ alias=x
 alias # hey x = alias y
 alias alias alias x = y alias
 
+alias "ll=ls -lha"
 
+alias :w=sl
+alias :q=exit
+alias µ=micro
 alias x=y
 
 alias -g me=pfalstad gun=egsirer mjm=maruchck
@@ -60,3 +64,16 @@ alias jo='
 	echo "My values are $a and $b"'
 
 alias foo=bar -xyz
+
+alias ..="command cd .."
+alias ..="cd .."
+alias npm-exec='PATH=$(npm bin):$PATH'
+alias git-svn='git svn'
+alias apt-get='sudo apt-get'
+alias ,-="cd -"
+alias 'dco'=docker-compose
+alias tmux.ssh="ssh-tmux.sh"
+alias +x='chmod u+x'
+
+# this is against the spec (no spaces around = allowed)
+alias rm = 'echo Saved!'

@@ -61,7 +61,8 @@ aliases = go
 
   alias = do
     skipOptional "-g "
-    name <- takeWhile1 (inClass "a-zA-Z0-9_!%,@-:")
+    skipSpaceNotNewlines
+    name <- takeWhile1 (\c -> c /= '=' && not (isSpace c))
     "="
     value <- quoted '"' <|> quoted '\'' <|> takeTill isEndOfLine
     return Alias{..}
@@ -72,6 +73,8 @@ aliases = go
 skipOptional :: Alternative f => f a -> f ()
 skipOptional p = void p <|> pure ()
 
+skipSpaceNotNewlines :: Parser ()
+skipSpaceNotNewlines = skipWhile (\c -> isSpace c && not (isEndOfLine c))
 
 groupsBy :: [Text] -> [Text] -> [[Text]]
 groupsBy seps = go [] []
