@@ -1,10 +1,12 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE RecordWildCards #-}
 {- cabal:
-build-depends: base, attoparsec, text
+build-depends: base, attoparsec, text, direct-sqlite, neat-interpolation
 -}
 
 import Control.Applicative
@@ -12,31 +14,116 @@ import Control.Monad
 import Data.Attoparsec.Combinator
 import Data.Attoparsec.Text
 import Data.Char
+import Data.Int
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
+import Database.SQLite3 as SQL
+import NeatInterpolation
 import Prelude hiding (take, takeWhile)
+import System.Environment
+import System.IO
 import Text.Printf
+
+-------------------------------------------------------------------------------
 
 main :: IO ()
 main = do
-  test <- T.readFile "test.txt"
-  case parseOnly aliases test of
-    Left err -> print err
-    Right xs -> forM_ xs $ \Alias{..} -> do
-      printf "alias %s=%s\n" name value
-      case parseOnly commands value of
-        Left err -> print err
-        Right ys -> forM_ ys $ \Command{..} -> do
-          T.putStr "  "
-          case preOp of
-            Nothing -> pure ()
-            Just op -> T.putStr $ op <> " "
-          when sudo (putStr "sudo ")
-          T.putStr $ name <> " "
-          T.putStr $ T.intercalate " " arguments
-          T.putStr "\n"
-      T.putStr "\n"
+  (dbFile:_) <- getArgs
+  db <- open (T.pack dbFile)
+
+  exec db [text|
+    CREATE TABLE IF NOT EXISTS alias
+    ( alias_id INTEGER PRIMARY KEY
+    , file_id INTEGER NOT NULL
+    , name TEXT NOT NULL
+    , value TEXT NOT NULL
+    , FOREIGN KEY (file_id) REFERENCES file(file_id)
+    );
+    CREATE TABLE IF NOT EXISTS command
+    ( command_id INTEGER PRIMARY KEY
+    , alias_id INTEGER NOT NULL
+    , name TEXT NOT NULL
+    , position INTEGER NOT NULL
+    , sudo INTEGER NOT NULL
+    , operator TEXT
+    , FOREIGN KEY (alias_id) REFERENCES alias(alias_id)
+    );
+    CREATE TABLE IF NOT EXISTS argument
+    ( argument_id INTEGER PRIMARY KEY
+    , command_id INTEGER NOT NULL
+    , name TEXT NOT NULL
+    , position INTEGER NOT NULL
+    , FOREIGN KEY (command_id) REFERENCES command(command_id)
+    );
+  |]
+
+  aliasInsertStmt <- prepare db
+    "INSERT INTO alias (file_id, name, value) VALUES (?,?,?)"
+  commandInsertStmt <- prepare db
+    "INSERT INTO command (alias_id,name,position,sudo,operator) VALUES (?,?,?,?,?)"
+  argumentInsertStmt <- prepare db
+    "INSERT INTO argument (command_id,name,position) VALUES (?,?,?)"
+
+  putStr "Counting..."
+
+  [SQLInteger total] <- query1 db "SELECT COUNT(*) FROM file"
+  [SQLInteger completed] <- query1 db [text|
+    SELECT COUNT(*) FROM file
+    LEFT JOIN alias USING (file_id)
+    WHERE alias_id IS NOT NULL
+  |]
+
+  hSetBuffering stdout NoBuffering
+
+  let updateProgress n = do
+        let percent = (fromIntegral n / fromIntegral total) * 100 :: Double
+        printf "\r%7d / %7d (%6.2f%%)" n total percent
+
+  updateProgress completed
+
+  let fileSelectQ = [text|
+        SELECT file_id, content FROM file
+        LEFT JOIN alias USING (file_id)
+        WHERE alias_id IS NULL
+      |]
+  queryForM_ db fileSelectQ $ \row [SQLInteger fileId, SQLText content] -> do
+    whenRight (parseOnly aliases content) $ mapM_ $ \Alias{..} -> do
+      aliasId <- insert db aliasInsertStmt
+        [ SQLInteger fileId
+        , SQLText name
+        , SQLText value
+        ]
+      whenRight (parseOnly commands value) $ imapM_ $ \(i, Command{..}) -> do
+        commandId <- insert db commandInsertStmt
+          [ SQLInteger aliasId
+          , SQLText name
+          , SQLInteger i
+          , SQLInteger (if sudo then 1 else 0)
+          , maybe SQLNull SQLText operator
+          ]
+        flip imapM_ arguments $ \(j, argument) -> do
+          void $ insert db argumentInsertStmt
+            [ SQLInteger commandId
+            , SQLText argument
+            , SQLInteger j
+            ]
+    updateProgress (completed + row + 1)
+
+  finalize aliasInsertStmt
+  finalize commandInsertStmt
+  finalize argumentInsertStmt
+
+  close db
+
+whenRight :: Either a b -> (b -> IO ()) -> IO ()
+whenRight (Left _) _ = return ()
+whenRight (Right x) f = f x
+
+imapM_ :: Integral i => ((i,a) -> IO ()) -> [a] -> IO ()
+imapM_ f xs = mapM_ f (zip [0..] xs)
+
+-------------------------------------------------------------------------------
 
 data Alias = Alias
   { name     :: Text
@@ -48,7 +135,7 @@ data Command = Command
   { name      :: Text
   , arguments :: [Text]
   , sudo      :: Bool
-  , preOp     :: Maybe Text
+  , operator  :: Maybe Text
   }
   deriving Show
 
@@ -130,3 +217,39 @@ operators = ["||", "&&", "|&", "|", ";", "&"]
 
 (<.>) :: (Applicative f, Semigroup a) => f a -> f a -> f a
 (<.>) = liftA2 (<>)
+
+-------------------------------------------------------------------------------
+
+insert :: Database -> Statement -> [SQLData] -> IO Int64
+insert db stmt cols = do
+  reset stmt
+  bind stmt cols
+  _ <- stepUntilDone stmt
+  lastInsertRowId db
+
+query1 :: Database -> Text -> IO [SQLData]
+query1 db q = do
+  stmt <- prepare db q
+  xs <- head <$> stepUntilDone stmt
+  finalize stmt
+  return xs
+
+queryForM_ :: Database -> Text -> (Int64 -> [SQLData] -> IO ()) -> IO ()
+queryForM_ db q f = do
+  stmt <- prepare db q
+  stepWithCallbackUntilDone f stmt
+  finalize stmt
+
+stepWithCallbackUntilDone :: (Int64 -> [SQLData] -> IO ()) -> Statement -> IO ()
+stepWithCallbackUntilDone f stmt = go 0
+ where
+  go !i = stepNoCB stmt >>= \case
+    SQL.Done -> return ()
+    SQL.Row  -> columns stmt >>= f i >> go (i+1)
+
+stepUntilDone :: Statement -> IO [[SQLData]]
+stepUntilDone stmt = go []
+ where
+  go !ys = stepNoCB stmt >>= \case
+    SQL.Done -> return $! reverse ys
+    SQL.Row  -> columns stmt >>= \y -> go (y:ys)
