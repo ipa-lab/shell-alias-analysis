@@ -47,6 +47,7 @@ main = do
     , position INTEGER NOT NULL
     , sudo INTEGER NOT NULL
     , operator TEXT
+    , arguments TEXT NOT NULL
     , FOREIGN KEY (alias_id) REFERENCES alias(alias_id)
     );
     CREATE TABLE IF NOT EXISTS argument
@@ -60,8 +61,10 @@ main = do
 
   aliasInsertStmt <- prepare db
     "INSERT INTO alias (file_id, name, value) VALUES (?,?,?)"
-  commandInsertStmt <- prepare db
-    "INSERT INTO command (alias_id,name,position,sudo,operator) VALUES (?,?,?,?,?)"
+  commandInsertStmt <- prepare db [text|
+    INSERT INTO command (alias_id,name,position,sudo,operator,arguments)
+    VALUES (?,?,?,?,?,?)
+  |]
   argumentInsertStmt <- prepare db
     "INSERT INTO argument (command_id,name,position) VALUES (?,?,?)"
 
@@ -101,6 +104,7 @@ main = do
           , SQLInteger i
           , SQLInteger (if sudo then 1 else 0)
           , maybe SQLNull SQLText operator
+          , SQLText (T.intercalate " " arguments)
           ]
         flip imapM_ arguments $ \(j, argument) -> do
           void $ insert db argumentInsertStmt
