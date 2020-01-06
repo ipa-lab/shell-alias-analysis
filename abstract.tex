@@ -1,10 +1,10 @@
-%For instance, a common alias used is 'll' that is then replaced with 'ls -l' (the long form of listing files in directories).
-
-Shell aliases allow command line users to define a word that is replaced with a string that is in turn executed.
-These strings can take the form of any arbitrary complex command (or set of commands).
+Shell aliases allow command line users to define command substitutions.
+When processing the command line, the shell replaces each alias name with its string value, which is in turn executed.
+For instance, the common alias 'll' is replaced with 'ls -l'.
+The strings can take the form of any arbitrarily complex command or chain of commands.
 To characterize patterns and understand the complexities of alias usage, we conduct an exploratory empirical study on over 4.5 million alias definitions on GitHub that have been shared by command line users.
-We find that aliases have multiple complex use cases, ranging from enforcing default arguments, enabling safety and interaction, storing bookmarks to local and remote locations, as well as providing autocorrect for misspelled commands.
+We find that aliases have multiple complex use cases: enforcing default arguments, enabling safety and interaction, storing bookmarks to local and remote locations, as well as providing autocorrect for misspelled commands.
 When analyzing compression and complexity of aliases, they are not only used to abbreviate and simplify longer and complicated command and argument structures, but also to lend them more descriptive (and longer) names.
-We also perform qualitative analysis on commonly used commands and were able to uncover indicators of usability issues through alias definitions.
-We conjecture that the deeper understanding of aliasing practices in command lines enabled by this study can support tool developers in designing better user experience for command line programs in general.
-More specifically, it can point to particular usability issues within command line programs referenced in our analysis and dataset.
+We also perform qualitative analysis on commonly aliased commands and are able to uncover indicators of usability issues.
+We conjecture that the deeper understanding of aliasing practices in command lines enabled by this study can support tool developers in designing better user experiences for command line programs in general.
+More specifically, it can point to particular usability issues within the command line programs referenced in our analysis and dataset.
