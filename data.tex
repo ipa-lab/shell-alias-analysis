@@ -83,14 +83,14 @@ See \cref{fig:parser} for an example.
     \label{fig:parser}
 \end{figure}
 
-The decomposed aliases are stored in the same SQLite database as the raw files, to facilitate easy cross-referencing.
+The decomposed aliases are stored in the same SQLite database as the raw file contents, to facilitate easy cross-referencing.
 The database schema is given in \cref{fig:schema}.
 Files that did not contain any aliases were removed from the database after parsing, as was repository metadata that only referenced files without aliases.
 
 \begin{figure}
     \centering
-    \TODO
-    \caption{Database schema.}
+    \includegraphics[width=0.9\columnwidth]{schema.pdf}
+    \caption{Relational database schema.}
     \label{fig:schema}
 \end{figure}
 
