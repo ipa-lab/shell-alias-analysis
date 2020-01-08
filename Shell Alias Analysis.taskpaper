@@ -9,6 +9,11 @@ TODO:
 - formulate questions and hypotheses
 - write paper
 
+references:
+- http://www.softpanorama.org/People/Shell_giants/introduction.shtml
+- https://developer.ibm.com/tutorials/l-linux-shells/
+- https://dotfiles.github.io ?
+
 
 repo:
 https://github.com/citostyle/shell-alias-analysis/tree/master/extraction
