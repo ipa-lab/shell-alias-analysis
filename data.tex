@@ -75,13 +75,13 @@ After collecting files with potential aliases, we ran a parsing script to find a
 The parser splits each alias definition into alias name, commands (separated by one of the shell operators) and arguments (separated by whitespace; care is taken to handle quoted arguments correctly).
 See \cref{fig:parser} for an example.
 
-\begin{figure}
+\begin{figure*}
     \centering
-    \TODO
-    % maybe: alias gi='git init && git add . && git commit -m "Initial commit"'
+    %\vspace{2em}
+    \includegraphics[width=0.85\textwidth]{parser_breakdown.pdf}
     \caption{Example decomposition of an alias definition.}
     \label{fig:parser}
-\end{figure}
+\end{figure*}
 
 The decomposed aliases are stored in the same SQLite database as the raw file contents, to facilitate easy cross-referencing.
 The database schema is given in \cref{fig:schema}.
