@@ -1,0 +1,57 @@
+\subsection{Safety and Interactive Mode}
+
+The \texttt{sudo} command allows the user to execute another command with superuser privileges.
+In our dataset, we found \numprint{336298} commands (\numprint[\%]{6.3}) prefixed with \texttt{sudo}, used in \numprint{305637} alias definitions (\numprint[\%]{6.4}).
+The top 10 commands used with \texttt{sudo} are given in \cref{tab:sudo-commands}.
+
+Remarkably, 8 out of the top 10 \texttt{sudo}-prefixed commands are related to package managers:
+\texttt{zypper} (openSUSE); \texttt{pacman}, \texttt{abs} and \texttt{aur} (Arch Linux); \verb|apt-get| and \verb|$apt-pref| (Debian, Ubuntu); \texttt{yum} (RPM); and \texttt{dnf} (Fedora).
+Even more remarkable: all of these commands are used with \texttt{sudo} the majority of the time they are used.
+
+Some users even go so far as to redefine certain commands to always be executed with \texttt{sudo}, mostly system utilities like \texttt{reboot} or \texttt{shutdown}, but also (again) package managers like \texttt{pacman} and \texttt{apt}.
+However, on the whole this practice appears to be relatively rare (see \cref{tab:sudo-redefine}).
+
+\begin{table}
+    \caption{Top 10 commands used with \texttt{sudo}}
+    \label{tab:sudo-commands}
+    \begin{tabular}{lrrrl}
+      \toprule
+      Command & All Uses & \multicolumn{2}{c}{With \texttt{sudo}} & Description \\
+      \midrule  
+      \verb|zypper|    & \numprint{66295} & \numprint{61891} & \numprint[\%]{93.36}  & package manager \\
+      \verb|pacman|    & \numprint{46821} & \numprint{32407} & \numprint[\%]{69.21}  & package manager \\
+      \verb|apt-get|   & \numprint{34075} & \numprint{28323} & \numprint[\%]{83.12}  & package manager \\
+      \verb|$apt_pref| & \numprint{20245} & \numprint{20245} & \numprint[\%]{100.00} & package manager \\
+      \verb|yum|       & \numprint{23940} & \numprint{12843} & \numprint[\%]{53.65}  & package manager \\
+      \verb|dnf|       & \numprint{24469} & \numprint{12697} & \numprint[\%]{51.89}  & package manager \\
+      \verb|port|      & \numprint{11228} & \numprint{10863} & \numprint[\%]{96.75}  & networking utility \\
+      \verb|abs|       &  \numprint{9909} &  \numprint{9905} & \numprint[\%]{99.96}  & package manager \\
+      \verb|aur|       &  \numprint{8837} &  \numprint{8795} & \numprint[\%]{99.52}  & package manager \\
+      \verb|systemctl| & \numprint{13942} &  \numprint{7018} & \numprint[\%]{50.34}  & system utility \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{table}
+      \caption{Top 10 commands redefined to always use \texttt{sudo}}
+      \label{tab:sudo-redefine}
+      \begin{tabular}{llrl}
+        \toprule
+        Alias Name & Alias Value & \# & Description \\
+        \midrule
+        \verb|pacman|    & \verb|sudo pacman|    & 901 & package manager \\
+        \verb|reboot|    & \verb|sudo reboot|    & 809 & system utility \\
+        \verb|shutdown|  & \verb|sudo shutdown|  & 499 & system utility \\
+        \verb|apt-get|   & \verb|sudo apt-get|   & 455 & package manager \\
+        \verb|docker|    & \verb|sudo docker|    & 345 & container platform \\
+        \verb|halt|      & \verb|sudo halt|      & 230 & system utility \\
+        \verb|apt|       & \verb|sudo apt|       & 228 & package manager \\
+        \verb|systemctl| & \verb|sudo systemctl| & 184 & system utility \\
+        \verb|htop|      & \verb|sudo htop|      & 180 & system utility \\
+        \verb|poweroff|  & \verb|sudo poweroff|  & 169 & system utility \\
+        \bottomrule
+      \end{tabular}
+  \end{table}
+
+On the other end of the safety spectrum, \TODO
+
