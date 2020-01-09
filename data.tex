@@ -1,10 +1,6 @@
 \section{Dataset}
 
-Our analysis is based on \TODO aliases from \TODO files on GitHub, collected in the period from \TODO to \TODO.
-
-% TODO: graphic with collection pipeline, short description of process detailed below?
-%We first collected \TODO files containing the word ``alias'' from GitHub, then we parsed these files, resulting in TODO alias definitions.
-%The details of this process are described below.
+Our analysis is based on \numprint{4772321} alias definitions found on GitHub, collected over a period of two-and-a-half weeks from December 20th 2019 to January 8th 2020.
 
 \subsection{Data Collection}
 
@@ -12,7 +8,7 @@ Alias definitions can appear in any Shell script, but we anticipated that they w
 While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropiately accounted for in order for our data to be representative.
 Unfortunately, this rules out using some prominent existing datasets for our study:
 The public GitHub archive on BigQuery\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}}, while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
-This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.\footnote{The data we have collected corroborates this: \TODO}
+This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.
 GHTorrent\footnote{\url{http://ghtorrent.org}}, another popular archive of GitHub data, only contains metadata but not file contents.
 
 Therefore, we found it necessary to write our own tooling to directly collect the data from GitHub ourselves.
@@ -25,12 +21,12 @@ Alas, the GitHub Code Search API comes with its own set of limitations:
     \item requests are rate limited at 30 per minute and there are additional opaque abuse detection mechanisms that impose further restrictions in an unforseeable manner
     \item the number of results is limited to 1000 per search request
 \end{enumerate}
-The first two limitations do not really affect us, as we are mostly interested in smaller files and do not have to consider forks.
+The first two limitations do not really affect us, as we are interested in smaller files and do not have to consider forks.
 The rate limiting, while significantly slowing down the retrieval process, is also not a fatal obstacle.
 The maximum number of returned search results, however, is a critical limitation.
-To get around it, we wrote a Python tool called \verb|github-searcher|\footnote{\TODO: url/paper} that uses a stratified sampling technique to vastly increase the number of results we are able to retrieve.
+To get around it, we wrote a Python tool called \verb|github-searcher|\footnote{\TODO: url/paper} that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
 
-The technique takes advantage of GitHub allowing code search queries to be conditioned on file sizes. 
+The sampling strategy is based on the GitHub API allowing code search queries to be conditioned on file sizes. 
 For example, the query 
 \begin{verbatim}
 alias language:Shell size:101..200
@@ -56,23 +52,20 @@ For this study, using the search term
 \begin{verbatim}
 alias language:Shell
 \end{verbatim}
-and the stratified sampling technique described above, we started by sampling in increments of 100 bytes, then re-sampled high-population areas with smaller size increments, down to a byte-by-byte sampling in certain cases.
-In total, we collected \TODO files under \TODO KB from an estimated population of \TODO, achieving a sampling rate of \TODO\% (see \cref{fig:sampling}).
+and the sampling strategy described above, we started by sampling all files in increments of 100 bytes and stopped when we reached 29 KB.
+We then re-sampled some high-population areas with smaller size increments in order to get a better sample, in some cases sampling in increments of 1 byte.
+In total, we collected \numprint{844140} files from \numprint{304361} GitHub repositories.
+Our sample represents \numprint[\%]{94.09} of the estimated population of \numprint{897182} files under 29 KB on GitHub written in Shell language and containing the word ``alias''.
 The file contents, together with repository metadata, were stored in an SQLite database (see \cref{fig:schema}).
 
-\begin{figure}
-    \centering
-    \TODO
-    \caption{Number of files sampled vs. estimated population across file size ranges.}
-    \label{fig:sampling}
-\end{figure}
-
+%TODO: number of aliases per file (exponential decay, vast majory of files have between ... and ... aliases; one outlier has ...)
+%TODO: describe thinking about sha duplicates
 %TODO: origin of files? (most common file names etc? probably better counted per alias)
 
-\subsection{Structure}
+\subsection{Parsing}
 
 After collecting files with potential aliases, we ran a parsing script to find actual alias definitions and decompose them into their constituent parts for analysis.
-The parser splits each alias definition into alias name, commands (separated by one of the shell operators) and arguments (separated by whitespace; care is taken to handle quoted arguments correctly).
+The parser splits each alias definition into alias name, commands (separated by one of the shell operators: \verb!|!, \verb|&&|, \verb|;|, \verb!||!, \verb|&| and \verb!|&!) and arguments (separated by whitespace; care is taken to handle quoted arguments correctly).
 See \cref{fig:parser} for an example.
 
 \begin{figure*}
@@ -98,5 +91,5 @@ Files that did not contain any aliases were removed from the database after pars
 
 To enable reproducibility and follow-up studies, we have made all data and our entire tool-chain publicly available.
 This includes executable Jupyter notebooks used during our analysis, containing all SQL queries and Python code.
-Our entire database (\TODO GB), the parsing script (written in Haskell), the notebooks, as well as this paper, are available on GitHub\footnote{\TODO: url}.
+Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script (written in Haskell), the notebooks, as well as this paper, are available on GitHub\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}.
 
