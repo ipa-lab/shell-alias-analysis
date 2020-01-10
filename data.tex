@@ -65,16 +65,44 @@ The file contents, together with repository metadata, were stored in an SQLite d
 \subsection{Parsing}
 
 After collecting files with potential aliases, we ran a parsing script to find actual alias definitions and decompose them into their constituent parts for analysis.
-The parser splits each alias definition into alias name, commands (separated by one of the shell operators: \verb!|!, \verb|&&|, \verb|;|, \verb!||!, \verb|&| and \verb!|&!) and arguments (separated by whitespace; care is taken to handle quoted arguments correctly).
-See \cref{fig:parser} for an example.
+The parser splits each alias definition into alias name and alias value, and tokenizes the value into commands and arguments.
+Commands can be delimited by the shell operators for piping (\verb!|! and \verb!|&!), logical composition (\verb|&&| and \verb!||!), background execution (\verb|&|) and simple chaining (\verb|;|).
+Arguments are separated by whitespace, but care is taken to handle quoted arguments correctly. 
+For example, 
+\begin{verbatim}
+echo "hello world"
+\end{verbatim}
+is parsed as one command (\texttt{echo}) with one argument (\texttt{"hello world"}).
+See \cref{fig:parser} for a more elaborate example.
 
 \begin{figure*}
     \centering
     %\vspace{2em}
     \includegraphics[width=0.85\textwidth]{parser_breakdown.pdf}
-    \caption{Example decomposition of an alias definition.}
+    \caption{Decomposition of \texttt{alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"}.}
     \label{fig:parser}
 \end{figure*}
+
+Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
+While there are some conventions around command line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
+\begin{itemize}
+    \item single-dash short arguments combined with double-dash long-form arguments 
+        \begin{verbatim}  ls -l -a --color=always\end{verbatim}
+    \item combined short arguments without a dash 
+        \begin{verbatim}  tar xvzf archive.tar\end{verbatim}
+    \item dictionary-style arguments 
+        \begin{verbatim}  dd if=/dev/zero of=/dev/sda\end{verbatim}
+    \item subcommands
+        \begin{verbatim}  git commit -m "wip"\end{verbatim}
+\end{itemize}
+and many more.
+Since the parser can not know the intentions of any command, it simply treats each token as a separate argument.
+There is one exception: if the command is \texttt{sudo}, then its first argument is taken as the real command. 
+For example,
+\begin{verbatim}
+sudo apt-get install
+\end{verbatim} 
+is parsed as the command \texttt{apt-get} with argument \texttt{install} and the sudo flag set.
 
 The decomposed aliases are stored in the same SQLite database as the raw file contents, to facilitate easy cross-referencing.
 The database schema is given in \cref{fig:schema}.
