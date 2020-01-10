@@ -12,30 +12,30 @@ Some users even go so far as to redefine certain commands to always be executed 
 However, on the whole this practice appears to be relatively rare (see \cref{tab:sudo-redefine}).
 
 \begin{table}
-    \caption{Top 10 commands used with \texttt{sudo}}
+    \caption{Top 10 commands used with \texttt{sudo}.}
     \label{tab:sudo-commands}
-    \begin{tabular}{lrrrl}
+    \begin{tabular}{lrrl}
       \toprule
-      Command & All Uses & \multicolumn{2}{c}{With \texttt{sudo}} & Description \\
+      Command & \multicolumn{1}{c}{\#} & \multicolumn{1}{c}{With \texttt{sudo}} & Description \\
       \midrule  
-      \verb|zypper|    & \numprint{66295} & \numprint{61891} & \numprint[\%]{93.36}  & package manager \\
-      \verb|pacman|    & \numprint{46821} & \numprint{32407} & \numprint[\%]{69.21}  & package manager \\
-      \verb|apt-get|   & \numprint{34075} & \numprint{28323} & \numprint[\%]{83.12}  & package manager \\
-      \verb|$apt_pref| & \numprint{20245} & \numprint{20245} & \numprint[\%]{100.00} & package manager \\
-      \verb|yum|       & \numprint{23940} & \numprint{12843} & \numprint[\%]{53.65}  & package manager \\
-      \verb|dnf|       & \numprint{24469} & \numprint{12697} & \numprint[\%]{51.89}  & package manager \\
-      \verb|port|      & \numprint{11228} & \numprint{10863} & \numprint[\%]{96.75}  & networking utility \\
-      \verb|abs|       &  \numprint{9909} &  \numprint{9905} & \numprint[\%]{99.96}  & package manager \\
-      \verb|aur|       &  \numprint{8837} &  \numprint{8795} & \numprint[\%]{99.52}  & package manager \\
-      \verb|systemctl| & \numprint{13942} &  \numprint{7018} & \numprint[\%]{50.34}  & system utility \\
+      \verb|zypper|    & \numprint{66295} & \numprint{61891} (\numprint[\%]{93.36})  & package manager\\
+      \verb|pacman|    & \numprint{46821} & \numprint{32407} (\numprint[\%]{69.21})  & package manager \\
+      \verb|apt-get|   & \numprint{34075} & \numprint{28323} (\numprint[\%]{83.12})  & package manager \\
+      \verb|$apt_pref| & \numprint{20245} & \numprint{20245} (\numprint[\%]{100.00}) & package manager \\
+      \verb|yum|       & \numprint{23940} & \numprint{12843} (\numprint[\%]{53.65})  & package manager \\
+      \verb|dnf|       & \numprint{24469} & \numprint{12697} (\numprint[\%]{51.89})  & package manager \\
+      \verb|port|      & \numprint{11228} & \numprint{10863} (\numprint[\%]{96.75})  & networking utility \\
+      \verb|abs|       &  \numprint{9909} &  \numprint{9905} (\numprint[\%]{99.96})  & package manager \\
+      \verb|aur|       &  \numprint{8837} &  \numprint{8795} (\numprint[\%]{99.52})  & package manager \\
+      \verb|systemctl| & \numprint{13942} &  \numprint{7018} (\numprint[\%]{50.34})  & system utility \\
       \bottomrule
     \end{tabular}
-  \end{table}
+\end{table}
 
-  \begin{table}
-      \caption{Top 10 commands redefined to always use \texttt{sudo}}
-      \label{tab:sudo-redefine}
-      \begin{tabular}{llrl}
+\begin{table}
+    \caption{Top 10 commands redefined to always use \texttt{sudo}}
+    \label{tab:sudo-redefine}
+    \begin{tabular}{llrl}
         \toprule
         Alias Name & Alias Value & \# & Description \\
         \midrule
@@ -50,8 +50,27 @@ However, on the whole this practice appears to be relatively rare (see \cref{tab
         \verb|htop|      & \verb|sudo htop|      & 180 & system utility \\
         \verb|poweroff|  & \verb|sudo poweroff|  & 169 & system utility \\
         \bottomrule
-      \end{tabular}
-  \end{table}
+    \end{tabular}
+\end{table}
 
-On the other end of the safety spectrum, \TODO
+On the other end of the safety spectrum, some users default to running the file system commands \texttt{rm}, \texttt{cp}, and \texttt{mv} in interactive mode, which prompts before performing potentially destructive actions.
+Taking into account variations between systems and different ways to enable interactive mode, \numprint[\%]{44.37} percent of alias definitions invoking \texttt{rm} are redefinitions of \texttt{rm} enabling interactive mode by default.
+Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \numprint[\%]{68.27} and \numprint[\%]{77.62} of uses are redefinitions, respectively (see \cref{tab:interactive}).
+
+\begin{table}
+    \caption{Commands commonly used in interactive mode}
+    \label{tab:interactive}
+    \begin{tabular}{lrrr}
+        \toprule
+        Command & \multicolumn{1}{c}{\#} & \multicolumn{1}{c}{With \texttt{-i}} & \multicolumn{1}{c}{Redefined With \texttt{-i}} \\
+        \midrule
+        rm & \numprint{44209} & \numprint{20300} (\numprint[\%]{45.92}) & \numprint{19617} (\numprint[\%]{44.37}) \\
+        cp & \numprint{27472} & \numprint{18994} (\numprint[\%]{69.14}) & \numprint{18755} (\numprint[\%]{68.27}) \\
+        mv & \numprint{22689} & \numprint{17842} (\numprint[\%]{78.64}) & \numprint{17611} (\numprint[\%]{77.62}) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
 
