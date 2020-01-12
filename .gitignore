@@ -1,6 +1,8 @@
 shell-alias-analysis.pdf
 .DS_Store
 
+.vscode/
+
 *.db
 
 # TeX
