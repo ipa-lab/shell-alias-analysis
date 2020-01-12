@@ -5,7 +5,7 @@ Our analysis is based on \numprint{4772321} alias definitions found on GitHub, c
 \subsection{Data Collection}
 
 Alias definitions can appear in any Shell script, but we anticipated that they would predominantly be found in personal configuration files (like \verb|.bashrc| or \verb|.bash_profile|).
-While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropiately accounted for in order for our data to be representative.
+While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
 Unfortunately, this rules out using some prominent existing datasets for our study:
 The public GitHub archive on BigQuery\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}}, while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
 This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.
@@ -18,7 +18,7 @@ Alas, the GitHub Code Search API comes with its own set of limitations:
 \begin{enumerate}
     \item only files smaller than 384 KB are searchable
     \item forks are not included
-    \item requests are rate limited at 30 per minute and there are additional opaque abuse detection mechanisms that impose further restrictions in an unforseeable manner
+    \item requests are rate limited at 30 per minute and there are additional opaque abuse detection mechanisms that impose further restrictions in an unforeseeable manner
     \item the number of results is limited to 1000 per search request
 \end{enumerate}
 The first two limitations do not really affect us, as we are interested in smaller files and do not have to consider forks.
@@ -56,16 +56,22 @@ and the sampling strategy described above, we started by sampling all files in i
 We then re-sampled some high-population areas with smaller size increments in order to get a better sample, in some cases sampling in increments of 1 byte.
 In total, we collected \numprint{844140} files from \numprint{304361} GitHub repositories.
 Our sample represents \numprint[\%]{94.09} of the estimated population of \numprint{897182} files under 29 KB on GitHub written in Shell language and containing the word ``alias''.
-The file contents, together with repository metadata, were stored in an SQLite database (see \cref{fig:schema}).
-
-%TODO: number of aliases per file (exponential decay, vast majory of files have between ... and ... aliases; one outlier has ...)
-%TODO: describe thinking about sha duplicates
-%TODO: origin of files? (most common file names etc? probably better counted per alias)
+The file contents, together with repository metadata, were stored in an SQLite database.
 
 \subsection{Parsing}
 
 After collecting files with potential aliases, we ran a parsing script to find actual alias definitions and decompose them into their constituent parts for analysis.
-The parser splits each alias definition into alias name and alias value, and tokenizes the value into commands and arguments.
+The decomposed aliases are stored in the same SQLite database as the raw file contents to facilitate easy cross-referencing.
+The database schema is given in \cref{fig:schema}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\columnwidth]{schema.pdf}
+    \caption{Relational database schema.}
+    \label{fig:schema}
+\end{figure}
+
+The parser is a Haskell script that splits each alias definition into alias name and alias value, and tokenizes the value into commands and arguments.
 Commands can be delimited by the shell operators for piping (\verb!|! and \verb!|&!), logical composition (\verb|&&| and \verb!||!), background execution (\verb|&|) and simple chaining (\verb|;|).
 Arguments are separated by whitespace, but care is taken to handle quoted arguments correctly. 
 For example, 
@@ -86,13 +92,13 @@ See \cref{fig:parser} for a more elaborate example.
 Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
 While there are some conventions around command line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
 \begin{itemize}
-    \item single-dash short arguments combined with double-dash long-form arguments 
+    \item single-dash short arguments combined with double-dash long-form arguments, e.g.
         \begin{verbatim}  ls -l -a --color=always\end{verbatim}
-    \item combined short arguments without a dash 
+    \item combined short arguments without a dash, e.g.x 
         \begin{verbatim}  tar xvzf archive.tar\end{verbatim}
-    \item dictionary-style arguments 
+    \item dictionary-style arguments, e.g.
         \begin{verbatim}  dd if=/dev/zero of=/dev/sda\end{verbatim}
-    \item subcommands
+    \item subcommands, e.g.
         \begin{verbatim}  git commit -m "wip"\end{verbatim}
 \end{itemize}
 and many more.
@@ -104,20 +110,44 @@ sudo apt-get install
 \end{verbatim} 
 is parsed as the command \texttt{apt-get} with argument \texttt{install} and the sudo flag set.
 
-The decomposed aliases are stored in the same SQLite database as the raw file contents, to facilitate easy cross-referencing.
-The database schema is given in \cref{fig:schema}.
-Files that did not contain any aliases were removed from the database after parsing, as was repository metadata that only referenced files without aliases.
+After parsing, we ended up with \numprint{4772321} alias definitions, broken down into \numprint{5309216} commands and \numprint{7445374} arguments.
+Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
+\numprint{539923} files from \numprint{209179} repositories, or \numprint[\%]{63.96} percent of the original sample, contained aliases.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\columnwidth]{schema.pdf}
-    \caption{Relational database schema.}
-    \label{fig:schema}
-\end{figure}
+\subsection{File Names and Duplicate Files}
+
+\begin{table}
+    \caption{Common file names}
+    \label{tab:file-names}
+    \begin{tabular}{rrlll}
+        \toprule
+                       \% &               Files &                      Name Pattern &              Aliases &                \% \\
+        \midrule
+         \numprint{25.29} &  \numprint{136520}  &               \verb|*.plugin.zsh| &  \numprint{1607174}  &  \numprint{33.68} \\
+          \numprint{8.17} &   \numprint{44090}  &                    \verb|*alias*| &   \numprint{926406}  &  \numprint{19.41} \\
+         \numprint{12.94} &   \numprint{69879}  &                    \verb|*bashrc| &   \numprint{819583}  &  \numprint{17.17} \\
+         \numprint{10.43} &   \numprint{56316}  &                     \verb|*zshrc| &   \numprint{572059}  &  \numprint{11.99} \\
+          \numprint{4.29} &   \numprint{23178}  &                   \verb|*profile| &   \numprint{229306}  &    \numprint{4.8} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\Cref{tab:file-names} shows the origin of the majority of aliases in our dataset.
+Most (\numprint[\%]{53.38}) come from common startup scripts, like \texttt{.bashrc}, \texttt{aliases.zsh} or \texttt{.profile}.
+Noticeably, there is a large amount of files ending in \texttt{.plugin.zsh}, contributing \numprint[\%]{33.68} of all aliases.
+These files originate from \emph{ohmyzsh}\footnote{\url{https://ohmyz.sh}} a very popular framework for managing \texttt{zsh} configurations.
+It appears that \emph{ohmyzsh} users are particularly eager to share their configurations on GitHub.
+
+It should be noted that \numprint{255692} of the files in our final dataset (\numprint[\%]{47.36}) are duplicates, meaning they have an SHA hash that is identical to that of another file in the dataset.
+These duplicates derive from \numprint{18484} distinct files.
+Overall, \numprint[\%]{49.26} percent of aliases originate from files of which there are two or more identical copies in the dataset.
+In particular, counting each duplicate only once, \emph{ohmyzsh} plugin files contribute only \numprint[\%]{1.95} percent of aliases.
+However, we do not think that this skews the data.
+Choosing to use \emph{ohmyzsh}, and choosing which \texttt{zsh} plugins to enable or disable, reflects user intent just as much as manually writing an alias definition into \texttt{.zshrc}.
 
 \subsection{Reproducibility}
 
 To enable reproducibility and follow-up studies, we have made all data and our entire tool-chain publicly available.
 This includes executable Jupyter notebooks used during our analysis, containing all SQL queries and Python code.
-Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script (written in Haskell), the notebooks, as well as this paper, are available on GitHub\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}.
+Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script, the notebooks, as well as this paper, are available on GitHub.\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}
 
