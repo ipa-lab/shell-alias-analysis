@@ -2,51 +2,51 @@ The single most common alias definition in our dataset is
 \begin{verbatim}
 alias '${1+"$@"}'="$@"
 \end{verbatim}
-appearing \numprint{78265} times, which is \numprint[\%]{1.64} of all alias definitions.
+appearing \num{78265} times, which is \per{1.64} of all alias definitions.
 This curious jumble of symbols derives from a portability hack for \texttt{zsh}.\footnote{\url{https://unix.stackexchange.com/a/191836}}
 
 More familiar results can be seen in \Cref{tab:top-summary}, which shows the most common alias names, commands, and arguments appearing in alias definitions.
-The most common alias name we found is \texttt{ls}, appearing a total number of \numprint{124515} times, which is \numprint[\%]{2.61} of all alias definitions.
-Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \texttt{ls} \emph{command}, which appears \numprint{378097} times (\numprint[\%]{7.12}).
-This is about half as often as \texttt{git}, the most common command, which appears in \numprint{626185} aliases (\numprint[\%]{11.79}).
-The most common argument, across all commands, is \texttt{--color=auto}, appearing \numprint{268171} times (\numprint[\%]{3.6})
+The most common alias name we found is \texttt{ls}, appearing a total number of \num{124515} times, which is \per{2.61} of all alias definitions.
+Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \texttt{ls} \emph{command}, which appears \num{378097} times (\per{7.12}).
+This is about half as often as \texttt{git}, the most common command, which appears in \num{626185} aliases (\per{11.79}).
+The most common argument, across all commands, is \texttt{--color=auto}, appearing \num{268171} times (\per{3.6})
 
 \begin{table*}
     \caption{Top alias names, commands and arguments}
     \label{tab:top-summary}
     \begin{tabular}{lrr}
         \toprule
-                 Alias Name &                 \# &               \% \\
+                 Alias Name &            \# &          \% \\
         \midrule
-                  \verb|ls| &  \numprint{124515} &  \numprint{2.61} \\
-                  \verb|ll| &   \numprint{89254} &  \numprint{1.87} \\
-         \verb|'${1+"$@"}'| &   \numprint{78265} &  \numprint{1.64} \\
-                \verb|grep| &   \numprint{63392} &  \numprint{1.33} \\
-                  \verb|la| &   \numprint{62039} &  \numprint{1.30} \\
+                  \verb|ls| &  \num{124515} &  \num{2.61} \\
+                  \verb|ll| &   \num{89254} &  \num{1.87} \\
+         \verb|'${1+"$@"}'| &   \num{78265} &  \num{1.64} \\
+                \verb|grep| &   \num{63392} &  \num{1.33} \\
+                  \verb|la| &   \num{62039} &  \num{1.30} \\
         \bottomrule
     \end{tabular}
     \hspace{0.1cm}
     \begin{tabular}{lrr}
         \toprule
-               Command &                 \# &                \% \\
+               Command &            \# &           \% \\
         \midrule
-            \verb|git| &  \numprint{626185} &  \numprint{11.79} \\
-             \verb|ls| &  \numprint{378097} &   \numprint{7.12} \\
-             \verb|cd| &  \numprint{229522} &   \numprint{4.32} \\
-           \verb|grep| &  \numprint{128045} &   \numprint{2.41} \\
-           \verb|"$@"| &   \numprint{78276} &   \numprint{1.47} \\
+            \verb|git| &  \num{626185} &  \num{11.79} \\
+             \verb|ls| &  \num{378097} &   \num{7.12} \\
+             \verb|cd| &  \num{229522} &   \num{4.32} \\
+           \verb|grep| &  \num{128045} &   \num{2.41} \\
+           \verb|"$@"| &   \num{78276} &   \num{1.47} \\
         \bottomrule
     \end{tabular}
     \hspace{0.1cm}
     \begin{tabular}{lrr}
         \toprule
-                    Argument &                 \# &               \% \\
+                    Argument &            \# &          \% \\
         \midrule
-         \verb|--color=auto| &  \numprint{268171} &  \numprint{3.60} \\
-                   \verb|-i| &  \numprint{109094} &  \numprint{1.47} \\
-                   \verb|-v| &   \numprint{70424} &  \numprint{0.95} \\
-                   \verb|-l| &   \numprint{63302} &  \numprint{0.85} \\
-                   \verb|-a| &   \numprint{62023} &  \numprint{0.83} \\
+         \verb|--color=auto| &  \num{268171} &  \num{3.60} \\
+                   \verb|-i| &  \num{109094} &  \num{1.47} \\
+                   \verb|-v| &   \num{70424} &  \num{0.95} \\
+                   \verb|-l| &   \num{63302} &  \num{0.85} \\
+                   \verb|-a| &   \num{62023} &  \num{0.83} \\
         \bottomrule
     \end{tabular}        
 \end{table*}
@@ -60,35 +60,35 @@ Here we can see \TODO
     \label{tab:command-summary}
     \begin{tabular}{lrll}
         \toprule
-             Command &                \% &                 Arguments &                                                                                 Aliases (\%) \\
+             Command &           \% &                 Arguments &                                                                                 Aliases (\%) \\
         \midrule
-          \verb|git| &   \numprint{3.75} &             \verb|status| &                                  \verb|gs| (\numprint{51.57}), \verb|gst| (\numprint{24.17}) \\
-                     &   \numprint{2.42} &           \verb|checkout| & \verb|gco| (\numprint{51.17}), \verb|gc| (\numprint{10.04}), \verb|letcat| (\numprint{9.18}) \\
-                     &   \numprint{2.33} &               \verb|push| &    \verb|gp| (\numprint{49.12}), \verb|rulz| (\numprint{9.53}), \verb|gps| (\numprint{7.15}) \\
-                     &   \numprint{2.31} &                   \verb|| &                                                                  \verb|g| (\numprint{78.87}) \\
-                     &   \numprint{2.18} &               \verb|pull| &    \verb|gl| (\numprint{25.32}), \verb|gpl| (\numprint{13.29}), \verb|gp| (\numprint{11.53}) \\
-                     &   \numprint{2.11} &               \verb|diff| &                                                                 \verb|gd| (\numprint{83.21}) \\
-                     &   \numprint{2.05} &                \verb|add| &                              \verb|ga| (\numprint{73.01}), \verb|chicken| (\numprint{10.85}) \\
-                     &   \numprint{2.01} &             \verb|branch| &                                   \verb|gb| (\numprint{74.88}), \verb|gbr| (\numprint{8.26}) \\
-                     &   \numprint{1.59} &          \verb|commit -m| & \verb|gcm| (\numprint{21.67}), \verb|gcmsg| (\numprint{19.59}), \verb|gc| (\numprint{18.18}) \\
-                     &   \numprint{1.20} &             \verb|commit| &                                                                 \verb|gc| (\numprint{65.51}) \\
+          \verb|git| &   \num{3.75} &             \verb|status| &                                  \verb|gs| (\num{51.57}), \verb|gst| (\num{24.17}) \\
+                     &   \num{2.42} &           \verb|checkout| & \verb|gco| (\num{51.17}), \verb|gc| (\num{10.04}), \verb|letcat| (\num{9.18}) \\
+                     &   \num{2.33} &               \verb|push| &    \verb|gp| (\num{49.12}), \verb|rulz| (\num{9.53}), \verb|gps| (\num{7.15}) \\
+                     &   \num{2.31} &                   \verb|| &                                                                  \verb|g| (\num{78.87}) \\
+                     &   \num{2.18} &               \verb|pull| &    \verb|gl| (\num{25.32}), \verb|gpl| (\num{13.29}), \verb|gp| (\num{11.53}) \\
+                     &   \num{2.11} &               \verb|diff| &                                                                 \verb|gd| (\num{83.21}) \\
+                     &   \num{2.05} &                \verb|add| &                              \verb|ga| (\num{73.01}), \verb|chicken| (\num{10.85}) \\
+                     &   \num{2.01} &             \verb|branch| &                                   \verb|gb| (\num{74.88}), \verb|gbr| (\num{8.26}) \\
+                     &   \num{1.59} &          \verb|commit -m| & \verb|gcm| (\num{21.67}), \verb|gcmsg| (\num{19.59}), \verb|gc| (\num{18.18}) \\
+                     &   \num{1.20} &             \verb|commit| &                                                                 \verb|gc| (\num{65.51}) \\
         \midrule
-           \verb|ls| &  \numprint{13.15} &       \verb|--color=auto| &                                                                 \verb|ls| (\numprint{99.09}) \\
-                     &   \numprint{9.12} &                 \verb|-A| &                                                                 \verb|la| (\numprint{98.27}) \\
-                     &   \numprint{8.57} &                \verb|-CF| &                                                                  \verb|l| (\numprint{98.94}) \\
-                     &   \numprint{6.69} &                 \verb|-l| &                                                                 \verb|ll| (\numprint{82.64}) \\
-                     &   \numprint{6.63} &               \verb|-alF| &                                                                 \verb|ll| (\numprint{97.89}) \\
-                     &   \numprint{3.65} &                   \verb|| &      \verb|l| (\numprint{21.38}), \verb|sl| (\numprint{16.99}), \verb|iz| (\numprint{12.24}) \\
-                     &   \numprint{3.06} &                 \verb|-G| &                                                                 \verb|ls| (\numprint{97.46}) \\
-                     &   \numprint{2.43} &                \verb|-la| &      \verb|ll| (\numprint{32.80}), \verb|la| (\numprint{22.61}), \verb|l| (\numprint{12.71}) \\
-                     &   \numprint{2.01} &                 \verb|-a| &                                                                 \verb|la| (\numprint{74.80}) \\
-                     &   \numprint{1.77} &               \verb|-lah| &     \verb|l| (\numprint{32.64}), \verb|lsa| (\numprint{31.61}), \verb|ll| (\numprint{19.01}) \\
+           \verb|ls| &  \num{13.15} &       \verb|--color=auto| &                                                                 \verb|ls| (\num{99.09}) \\
+                     &   \num{9.12} &                 \verb|-A| &                                                                 \verb|la| (\num{98.27}) \\
+                     &   \num{8.57} &                \verb|-CF| &                                                                  \verb|l| (\num{98.94}) \\
+                     &   \num{6.69} &                 \verb|-l| &                                                                 \verb|ll| (\num{82.64}) \\
+                     &   \num{6.63} &               \verb|-alF| &                                                                 \verb|ll| (\num{97.89}) \\
+                     &   \num{3.65} &                   \verb|| &      \verb|l| (\num{21.38}), \verb|sl| (\num{16.99}), \verb|iz| (\num{12.24}) \\
+                     &   \num{3.06} &                 \verb|-G| &                                                                 \verb|ls| (\num{97.46}) \\
+                     &   \num{2.43} &                \verb|-la| &      \verb|ll| (\num{32.80}), \verb|la| (\num{22.61}), \verb|l| (\num{12.71}) \\
+                     &   \num{2.01} &                 \verb|-a| &                                                                 \verb|la| (\num{74.80}) \\
+                     &   \num{1.77} &               \verb|-lah| &     \verb|l| (\num{32.64}), \verb|lsa| (\num{31.61}), \verb|ll| (\num{19.01}) \\
         \midrule
-         \verb|grep| &  \numprint{36.12} &       \verb|--color=auto| &                                                               \verb|grep| (\numprint{99.29}) \\
-                     &  \numprint{12.50} &                   \verb|| &   \verb|G| (\numprint{22.27}), \verb|hgrep| (\numprint{10.98}), \verb|rrg| (\numprint{7.22}) \\
-                     &   \numprint{4.42} &            \verb|--color| &                                                               \verb|grep| (\numprint{97.00}) \\
-                     &   \numprint{1.68} &                 \verb|-i| &        \verb|grep| (\numprint{6.88}), \verb|G| (\numprint{5.86}), \verb|g| (\numprint{5.86}) \\
-                     &   \numprint{1.52} & \verb|--color=never '^d'| &                                                                \verb|lsd| (\numprint{98.45}) \\
+         \verb|grep| &  \num{36.12} &       \verb|--color=auto| &                                                               \verb|grep| (\num{99.29}) \\
+                     &  \num{12.50} &                   \verb|| &   \verb|G| (\num{22.27}), \verb|hgrep| (\num{10.98}), \verb|rrg| (\num{7.22}) \\
+                     &   \num{4.42} &            \verb|--color| &                                                               \verb|grep| (\num{97.00}) \\
+                     &   \num{1.68} &                 \verb|-i| &        \verb|grep| (\num{6.88}), \verb|G| (\num{5.86}), \verb|g| (\num{5.86}) \\
+                     &   \num{1.52} & \verb|--color=never '^d'| &                                                                \verb|lsd| (\num{98.45}) \\
         \bottomrule
     \end{tabular}
 \end{table*}
