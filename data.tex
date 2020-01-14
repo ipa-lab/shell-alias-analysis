@@ -112,7 +112,7 @@ is parsed as the command \texttt{apt-get} with argument \texttt{install} and the
 
 After parsing, we ended up with \num{4772321} alias definitions, broken down into \num{5309216} commands and \num{7445374} arguments.
 Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
-\num{539923} files from \num{209179} repositories, or \per{63.96} per of the original sample, contained aliases.
+\num{539923} files from \num{209179} repositories, or \per{63.96} of the original sample, contained aliases.
 
 \subsection{File Names and Duplicate Files}
 
@@ -140,8 +140,8 @@ It appears that \emph{ohmyzsh} users are particularly eager to share their confi
 
 It should be noted that \num{255692} of the files in our final dataset (\per{47.36}) are duplicates, meaning they have an SHA hash that is identical to that of another file in the dataset.
 These duplicates derive from \num{18484} distinct files.
-Overall, \per{49.26} per of aliases originate from files of which there are two or more identical copies in the dataset.
-In particular, counting each duplicate only once, \emph{ohmyzsh} plugin files contribute only \per{1.95} per of aliases.
+Overall, \per{49.26} of aliases originate from files of which there are two or more identical copies in the dataset.
+In particular, counting each duplicate only once, \emph{ohmyzsh} plugin files contribute only \per{1.95} of aliases.
 However, we do not think that this skews the data.
 Choosing to use \emph{ohmyzsh}, and choosing which \texttt{zsh} plugins to enable or disable, reflects user intent just as much as manually writing an alias definition into \texttt{.zshrc}.
 
