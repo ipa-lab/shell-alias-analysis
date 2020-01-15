@@ -12,3 +12,5 @@ shell-alias-analysis.pdf
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+*.bbl
+*.blg
