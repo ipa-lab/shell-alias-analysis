@@ -55,9 +55,14 @@ The most common argument, across all commands, is \texttt{--color=auto}, appeari
     \end{tabular}        
 \end{table*}
 
-Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names potentially vary widely.
+Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
 \Cref{tab:command-summary} gives a more informative view, centered around some common commands, showing us the top arguments given with each command and the most common alias names by which the command/argument combinations are referred to.
-Here we can see \TODO
+Here we can already identify some of the different use cases for aliasing.
+Looking at the \texttt{ls} command, we find that aliases are used 
+to redefine the command with a default argument (\verb|alias ls="ls --color=auto"|);
+to shorten a common invocation (\verb|alias ll="ls -alF"|);
+and to correct a spelling mistake (\verb|alias sl=ls|).
+We also notice that in the case of the \texttt{git} command, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
 
 \begin{table*}
     \caption{Common commands and their top arguments and aliases}
@@ -97,7 +102,50 @@ Here we can see \TODO
     \end{tabular}
 \end{table*}
 
-One drawback of this presentation is that there are obviously many different ways of how arguments to a command can be combined.
-For most programs, the order of arguments does not matter and often there are multiple ways to specify the same argument.
-\Cref{tab:command-summary} obscures the long tail of argument variations.
-In order to get more insight into how aliases are used, we will now look at the dataset with certain use cases in mind. 
+We will now dig deeper into some alias use cases: the three already mentioned (default arguments, compression and autocorrect) plus three more (command chaining, safety and bookmarks).
+\Cref{tab:use-cases} gives an overview of how these alias use cases apply to some well-known commands.
+As we explore each use case in detail, we will refer back to this table and explain each column.
+
+\newcommand{\rot}[1]{\makebox[1em][l]{\rotatebox{45}{#1}}}
+
+\newcommand{\yes}{$\CIRCLE$}
+\newcommand{\no}{}
+\newcommand{\some}{$\Circle$}
+\newcommand{\many}{$\LEFTcircle$}
+
+\begin{table*}
+    \caption{Common commands broken down by alias use cases}
+    \label{tab:use-cases}
+    \begin{tabular}{llrllllll}
+        & & \# & \rot{Default Arguments} & \rot{Autocorrect} & \rot{Compression} & \rot{Chaining} & \rot{Safety} & \rot{Bookmarks} \\
+        \midrule
+        \multicolumn{2}{l}{Unix System Tools}           & \num{0} & \many & \some & \no &       & \yes & \yes \\
+            & \texttt{ls}                               & \num{0}    & \yes  &       &     &      &  & \\
+            & \texttt{cd}                               & \num{0}    &       & \yes  &     & \yes & & \\
+            & \texttt{cp}                               & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{mv}                               & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{rm}                               & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{grep}                             & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{chmod}                            & \num{0}    & \yes  &       &     &      & & \\
+        \midrule
+        \multicolumn{2}{l}{Version Control}             & \num{0} & \many & \some & \no &       & & \\
+            & \texttt{git}                              & \num{0}    &       & \yes  &     & \yes  & & \\
+            & \texttt{hg}                               & \num{0}    & \yes  &       &     &       & & \\
+        \midrule
+        \multicolumn{2}{l}{Container Infrastructure}    & \num{0} & \many & \some & \no &       & & \\
+            & \texttt{docker}                           & \num{0}    &       & \yes  &     & \yes & & \\
+            & \texttt{kubernetes}                       & \num{0}    & \yes  &       &     &      & & \\
+        \midrule
+        \multicolumn{2}{l}{Package Managers}            & \num{0} & \many & \some & \no &      & & \\
+            & \texttt{apt}                              & \num{0}    &       & \yes  &     & \yes & & \\
+            & \texttt{zypper}                           & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{pacman}                           & \num{0}    & \yes  &       &     &      & & \\
+        \midrule
+        \multicolumn{2}{l}{Developer Tools}             & \num{0} & \many & \some & \no &      & & \\
+            & \texttt{python}                           & \num{0}    &       & \yes  &     & \yes & & \\
+            & \texttt{ruby}                             & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{xcode}                            & \num{0}    & \yes  &       &     &      & & \\
+            & \texttt{mate}                             & \num{0}    & \yes  &       &     &      & & \\
+        \midrule
+    \end{tabular}
+\end{table*}
