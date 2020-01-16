@@ -33,7 +33,7 @@ While it makes no sense to use the \verb|{--interactive}| or \verb|{-i}| argumen
 
 The complexity of commands and arguments can cause users to introduce errors when working in a command line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
-A popular open project dealing with this issue is \texttt{TheF**k}\footnote{We censored the name of the tool in the paper. You can find it here: \url{http://bit.ly/CmdCorrection}}.
+There is a popular open project that attempts to navigate this issue\footnote{\url{https://github.com/nvbn/thefuck}}.
 It uses a set of rules to suggest possible error corrections to the command.
 While these rules are all hard-coded, we envision that we can leverage the global wisdom of aliases in our large scale dataest to learn rules that form the basis for different kinds of suggestions.
 An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
