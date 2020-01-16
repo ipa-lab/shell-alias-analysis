@@ -41,7 +41,12 @@ Other operators (\verb|&|, \verb!||!, \verb!|&!) appear in only \per{6.65} of mu
 \end{tabular}
 \end{table}
 
+The most interesting operator is certainly the pipe (\verb!|!), since it creates an interface between two otherwise separate programs.
+\Cref{fig:flow} shows a flow diagram of the top 200 pipelines with three commands that make up at least \per{10} of one participating command's usage.
 
-% The pipe operator is the  most interesting, as it lets ascertain data flow between commands.
-%Figure \TODO visualizes ..
-
+\begin{figure}
+    \centering    
+    \includegraphics[width=\columnwidth]{flow.png}
+    \caption{Flow diagram for top 3-command pipelines}
+    \label{fig:flow}
+\end{figure}
