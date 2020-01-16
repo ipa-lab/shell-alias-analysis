@@ -110,36 +110,36 @@ After parsing, we ended up with \num{4772321} alias definitions, broken down int
 Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
 \num{539923} files from \num{209179} repositories, or \per{63.96} of the original sample, contained aliases.
 
-\subsection{File Names and Duplicate Files}
-
-\begin{table}
-    \caption{Common file names}
-    \label{tab:file-names}
-    \begin{tabular}{rrlrr}
-        \toprule
-                  \% &          Files &        Name Pattern &         Aliases &           \% \\
-        \midrule
-         \num{25.29} &  \num{136520}  & \verb|*.plugin.zsh| &  \num{1607174}  &  \num{33.68} \\
-          \num{8.17} &   \num{44090}  &      \verb|*alias*| &   \num{926406}  &  \num{19.41} \\
-         \num{12.94} &   \num{69879}  &      \verb|*bashrc| &   \num{819583}  &  \num{17.17} \\
-         \num{10.43} &   \num{56316}  &       \verb|*zshrc| &   \num{572059}  &  \num{11.99} \\
-          \num{4.29} &   \num{23178}  &     \verb|*profile| &   \num{229306}  &   \num{4.80} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+\subsection{File Name Distribution}
 
 \Cref{tab:file-names} shows the origin of the majority of aliases in our dataset.
 Most (\per{53.38}) come from common startup scripts, like \texttt{.bashrc}, \texttt{aliases.zsh} or \texttt{.profile}.
 Noticeably, there is a large amount of files ending in \texttt{.plugin.zsh}, contributing \per{33.68} of all aliases.
 These files originate from \emph{ohmyzsh}\footnote{\url{https://ohmyz.sh}} a very popular framework for managing \texttt{zsh} configurations.
 It appears that \emph{ohmyzsh} users are particularly eager to share their configurations on GitHub.
-
-It should be noted that \num{255692} of the files in our final dataset (\per{47.36}) are duplicates, meaning they have an SHA hash that is identical to that of another file in the dataset.
-These duplicates derive from \num{18484} distinct files.
-Overall, \per{49.26} of aliases originate from files of which there are two or more identical copies in the dataset.
-In particular, counting each duplicate only once, \emph{ohmyzsh} plugin files contribute only \per{1.95} of aliases.
+%It should be noted that \num{255692} of the files in our final dataset (\per{47.36}) are duplicates, meaning they have an SHA hash that is identical to that of another file in the dataset.
+%These duplicates derive from \num{18484} distinct files.
+%Overall, \per{49.26} of aliases originate from files of which there are two or more identical copies in the dataset.
+%In particular, counting each duplicate only once, \emph{ohmyzsh} plugin files contribute only \per{1.95} of aliases.
 However, we do not think that this skews the data.
 Choosing to use \emph{ohmyzsh}, and choosing which \texttt{zsh} plugins to enable or disable, reflects user intent just as much as manually writing an alias definition into \texttt{.zshrc}.
+
+\begin{table}[h]
+	\caption{Distribution of common file names}
+	\label{tab:file-names}
+	\begin{tabular}{rrlrr}
+		\toprule
+		\% &          Files &        Name Pattern &         Aliases &           \% \\
+		\midrule
+		\num{25.29} &  \num{136520}  & \verb|*.plugin.zsh| &  \num{1607174}  &  \num{33.68} \\
+		\num{8.17} &   \num{44090}  &      \verb|*alias*| &   \num{926406}  &  \num{19.41} \\
+		\num{12.94} &   \num{69879}  &      \verb|*bashrc| &   \num{819583}  &  \num{17.17} \\
+		\num{10.43} &   \num{56316}  &       \verb|*zshrc| &   \num{572059}  &  \num{11.99} \\
+		\num{4.29} &   \num{23178}  &     \verb|*profile| &   \num{229306}  &   \num{4.80} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 
 \subsection{Reproducibility}
 
