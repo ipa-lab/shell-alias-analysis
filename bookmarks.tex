@@ -2,38 +2,40 @@
 
 We define a \emph{bookmark} to be an alias containing an argument that references some specific local or remote location, e.g. a file path, domain or IP address.
 For instance, 
-\begin{verbatim}
+\begin{CVerbatim}
 alias dl="cd ~/Downloads"
-\end{verbatim}
+\end{CVerbatim}
 and
-\begin{verbatim}
+\begin{CVerbatim}
 alias starwars="telnet towel.blinkenlights.nl"
-\end{verbatim}
+\end{CVerbatim}
 are both bookmark aliases.
 
 To find such bookmarks in our dataset, we searched for arguments that are locations, which we take to be any of the following:
 \begin{itemize}
-    \item An IPv4 address, matched by the liberal regular expression
-\begin{verbatim}[0-9]+.[0-9]+.[0-9]+.[0-9]+\end{verbatim}
+    \item An IPv4 address, matched by the liberal regular expression \verb|[0-9]+.[0-9]+.[0-9]+.[0-9]+|
     \item A string containing one of the known top-level domains\footnote{From \url{http://data.iana.org/TLD/tlds-alpha-by-domain.txt} (retrieved January 14, 2020)} preceded by a dot (\verb|.|) and followed by a slash (\verb|/|), colon (\verb|:|) or the end of the string.
     \item A string containing a forward slash (\verb|/|), indicating a path.
 \end{itemize}
 To avoid false positives, we sampled the top 300 search results according to the above criteria and determined some exclusion patterns.
 For instance, \texttt{/dev/null} is not a location for our purposes.
 Neither is \texttt{origin/master}, and thus 
-\begin{verbatim}
+\begin{CVerbatim}
 alias gm="git merge origin/master"
-\end{verbatim}
+\end{CVerbatim}
 does not count as a bookmark.
 
 By our definition, \num{557252} aliases (\per{11.68}) are bookmarks.
 Of these, only \num{75169} are remote bookmarks (containing URLs or IP addresses).
 Bookmarks are used predominantly for file system navigation, and the \texttt{cd} command is featured heavily in bookmark aliases.
 Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations, or outputting log files, as in 
-\begin{verbatim}
+\begin{CVerbatim}
 alias onoz="cat /var/log/errors.log"
-\end{verbatim}
+\end{CVerbatim}
 or opening frequently edited files, as in the most common bookmark overall, which is for editing the shell configuration itself:
-\begin{verbatim}
+\begin{CVerbatim}
 alias ohmyzsh="mate ~/.oh-my-zsh"
-\end{verbatim}
+\end{CVerbatim}
+
+In \cref{tab:use-cases} we have marked commands 
+

@@ -3,9 +3,9 @@ First, we provide an overview and quantify common structures in our dataset rega
 Based on the initial exploration, we then present both quantitative and qualitative results from different aspects of alias usage.
 
 The single most common alias definition in our dataset is
-\begin{verbatim}
+\begin{CVerbatim}
 alias '${1+"$@"}'="$@"
-\end{verbatim}
+\end{CVerbatim}
 appearing \num{78265} times, which is \per{1.64} of all alias definitions.
 This curious jumble of symbols derives from a portability hack for \texttt{zsh}.\footnote{\url{https://unix.stackexchange.com/a/191836}}
 
@@ -29,7 +29,7 @@ The most common argument, across all commands, is \texttt{--color=auto}, appeari
                   \verb|la| &   \num{62039} &  \num{1.30} \\
         \bottomrule
     \end{tabular}
-    \hspace{0.1cm}
+    \hspace{0.3cm}
     \begin{tabular}{lrr}
         \toprule
                Command &            \# &           \% \\
@@ -41,7 +41,7 @@ The most common argument, across all commands, is \texttt{--color=auto}, appeari
            \verb|"$@"| &   \num{78276} &   \num{1.47} \\
         \bottomrule
     \end{tabular}
-    \hspace{0.1cm}
+    \hspace{0.3cm}
     \begin{tabular}{lrr}
         \toprule
                     Argument &            \# &          \% \\
@@ -64,43 +64,40 @@ to shorten a common invocation (\verb|alias ll="ls -alF"|);
 and to correct a spelling mistake (\verb|alias sl=ls|).
 We also notice that in the case of the \texttt{git} command, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
 
-\begin{table*}
-    \caption{Common commands and their top arguments and aliases}
+\newcommand{\numx}[1]{{\small (\num{#1})}}
+
+% TODO: auf eine seite
+\begin{table}
+    \caption{Top two commands with top arguments and aliases}
     \label{tab:command-summary}
-    \begin{tabular}{lrll}
+    \begin{tabular}{@{}lrll@{}}
         \toprule
-             Command &           \% &                 Arguments &                                                                                 Aliases (\%) \\
+              &          \% &                 Arguments & Aliases (\%) \\
         \midrule
-          \verb|git| &   \num{3.75} &             \verb|status| &                                  \verb|gs| (\num{51.57}), \verb|gst| (\num{24.17}) \\
-                     &   \num{2.42} &           \verb|checkout| & \verb|gco| (\num{51.17}), \verb|gc| (\num{10.04}), \verb|letcat| (\num{9.18}) \\
-                     &   \num{2.33} &               \verb|push| &    \verb|gp| (\num{49.12}), \verb|rulz| (\num{9.53}), \verb|gps| (\num{7.15}) \\
-                     &   \num{2.31} &                   \verb|| &                                                                  \verb|g| (\num{78.87}) \\
-                     &   \num{2.18} &               \verb|pull| &    \verb|gl| (\num{25.32}), \verb|gpl| (\num{13.29}), \verb|gp| (\num{11.53}) \\
-                     &   \num{2.11} &               \verb|diff| &                                                                 \verb|gd| (\num{83.21}) \\
-                     &   \num{2.05} &                \verb|add| &                              \verb|ga| (\num{73.01}), \verb|chicken| (\num{10.85}) \\
-                     &   \num{2.01} &             \verb|branch| &                                   \verb|gb| (\num{74.88}), \verb|gbr| (\num{8.26}) \\
-                     &   \num{1.59} &          \verb|commit -m| & \verb|gcm| (\num{21.67}), \verb|gcmsg| (\num{19.59}), \verb|gc| (\num{18.18}) \\
-                     &   \num{1.20} &             \verb|commit| &                                                                 \verb|gc| (\num{65.51}) \\
+          \verb|git| &   \num{3.75} &             \verb|status| &                                  \verb|gs| \numx{51.57}, \verb|gst| \numx{24.17} \\
+                     &   \num{2.42} &           \verb|checkout| & \verb|gco| \numx{51.17}, \verb|gc| \numx{10.04}, \verb|letcat| \numx{9.18} \\
+                     &   \num{2.33} &               \verb|push| &    \verb|gp| \numx{49.12}, \verb|rulz| \numx{9.53}, \verb|gps| \numx{7.15} \\
+                     &   \num{2.31} &                   \verb|| &                                                                  \verb|g| \numx{78.87} \\
+                     &   \num{2.18} &               \verb|pull| &    \verb|gl| \numx{25.32}, \verb|gpl| \numx{13.29}, \verb|gp| \numx{11.53} \\
+                     &   \num{2.11} &               \verb|diff| &                                                                 \verb|gd| \numx{83.21} \\
+                     &   \num{2.05} &                \verb|add| &                              \verb|ga| \numx{73.01}, \verb|chicken| \numx{10.85} \\
+                     &   \num{2.01} &             \verb|branch| &                                   \verb|gb| \numx{74.88}, \verb|gbr| \numx{8.26} \\
+                     &   \num{1.59} &          \verb|commit -m| & \verb|gcm| \numx{21.67}, \verb|gcmsg| \numx{19.59}, \verb|gc| \numx{18.18} \\
+                     &   \num{1.20} &             \verb|commit| &                                                                 \verb|gc| \numx{65.51} \\
         \midrule
-           \verb|ls| &  \num{13.15} &       \verb|--color=auto| &                                                                 \verb|ls| (\num{99.09}) \\
-                     &   \num{9.12} &                 \verb|-A| &                                                                 \verb|la| (\num{98.27}) \\
-                     &   \num{8.57} &                \verb|-CF| &                                                                  \verb|l| (\num{98.94}) \\
-                     &   \num{6.69} &                 \verb|-l| &                                                                 \verb|ll| (\num{82.64}) \\
-                     &   \num{6.63} &               \verb|-alF| &                                                                 \verb|ll| (\num{97.89}) \\
-                     &   \num{3.65} &                   \verb|| &      \verb|l| (\num{21.38}), \verb|sl| (\num{16.99}), \verb|iz| (\num{12.24}) \\
-                     &   \num{3.06} &                 \verb|-G| &                                                                 \verb|ls| (\num{97.46}) \\
-                     &   \num{2.43} &                \verb|-la| &      \verb|ll| (\num{32.80}), \verb|la| (\num{22.61}), \verb|l| (\num{12.71}) \\
-                     &   \num{2.01} &                 \verb|-a| &                                                                 \verb|la| (\num{74.80}) \\
-                     &   \num{1.77} &               \verb|-lah| &     \verb|l| (\num{32.64}), \verb|lsa| (\num{31.61}), \verb|ll| (\num{19.01}) \\
-        \midrule
-         \verb|grep| &  \num{36.12} &       \verb|--color=auto| &                                                               \verb|grep| (\num{99.29}) \\
-                     &  \num{12.50} &                   \verb|| &   \verb|G| (\num{22.27}), \verb|hgrep| (\num{10.98}), \verb|rrg| (\num{7.22}) \\
-                     &   \num{4.42} &            \verb|--color| &                                                               \verb|grep| (\num{97.00}) \\
-                     &   \num{1.68} &                 \verb|-i| &        \verb|grep| (\num{6.88}), \verb|G| (\num{5.86}), \verb|g| (\num{5.86}) \\
-                     &   \num{1.52} & \verb|--color=never '^d'| &                                                                \verb|lsd| (\num{98.45}) \\
+           \verb|ls| &  \num{13.15} &       \verb|--color=auto| &                                                                 \verb|ls| \numx{99.09} \\
+                     &   \num{9.12} &                 \verb|-A| &                                                                 \verb|la| \numx{98.27} \\
+                     &   \num{8.57} &                \verb|-CF| &                                                                  \verb|l| \numx{98.94} \\
+                     &   \num{6.69} &                 \verb|-l| &                                                                 \verb|ll| \numx{82.64} \\
+                     &   \num{6.63} &               \verb|-alF| &                                                                 \verb|ll| \numx{97.89} \\
+                     &   \num{3.65} &                   \verb|| &      \verb|l| \numx{21.38}, \verb|sl| \numx{16.99}, \verb|iz| \numx{12.24} \\
+                     &   \num{3.06} &                 \verb|-G| &                                                                 \verb|ls| \numx{97.46} \\
+                     &   \num{2.43} &                \verb|-la| &      \verb|ll| \numx{32.80}, \verb|la| \numx{22.61}, \verb|l| \numx{12.71} \\
+                     &   \num{2.01} &                 \verb|-a| &                                                                 \verb|la| \numx{74.80} \\
+                     &   \num{1.77} &               \verb|-lah| &     \verb|l| \numx{32.64}, \verb|lsa| \numx{31.61}, \verb|ll| \numx{19.01} \\
         \bottomrule
     \end{tabular}
-\end{table*}
+\end{table}
 
 We will now dig deeper into some alias use cases: the three already mentioned (default arguments, compression and autocorrect) plus three more (command chaining, safety and bookmarks).
 \Cref{tab:use-cases} gives an overview of how these alias use cases apply to some well-known commands.

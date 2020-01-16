@@ -11,19 +11,19 @@ In this paper, we focus on the built-in \verb|alias| command, available on all P
 
 The \verb|alias| command allows the user to create \emph{alias definitions}, defining command substitutions.
 When the shell processes the command line, it replaces known alias names with their defined string values.
-For example,
-\begin{verbatim}
+For example, 
+\begin{CVerbatim}
 alias ll='ls -l'
-\end{verbatim}
+\end{CVerbatim}
 defines the \emph{alias name} \verb|ll|, that is replaced by the \emph{alias value} \verb|ls -l|.
 In this case, \verb|ls| is the standard command for listing directory contents, with the argument \verb|-l| specifying a long-form output format.
 So the alias \verb|ll| (present in many system configurations) is used to specify a default argument to a commonly used command.
 
 Alias values can be arbitrarily complex strings and can substitute not only simple commands and arguments, but whole chains of commands. 
 The definition
-\begin{verbatim}
+\begin{CVerbatim}
 alias ducks="du -cksh * | sort -hr | head -n 15"
-\end{verbatim}
+\end{CVerbatim}
 defines the new command \verb|ducks| by chaining together three different command line tools in order to return the 15 largest files in the current directory.
 
 %alias ip=ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d' ' -f2
@@ -33,14 +33,14 @@ defines the new command \verb|ducks| by chaining together three different comman
 %which chains together three commands to rewind the most recent commit in a git repository, if its commit message contains the word "wip".
 
 In general, an alias definition takes the form
-\begin{verbatim}
+\begin{CVerbatim}
 alias name=value
-\end{verbatim}
+\end{CVerbatim}
 where \verb|value| can optionally be enclosed in single (\verb|'|) or double (\verb|"|) quotes and \verb|name| can be any identifier that is a valid command name.\footnote{Some shells allow for an alternative alias syntax without the equals sign between \texttt{name} and \texttt{value}. In this paper we only look at POSIX-compliant alias definitions.}
 In particular, the alias name can be an existing command, so a re-definition like
-\begin{verbatim}
+\begin{CVerbatim}
 alias grep='grep --color=always'
-\end{verbatim}
+\end{CVerbatim}
 is possible.
 
 \subsection{Dotfiles}

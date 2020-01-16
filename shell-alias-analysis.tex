@@ -5,12 +5,18 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{wasysym}
+\usepackage{fancyvrb}
+\usepackage{setspace}
 
 \usepackage{xspace}
 \newcommand*{\TODO}{\textcolor{red}{TODO}\xspace}
 
 \newcommand{\num}[1]{\numprint{#1}}
 \newcommand{\per}[1]{\numprint[\%]{#1}}
+
+\newenvironment{CVerbatim}
+ {\center\BVerbatim}
+ {\endBVerbatim\endcenter}
 
 \begin{document}
 

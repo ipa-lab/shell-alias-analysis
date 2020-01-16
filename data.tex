@@ -28,14 +28,14 @@ To get around it, we wrote a Python tool called \verb|github-searcher|\footnote{
 
 The sampling strategy is based on the GitHub API allowing code search queries to be conditioned on file sizes. 
 For example, the query 
-\begin{verbatim}
+\begin{CVerbatim}
 alias language:Shell size:101..200
-\end{verbatim}
+\end{CVerbatim}
 returns up to 1000 Shell language files containing the string ``alias'' that have a file size between 101 and 200 bytes (inclusive).
 Repeating the search with 
-\begin{verbatim}
+\begin{CVerbatim}
 alias language:Shell size:201..300
-\end{verbatim}
+\end{CVerbatim}
 returns up to 1000 files of a size between 201 and 300 bytes.
 And so on.
 Repeatedly searching with the same search term but different non-overlapping file size ranges allows us to significantly increase our sample of the overall population.
@@ -49,9 +49,9 @@ While this count is usually very erratic on broad searches, fluctuating wildly b
 This allows us to get a good estimate of the population, and how accurately our sample approximates it.
 
 For this study, using the search term
-\begin{verbatim}
+\begin{CVerbatim}
 alias language:Shell
-\end{verbatim}
+\end{CVerbatim}
 and the sampling strategy described above, we started by sampling all files in increments of 100 bytes and stopped when we reached 29 KB.
 We then re-sampled some high-population areas with smaller size increments in order to get a better sample, in some cases sampling in increments of 1 byte.
 In total, we collected \num{844140} files from \num{304361} GitHub repositories.
@@ -75,9 +75,9 @@ The parser is a Haskell script that splits each alias definition into alias name
 Commands can be delimited by the shell operators for piping (\verb!|! and \verb!|&!), logical composition (\verb|&&| and \verb!||!), background execution (\verb|&|) and simple chaining (\verb|;|).
 Arguments are separated by whitespace, but care is taken to handle quoted arguments correctly. 
 For example, 
-\begin{verbatim}
+\begin{CVerbatim}
 echo "hello world"
-\end{verbatim}
+\end{CVerbatim}
 is parsed as one command (\texttt{echo}) with one argument (\texttt{"hello world"}).
 See \cref{fig:parser} for a more elaborate example.
 
@@ -92,22 +92,18 @@ See \cref{fig:parser} for a more elaborate example.
 Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
 While there are some conventions around command line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
 \begin{itemize}
-    \item single-dash short arguments combined with double-dash long-form arguments, e.g.
-        \begin{verbatim}  ls -l -a --color=always\end{verbatim}
-    \item combined short arguments without a dash, e.g.x 
-        \begin{verbatim}  tar xvzf archive.tar\end{verbatim}
-    \item dictionary-style arguments, e.g.
-        \begin{verbatim}  dd if=/dev/zero of=/dev/sda\end{verbatim}
-    \item subcommands, e.g.
-        \begin{verbatim}  git commit -m "wip"\end{verbatim}
+    \item single-dash short arguments combined with double-dash long-form arguments, e.g. \verb|ls -l -a --color=always|
+    \item combined short arguments without a dash, e.g. \\ \verb|tar xvzf archive.tar|
+    \item dictionary-style arguments, e.g. \\ \verb|dd if=/dev/zero of=/dev/sda|
+    \item subcommands, e.g. \verb|git commit -m "wip"|
 \end{itemize}
 and many more.
 Since the parser can not know the intentions of any command, it simply treats each token as a separate argument.
 There is one exception: if the command is \texttt{sudo}, then its first argument is taken as the real command. 
 For example,
-\begin{verbatim}
+\begin{CVerbatim}
 sudo apt-get install
-\end{verbatim} 
+\end{CVerbatim} 
 is parsed as the command \texttt{apt-get} with argument \texttt{install} and the sudo flag set.
 
 After parsing, we ended up with \num{4772321} alias definitions, broken down into \num{5309216} commands and \num{7445374} arguments.

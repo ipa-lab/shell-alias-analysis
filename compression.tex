@@ -1,4 +1,4 @@
-\subsection{Complexity and Compression}
+\subsection{Compression}
 
 \begin{figure}
     \centering
@@ -11,11 +11,11 @@ One use of aliases is to simplify complex expressions by giving them short, memo
 The average length of an alias name is \num{4.43} characters, whereas the average length of an alias value is \num{21.15} characters.
 If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
 For example, the definition
-\begin{verbatim}
+\begin{CVerbatim}
 alias gs='git status'
-\end{verbatim}
+\end{CVerbatim}
 has a compression ratio of 5.
-\Cref{fig:compression} shows the distribution of compression ratios for all aliases in the dataset.
+\Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset and \cref{tab:use-cases} for common commands. \TODO
 The median compression ratio is 4.2, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases. 
 
@@ -23,11 +23,11 @@ There are \num{157542} aliases (\per{3.3}) with names longer than their values.%
 \footnote{The curious spike at 0.36 in figure \cref{fig:compression} is the \texttt{zsh} portability hack described earlier.
 It makes up \per{49.68} of long alias names.}
 Among them, we found many descriptive names, like
-\begin{verbatim}
-git-last-commit-message    
-docker_list_all_containers
-generate_random_password
-\end{verbatim}
+\begin{itemize}
+    \item \verb|git-last-commit-message|
+    \item \verb|docker_list_all_containers|
+    \item \verb|generate_random_password|
+\end{itemize}
 and similar wordy descriptions of simple command invocations.
 Additionally, we found compatibility aliases (like \texttt{md5sum} for \texttt{md5}) and many humorous definitions (like \texttt{kthxbai} for \texttt{halt} or \texttt{please} for \texttt{sudo}).
 
@@ -38,9 +38,3 @@ The second longest alias name is a Swedish compound word of \num{131} characters
 
 On the other end of the spectrum, the highest compression ratio in any alias definition comes from an alias named \texttt{BEEP}, which invokes the Linux \texttt{beep} utility 9 times in succession, with a combined \num{4471} arguments.
 When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
-
-Perhaps surprisingly, the main source of complexity (i.e. value length) in most aliases is the number and length of arguments.
-Command composition is surprisingly uncommon: \num{4421261} aliases (\per{92.64}) use just one command.
-Only \num{351060} (\per{7.36}) use two or more.
-Among those, the most popular way to combine commands is with a pipe (\verb!|!), used by \per{35.2} of multi-command aliases, closely followed by logical conjunction (\verb|&&|), used by \per{29.75}, and simple chaining (\verb|;|), used by \per{28.4}.
-Other operators (\verb|&|, \verb!||!, \verb!|&!) appear in only \per{6.65} of aliases.
