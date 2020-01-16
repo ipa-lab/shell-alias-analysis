@@ -1,0 +1,500 @@
+git;626185;11.79;version control;
+ls;378097;7.12;system;
+cd;229522;4.32;system;
+grep;128045;2.41;system;
+"""$@""";78276;1.47;;
+wp;66434;1.25;system;
+zypper;66295;1.25;package manager;
+mate;61832;1.16;text editor;
+echo;53934;1.02;system;
+vim;53378;1.01;text editor;
+zeus;52570;0.99;development;ruby
+pacman;46821;0.88;package manager;
+xargs;44927;0.85;system;
+php;44486;0.84;development;
+egrep;44374;0.84;system;
+rm;44209;0.83;system;
+"""$ROOT""";43400;0.82;;
+docker;42868;0.81;infrastructure;
+fgrep;40010;0.75;system;
+mvn;36683;0.69;package manager;java
+ssh;36574;0.69;system;
+yaourt;34577;0.65;package manager;pacman frontend
+apt-get;34075;0.64;package manager;
+bundle;33753;0.64;package manager;ruby
+kubectl;33035;0.62;infrastructure;kubernetes
+tmux;32320;0.61;system;
+rake;31284;0.59;development;ruby
+dir;31069;0.59;system;
+find;30923;0.58;system;
+meteor;30889;0.58;development;javascript
+vdir;29826;0.56;system;
+;29690;0.56;;
+hg;29363;0.55;version control;
+clear;28997;0.55;system;
+frontend;28335;0.53;development;javascript
+ps;28276;0.53;system;
+nocorrect;27688;0.52;system;zsh
+cp;27472;0.52;system;
+docker-compose;27162;0.51;infrastructure;docker
+brew;27060;0.51;package manager;
+npm;26523;0.5;package manager;
+source;26290;0.5;system;
+less;25238;0.48;system;
+sbt;24523;0.46;development;scala
+dnf;24469;0.46;package manager;yum
+ruby;24374;0.46;development;
+yum;23940;0.45;package manager;
+tail;23449;0.44;system;
+mv;22689;0.43;system;
+python;22622;0.43;development;
+sort;22391;0.42;system;
+web_search;22358;0.42;other;?
+notify-send;21683;0.41;system;sends desktop notifications
+open;21454;0.4;system;mac open I guess?
+drush;21177;0.4;development;drupal
+react-native;20247;0.38;development;
+$apt_pref;20245;0.38;package manager;apt
+rails;19735;0.37;development;ruby
+composer;19445;0.37;package manager;php
+killall;19061;0.36;system;
+nvim;19006;0.36;text editor;
+su;18973;0.36;system;
+jhbuild;18141;0.34;development;gnome?
+pacaur;17944;0.34;package manager;aur
+yarn;17533;0.33;package manager;javascript
+head;17530;0.33;system;
+cat;17425;0.33;system;
+du;17344;0.33;system;
+noglob;17208;0.32;system;some shell hack?
+nmap;16085;0.3;system;
+history;15950;0.3;system;
+curl;15839;0.3;system;
+perl;15835;0.3;development;
+mkdir;15451;0.29;system;
+df;15222;0.29;system;
+go;14790;0.28;development;
+ember;14276;0.27;development;javascript
+systemctl;13942;0.26;system;systemd
+1;13660;0.26;;
+nanoc;12894;0.24;development;ruby
+defaults;12567;0.24;system;mac I guess?
+aptitude;12361;0.23;package manager;apt
+sf;12014;0.23;development;php
+rsync;11677;0.22;system;
+sed;11582;0.22;system;
+port;11228;0.21;system;
+"""$GREP""";11200;0.21;system;grep
+sudo;11032;0.21;system;
+exit;10919;0.21;system;
+export;10703;0.2;system;
+perlbrew;10561;0.2;development;
+emacs;10299;0.19;text editor;
+repo;9974;0.19;development;android
+abs;9909;0.19;package manager;
+trizen;9498;0.18;package manager;aur
+callvim;9426;0.18;system;zsh tool
+arc;9354;0.18;system;compression
+python3;9168;0.17;development;
+vagrant;8953;0.17;infrastructure;
+aur;8837;0.17;package manager;
+pwd;8804;0.17;system;
+apt-cache;8715;0.16;package manager;apt
+yay;8608;0.16;package manager;aur
+gem;8514;0.16;development;ruby dependencies
+command;8457;0.16;system;
+awk;8396;0.16;system;
+cf;8281;0.16;infrastructure;cloud foundry
+fc;8256;0.16;system;
+ll;8194;0.15;system;ls
+gls;8024;0.15;system;gnu ls
+xclip;7859;0.15;system;
+make;7761;0.15;development;
+date;7653;0.14;system;
+.;7527;0.14;;
+apt;7279;0.14;package manager;
+cut;7254;0.14;system;
+pushd;7215;0.14;system;
+more;7171;0.14;system;
+$APT;7154;0.13;package manager;apt
+2>;6932;0.13;;
+vi;6763;0.13;text editor;
+k;6746;0.13;infrastructure;kubernetes
+tree;6738;0.13;system;
+chmod;6668;0.13;system;
+emacsclient;6585;0.12;text editor;emacs
+pg_ctl;6449;0.12;development;postgres
+subl;6376;0.12;text editor;
+$EDITOR;6312;0.12;text editor;?
+apt-file;6238;0.12;package manager;apt
+code;6091;0.11;text editor;vscode
+/bin/ls;6089;0.11;system;ls
+pbcopy;5997;0.11;system;pasteboard
+man;5825;0.11;system;
+tar;5753;0.11;system;
+hanami;5730;0.11;development;ruby
+alias;5717;0.11;system;
+exa;5699;0.11;system;ls replacement
+wget;5694;0.11;system;
+ping;5677;0.11;system;
+tr;5537;0.1;system;
+dpkg;5453;0.1;package manager;
+screen;5241;0.1;system;
+jobs;5110;0.1;system;
+bower;5094;0.1;package manager;javascript
+time;4989;0.09;system;
+_rails_command;4904;0.09;development;rails
+svn;4858;0.09;version control;
+node;4834;0.09;development;javascript
+top;4682;0.09;system;
+popd;4609;0.09;system;
+ifconfig;4588;0.09;system;
+codecept;4450;0.08;development;
+nano;4408;0.08;text editor;
+bash;4341;0.08;system;
+xdg-open;4311;0.08;system;open url
+youtube-dl;4310;0.08;other;YT dl script in python
+dirs;4277;0.08;system;
+/opt/local/share/mysql5/mysql/mysql.server;4191;0.08;development;mysql
+hub;4166;0.08;version control;github
+do;4090;0.08;system;
+/usr/bin/find;4027;0.08;system;find
+swift;4026;0.08;development;
+java;4019;0.08;development;
+fasd;4003;0.08;system;cli productivity booster
+sh;3956;0.07;system;
+jruby;3955;0.07;development;
+heroku;3925;0.07;development;
+mount;3916;0.07;system;
+/opt/local/etc/LaunchDaemons/org.macports.apache2/apache2.wrapper;3903;0.07;development;apache
+g;3876;0.07;version control;alias for git
+firewall-cmd;3837;0.07;system;firewalld
+tig;3827;0.07;version control;text-mode git interface
+/home/leexa/installations/Python-2.6.6/python;3819;0.07;development;python
+rbenv;3815;0.07;development;ruby
+mix;3790;0.07;development;elixir
+print;3790;0.07;system;
+done;3763;0.07;system;
+docker-machine;3676;0.07;infrastructure;docker
+$EMACS_PLUGIN_LAUNCHER;3671;0.07;text editor;emacs
+unset;3645;0.07;system;
+>;3481;0.07;;
+bin/cake;3470;0.07;development;php
+free;3454;0.07;system;
+uniq;3432;0.06;system;
+xsel;3428;0.06;system;
+env;3422;0.06;system;
+/usr/bin/git;3408;0.06;version control;git
+dig;3399;0.06;system;
+python2;3392;0.06;development;
+n98-magerun.phar;3386;0.06;development;magento
+type;3376;0.06;system;
+lsof;3332;0.06;system;
+f;3317;0.06;other;probably an alias
+rvm;3313;0.06;package manager;ruby
+task;3279;0.06;system;
+calc;3266;0.06;system;
+ipconfig;3259;0.06;system;
+adb;3257;0.06;development;android
+};3230;0.06;;
+pipenv;3217;0.06;development;python
+shutdown;3192;0.06;system;
+tmuxinator;3186;0.06;system;
+sleep;3153;0.06;system;
+\;3104;0.06;;
+reboot;3093;0.06;system;
+service;3061;0.06;system;
+touch;3043;0.06;system;
+dscacheutil;3035;0.06;system;
+phpunit;3003;0.06;development;
+rmdir;2999;0.06;;
+pygmentize;2970;0.06;;
+bc;2942;0.06;;
+netstat;2932;0.06;;
+md5;2922;0.06;;
+colorls;2912;0.05;;
+ack-grep;2852;0.05;;
+\gitk;2840;0.05;;
+osascript;2798;0.05;;
+nohup;2785;0.05;;
+xrandr;2769;0.05;;
+eval;2764;0.05;;
+jitsu;2759;0.05;;
+mvim;2739;0.05;;
+dmesg;2696;0.05;;
+wc;2685;0.05;;
+_z;2671;0.05;;
+ag;2638;0.05;;
+for;2635;0.05;;
+printf;2623;0.05;;
+xcode-select;2613;0.05;development;
+$VSCODE;2548;0.05;;
+omz_history;2539;0.05;;
+tee;2529;0.05;;
+l;2528;0.05;;
+colordiff;2484;0.05;;
+exec;2475;0.05;;
+ack;2466;0.05;;
+ranger;2416;0.05;;
+diff;2370;0.04;;
+pbpaste;2357;0.04;;
+gvim;2299;0.04;;
+../..;2277;0.04;;
+-u;2272;0.04;;
+${_pacman_sudo}${_pacman_frontend};2261;0.04;;
+then;2258;0.04;;
+grc;2255;0.04;;
+kill;2235;0.04;;
+../../..;2198;0.04;;
+bat;2186;0.04;;
+ln;2179;0.04;;
+a;2175;0.04;;
+locate;2158;0.04;;
+RAILS_ENV=test;2149;0.04;;
+mulle-sde;2140;0.04;;
+htop;2082;0.04;system;
+halt;2080;0.04;;
+nice;2072;0.04;;
+watch;2057;0.04;;
+rlwrap;2037;0.04;;
+extract;2031;0.04;;
+set;2027;0.04;;
+ipython;2020;0.04;development;
+thin;2007;0.04;;
+perldoc;1997;0.04;development;
+../../../..;1995;0.04;;
+lsd;1923;0.04;;
+winpty;1908;0.04;;
+launchctl;1895;0.04;;
+fasd_cd;1894;0.04;;
+pip;1878;0.04;;
+most;1877;0.04;;
+fi;1871;0.04;;
+_git_log_prettily;1865;0.04;;
+finger;1848;0.03;;
+/usr/sbin/lsof;1837;0.03;;
+nc;1834;0.03;;
+minicom;1816;0.03;;
+mysql;1799;0.03;;
+colourify;1769;0.03;;
+RAILS_ENV=production;1759;0.03;;
+RAILS_ENV=development;1756;0.03;;
+st;1750;0.03;;
+"""$PAGER""";1746;0.03;;
+open_lighthouse_ticket;1736;0.03;;
+mplayer;1734;0.03;;
+indent;1724;0.03;;
+pip3;1713;0.03;;
+psu;1708;0.03;;
+bundled_$cmd;1706;0.03;;
+if;1690;0.03;;
+puo;1686;0.03;;
+busybox;1668;0.03;;
+${prefix}/${gcmd//;1666;0.03;;
+plenv;1661;0.03;;
+../libtool;1650;0.03;;
+fortune;1635;0.03;;
+hs;1633;0.03;;
+pj;1626;0.03;;
+fzf;1625;0.03;;
+atom;1601;0.03;;
+../../../../..;1592;0.03;;
+decode64;1560;0.03;;
+encode64;1560;0.03;;
+_zsh_tmux_plugin_run;1557;0.03;;
+ip;1552;0.03;;
+chown;1540;0.03;;
+gulp;1540;0.03;;
+aws;1537;0.03;;
+TERM=xterm-256color;1530;0.03;;
+$base_$EXEEXT;1492;0.03;;
+${DEBUG:-:};1478;0.03;;
+err_exit;1473;0.03;;
+mdutil;1469;0.03;;
+b;1459;0.03;;
+gitk;1452;0.03;;
+scp;1451;0.03;;
+ctags;1449;0.03;;
+chruby;1448;0.03;;
+xcodebuild;1448;0.03;;
+colorize_via_pygmentize;1447;0.03;;
+openssl;1446;0.03;;
+_rake_command;1430;0.03;;
+mysqladmin5;1429;0.03;;
+mvn-color;1420;0.03;;
+edit;1414;0.03;;
+rg;1411;0.03;;
+ggu;1402;0.03;;
+"""$CURL""";1400;0.03;;
+"""$WGET""";1400;0.03;;
+fastfile;1397;0.03;;
+fastfile_ls;1397;0.03;;
+fastfile_print;1397;0.03;;
+fastfile_rm;1397;0.03;;
+fastfile_sync;1397;0.03;;
+'$(fastfile_get ;1396;0.03;;
+terraform;1396;0.03;;
+'';1393;0.03;;
+while;1393;0.03;;
+protected/yiic;1384;0.03;;
+$ZSH/plugins/cloudapp/cloudapp.rb;1383;0.03;;
+/System/Library/CoreServices/Menu\;1374;0.03;;
+st_run;1372;0.03;;
+opt_unalias;1364;0.03;;
+gcc;1360;0.03;;
+/Applications/Google\;1358;0.03;;
+pkill;1348;0.03;;
+g++;1344;0.03;;
+ssh-add;1339;0.03;;
+kate;1329;0.03;;
+bundle_install;1327;0.02;;
+sshfs;1326;0.02;;
+la;1319;0.02;;
+mkfile;1315;0.02;;
+tput;1315;0.02;;
+umount;1315;0.02;;
+`_symfony_console`;1313;0.02;;
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister;1301;0.02;;
+column;1296;0.02;;
+reload;1295;0.02;;
+setxkbmap;1288;0.02;;
+TERM=screen-256color-bce;1275;0.02;;
+be;1264;0.02;;
+spring;1260;0.02;;
+-E;1257;0.02;;
+${_pacman_frontend};1255;0.02;;
+tcpdump;1255;0.02;;
+cowthink;1247;0.02;;
+startpost;1237;0.02;;
+stoppost;1236;0.02;;
+function;1217;0.02;;
+chuck;1213;0.02;;
+ppa-purge;1207;0.02;;
+feh;1204;0.02;;
+jupyter;1194;0.02;;
+mpv;1192;0.02;;
+bbedit;1186;0.02;;
+hexdump;1179;0.02;;
+"\""\$@\""";1170;0.02;;
+c;1170;0.02;;
+./vendor/bin/phpunit;1166;0.02;;
+trash;1163;0.02;;
+_mix_refresh;1159;0.02;;
+gdb;1156;0.02;;
+journalctl;1151;0.02;;
+sc-disable;1134;0.02;;
+sc-enable;1134;0.02;;
+sc-mask;1134;0.02;;
+bbdiff;1127;0.02;;
+softwareupdate;1126;0.02;;
+"PATH=""$(npm bin)"":""$PATH""";1120;0.02;;
+kgp;1114;0.02;;
+cd_func;1112;0.02;;
+>/dev/null;1111;0.02;;
+$PAGER;1100;0.02;;
+/Applications/Sublime\;1097;0.02;;
+cask;1096;0.02;;
+v;1096;0.02;;
+xterm;1094;0.02;;
+geeknote;1083;0.02;;
+n-aliases;1078;0.02;;
+n-kill;1078;0.02;;
+${aliases[ls]:-ls};1074;0.02;;
+telnet;1071;0.02;;
+apachectl;1046;0.02;;
+${_rsync_cmd};1044;0.02;;
+npms;1040;0.02;;
+shasum;1040;0.02;;
+/usr/local/bin/vim;1039;0.02;;
+package-menu;1036;0.02;;
+package-version;1036;0.02;;
+stty;1036;0.02;;
+xtree;1036;0.02;;
+latest-version;1035;0.02;;
+cfp;1032;0.02;;
+display_info;1032;0.02;;
+grunt;1032;0.02;;
+clipcopy;1030;0.02;;
+pylint;1023;0.02;;
+open_command;1018;0.02;;
+st_run_sudo;1014;0.02;;
+startx;1003;0.02;;
+nmcli;1001;0.02;;
+ngrep;998;0.02;;
+homesick;990;0.02;;
+emerge;982;0.02;;
+ansible-playbook;974;0.02;;
+sqlite3;964;0.02;;
+jq;958;0.02;;
+dssh;956;0.02;;
+bash-it;954;0.02;;
+todo.sh;946;0.02;;
+[;945;0.02;;
+find_project;943;0.02;;
+gcloud;940;0.02;;
+gitd;940;0.02;;
+lwp-request;936;0.02;;
+cpd;932;0.02;;
+deactivate;930;0.02;;
+cddl;927;0.02;;
+gpg;917;0.02;;
+ncmpcpp;907;0.02;;
+LC_ALL=C;899;0.02;;
+workon;899;0.02;;
+lt;893;0.02;;
+e;892;0.02;;
+valgrind;886;0.02;;
+xrdb;885;0.02;;
+/Applications/MacVim.app/Contents/MacOS/Vim;884;0.02;;
+cmake;884;0.02;;
+/usr/bin/pacman;880;0.02;;
+mpc;879;0.02;;
+neofetch;878;0.02;;
+stack;876;0.02;;
+Xvfb;864;0.02;;
+cargo;851;0.02;;
+conda;850;0.02;;
+log;845;0.02;;
+./gradlew;844;0.02;;
+cygstart;839;0.02;;
+hadoop;828;0.02;;
+stat;823;0.02;;
+cdd;819;0.02;;
+gsed;819;0.02;;
+gp;818;0.02;;
+nautilus;816;0.02;;
+ipfw;802;0.02;;
+firefox;784;0.01;;
+:;780;0.01;;
+else;771;0.01;;
+flutter;759;0.01;;
+reflector;756;0.01;;
+psql;751;0.01;;
+'$_sublime_path';748;0.01;;
+vault;742;0.01;;
+say;726;0.01;;
+xset;719;0.01;;
+kgd;715;0.01;;
+kgs;715;0.01;;
+sp-dbus;712;0.01;;
+fg;706;0.01;;
+cal;704;0.01;;
+dc;703;0.01;;
+z;703;0.01;;
+networksetup;701;0.01;;
+s;695;0.01;;
+SCRIPTME=1;684;0.01;;
+/System/Library/Automator/Combine\;678;0.01;;
+mutt;677;0.01;;
+unalias;675;0.01;;
+shopt;669;0.01;;
+chgrp;667;0.01;;
+bubc;666;0.01;;
+bubo;666;0.01;;
+pmset;664;0.01;;
+t;664;0.01;;
+/dev/null;659;0.01;;
+gmake;655;0.01;development;
+script/console;649;0.01;;
+javac;645;0.01;development;
+run;645;0.01;;
