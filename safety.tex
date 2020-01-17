@@ -8,8 +8,8 @@ The top 10 commands used with \texttt{sudo} are given in \Cref{tab:sudo-commands
 Remarkably, 8 out of the top 10 \texttt{sudo}-prefixed commands are related to package managers:
 \texttt{zypper} (openSUSE); \texttt{pacman}, \texttt{abs} and \texttt{aur} (Arch Linux); \verb|apt-get| and \verb|$apt-pref| (Debian, Ubuntu); \texttt{yum} (RPM); and \texttt{dnf} (Fedora).
 Even more remarkable: all of these commands are used with \texttt{sudo} the majority of the time they are used.
-Some users even go so far as to redefine certain commands to always be executed with \texttt{sudo}, mostly system utilities like \texttt{reboot} or \texttt{shutdown}, but also (again) package managers like \texttt{pacman} and \texttt{apt}.
-However, on the whole this practice appears to be relatively rare (see \cref{tab:sudo-redefine}).
+Some users even go so far as to redefine certain commands to always be executed with \texttt{sudo}, mostly system utilities like \texttt{reboot} or \texttt{shutdown}, but also (again) package managers.% like \texttt{pacman} and \texttt{apt}.
+%However, on the whole this practice appears to be relatively rare (see \cref{tab:sudo-redefine}).
 
 \begin{table}
     \caption{Top 10 commands used with \texttt{sudo}.}
@@ -32,26 +32,26 @@ However, on the whole this practice appears to be relatively rare (see \cref{tab
     \end{tabular}
 \end{table}
 
-\begin{table}
-    \caption{Top 10 commands redefined to always use \texttt{sudo}}
-    \label{tab:sudo-redefine}
-    \begin{tabular}{llrl}
-        \toprule
-        Alias Name & Alias Value & \# & Description \\
-        \midrule
-        \verb|pacman|    & \verb|sudo pacman|    & 901 & package manager \\
-        \verb|reboot|    & \verb|sudo reboot|    & 809 & system utility \\
-        \verb|shutdown|  & \verb|sudo shutdown|  & 499 & system utility \\
-        \verb|apt-get|   & \verb|sudo apt-get|   & 455 & package manager \\
-        \verb|docker|    & \verb|sudo docker|    & 345 & container platform \\
-        \verb|halt|      & \verb|sudo halt|      & 230 & system utility \\
-        \verb|apt|       & \verb|sudo apt|       & 228 & package manager \\
-        \verb|systemctl| & \verb|sudo systemctl| & 184 & system utility \\
-        \verb|htop|      & \verb|sudo htop|      & 180 & system utility \\
-        \verb|poweroff|  & \verb|sudo poweroff|  & 169 & system utility \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+% \begin{table}
+%     \caption{Top 10 commands redefined to always use \texttt{sudo}}
+%     \label{tab:sudo-redefine}
+%     \begin{tabular}{llrl}
+%         \toprule
+%         Alias Name & Alias Value & \# & Description \\
+%         \midrule
+%         \verb|pacman|    & \verb|sudo pacman|    & 901 & package manager \\
+%         \verb|reboot|    & \verb|sudo reboot|    & 809 & system utility \\
+%         \verb|shutdown|  & \verb|sudo shutdown|  & 499 & system utility \\
+%         \verb|apt-get|   & \verb|sudo apt-get|   & 455 & package manager \\
+%         \verb|docker|    & \verb|sudo docker|    & 345 & container platform \\
+%         \verb|halt|      & \verb|sudo halt|      & 230 & system utility \\
+%         \verb|apt|       & \verb|sudo apt|       & 228 & package manager \\
+%         \verb|systemctl| & \verb|sudo systemctl| & 184 & system utility \\
+%         \verb|htop|      & \verb|sudo htop|      & 180 & system utility \\
+%         \verb|poweroff|  & \verb|sudo poweroff|  & 169 & system utility \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
 
 On the other end of the safety spectrum, some users default to running the file system commands \texttt{rm}, \texttt{cp}, and \texttt{mv} in interactive mode, which prompts before performing potentially destructive actions.
 Taking into account variations between systems and different ways to enable interactive mode, \per{44.37} of alias definitions invoking \texttt{rm} are redefinitions of \texttt{rm} enabling interactive mode by default.
