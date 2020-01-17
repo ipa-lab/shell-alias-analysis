@@ -11,7 +11,7 @@ This can be achieved by defining shell aliases.
 An alias substitutes a given name, the \emph{alias}, with a string value that defines an arbitrarily complex command (or chain of commands).
 The set of aliases users define provides a window into their preferences expressed as part of their personal configuration.
 Many users have publicly shared these configurations on social coding platforms such as GitHub.
-To study these preferences, we perform an exploratory analysis of over 4.5 million alias definitions on GitHub, which provides a rich dataset to investigate how command line users customize their tasks and workflows.
+To study these preferences, we perform an exploratory analysis of over 4.7 million alias definitions on GitHub, which provides a rich dataset to investigate how command line users customize their tasks and workflows.
 
 We find that aliases have multiple complex use cases:
 Users often redefine existing commands to include \emph{default arguments} they want to have implicitly included in every execution, rather than specifying them explicitly.
@@ -26,3 +26,5 @@ When composition is used in aliases, the structures are most often chained by pi
 Our insights can help improve the usability for particular tools and the command line experience in general.
 Our results on default arguments indicate usability issues for a wide range of tools, but also shows that defaults can sometimes be contextual (e.g., \verb|-i| interactive mode by default in the command line, but not when executing scripts).
 We also envision that our results and dataset can be used to learn repair rules, in order to correct not only user errors, but also provide usage hints to introduce newcomers to common workflows.
+
+In the following, we introduce more background by describing usage and syntax of aliases. We further describe our data collection and parsing process. We then present results from our exploratory analysis on shell aliases in the wild, following by a discussion on implications for usability. We finally discuss threats to validity and review related work in the broader context of this study. 

@@ -3,7 +3,7 @@
 
 The \texttt{sudo} command allows the user to execute another command with superuser privileges.
 In our dataset, we found \num{336298} commands (\per{6.3}) prefixed with \texttt{sudo}, used in \num{305637} alias definitions (\per{6.4}).
-The top 10 commands used with \texttt{sudo} are given in \cref{tab:sudo-commands}.
+The top 10 commands used with \texttt{sudo} are given in \Cref{tab:sudo-commands}.
 
 Remarkably, 8 out of the top 10 \texttt{sudo}-prefixed commands are related to package managers:
 \texttt{zypper} (openSUSE); \texttt{pacman}, \texttt{abs} and \texttt{aur} (Arch Linux); \verb|apt-get| and \verb|$apt-pref| (Debian, Ubuntu); \texttt{yum} (RPM); and \texttt{dnf} (Fedora).
@@ -55,7 +55,7 @@ However, on the whole this practice appears to be relatively rare (see \cref{tab
 
 On the other end of the safety spectrum, some users default to running the file system commands \texttt{rm}, \texttt{cp}, and \texttt{mv} in interactive mode, which prompts before performing potentially destructive actions.
 Taking into account variations between systems and different ways to enable interactive mode, \per{44.37} of alias definitions invoking \texttt{rm} are redefinitions of \texttt{rm} enabling interactive mode by default.
-Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{68.27} and \per{77.62} of uses are redefinitions, respectively (see \cref{tab:interactive}).
+Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{68.27} and \per{77.62} of uses are redefinitions, respectively (see \Cref{tab:interactive}).
 
 \begin{table}
     \caption{Commands commonly used in interactive mode}

@@ -4,12 +4,20 @@ Our analysis is based on \num{4772321} alias definitions found on GitHub, collec
 
 \subsection{Data Collection}
 
+\begin{figure*}
+	\centering
+	%\vspace{2em}
+	\includegraphics[width=0.85\textwidth]{parser_breakdown.pdf}
+	\caption{Decomposition of \texttt{alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"}.}
+	\label{fig:parser}
+\end{figure*}
+
 Alias definitions can appear in any Shell script, but we anticipated that they would predominantly be found in personal configuration files (like \verb|.bashrc| or \verb|.bash_profile|).
 While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
-Unfortunately, this rules out using some prominent existing datasets for our study:
+Unfortunately, this rules out using some prominent existing datasets for our study~\cite{mombach}:
 The public GitHub archive on BigQuery\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}}, while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
 This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.
-GHTorrent\footnote{\url{http://ghtorrent.org}}, another popular archive of GitHub data, only contains metadata but not file contents.
+GHTorrent~\cite{ghtorrent}, another popular archive of GitHub data, only contains metadata but not file contents.
 
 Therefore, we found it necessary to write our own tooling to directly collect the data from GitHub ourselves.
 We used the GitHub Code Search API to find files written in Shell language\footnote{GitHub uses the Linguist library to classify source code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
@@ -24,7 +32,8 @@ Alas, the GitHub Code Search API comes with its own set of limitations:
 The first two limitations do not really affect us, as we are interested in smaller files and do not have to consider forks.
 The rate limiting, while significantly slowing down the retrieval process, is also not a fatal obstacle.
 The maximum number of returned search results, however, is a critical limitation.
-To get around it, we wrote a Python tool called \verb|github-searcher|\footnote{\TODO: url/paper} that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
+To get around it, we wrote a Python tool called \verb|BLINDED-SEARCHER| that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
+% \verb|github-searcher|\footnote{\TODO: url/paper} 
 
 The sampling strategy is based on the GitHub API allowing code search queries to be conditioned on file sizes. 
 For example, the query 
@@ -44,7 +53,7 @@ the API gives us an option to sort the results by most or least recently indexed
 if we run a search using a specific sort order, then we can effectively double the sample size by repeating the same search with the opposite sort order.
 Thus we can get up to 2000 results per search per file size range.
 
-Additionally, while GitHub doesn't allow us to retrieve more than a limited number of files per query, it does return the total count of files matching the query.
+Additionally, while GitHub does not allow us to retrieve more than a limited number of files per query, it does return the total count of files matching the query.
 While this count is usually very erratic on broad searches, fluctuating wildly between repeated requests, it turns out to be fairly accurate for searches with a small number of results, such as those conditioned on a narrow range of file sizes.
 This allows us to get a good estimate of the population, and how accurately our sample approximates it.
 
@@ -79,15 +88,9 @@ For example,
 echo "hello world"
 \end{CVerbatim}
 is parsed as one command (\texttt{echo}) with one argument (\texttt{"hello world"}).
-See \cref{fig:parser} for a more elaborate example.
+See \Cref{fig:parser} for a more elaborate example.
 
-\begin{figure*}
-    \centering
-    %\vspace{2em}
-    \includegraphics[width=0.85\textwidth]{parser_breakdown.pdf}
-    \caption{Decomposition of \texttt{alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"}.}
-    \label{fig:parser}
-\end{figure*}
+\input{top-alias-commad-args}
 
 Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
 While there are some conventions around command line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
@@ -124,26 +127,14 @@ It appears that \emph{ohmyzsh} users are particularly eager to share their confi
 However, we do not think that this skews the data.
 Choosing to use \emph{ohmyzsh}, and choosing which \texttt{zsh} plugins to enable or disable, reflects user intent just as much as manually writing an alias definition into \texttt{.zshrc}.
 
-\begin{table}[h]
-	\caption{Distribution of common file names}
-	\label{tab:file-names}
-	\begin{tabular}{rrlrr}
-		\toprule
-		\% &          Files &        Name Pattern &         Aliases &           \% \\
-		\midrule
-		\num{25.29} &  \num{136520}  & \verb|*.plugin.zsh| &  \num{1607174}  &  \num{33.68} \\
-		\num{8.17} &   \num{44090}  &      \verb|*alias*| &   \num{926406}  &  \num{19.41} \\
-		\num{12.94} &   \num{69879}  &      \verb|*bashrc| &   \num{819583}  &  \num{17.17} \\
-		\num{10.43} &   \num{56316}  &       \verb|*zshrc| &   \num{572059}  &  \num{11.99} \\
-		\num{4.29} &   \num{23178}  &     \verb|*profile| &   \num{229306}  &   \num{4.80} \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
+\input{file-name-distribution-table}
 
 \subsection{Reproducibility}
 
 To enable reproducibility and follow-up studies, we have made all data and our entire tool-chain publicly available.
 This includes executable Jupyter notebooks used during our analysis, containing all SQL queries and Python code.
-Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script, the notebooks, as well as this paper, are available on GitHub.\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}
+Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script, the notebooks, as well as this paper, are available on GitHub\footnote{Omitted for double blind review}.
+%\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}
+
+
 

@@ -3,7 +3,7 @@
 A shell is a command interpreter allowing the user to interact with an underlying system.
 The concept of the operating system shell as an independent process executing outside the kernel originated in Multics and was further developed into the original Unix shell \verb|sh| and its various descendants.
 %  (\TODO references)
-The POSIX family of standards defines a Shell Command Language~\cite{posix_standard}, whose standard implementation is still the \verb|sh| utility, but there exist a wide variety of popular POSIX-compliant shells like \verb|bash| or \verb|zsh|.
+The POSIX family of standards defines a Shell Command Language~\cite{posix_standard, greenberg:17}, whose standard implementation is still the \verb|sh| utility, but there exist a wide variety of popular POSIX-compliant shells like \verb|bash| or \verb|zsh|.
 These implementations are free to extend the functionality of the shell, but all share a common subset of core commands and programming language constructs.
 In this paper, we focus on the built-in \verb|alias| command, available on all POSIX shells.
 
@@ -17,7 +17,7 @@ alias ll='ls -l'
 \end{CVerbatim}
 defines the \emph{alias name} \verb|ll|, that is replaced by the \emph{alias value} \verb|ls -l|.
 In this case, \verb|ls| is the standard command for listing directory contents, with the argument \verb|-l| specifying a long-form output format.
-So the alias \verb|ll| (present in many system configurations) is used to specify a default argument to a commonly used command.
+So the alias \verb|ll| (present in many system configurations) is used to specify a default argument to a commonly used command under a different name.
 
 Alias values can be arbitrarily complex strings and can substitute not only simple commands and arguments, but whole chains of commands. 
 The definition
@@ -51,5 +51,5 @@ The names of these shell configuration files differ by platform, but common ones
 Often, aliases are also stored in other files referred to by these startup scripts.
 
 These kinds of files --- text-based configuration files that store system or application settings --- are also known as \emph{dotfiles}, because their filenames usually start with a dot (\verb|.|) so that they are hidden by default on most Unix-based systems.
-In recent years, people have started sharing their dotfiles on platforms like GitHub (\TODO reference).
+In recent years, people have started sharing their dotfiles on platforms like GitHub\footnote{\url{https://dotfiles.github.io}}.
 This has the advantage of being able to sync one's configurations across different machines, and also enables exchange and discovery of configurations between users.

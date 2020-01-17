@@ -11,7 +11,7 @@ We query alias names with the same length as command names, but differ in their 
 Normalized distances are a float in the range of 0 and 1, where 0 entails there are no differences between the two strings and 1 means the distance is as far as it can be (corresponding to the length of the longer string in the original score).
 We compute the results, order by normalized score, and empirically determine $\frac{1}{3}$ (roughly corresponding to \per{33} difference between autocorrecting alias name and command name) to be considered a conservative threshold to determine misspellings.
 This results in \num{63875} (\per{1.3}) total aliases that serve as autocorrect rules.
-Table \ref{tab:autocorrect} provides an overview of interesting autocorrecting aliases with differing distance measure.
+Table \ref{tab:autocorrect} provides an overview of interesting autocorrecting aliases with different distance measures.
 
 \begin{table}[]
 	\caption{A curated selection from autocorrecting aliases highlighting a variety of use cases together with their normalized Damerau-Levenshtein distance}
@@ -23,7 +23,7 @@ Table \ref{tab:autocorrect} provides an overview of interesting autocorrecting a
 		pluralise                                                              & pluralize                                                            & Localized Spelling   & 0.11           \\ \hline
 		\begin{tabular}[c]{@{}l@{}}docker\_build, \\ mysql-server\end{tabular} & \begin{tabular}[c]{@{}l@{}}docker-build,\\ mysql.server\end{tabular} & Punctuation          & 0.08           \\ \hline
 		jupyter                                                                & Jupyter                                                              & Case-sensitivity     & 0.14           \\ \hline
-		gunzip                                                                 & ungzip                                                               & Mismatched Camelcase & 0.33           \\ \bottomrule
+		gunzip                                                                 & ungzip                                                               & Mismatched casing & 0.33           \\ \bottomrule
 	\end{tabular}
 \end{table}
 

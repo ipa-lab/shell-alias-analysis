@@ -1,5 +1,5 @@
 We perform an inductive exploratory study to capture the range of patterns and use cases for which Shell aliases are defined. 
-Inductive coding methods are used when conducting exploratory research~\cite{thomas:06}. It is an iterative process between theoretical sampling and comparing data among and within emergent themes~\cite{dey:03}. The goal is reaching saturation, a point in which further data analysis will not lead to further insights. We continuously refined the emerging themes which resulted in the use cases we present below.
+Inductive coding methods are used when conducting exploratory research without prior expectations on themes in the data~\cite{thomas:06}. It is an iterative process between theoretical sampling and comparing data within emergent themes~\cite{dey:03}. The goal is reaching saturation, a point in which further data analysis will not lead to further insights. We continuously refined the emerging themes which resulted in the use cases we present in the remainder of this section.
 
 First, we provide an overview and quantify common structures in our dataset regarding alias uses, commands, and arguments.
 Based on the outcome of our exploratory analysis and emergent coding, we then present both quantitative and qualitative results for different use cases of alias usage.
@@ -19,45 +19,8 @@ Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \te
 This is about half as often as \texttt{git}, the most common command, which appears in \num{626185} aliases (\per{11.79}).
 The most common argument, across all commands, is \texttt{--color=auto}, appearing \num{268171} times (\per{3.6})
 
-\begin{table*}
-    \caption{Top alias names, commands and arguments}
-    \label{tab:top-summary}
-    \begin{tabular}{lrr}
-        \toprule
-                 Alias Name &            \# &          \% \\
-        \midrule
-                  \verb|ls| &  \num{124515} &  \num{2.61} \\
-                  \verb|ll| &   \num{89254} &  \num{1.87} \\
-         \verb|'${1+"$@"}'| &   \num{78265} &  \num{1.64} \\
-                \verb|grep| &   \num{63392} &  \num{1.33} \\
-                  \verb|la| &   \num{62039} &  \num{1.30} \\
-        \bottomrule
-    \end{tabular}
-    \hspace{0.3cm}
-    \begin{tabular}{lrr}
-        \toprule
-               Command &            \# &           \% \\
-        \midrule
-            \verb|git| &  \num{626185} &  \num{11.79} \\
-             \verb|ls| &  \num{378097} &   \num{7.12} \\
-             \verb|cd| &  \num{229522} &   \num{4.32} \\
-           \verb|grep| &  \num{128045} &   \num{2.41} \\
-           \verb|"$@"| &   \num{78276} &   \num{1.47} \\
-        \bottomrule
-    \end{tabular}
-    \hspace{0.3cm}
-    \begin{tabular}{lrr}
-        \toprule
-                    Argument &            \# &          \% \\
-        \midrule
-         \verb|--color=auto| &  \num{268171} &  \num{3.60} \\
-                   \verb|-i| &  \num{109094} &  \num{1.47} \\
-                   \verb|-v| &   \num{70424} &  \num{0.95} \\
-                   \verb|-l| &   \num{63302} &  \num{0.85} \\
-                   \verb|-a| &   \num{62023} &  \num{0.83} \\
-        \bottomrule
-    \end{tabular}        
-\end{table*}
+\input{table-top-two}
+\input{table-use-cases.tex}
 
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
 \Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
@@ -68,44 +31,12 @@ to shorten a common invocation (\verb|alias ll="ls -alF"|);
 and to correct a spelling mistake (\verb|alias sl=ls|).
 We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
 
-\newcommand{\numx}[1]{{\small (\num{#1})}}
 
-\begin{table}
-    \caption{Top two commands with top arguments and aliases}
-    \label{tab:command-summary}
-    \begin{tabular}{@{}lrll@{}}
-        \toprule
-              &          \% &                 Arguments & Aliases (\%) \\
-        \midrule
-          \verb|git| &   \num{3.75} &             \verb|status| &                                  \verb|gs| \numx{51.57}, \verb|gst| \numx{24.17} \\
-                     &   \num{2.42} &           \verb|checkout| & \verb|gco| \numx{51.17}, \verb|gc| \numx{10.04}, \verb|letcat| \numx{9.18} \\
-                     &   \num{2.33} &               \verb|push| &    \verb|gp| \numx{49.12}, \verb|rulz| \numx{9.53}, \verb|gps| \numx{7.15} \\
-                     &   \num{2.31} &                   \verb|| &                                                                  \verb|g| \numx{78.87} \\
-                     &   \num{2.18} &               \verb|pull| &    \verb|gl| \numx{25.32}, \verb|gpl| \numx{13.29}, \verb|gp| \numx{11.53} \\
-                     &   \num{2.11} &               \verb|diff| &                                                                 \verb|gd| \numx{83.21} \\
-                     &   \num{2.05} &                \verb|add| &                              \verb|ga| \numx{73.01}, \verb|chicken| \numx{10.85} \\
-                     &   \num{2.01} &             \verb|branch| &                                   \verb|gb| \numx{74.88}, \verb|gbr| \numx{8.26} \\
-                     &   \num{1.59} &          \verb|commit -m| & \verb|gcm| \numx{21.67}, \verb|gcmsg| \numx{19.59}, \verb|gc| \numx{18.18} \\
-                     &   \num{1.20} &             \verb|commit| &                                                                 \verb|gc| \numx{65.51} \\
-        \midrule
-           \verb|ls| &  \num{13.15} &       \verb|--color=auto| &                                                                 \verb|ls| \numx{99.09} \\
-                     &   \num{9.12} &                 \verb|-A| &                                                                 \verb|la| \numx{98.27} \\
-                     &   \num{8.57} &                \verb|-CF| &                                                                  \verb|l| \numx{98.94} \\
-                     &   \num{6.69} &                 \verb|-l| &                                                                 \verb|ll| \numx{82.64} \\
-                     &   \num{6.63} &               \verb|-alF| &                                                                 \verb|ll| \numx{97.89} \\
-                     &   \num{3.65} &                   \verb|| &      \verb|l| \numx{21.38}, \verb|sl| \numx{16.99}, \verb|iz| \numx{12.24} \\
-                     &   \num{3.06} &                 \verb|-G| &                                                                 \verb|ls| \numx{97.46} \\
-                     &   \num{2.43} &                \verb|-la| &      \verb|ll| \numx{32.80}, \verb|la| \numx{22.61}, \verb|l| \numx{12.71} \\
-                     &   \num{2.01} &                 \verb|-a| &                                                                 \verb|la| \numx{74.80} \\
-                     &   \num{1.77} &               \verb|-lah| &     \verb|l| \numx{32.64}, \verb|lsa| \numx{31.61}, \verb|ll| \numx{19.01} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
 
 Aliases are used differently for different commands and indeed different command categories.
-We looked at the top 200 aliased commands and identified roughly 6 command categories: system tools, like \texttt{ls} or \texttt{grep}, but also \texttt{ssh} (making up \per{46.12} of the top aliased commands); version control, like \texttt{git} (\per{15.61}); development tools, like compilers or databases (\per{14.09}); package managers, both system-wide and for specific programming environments (\per{12.05}); text editors (\per{4.27}); infrastructure tools, like \texttt{docker}, \texttt{kubernetes} or \texttt{vagrant} (\per{3.02}). The rest (\per{4.83}) were deemed unclassifiable.
+We looked at the top 200 aliased commands and identified roughly six command categories: system tools, like \texttt{ls} or \texttt{grep}, but also \texttt{ssh} (making up \per{46.12} of the top aliased commands); version control, like \texttt{git} (\per{15.61}); development tools, like compilers or databases (\per{14.09}); package managers, both system-wide and for specific programming environments (\per{12.05}); text editors (\per{4.27}); infrastructure tools, like \texttt{docker}, \texttt{kubernetes} or \texttt{vagrant} (\per{3.02}). The rest (\per{4.83}) were deemed unclassifiable.
 \Cref{tab:use-cases} presents a selection of commands from each of these categories and gives a quantitative overview about the kinds of aliases they are commonly used in.
 For each command, it shows how many uses of that command involve one of the different use cases.
 In addition to the three use cases already mentioned (default arguments, compression and autocorrect), we identified an additional three (command chaining, safety and bookmarks) and will now discuss each of the six use cases in more detail.
 
-\input{table-use-cases.tex}
+

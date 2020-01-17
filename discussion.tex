@@ -1,12 +1,12 @@
 \section{Discussion}
 
-Performing this large scale analysis on alias use provides us with observations into how CLI users want their tools to be formed and personalized.
+Performing this large scale analysis on alias use provides us with observations into how command line users want their tools to be formed and personalized.
 This gives us an opportunity to extract insight to improve on the usability for particular tools, but also for the environment in which these tools are used.
 We formulate a set of discussion points and implications that provide a review of our results in relation to how we can improve usability for interactive command line interfaces.
 
 \subsection{Better Defaults from Aliases}
 
-[\TODO Add some usability reference how defaults are super important for usability]
+Choosing proper defaults in user interfaces is a pillar of user experience design~\cite{nielsen2005power}. 
 If a particular argument (or set of arguments) repeatedly show up in aliases, it could be an indicator for the repeated argument structure to become a better default. 
 The top examples from our dataset are enabling color, interactivity, and human-readability automatically.
 Another interesting example we came across is \verb|ffmpeg|, where its argument \verb|-hide_banner| is the top default alias in our database (occuring in \num{177} (\per{29.2}) of aliases involving the command \verb|ffmpeg|).
@@ -18,30 +18,33 @@ Coincidentally, we also found a ticket in the project's issue tracker requesting
 However, when revisiting the above anecdote from the issue tracker and its resulting discussion of the issue, it tells a more nuanced story.
 While the initial author argues that making \verb|-hide_banner| the default option is confusing for newcomers.
 Showing more information, that could potentially be confusing, should be an opt-in, rather than an opt-out.
-The response makes an interesting argument from a support perspective: Hiding this information leads to increased messaging because when users request help to obtain more information to debug the underlying issue.
+The response makes an interesting argument from a support perspective: Hiding this information leads to increased communication when users request help to obtain more information to debug the underlying issue.
 There is not necessarily a right and wrong here.
 It simply shows that defaults can also be highly contextual.
 Different users need different defaults.
 One (pragmatic) way to achieve this is by offering a different set of aliases to different users (e.g., alias starter packs for different levels of expertise).
 
-Another argument for contextual defaults is the differing use of shell commands in scripts, compared to interactive use in a command line interface.
+Another argument for contextual defaults is the difference in usage of shell commands in scripts, compared to interactive use in a command line interface.
 Our results highlight the tension between commands as part of a programming language used for automation and the shell as an interactive medium to interface with the operating system.
 Particularly, this comes to light when analyzing safety and interactivity defaults in aliases.
-While it makes no sense to use the \verb|{--interactive}| or \verb|{-i}| argument for shell scripts, our results show that is highly used for interactive use in aliases.
+While it makes no sense to use the \verb|--interactive| or \verb|-i| argument for shell scripts, our results show that it is highly used for interactive use in aliases.
 
 \subsection{Learning Repair Rules and Usage Hints}
 
 The complexity of commands and arguments can cause users to introduce errors when working in a command line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
-There is a popular open project that attempts to navigate this issue\footnote{\url{https://github.com/nvbn/thefuck}}.
+There is a popular open source project that attempts to navigate this issue\footnote{\url{https://github.com/nvbn/thefuck}}.
 It uses a set of rules to suggest possible error corrections to the command.
 While these rules are all hard-coded, we envision that we can leverage the global wisdom of aliases in our large scale dataest to learn rules that form the basis for different kinds of suggestions.
 An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
-We also see how our dataset can enable a world beyond only trying to fix immediate errors, but also provides usage hints that introduces users to common workflows.
+We also see how our dataset can enable a world beyond only trying to fix immediate errors, but also providing usage hints that introduce users to common workflows.
 
 \subsection{Streams in Chained Aliases}
 
-TBD
+Our analysis on data flows in chained alias definitions provides insight into which commands are frequently connected together.
+As visible in Figure~\ref{fig:flow}, the most common intermediaries are search, sort, and transform.
+For tool developers, this could potentially be an indicator that additional capabilities may be required.
+It could also imply that a particular output format is especially desirable for further processing workflows.
 
 %\subsection{Permission and Packages}
 
@@ -49,11 +52,11 @@ TBD
 \subsection{Shell Spotlight Search}
 
 Part of our results indicate a need for better search capabilities in interactive shell environments.
-In particular, our results on decompression and bookmarks in aliases can be seen as examples of this. 
+In particular, our results on compression and bookmarks in aliases can be seen as examples of this. 
 It was interesting seeing aliases used as a means of introducing more descriptive names for complex commands by increasing the length of the command, rather than compressing it.
 In bookmarks, aliases provided a classical shortcut to a longer (local or remote) path or location.
-These two represent two sides of the same coin: Users need a cognitively less demanding way to access convoluted structures (be it long paths or complex arguments).
-More powerful search capabilities, perhaps similar to spotlight search that is available in MacOSX, within the shell environment could provide the same functionality without the need to explicitly introduce these kinds of aliases.
+These two use cases represent two sides of the same coin: Users need a cognitively less demanding way to access convoluted structures (be it long paths or complex arguments).
+More powerful search capabilities, perhaps similar to spotlight search that is available in MacOSX, within the shell environment could provide similar functionality without the need to explicitly introduce these kinds of aliases.
 
 
 
