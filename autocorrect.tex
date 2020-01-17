@@ -4,10 +4,10 @@ Another trend we observed in our exploration was that of aliases introducing man
 While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases.
 We opt for a conservative measure (potentially underestimating the true extent of the phenomenon) in which autocorrecting aliases are defined as alias names with the same string length as their associated commands with a distance measure above an empirically determined threshold.
 We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein measure~\cite{damerau:64}.
-It is a robust algorithm that in addition to tracking the number of insertions, deletions, and substitutions between two strings, it also captures the transposition of two characters, a common occurrence in misspelled commands.  
+It is a robust algorithm that in addition to tracking the number of insertions, deletions, and substitutions between two strings, also captures the transposition of two characters, a common occurrence in misspelled commands.  
 %We use the Jaro similarity metric~\cite{jaro:89}, as it is a widespread distance measure that was introduced to capture typographical errors.
 %Querying alias names with the same length as command names, but differ in their content (i.e., they do not define default arguments) returns \num{518500} (\per{10.86}) results.
-We query alias names with the same length as command names, but differ in their content (i.e., they do not define default arguments), apply the Damerau-Levenshtein algorithm, and normalize the result.
+We query alias names with the same length as command names, but that differ in their content (i.e., they do not define default arguments), apply the Damerau-Levenshtein algorithm, and normalize the result.
 Normalized distances are a float in the range of 0 and 1, where 0 entails there are no differences between the two strings and 1 means the distance is as far as it can be (corresponding to the length of the longer string in the original score).
 We compute the results, order by normalized score, and empirically determine $\frac{1}{3}$ (roughly corresponding to \per{33} difference between autocorrecting alias name and command name) to be considered a conservative threshold to determine misspellings.
 This results in \num{63875} (\per{1.3}) total aliases that serve as autocorrect rules.
@@ -16,14 +16,16 @@ Table \ref{tab:autocorrect} provides an overview of interesting autocorrecting a
 \begin{table}[]
 	\caption{A curated selection from autocorrecting aliases highlighting a variety of use cases together with their normalized Damerau-Levenshtein distance}
 		\label{tab:autocorrect}
-	\begin{tabular}{@{}llll@{}}
+	\begin{tabular}{@{}lllr@{}}
 		\toprule
-		\textbf{Commands}                                                      & \textbf{Alias}                                                       & \textbf{Reason}      & \textbf{Score} \\ \midrule
-		grep, sudo                                                             & grpe, sduo                                                           & Transposition        & 0.25           \\ \hline
-		pluralise                                                              & pluralize                                                            & Localized Spelling   & 0.11           \\ \hline
-		\begin{tabular}[c]{@{}l@{}}docker\_build, \\ mysql-server\end{tabular} & \begin{tabular}[c]{@{}l@{}}docker-build,\\ mysql.server\end{tabular} & Punctuation          & 0.08           \\ \hline
-		jupyter                                                                & Jupyter                                                              & Case-sensitivity     & 0.14           \\ \hline
-		gunzip                                                                 & ungzip                                                               & Mismatched casing & 0.33           \\ \bottomrule
+		Alias Name & Command & Reason & Score \\ 
+		\midrule
+		\verb|grpe|, \verb|sduo| & \verb|grep|, \verb|sudo| & Transposition & \num{0.25} \\
+		\verb|pluralize| & \verb|pluralise| & Localized Spelling & 0.11 \\
+		\verb|Jupyter| & \verb|jupyter| & Case-sensitivity & 0.14 \\
+		\verb|ungzip| & \verb|gunzip| & Mismatched casing & 0.33 \\ 
+		\begin{tabular}[c]{@{}l@{}}\Verb|docker-build|,\\ \verb|mysql.server|\end{tabular} & \begin{tabular}[c]{@{}l@{}}\verb|docker_build|, \\ \verb|mysql-server|\end{tabular} & Punctuation & 0.08 \\
+		\bottomrule
 	\end{tabular}
 \end{table}
 

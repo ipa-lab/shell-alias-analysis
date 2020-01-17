@@ -15,12 +15,12 @@ Our analysis is based on \num{4772321} alias definitions found on GitHub, collec
 Alias definitions can appear in any Shell script, but we anticipated that they would predominantly be found in personal configuration files (like \verb|.bashrc| or \verb|.bash_profile|).
 While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
 Unfortunately, this rules out using some prominent existing datasets for our study~\cite{mombach}:
-The public GitHub archive on BigQuery\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}}, while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
+The public GitHub archive on BigQuery,\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}} while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
 This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.
 GHTorrent~\cite{ghtorrent}, another popular archive of GitHub data, only contains metadata but not file contents.
 
 Therefore, we found it necessary to write our own tooling to directly collect the data from GitHub ourselves.
-We used the GitHub Code Search API to find files written in Shell language\footnote{GitHub uses the Linguist library to classify source code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
+We used the GitHub Code Search API to find files written in Shell language\footnote{GitHub uses the Linguist library to classify code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
 
 Alas, the GitHub Code Search API comes with its own set of limitations:
 \begin{enumerate}
@@ -133,7 +133,7 @@ Choosing to use \emph{ohmyzsh}, and choosing which \texttt{zsh} plugins to enabl
 
 To enable reproducibility and follow-up studies, we have made all data and our entire tool-chain publicly available.
 This includes executable Jupyter notebooks used during our analysis, containing all SQL queries and Python code.
-Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script, the notebooks, as well as this paper, are available on GitHub\footnote{Omitted for double blind review}.
+Our entire dataset (2.9 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata), the parsing script, the notebooks, as well as this paper, are available on GitHub.\footnote{Omitted for double blind review}
 %\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}
 
 

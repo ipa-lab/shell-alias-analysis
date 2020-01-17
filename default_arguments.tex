@@ -2,10 +2,10 @@
 
 One common use case of using aliases was to define commands with default arguments.
 More specifically, we refer to an alias as defining default arguments when the alias name is the same as the command name, and in the alias definition, the command specifies at least one further argument.
-This phenomenon can be already observed in Tables \ref{tab:top-summary} and \ref{tab:command-summary} for commands \verb|ls| and \verb|grep| (e.g., \verb|alias ls=ls -G| or \verb|alias grep=grep -i|).
+This phenomenon can be already observed in Tables \ref{tab:top-summary} and \ref{tab:command-summary} for commands \verb|ls| and \verb|grep| (e.g., \verb|alias ls='ls -G'| or \verb|alias grep='grep -i'|).
 Overall, aliases defining default arguments make up a sizable amount of \num{502801} (\per{10.5}) of all alias definitions. 
 Interestingly, a majority of these aliases, \num{278370} (\per{55.4}), deal with enabling color in commands (e.g., \verb|--color=auto|, \verb|--color=always|).
-The top 3 of aliases (or 6 depending on whether you would want to count basic synonyms separately) make up more than \per{95} of the \per{55.4}: \verb|{dir, vdir}| (\per{21.7}), \verb|ls| (\per{26.5}), and \verb|{grep, fgrep, egrep}| (\per{49.3}).
+The top 3 aliases (or 6 depending on whether you would want to count basic synonyms separately) make up more than \per{95} of the \per{55.4}: \verb|dir|/\verb|vdir| (\per{21.7}), \verb|ls| (\per{26.5}), and \verb|grep|/\verb|fgrep|/\verb|egrep| (\per{49.3}).
 Since aliases defining color as their default argument would disproportionally skew any relative measure from other data we observed, we exclude them when reporting summary statistics for the remainder of this section.
 
 To a much lesser extent, we saw two other patterns emerging: (1) enabling interactivity in commands, and (2) enabling human-readable and verbose outputs.
