@@ -1,28 +1,28 @@
 \section{Introduction}
 
-A command line interface, also called a \emph{shell}, is a textual interface that allows users to interact with the underlying operating system by interactively issuing commands.
-
+A command line interface, also called a \emph{shell}, is a textual interface that allows users to interact with the underlying operating system by issuing commands.
 Expert users, such as system administrators, software developers, researchers, and data scientists, routinely use the shell as it affords them flexibility and the ability to compose multiple commands.
 They perform a variety of tasks on their systems including navigating and interacting with the filesystem (e.g., \verb|ls, mv, cd|), using version control (e.g., \verb|git, hg|), installing packages (e.g., \verb|apt-get, npm|), or dealing with infastructure (e.g., \verb|docker|).
-Experts can adapt and play with a multitude of arguments on commands and also chain them together to create more complex workflows.
+Experts can adapt and play with a multitude of commands and arguments, chaining them together to create more complex workflows.
 All this versatility introduces a common problem in user interfaces of recognition over recall~\cite{nielsen:05}, where users have to recall the particularities of syntax and argument combinations, instead of enabling them to use a more recognizable symbol (as in graphical user interfaces).
 
-A way for these experts to introduce more recognizability and customize their command line experience is by attaching a distinct name to potentially convoluted command and argument structures they use frequently.
+A way for these experts to introduce recognizability and customize their command line experience is to attach a distinct name to potentially convoluted, but frequently used, command and argument structures.
 This can be achieved by defining shell aliases.
-An alias substitutes a given name, the \emph{alias}, with any string value that can represent an arbitrary complex command (or chain of commands).
-The set of aliases users define is a window into their preferences expressed as part of their personal configuration.
+An alias substitutes a given name, the \emph{alias}, with a string value that defines an arbitrarily complex command (or chain of commands).
+The set of aliases users define provides a window into their preferences expressed as part of their personal configuration.
 Many users have publicly shared these configurations on social coding platforms such as GitHub.
-We perform an exploratory analysis of over 4.5 million alias definitions on GitHub, which provides a rich dataset to investigate the characteristics and patterns of how command line users customize their tasks and workflows.
+To study these preferences, we perform an exploratory analysis of over 4.5 million alias definitions on GitHub, which provides a rich dataset to investigate how command line users customize their tasks and workflows.
 
 We find that aliases have multiple complex use cases:
 Users often redefine existing commands to include \emph{default arguments} they want to have implicitly included in every execution, rather than specifying them explicitly.
 For instance, aliases for \verb|rm|, \verb|cp|, and \verb|mv| are often redefined to introduce the option \verb|-i| to add the interactive safety feature by default.
 Aliases are also introduced to redefine different kinds of misspellings to provide a hand-crafted autocorrect feature in the command line. 
 Short, memorable names are often introduced as aliases to simplify complex expressions (the average length of an alias name is 4.43 characters, whereas the average length of its substitution is 21.15).
-They were also used as bookmarks to local and remote locations (e.g., \verb|cd| or \verb|ssh| together with complicated paths, URLs, or IPs).
-When further analyzing the compression of aliases, we saw that they are not only used to abbreviate and simplify longer and complicated command and argument structures, but also to lend them more descriptive names.
+Aliases were also used as bookmarks to local and remote locations (e.g., \verb|cd| or \verb|ssh| together with complicated paths, URLs, or IPs).
+When further analyzing the compression induced by aliases, we saw that they are not only used to abbreviate and simplify longer commands and chains.
+They were also defined to lend more descriptive names to otherwise cryptic and complicated command and argument structures.
 When composition is used in aliases, the structures are most often chained by pipes (\verb|||), where further analysis allowed us to ascertain common data flows between different commands.
 
-The insights we gain from these results can help us improve the usability for particular tools and the command line experience in general.
-Our results on default arguments indicate usability issues for a wide range of tools, but also shows us that defaults can sometimes be contextual (e.g., \verb|-i| interactive mode by default in the command line, but not when executing scripts).
-We also envision that our results and dataset can be used to learn repair rules, in order to to correct user errors, but also to provide usage hints to introduce newcomers to common workflows.
+Our insights can help improve the usability for particular tools and the command line experience in general.
+Our results on default arguments indicate usability issues for a wide range of tools, but also shows that defaults can sometimes be contextual (e.g., \verb|-i| interactive mode by default in the command line, but not when executing scripts).
+We also envision that our results and dataset can be used to learn repair rules, in order to correct not only user errors, but also provide usage hints to introduce newcomers to common workflows.
