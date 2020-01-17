@@ -1,10 +1,10 @@
 \section{Background}
 
 A shell is a command interpreter allowing the user to interact with an underlying system.
-The concept of the operating system shell as an independent process executing outside the kernel originated in Multics and was further developed into the original Unix shell \verb|sh| and its various descendants (\TODO references).
-The POSIX family of standards defines a Shell Command Language (\TODO reference), whose standard implementation is still the \verb|sh| utility, but there exist a wide variety of popular POSIX-compliant shells like \verb|bash| or \verb|zsh|.
+The concept of the operating system shell as an independent process executing outside the kernel originated in Multics and was further developed into the original Unix shell \verb|sh| and its various descendants.
+%  (\TODO references)
+The POSIX family of standards defines a Shell Command Language~\cite{posix_standard}, whose standard implementation is still the \verb|sh| utility, but there exist a wide variety of popular POSIX-compliant shells like \verb|bash| or \verb|zsh|.
 These implementations are free to extend the functionality of the shell, but all share a common subset of core commands and programming language constructs.
-
 In this paper, we focus on the built-in \verb|alias| command, available on all POSIX shells.
 
 \subsection{Usage and Syntax}
