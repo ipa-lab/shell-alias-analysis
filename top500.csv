@@ -83,7 +83,7 @@ aptitude;12361;0.23;package manager;apt
 sf;12014;0.23;development;php
 rsync;11677;0.22;system;
 sed;11582;0.22;system;
-port;11228;0.21;system;
+port;11228;0.21;package manager;
 """$GREP""";11200;0.21;system;grep
 sudo;11032;0.21;system;
 exit;10919;0.21;system;
