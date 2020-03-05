@@ -1,6 +1,6 @@
 \section{Dataset}
 
-Our analysis is based on \num{4772321} alias definitions found on GitHub, collected over a period of two-and-a-half weeks from December 20th 2019 to January 8th 2020.
+Our analysis is based on \num{2333607} alias definitions found on GitHub, collected over a period of two-and-a-half weeks from December 20th 2019 to January 8th 2020.
 
 \subsection{Data Collection}
 
@@ -112,21 +112,18 @@ After parsing, we ended up with \num{4772321} alias definitions, broken down int
 Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
 \num{539923} files from \num{209179} repositories, or \per{63.96} of the original sample, contained aliases.
 
-\subsection{File Name Distribution}
+\subsection{Provenance}
 
-\Cref{tab:file-names} shows the origin of the majority of aliases in our dataset.
-Most (\per{53.38}) come from common startup scripts, like \texttt{.bashrc}, \texttt{aliases.zsh} or \texttt{.profile}.
-Noticeably, there is a large amount of files ending in \texttt{.plugin.zsh}, contributing \per{33.68} of all aliases.
-These files originate from \emph{ohmyzsh}\footnote{\url{https://ohmyz.sh}} a very popular framework for managing \texttt{zsh} configurations.
-It appears that \emph{ohmyzsh} users are particularly eager to share their configurations on GitHub.
-%It should be noted that \num{255692} of the files in our final dataset (\per{47.36}) are duplicates, meaning they have an SHA hash that is identical to that of another file in the dataset.
-%These duplicates derive from \num{18484} distinct files.
-%Overall, \per{49.26} of aliases originate from files of which there are two or more identical copies in the dataset.
-%In particular, counting each duplicate only once, \emph{ohmyzsh} plugin files contribute only \per{1.95} of aliases.
-However, we do not think that this skews the data.
-Choosing to use \emph{ohmyzsh}, and choosing which \texttt{zsh} plugins to enable or disable, reflects user intent just as much as manually writing an alias definition into \texttt{.zshrc}.
+We are interested in aliases defined for personal use on the command line.
+Aliases can also be defined as part of build scripts or other utilities, or be found in default configurations copied from system distributions.
+We would like to rule these out, so as to better capture user intent.
+However, it is very hard to formalize a metric that could be used to reliably determine whether a particular alias was consciously defined by the user or appears in the dataset for other reasons.
+We tried applying heuristics, such as looking at file names or the number of aliases per lines in a file, but found this to be no better than chance when sampling randomly.
 
-\input{file-name-distribution-table}
+The most reliable indicator we have found is whether the name or description of a repository contain the words ``dotfile'' or ``dotfiles''.
+We can be reasonably certain that such repositories do indeed contain the personal dotfiles of particular users.
+Applying this filter, we end up with \num{75556} repositories containing \num{198536} files (\per{23.52} of the original sample), and a total \num{2333607} alias definitions, broken down into \num{2602837} commands and \num{3722505} arguments.
+This is the dataset that we will focus on in the remainder of this study.
 
 \subsection{Reproducibility}
 

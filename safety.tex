@@ -2,7 +2,7 @@
 \label{sec:safety}
 
 The \texttt{sudo} command allows the user to execute another command with superuser privileges.
-In our dataset, we found \num{336298} commands (\per{6.3}) prefixed with \texttt{sudo}, used in \num{305637} alias definitions (\per{6.4}).
+In our dataset, we found \num{175806} commands (\per{6.75}) prefixed with \texttt{sudo}, used in \num{158779} alias definitions (\per{6.8}).
 The top 10 commands used with \texttt{sudo} are given in \Cref{tab:sudo-commands}.
 
 Remarkably, 9 out of the top 10 \texttt{sudo}-prefixed commands are related to package managers:
@@ -18,44 +18,23 @@ Some users even go so far as to redefine certain commands to always be executed 
       \toprule
       Command & \# & \multicolumn{1}{c}{With \texttt{sudo}} & Description \\
       \midrule  
-      \verb|zypper|    & \num{66295} & \num{61891} (\per{93.36})  & package manager\\
-      \verb|pacman|    & \num{46821} & \num{32407} (\per{69.21})  & package manager \\
-      \verb|apt-get|   & \num{34075} & \num{28323} (\per{83.12})  & package manager \\
-      \verb|$apt_pref| & \num{20245} & \num{20245} (\per{100.00}) & package manager \\
-      \verb|yum|       & \num{23940} & \num{12843} (\per{53.65})  & package manager \\
-      \verb|dnf|       & \num{24469} & \num{12697} (\per{51.89})  & package manager \\
-      \verb|port|      & \num{11228} & \num{10863} (\per{96.75})  & package manager \\
-      \verb|abs|       &  \num{9909} &  \num{9905} (\per{99.96})  & package manager \\
-      \verb|aur|       &  \num{8837} &  \num{8795} (\per{99.52})  & package manager \\
-      \verb|systemctl| & \num{13942} &  \num{7018} (\per{50.34})  & system utility \\
+      \verb|zypper|    & \num{33753} & \num{31493} (\per{93.30})  & package manager\\
+      \verb|pacman|    & \num{25322} & \num{17422} (\per{68.80})  & package manager \\
+      \verb|apt-get|   & \num{16562} & \num{13946} (\per{84.20})  & package manager \\
+      \verb|$apt_pref| & \num{10464} & \num{10464} (\per{100.00}) & package manager \\
+      \verb|dnf|       & \num{12302} &  \num{6459} (\per{52.50})  & package manager \\
+      \verb|yum|       & \num{11856} &  \num{6428} (\per{54.22})  & package manager \\
+      \verb|port|      & \num{5574} &   \num{5416} (\per{97.17})  & package manager \\
+      \verb|abs|       & \num{5097} &   \num{5094} (\per{99.94})  & package manager \\
+      \verb|aur|       & \num{4525} &   \num{4489} (\per{99.20})  & package manager \\
+      \verb|systemctl| & \num{7399} &   \num{3855} (\per{52.10})  & system utility \\
       \bottomrule
     \end{tabular}
 \end{table}
 
-% \begin{table}
-%     \caption{Top 10 commands redefined to always use \texttt{sudo}}
-%     \label{tab:sudo-redefine}
-%     \begin{tabular}{llrl}
-%         \toprule
-%         Alias Name & Alias Value & \# & Description \\
-%         \midrule
-%         \verb|pacman|    & \verb|sudo pacman|    & 901 & package manager \\
-%         \verb|reboot|    & \verb|sudo reboot|    & 809 & system utility \\
-%         \verb|shutdown|  & \verb|sudo shutdown|  & 499 & system utility \\
-%         \verb|apt-get|   & \verb|sudo apt-get|   & 455 & package manager \\
-%         \verb|docker|    & \verb|sudo docker|    & 345 & container platform \\
-%         \verb|halt|      & \verb|sudo halt|      & 230 & system utility \\
-%         \verb|apt|       & \verb|sudo apt|       & 228 & package manager \\
-%         \verb|systemctl| & \verb|sudo systemctl| & 184 & system utility \\
-%         \verb|htop|      & \verb|sudo htop|      & 180 & system utility \\
-%         \verb|poweroff|  & \verb|sudo poweroff|  & 169 & system utility \\
-%         \bottomrule
-%     \end{tabular}
-% \end{table}
-
 On the other end of the safety spectrum, some users default to running the file system commands \texttt{rm}, \texttt{cp}, and \texttt{mv} in interactive mode, which prompts before performing potentially destructive actions.
-Taking into account variations between systems and different ways to enable interactive mode, \per{44.37} of alias definitions invoking \texttt{rm} are redefinitions of \texttt{rm} enabling interactive mode by default.
-Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{68.27} and \per{77.62} of uses are redefinitions, respectively (see \Cref{tab:interactive}).
+Taking into account variations between systems and different ways to enable interactive mode, \per{36.83} of alias definitions invoking \texttt{rm} are redefinitions of \texttt{rm} enabling interactive mode by default.
+Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{65.97} and \per{74.49} of uses are redefinitions, respectively (see \Cref{tab:interactive}).
 
 \begin{table}
     \caption{Commands commonly used in interactive mode}
@@ -64,9 +43,9 @@ Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{68.27}
         \toprule
         Command & \# & \multicolumn{1}{c}{With \texttt{-i}} & \multicolumn{1}{c}{Redefined With \texttt{-i}} \\
         \midrule
-        rm & \num{44209} & \num{20300} (\per{45.92}) & \num{19617} (\per{44.37}) \\
-        cp & \num{27472} & \num{18994} (\per{69.14}) & \num{18755} (\per{68.27}) \\
-        mv & \num{22689} & \num{17842} (\per{78.64}) & \num{17611} (\per{77.62}) \\
+        rm & \num{20451} & \num{7878} (\per{38.52}) & \num{7533} (\per{36.83}) \\
+        cp & \num{11573} & \num{7755} (\per{67.00}) & \num{7635} (\per{65.97}) \\
+        mv & \num{9328} & \num{7068} (\per{75.77}) & \num{6948} (\per{74.49}) \\
         \bottomrule
     \end{tabular}
 \end{table}

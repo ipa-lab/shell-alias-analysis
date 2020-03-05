@@ -7,6 +7,8 @@
 
 \newcommand{\hist}[1]{\includegraphics[height=1em, trim=1em 1em 1em 1em, clip]{compression/#1.pdf}}
 
+%TODO: fix numbers before camera-ready
+
 \newcommand*{\pie}[1]{\begin{tikzpicture}[scale=0.15]%
     \draw (0,0) circle (1);
     \fill[fill opacity=1,fill=black] (0,0) -- (90:1) arc (90:90-#1*3.6:1) -- cycle;
@@ -19,51 +21,51 @@
         & & \# & &\rot{Default Arguments} & \rot{Autocorrect} & \rot{Chaining} & \rot{Safety} & \rot{Bookmarks} & & Compression \\
         \midrule
         \multicolumn{2}{l}{Version Control} \\
-            & \texttt{git}                                  & \num{629593} & & & & \pie{5.84} & &             & & \hist{git} \\
-            & \texttt{hg}                                   & \num{29363} &  & & &	\pie{4.66}  & &             & & \hist{hg} \\
+            & \texttt{git} & \num{345076}   & & & & \pie{5.84} & &             & & \hist{git} \\
+            & \texttt{hg}   & \num{15003}   & & & &	\pie{4.66}  & &             & & \hist{hg} \\
         \midrule
         \multicolumn{2}{l}{System Tools} \\
-            & \texttt{ls}                                   & \num{384186} & & \pie{27.11} & & \pie{2.29} &             &             & & \hist{ls} \\
-            & \texttt{cd}                                   & \num{229522} & & & & \pie{4.79} &             & \pie{63.37} & & \hist{cd} \\
-            & \texttt{grep}*                                & \num{223629} &  & \pie{63.02} & & \pie{24.29} &       & \pie{1.51} & & \hist{grep} \\
-            & \texttt{echo}                                 & \num{53934} &  & \pie{1.14} & & \pie{31.27} &             &  \pie{7.54} & & \hist{echo} \\
-            & \texttt{xargs}                                & \num{44927} &  & & & \pie{35.27} &             &             & & \hist{xargs} \\
-            & \texttt{ssh}                                  & \num{36574} &  & \pie{4.54} & & \pie{3.46} &             & \pie{64.39} & & \hist{ssh} \\
-            & \texttt{rm}                                   & \num{44209} &  & \pie{48.29} & & \pie{13.02} & \pie{56.53} & \pie{22.68} & & \hist{rm} \\
-            & \texttt{dir}                                  & \num{31069} &  & \pie{99.55} & & &             &             & & \hist{dir} \\
-            & \texttt{cp}                                   & \num{27472} &  & \pie{76.35} & & \pie{4.72} & \pie{70.61} & \pie{12.62} & & \hist{cp} \\
-            & \texttt{mv}                                   & \num{22689} &  & \pie{83.03} & & \pie{3.12} & \pie{79.21} & \pie{5.56}  & & \hist{mv} \\
-            & \texttt{sort}                                 & \num{22391} &  & & & \pie{87.04} &             &             & & \hist{sort} \\
-            & \texttt{head}                                 & \num{17530} &  & & & \pie{78.32} &             & \pie{1.04}  & & \hist{head} \\
-            & \texttt{cat}                                  & \num{17425} &  & & & \pie{15.16} & \pie{1.81}  & \pie{42.48} & & \hist{cat} \\
+            & \texttt{ls}    & \num{168739}  & & \pie{27.11} & & \pie{2.29} &             &             & & \hist{ls} \\
+            & \texttt{cd}    & \num{108213}  & & & & \pie{4.79} &             & \pie{63.37} & & \hist{cd} \\
+            & \texttt{grep}   & \num{96502}  & & \pie{63.02} & & \pie{24.29} &       & \pie{1.51} & & \hist{grep} \\
+            & \texttt{xargs}  & \num{24516}  & & & & \pie{35.27} &             &             & & \hist{xargs} \\
+            & \texttt{echo}   & \num{22021}  & & \pie{1.14} & & \pie{31.27} &             &  \pie{7.54} & & \hist{echo} \\
+            & \texttt{rm}     & \num{20451}  & & \pie{48.29} & & \pie{13.02} & \pie{56.53} & \pie{22.68} & & \hist{rm} \\
+            & \texttt{ssh}    & \num{16947}  & & \pie{4.54} & & \pie{3.46} &             & \pie{64.39} & & \hist{ssh} \\
+            & \texttt{sort}   & \num{11893}  & & & & \pie{87.04} &             &             & & \hist{sort} \\
+            & \texttt{cp}     & \num{11573}  & & \pie{76.35} & & \pie{4.72} & \pie{70.61} & \pie{12.62} & & \hist{cp} \\
+            & \texttt{dir}    & \num{11201}  & & \pie{99.55} & & &             &             & & \hist{dir} \\
+            & \texttt{mv}      & \num{9328}  & & \pie{83.03} & & \pie{3.12} & \pie{79.21} & \pie{5.56}  & & \hist{mv} \\
+            & \texttt{head}    & \num{8974}  & & & & \pie{78.32} &             & \pie{1.04}  & & \hist{head} \\
+            & \texttt{cat}     & \num{8669}  & & & & \pie{15.16} & \pie{1.81}  & \pie{42.48} & & \hist{cat} \\
         \midrule
         \multicolumn{2}{l}{Package Managers} \\
-            & \texttt{zypper}                           & \num{66295} & & & & & \pie{93.36} &           & & \hist{zypper} \\
-            & \texttt{pacman}                           & \num{46821} & & \pie{2.81} & & \pie{1.22} & \pie{69.21} &           & & \hist{pacman} \\
-            & \texttt{mvn}                              & \num{36683} & & & & \pie{1.09} &             &           & & \hist{mvn} \\
-            & \texttt{yaourt}                           & \num{34577} & & & & &             &           & & \hist{yaourt} \\
-            & \texttt{apt}*                         & \num{74991} & &  \pie{9.8}&   & \pie{10.16} &  \pie{45.0}           &           & & \hist{apt} \\
-            & \texttt{brew}                             & \num{27060} & & & & \pie{39.49} &             &           & & \hist{brew} \\
-            & \texttt{port}                                 & \num{11228} &  & & &\pie{3.79}  & \pie{96.75} &             & & \hist{port} \\
+            & \texttt{zypper} & \num{33753}   & & & & & \pie{93.36} &           & & \hist{zypper} \\
+            & \texttt{apt}    & \num{31273}      & &  \pie{9.8}&   & \pie{10.16} &  \pie{45.0}           &           & & \hist{apt} \\
+            & \texttt{pacman} & \num{25322}   & & \pie{2.81} & & \pie{1.22} & \pie{69.21} &           & & \hist{pacman} \\
+            & \texttt{mvn}    & \num{18111}      & & & & \pie{1.09} &             &           & & \hist{mvn} \\
+            & \texttt{yaourt} & \num{17907}   & & & & &             &           & & \hist{yaourt} \\
+            & \texttt{brew}   & \num{17223}     & & & & \pie{39.49} &             &           & & \hist{brew} \\
+            & \texttt{port}    & \num{5574}      &  & & &\pie{3.79}  & \pie{96.75} &             & & \hist{port} \\
         \midrule
         \multicolumn{2}{l}{Text Editors}  \\
-            & \texttt{mate}                             & \num{61832} & & & & &             & \pie{95.77} & & \hist{mate} \\
-            & \texttt{vim}                              & \num{53378} &     & \pie{3.28} & & \pie{3.28} & \pie{5.1}   & \pie{44.02} & & \hist{vim} \\
-            & \texttt{nvim}                             & \num{19006} &     & & & \pie{1.19} & \pie{1.72}  & \pie{17.38} & & \hist{nvim} \\
-            & \texttt{emacs}                            & \num{10299} & & \pie{18.44} & \pie{10.75} & \pie{1.16} & \pie{2.19}  & \pie{10.83} & & \hist{emacs} \\
+            & \texttt{mate} & \num{37695} & & & & &             & \pie{95.77} & & \hist{mate} \\
+            & \texttt{vim}  & \num{31387} &     & \pie{3.28} & & \pie{3.28} & \pie{5.1}   & \pie{44.02} & & \hist{vim} \\
+            & \texttt{nvim} & \num{15057} &     & & & \pie{1.19} & \pie{1.72}  & \pie{17.38} & & \hist{nvim} \\
+            & \texttt{emacs} & \num{4874} & & \pie{18.44} & \pie{10.75} & \pie{1.16} & \pie{2.19}  & \pie{10.83} & & \hist{emacs} \\
         \midrule
         \multicolumn{2}{l}{Developer Tools} \\
-            & \texttt{wp}                               & \num{66434} & & & & &             &             & & \hist{wp} \\
-            & \texttt{zeus}                             & \num{52570} & & & & \pie{12.09} &             & \pie{23.91} & & \hist{zeus} \\
-            & \texttt{php}                              & \num{44486} & & & & \pie{7.06}&             & \pie{6.9}   & & \hist{php} \\
+            & \texttt{wp}   & \num{34447} & & & & &             &             & & \hist{wp} \\
+            & \texttt{zeus} & \num{26848} & & & & \pie{12.09} &             & \pie{23.91} & & \hist{zeus} \\
+            & \texttt{php}  & \num{15226} & & & & \pie{7.06}&             & \pie{6.9}   & & \hist{php} \\
         \midrule
         \multicolumn{2}{l}{Infrastructure} \\
-            & \texttt{docker}*  & \num{73706} & & & & \pie{3.86} & \pie{2.63} & \pie{7.6} & & \hist{docker} \\
-            & \texttt{kubectl}*                                      & \num{39781} & & & & & & & & \hist{kubectl} \\
-            & \texttt{vagrant}                                                  & \num{8953} &  & & & \pie{11.17} & & & & \hist{vagrant} \\
+            & \texttt{docker}  & \num{36753} & & & & \pie{3.86} & \pie{2.63} & \pie{7.6} & & \hist{docker} \\
+            & \texttt{kubectl} & \num{20254} & & & & & & & & \hist{kubectl} \\
+            & \texttt{vagrant}  & \num{5575} &  & & & \pie{11.17} & & & & \hist{vagrant} \\
         \midrule
         \multicolumn{2}{l}{Other} \\
-            & \texttt{ffmpeg}                             & \num{606} & & \pie{14.69} & & \pie{8.75} &            & \pie{30.2} & & \hist{ffmpeg} \\
-            & \texttt{beep}                               & \num{85} &  & \pie{4.71} & & \pie{50.59} & \pie{4.71} &            & & \hist{beep} \\
+            & \texttt{ffmpeg} & \num{386} & & \pie{14.69} & & \pie{8.75} &            & \pie{30.2} & & \hist{ffmpeg} \\
+            & \texttt{beep}    & \num{35} &  & \pie{4.71} & & \pie{50.59} & \pie{4.71} &            & & \hist{beep} \\
     \end{tabular}
 \end{table*}
