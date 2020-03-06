@@ -116,11 +116,11 @@ Files that did not contain any aliases were removed from the database, as was re
 
 We are interested in aliases defined for personal use on the command line.
 Aliases can also be defined as part of build scripts or other utilities, or be found in default configurations copied from system distributions.
-We would like to rule these out, so as to better capture user intent.
+We would like to rule these non-personal aliases out, so as to better capture user intent.
 However, it is very hard to formalize a metric that could be used to reliably determine whether a particular alias was consciously defined by the user or appears in the dataset for other reasons.
-We tried applying heuristics, such as looking at file names or the number of aliases per lines in a file, but found this to be no better than chance when sampling randomly.
+We tried applying certain heuristics, such as looking at file names or the number of aliases per lines in a file, but the results were highly erratic. Taking random samples, we found these heuristics to be no better than chance.
 
-The most reliable indicator we have found is whether the name or description of a repository contain the words ``dotfile'' or ``dotfiles''.
+The only reliable indicator we have found is whether the name or description of a repository contain the words ``dotfile'' or ``dotfiles''.
 We can be reasonably certain that such repositories do indeed contain the personal dotfiles of particular users.
 Applying this filter, we end up with \num{75556} repositories containing \num{198536} files (\per{23.52} of the original sample), and a total \num{2333607} alias definitions, broken down into \num{2602837} commands and \num{3722505} arguments.
 This is the dataset that we will focus on in the remainder of this study.
