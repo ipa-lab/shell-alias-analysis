@@ -13,14 +13,7 @@ Based on the outcome of our exploratory analysis and emergent coding, we then pr
 
 \subsection{Overview}
 
-The single most common alias definition in our dataset is
-\begin{CVerbatim}
-alias '${1+"$@"}'="$@"
-\end{CVerbatim}
-appearing \num{78265} times, which is \per{1.64} of all alias definitions.
-This curious jumble of symbols derives from a portability hack for \texttt{zsh}.\footnote{\url{https://unix.stackexchange.com/a/191836}}
-
-More familiar results can be seen in \Cref{tab:top-summary}, which shows the most common alias names, commands, and arguments appearing in alias definitions.
+\Cref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
 The most common alias name we found is \texttt{ls}, appearing a total number of \num{124515} times, which is \per{2.61} of all alias definitions.
 Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \texttt{ls} \emph{command}, which appears \num{378097} times (\per{7.12}).
 This is about half as often as \texttt{git}, the most common command, which appears in \num{626185} aliases (\per{11.79}).
