@@ -55,18 +55,18 @@ Some users even go so far as to redefine certain commands to always be executed 
 
 On the other end of the safety spectrum, some users default to running the file system commands \texttt{rm}, \texttt{cp}, and \texttt{mv} in interactive mode, which prompts before performing potentially destructive actions.
 Taking into account variations between systems and different ways to enable interactive mode, \per{44.37} of alias definitions invoking \texttt{rm} are redefinitions of \texttt{rm} enabling interactive mode by default.
-Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{68.27} and \per{77.62} of uses are redefinitions, respectively (see \Cref{tab:interactive}).
+Those numbers are even higher for \texttt{cp} and \texttt{mv}, where \per{68.27} and \per{77.62} of uses are redefinitions, respectively. %(see \Cref{tab:interactive}).
 
-\begin{table}
-    \caption{Commands commonly used in interactive mode}
-    \label{tab:interactive}
-    \begin{tabular}{lrrr}
-        \toprule
-        Command & \# & \multicolumn{1}{c}{With \texttt{-i}} & \multicolumn{1}{c}{Redefined With \texttt{-i}} \\
-        \midrule
-        rm & \num{44209} & \num{20300} (\per{45.92}) & \num{19617} (\per{44.37}) \\
-        cp & \num{27472} & \num{18994} (\per{69.14}) & \num{18755} (\per{68.27}) \\
-        mv & \num{22689} & \num{17842} (\per{78.64}) & \num{17611} (\per{77.62}) \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+% \begin{table}
+%     \caption{Commands commonly used in interactive mode}
+%     \label{tab:interactive}
+%     \begin{tabular}{lrrr}
+%         \toprule
+%         Command & \# & \multicolumn{1}{c}{With \texttt{-i}} & \multicolumn{1}{c}{Redefined With \texttt{-i}} \\
+%         \midrule
+%         rm & \num{44209} & \num{20300} (\per{45.92}) & \num{19617} (\per{44.37}) \\
+%         cp & \num{27472} & \num{18994} (\per{69.14}) & \num{18755} (\per{68.27}) \\
+%         mv & \num{22689} & \num{17842} (\per{78.64}) & \num{17611} (\per{77.62}) \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
