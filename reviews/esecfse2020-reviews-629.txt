@@ -1,0 +1,286 @@
+ESEC/FSE 2020 Paper #629 Reviews and Comments
+===========================================================================
+Paper #629 An Exploratory Analysis of Shell Aliases
+
+
+Review #629A
+===========================================================================
+* Updated: 4 May 2020 5:46:34am AoE
+
+Overall merit
+-------------
+2. Weak reject
+
+Paper summary
+-------------
+The paper presents an exploratory study on shell aliases concerning command
+line program usability. The study collects and parses open source data from
+GitHub, performs alias measurement, identifies six major alias usages and
+provides discusses based on the analysis results.
+
+Strengths and weaknesses
+------------------------
+Strengths:
+
++ Clear explanation on data preparation
+
++ Good direction on command line program usability based on aliases usage
+
+Weaknesses:
+
+- Interesting question but not that important
+
+- Unclear how often aliases are used
+
+Comments for the authors
+------------------------
+The paper is well written and very easy to follow. The idea of using
+shell aliases to study and understand command line program usability
+is interesting and sound.
+
+As an intensive user of shell, I have never written my own aliases.
+I rely on command history and customized scripts. This is mainly
+because aliases cannot be accessed in shell scripts by default, and I want consistencies between interactive shells and shell scripts. I do not
+know how representative I am, but I am very interested in knowing this.
+To generalize this question, how common are aliases used in practice,
+and how generalizable are the findings and conclusions in this paper.
+Second, I think the problem studied in this paper is interesting, but
+is it really important? To me, this paper seems like a study on a single
+language feature of Shell. I understand that the authors uses aliases as
+a proxy to study how users use aliases to abbreviate long commands, or
+eliminate redundancies in command lines. Could we do better by analyzing
+the shell scripts on github directly, for example, by identifying redundancies among all commands?
+
+
+The authors identify 6 categories of command line programs, but they do not
+explain what methods are used to come up with them.
+
+For the alias usage in terms of default arguments, it might be interesting to see
+what are the more common programs that people are using aliases to enable interactive mode or verbose outputs.
+
+The discussion on better default argument, contextual default, repair rules,
+chained aliases and shell search spotlight provide good insight into the applicability of the study.
+
+Typo:
+1. "the use of use of" on pg.10 in Related work.
+
+Questions for the authors’ response
+-------------------------------------
+1. Importance of this study?
+2. How frequent are aliases used? 
+3. Were there any efforts spent to remove duplicate files during data gathering from GitHub, if there is any?
+4. Aliases from the same developer or organization might follow certain patterns or conventions. Would those affect the results?
+
+
+
+Review #629B
+===========================================================================
+* Updated: 2 May 2020 4:05:59am AoE
+
+Overall merit
+-------------
+3. Weak accept
+
+Paper summary
+-------------
+The paper analyses Unix shell aliases deposited in public GitHub repositories by devising a clever technique to locate the corresponding files, downloading them, parsing them, and categorising their use.  Based on this analysis it identifies six possible uses of aliases, namely default arguments,
+compression, auto-correct, command chaining, safety, and bookmarks. The paper concludes with views on how these uses can improve existing commands and future user interfaces.
+
+Strengths and weaknesses
+------------------------
+## Strenghts
+* Re-implementation of existing research methods using modern facilities on a much larger data set
+* Clever mining technique
+* Exemplar visualizations
+
+## Weaknesses
+* Results could be better tied together into a theoretical framework
+* Artefacts are not yet shared. There are mechanisms to share them without endangering the double-blind review process. (Addressed after first review round.)
+* Insufficient motivation, which isn't helped by the tepid results.
+
+Comments for the authors
+------------------------
+This is an interesting and  well-written paper with exemplar data visualizations. The novel methods for mining the data appear to be sound and have produced a large dataset. The paper's findings can allow researchers to design better shell-based interfaces, though tieing them to a theoretical framework might advance the state of the art even more. Given Greenberg's existing work, the study's main novelty is the method and extent of the data collection and the focus on command aliases. Although the study's artefacts are not currently available, what is promised to be made available will aid the study's recoverability, replicability and reproducibility.
+
+Some more specific comments for improving the camera-ready version follow below.
+
+It would be worth discussing other available customization
+options, namely commands with the same name put earlier in
+the path, shell functions, environment variables (e.g. LS_COLORS,
+LESS), and command configuration files (e.g. .ssh/config).
+Also, the paper should stress that aliases are do not modify
+the shell's command execution environment nor are they inherited
+by other programs, and consequently they don't affect the operation
+of shell scripts and other programs invoking the aliased commands.
+
+Table 3 is a brilliant visualization.  Consider renaming the
+"compression" column into "replacement size ratio"
+
+153: The right hand side of the equals sign is a string.  This can indeed
+be enclosed in single or double quotes, but it can also be any other
+sequence that evaluates to a single string, such as words separated by
+backslash-escaped spaces or the output of command expansion.
+
+155: The RHS identifier does not have to be a valid command name.
+For example alias nullin='</dev/null' can be used to change a command's
+standard input to /dev/null.
+
+166: The names of the initialization files differ by the shell used,
+not by platform.
+
+178: Also to manage revisions
+
+195: The World of Code dataset could be used for this study.
+https://dl.acm.org/doi/10.1109/MSR.2019.00031
+
+228: Clever!
+
+366-377: It is unclear what is meant by "intentional" and "coincidental".
+Studying the remaining files in the context of their repository, might
+reveal more about what they are.  My guess is that they form modules of
+more elaborate shell initialization schemes.
+
+394: I recommend placing the replication data in a long-term archive,
+such as Zenodo.
+
+Section 5.1 It should be commented that some of the so-called
+"better defaults" break the Unix tool conventions (e.g. tools
+should produce output that can be processed by other tools),
+and are therefore not an appropriate design choice.  A similar
+argument is made in lines 1000-1008.
+
+Section 5.4 The proposed examination can be better performed by looking
+at the complete universe of shell scripts, rather than only aliases.
+
+Section 5.5 The use of longer command names is a bit of a mystery, given
+that remembering the exact words used might also be challenging.  A
+possible explanation might be their use together with the auto-expansion
+capability of modern shells, which offers a rudimentary search facility
+similar to what the paper advocates here.
+
+The capitalization of the paper's references must be reviewed and corrected.
+
+Questions for the authors’ response
+-------------------------------------
+What percentage of the studied repositories or files were duplicates of others?
+
+
+
+Review #629C
+===========================================================================
+* Updated: 15 May 2020 5:55:55am AoE
+
+Overall merit
+-------------
+1. Reject
+
+Paper summary
+-------------
+This paper presents an empirical study on the use of shell aliases.  It scrapes shell scripts from GitHub, obtaining around 844k files total across 300k repositories.  From that it detects 4.7m alias definitions in 540k files across 200k repositories.  The authors then use open coding to define 6 categories of alias usage.  Finally there is some discussion on the possible implications of these results.
+
+Strengths and weaknesses
+------------------------
+Strengths:
++ very well written paper
++ first study i am aware of on shell aliases in the wild
+
+Weaknesses:
+- motivation for the study is missing
+- implications for the results are mostly wrong
+
+Comments for the authors
+------------------------
+This paper was very well organized and written. One of the easiest papers I have ever read in a conference.  I find the motivation for the study to be severely lacking.  There were no clear research questions proposed that the study answered, as this was purely an exploratory study.  In that sense, then I would expect to see strong implications from the findings.  However I find most of the implications provided are weak and many seem to just be plain wrong.
+
+I wonder about the GH search strategy used.  How was it a search for 'alias' in shell programs only, returns results where the authors wind up filtering out 1/3 of the results? What were some of those 33% of files filtered out and was there a way to exclude those in the search terms?
+
+On page 3 the authors mention the command 'sudo' and "then its first argument is taken as the real command".  Does this take into account arguments passed into sudo with '-' flags, or not? I'd recommend clarifying that (or fixing it, if it doesnt account for those).
+
+On page 5 the authors mention they "exclude them" (the --color default arguments).  Then in the next paragraph report on defaults that "enable human-readable" output.  That is the point of the --color, so why exclude them? They should count toward that percentage.
+
+I think there is a mistake in Table 4.  Row 4 'unzip' vs 'gunzip' is given the reason 'Mismatched casing' but both are lowercase.  Really here the 'g' just moved, there is no casing difference.
+
+Overall my biggest problem with the paper is entirely in Section 5.  There are several issues with the informal arguments made here, which affects the paper's potential impact.
+
+First in 5.1, this whole section is just wrong.  The presence of a lot of 'default argument' aliases does not tell us anything about the overall population using that particular command.  As such, there is no way to infer the proportion of the population using these aliases and thus there is no way for the tool developers to really know if these would make better defaults or not.  In fact, tool developers using this data for such a change might be doing more harm than good.
+
+A similar mistake was made in 5.2 when mentioning that "our results show that it is highly desired to be a default for interactive command-line use" (the --interactive/-i flag).  Again, this is just a wrong assumption as there is no way to know the size of the population using these tools and what proportion is using -i.
+
+Then in 5.4, the authors discuss chaining of tools.  Here they state "for tool developers, this could potentially be an indicator that additional capabilities may be required."  That might be true or not.  However in the context of these particular tools (many of which are standard POSIX tools that came out of the UNIX era) I think that fails to understand the philosophy behind the tools.  These tools follow the KISS principle - Keep It Simple, Stupid.  They are intended to be as simple as possible and accomplish one goal.  In that sense they also follow the single responsibility principle from Agile.  Adding more features to them goes against their design philosophy so I don't see this happening.  They were always intended to be chained together in creative ways!
+
+Finally in 5.5, the authors mention a need for 'search' such as spotlight search on Mac.  Again I think the authors are misinterpreting what is happening here.  The aliases are defined because the users already *know* what they want - there is no need for a search, they already have the answer.  The 'bookmarks' are there to simply make it easier to go to particular locations - in other words to save on typing.  Also there is already search functionality on all unix/bsd systems, find and locate.
+
+Minor points:
+p3 l281 - 'figure 2' - Figure 2
+p5 l515 - 'amount of 502,801 (10.5%)' - remove OF, put commas around the values
+p7 l773 - why doesnt Table 5 include the '1st position'? add it
+p9 l1029 - 'figure 4' - Figure 4
+
+letcat/rulz/chicken aliases in Table 2 - these are lolcat! more humor (also kthxbai and please, which authors mentioned)
+https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/lol/lol.plugin.zsh
+
+### Note
+The review score was lowered slightly after rebuttal, as I felt my concerns regarding Section 5 were still well founded.  It seems like the authors are perhaps inferring things that aren't actually there.
+
+For example, they mention "the act of publicly sharing dotfiles on GitHub indicates a certain level of expertise to us." Why? Those dotfiles might have been included by mistake - there is no indication of intent here, so we can't even be sure they were shared intentionally (except for repositories that are only dotfiles - that seems intentional). Someone may have downloaded a shared set of aliases to play around with, forgot it exists, and accidentally committed it. That doesn't give indication of 'expert' at all. Even someone sharing a repo of dotfiles doesn't mean they are an expert! They might have gotten them from a coworker and just tossed them up onto GH.
+
+"We agree that our data does not allow us to conclude one way or another whether the general population using a given command would find the aliases useful -- the data only show that some population of users found the aliases useful." Again - No. Their inclusion does not imply 'usefulness' - that is something you need to ask the developer to know! Since these are aliases, it's possible the developer downloaded and installed a dotfile, has these aliases available, but literally never even uses them. The authors are really stretching here.
+
+Again I feel like the authors found some fun data and dug into it, but there was nothing here.
+
+
+
+Rebuttal Response by Jürgen Cito <jcito@csail.mit.edu>
+---------------------------------------------------------------------------
+We thank the reviewers for their insightful comments. We firmly believe that the points of criticism can be addressed as part of the camera-ready version, and will now answer each question in turn.
+
+R1Q1, R3: Importance/Motivation
+
+- The interactive shell is (still) a prominent mechanism that a wide range of software professionals (engineers, sysadmins, data scientists, etc.) use extensively during development and other systems activities. The customizations that shell users share can therefore provide insight into the tasks that they repeatedly perform, how well the standard environment supports those tasks, and ways in which this standard environment could be productively extended or modified.
+
+- Given the widespread use and prominence of the shell, any improvements or modifications would potentially affect a very large audience of users. We think that we have contributed a novel analysis of an underexplored customization technique (given the now unprecedented phenomena of sharing in combination with its volume on GitHub), in addition to producing a large-scale dataset inviting further study. We will elaborate on the motivation to reflect this more clearly in the paper.
+
+R1Q2:
+
+- We analyzed aliases explicitly shared by over 300,000 repositories, indicating that curating and sharing aliases is quite a commonplace activity. The act of publicly sharing dotfiles on GitHub indicates a certain level of expertise to us. Thus, while our results might not be generalizable to the population of computer users at large, we think they are certainly applicable to expert users. We agree that a discussion on generalizability is important and will extend our threats section accordingly.
+
+R1Q3, R2Q1 Duplications
+
+- We debated whether to report separate analyses for duplicated files (about 47% of files can be considered duplicates). We eventually decided for the current format because we believe that intent is expressed through the explicit action of sharing on a public repository (GitHub), regardless of the origin of a file (as described in the threats). And, additionally, because the distributions of our results do not change even when accounting for duplication. The absolute values obviously differ, but the overall relative trends we are attempting to show stay consistent. See https://pastebin.com/YGiLy8hE. However, we agree that this should be more explicitly discussed. We will extend the discussion on duplications in methods/dataset and the analysis of the paper. 
+
+R1Q3:
+
+- We have not found anything in the data pointing to skew towards certain usage patterns originating from singular users or organizations.
+
+R2, R3 (Section 5)
+
+- We appreciate the comments on our discussion. Our intent was to point out a variety of exciting future directions of inquiry that stem from our analysis. Specifically, our goal was *not* to reinvent (or break) existing Unix principles, nor imply any concrete usage mode -- indeed we think that constructing an ontology of alias definitions and their possible usage presents a particularly interesting research direction. We will express our discussion points more carefully, putting an emphasis on the results of our analysis and the next steps of inquiry that are able to contextualize them. We clarify our points of discussion in more detail below.
+
+R3Q1 (GH search strategy)
+
+- GitHub’s code search is not perfect, and neither is its classification of file language. The filtered out files contained the string “alias" or a variation thereof (like "-fno-alias"), but not any parseable shell alias definitions.
+
+R2: Reproducibility
+
+- We were not aware that Zenodo artifacts can be shared anonymously. We make our artifact available here: https://doi.org/10.5281/zenodo.3778825
+
+
+Details on Section 5:
+
+5.1, 5.2
+- We agree that our data does not allow us to conclude one way or another whether the general population using a given command would find the aliases useful -- the data only show that *some* population of users found the aliases useful. To determine if the aliases would make better defaults for a larger population would require a more involved set of experiments and/or user studies. Our analysis provides a useful starting point for a more involved study designed to explore the issue of defaults for a more general population. We will express this more clearly in the paper.
+
+5.4
+- We agree that the standard Unix KISS principle is important. We are not arguing for a system that will violate this principle and are not arguing that we should eliminate commands that conform to this principle. However, we do think that once users have identified specific combinations that they find particularly useful, it makes sense to explore whether or not these specific combinations would be useful for others. These combinations also provide insight into how (at least some) users use the shell. Again, the way we expressed this can certainly be addressed.
+
+5.5
+- We agree that classical filesystem search (e.g., find, locate) is present in Unix and it is not what we are advocating here. In the Windows 95/98/XP days, it was common to establish shortcuts (symbolic links) on your desktop for all sorts of utilities and paths. Spotlight search in macOS (and similar functionality in more recent Windows versions) provides a user experience that replaces the need for many of these shortcuts (i.e., bookmarks in our paper). In a similar vein, we see our data as a starting point for further investigation of how extended capabilities could manifest for the shell. However, we agree that ‘search’ might be a loaded term here and will clarify this in the paper.
+
+
+
+Review #629D
+===========================================================================
+
+Metareview
+----------
+After a discussion, although the reviewers acknowledged that some details of the approach have been clarified in the rebuttal, they all shared (including the positive reviewer) concerns about the work motivations and resulting implications. For this reason, reviewers found that the work is not ready yet, and recommended a rejection, with a warm suggestion of making the motivations/implications stronger upon resubmission.

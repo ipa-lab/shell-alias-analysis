@@ -1,0 +1,188 @@
+----------------------- REVIEW 1 ---------------------
+SUBMISSION: 23
+TITLE: An Exploratory Analysis of Shell Aliases
+AUTHORS: Michael Schröder and Jürgen Cito
+
+----------- Overall evaluation -----------
+SCORE: 2 (strong accept)
+----- TEXT:
+This paper reports the results of an exploratory study aimed at quantitatively and qualitatively analyzing the usage of shell aliases mined from GitHub. The mining was performed by searching for shell scripts and by analyzing their content, looking for alias definitions. After reporting the frequency of the most commonly aliased commands, and the most common alias names and arguments, the authors perform an analysis of the alias contents. This was done by an inductive coding, which helped to identify various (likely) purposes of aliases, such as default arguments, autocorrect, compression, command changing, safety/interactive mode, and bookmarks. Then, the authors used heuristics to capture and quantify such purposes. As implications of this work, knowing about aliases would enable auto-correction or automated, contextual alias suggestion.
+
+
+I liked this paper. At a first glance, it looks like curiosity-driven research (and even if this is the case, I must confess the topic made me very curious, as a massive alias user), but in the end, the implications of the reported study can be bigger than what it emerges from the paper. 
+
+The manuscript is generally well-written, the work is properly motivated (though as I said motivations can be improved) and, with one exception, the methodology is described with a great level of detail, making the work reproducible (I also appreciate very much the availability of the data analysis procedure as a Jupiter notebook, well done!).
+
+The identified reasons for aliases are very meaningful. The analysis of some of them (e.g., default arguments, bookmarks, compression) is relatively straightforward and, where authors used heuristics for the analysis (e.g., for bookmarks) a manual validation was properly performed to determine whether the heuristics were appropriate or not. In other cases, e.g. autocorrect, the analysis performed through an editing distance leaves the room for interpretation. In some other cases, e.g. for changing, the analysis performed is quite effective (I liked Figure 4, very informative), although another useful analysis could be based on mining frequent itemsets (or, why not, with n-gram analysis) to identify frequent chaining aliases.
+
+
+Let me now describe the points of improvement. As I said, I like this work as it is, and while some improvements deserve to be added in this paper, others can be directions for future work.
+
+About this paper:
+- while as I said most of the methodology is very detailed, the qualitative analysis (beginning of Section 4) is cut very short. Within the paper space balance, I suggest the authors explain (i) how many people performed the analysis, (ii) the amount of data used in the analysis, and (iii) briefly, the procedure followed, how many iterations, how independent taggers discussed before one iteration and another, etc. To make some space, you could shorten the part about parsing (Section 3.2) and, if needed, get rid of Figure 3, by just reporting descriptive statistics.
+- Motivations can be strengthened a lot. The usefulness of this work only emerges from the last paragraph of Section 5.2, but there are many applications of this work. For example, a future study could mine command histories (authors could start from those of their organization) and identify cases where an autocorrection alias would help (e.g., every time a command resulting in an error is always followed by another, proper, command), or, in general, the command history could be useful to learn and recommend customized aliases.
+
+Future work:
+- Of course, the obvious future work is to enact what I just mentioned above (here it's sufficient to use it as a motivation).
+- As the authors properly discussed in the threats to validity, this study may or may not have properly identified the developers' intent. As future work, the authors could think about conducting interviews and surveys, triangulating results of such studies with results reported in this paper.
+
+Other comments:
+-p2 "And so on." this sentence seems to be left alone. Please link to the previous one.
+-p2 section 3.2: similarly to sudo, I'm wondering if there may be other cases where a command is followed by another one. I'm thinking about shell invocation (e.g. bash -c <command>) or about launching a command in a screen (screen -d -m <command>)
+- Table 1 at a first glance looks misleading because one may be tempted to associate the first row of the Alias with the first row of the Command. An alternative is to place those subtables one below the other, but I understand this might require a bit more space (maybe?)
+
+
+Points in favor and against:
++ Large (overall) properly conducted study on a very intriguing topic
++ Clearly described methodology (except for the coding), including Jupiter notebooks
++ This work can have many interesting implications (though they should be further stressed in the paper)
+- Coding needs to be better explained
+----------- Questions to Authors -----------
+Q1: Please clarify my doubts about the coding: (i) how many people performed the analysis, (ii) the amount of data used in the analysis, and (iii) briefly, the procedure followed, how many iterations, how independent taggers discussed before one iteration and another.
+
+
+----------------------- REVIEW 2 ---------------------
+SUBMISSION: 23
+TITLE: An Exploratory Analysis of Shell Aliases
+AUTHORS: Michael Schröder and Jürgen Cito
+
+----------- Overall evaluation -----------
+SCORE: -2 (strong reject)
+----- TEXT:
+The paper reports an exploratory study on shell aliases customizations. Shell customization files have been downloaded from GitHub, file content parsed  and analyzed.  Statistic are summary reported in the context of a six categories alias taxonomy.
+
+
+Plus:
+
+It is one of the first of not the first massive study of aliases customization
+
+An infrastructure to gather data has been developed
+
+Against:
+
+Though interesting it is and it remains an observational study with no  real conclusion. Bottom line, there is no answer to the “so what” question
+
+Some study settings are debatable
+
+Reported data points to the risk of a highly biased application and super specific populations thus results are far from general.
+
+
+Before anything else let me clarify my judgement is biased: I am an old Unix user, programmer and system administrator. I worked with almost all known Unix flavours and machines. Form AIX, to  SunOS, to Solaris, HP-UX, SCO, and many, many Linux variants. I survived to all versions of shells listed in http://hyperpolyglot.org/unix-shells and I started my career  with the original  sh and csh. On the one site I find your results not interesting, obvious on the other  also I find reported data puzzling. 
+
+
+I have three main points. I find the paper a very infesting research direction but 1) it targets a narrow sub-population; 2) is likely highly biased and most seriously, 3) no answer to the so what question.
+
+First, the sub-population. I argue, people writing aliases are a small population, those that still love quick solution via terminal or must administer a headless machine or are allergic to graphical bloatware. Still, how representative your data are of this population is unclear to me. There are 3 data you report that motivate me to argue data do not really target this population or a generic sysadmin/programmer population. I am baffled to see that you have found *plugin.zsh  as the most frequently  encountered alias containing file name, why? Zsh is not young but while any known Unix has a sh or bash,   zsh is not a default shell as far as I know. Recently, with Catalina zsh is the new MAC default shell but this does not explain the datum.  Let me rephrase, what is the purpose of those alias files ?  They are likely part of plugins to simplify zsh plugin developers life. But those are not “strictly” speaking simple users they develop plugins, code. In a nutshell, I dou!
+bt part of gathered data don’t represent shell aliases used by normal Unix audience. Also we have no way  (admittingly may not be easy)  to divide alias per shell. I mean sh, bash and zsh are highly interchangeable see the link above. However, knowing the per shell frequency of aliases would give a bit more insight and what the data are really telling us.  The second baffling point is the fact that top 2 command are ls and git. I can believe ls is one of the top but not git and oven more so since you second version control command is hg, but hg is Mercurial; similarly, I find super weird that zypper is the top package manager. I had to go back and search I used openSUSE but didn’t remember zipper at all.  Keeping on table 4 I really have hard time to understand why port and brew are in 2 different categories. I may be biased but to me they means MacPort and HomeBrew. Admittedly I do not know what you mean with mate, the ide desktop environment evolution of Gnome2? Or w!
+p ? Is this WordPress ? What tool does it represent? Some shells have built-in command, when you say echo, do you mean /bin/echo or the shell built-in?  In summary, I find the study not clear, accurate and precise. It targets a sub-population of Unix users and even for those users it is unclear if the findings reflect the real practice. 
+
+The last point is on the so what. I have hard time to understand how this data could help improve anything or shed some light on current practices. Authors failed to convince me as a Unix programmer and administrator I can benefit in any way. But perhaps, they could distill the list of most frequent alias per shell, ask developers why they did it and report a table with explanation and alias semantic commenting pros and cons of the solution. I was surprised  to see the reported command:
+
+du -cksh * | sort -hr | head -n 15
+
+did you really find in  GitHub or in
+
+https://www.cyberciti.biz/faq/how-do-i-find-the-largest-filesdirectories-on-a-linuxunixbsd-filesystem/
+
+
+I mean it only works on the current directory and does not expand in the subtree,  is this really useful if you need to find large files?
+
+Incidentally, I am currently managing about 10 servers, on none of my systems there is in user defined  aliases the alias grep='grep --color=auto'  or alias ls='ls --color=auto, they are actually added to the user environment when the user is created. They are shown by the alias comment BUT they are not into user alias files. They are the convoluted artifact of Unix(es) when the login is performed. It is stunning that you found such aliases in GitHub, please explain. To me the only reasonable explanation is that someone did an alias > file the exported file in GitHub. This, however, does not explain the frequency. 
+
+Last but not least, to me there is an important obscure point. Seems data gatherings done as step of 100.  This imply for the alias files between 0 and 100 you collected few thousands files, right? Now while I can not understand how an human can work with a 29K of alias file, my alias file collected over all my career is about 80 lines long (names .bash_aliases) and about 1200 bytes. I argue many user will have much smaller alias file. As sysadmin I protect myself and always use a small alias file containing:
+
+alias em='emacs  '
+
+
+alias fgrep='fgrep -i'
+alias grep='grep -i'
+
+alias rsz='eval resize'
+
+alias ssh='ssh -X -Y '
+
+alias l='ls -F'
+
+alias m=more
+
+alias p=pushd
+alias P=popd
+alias d=dirs
+
+alias rm='rm -i '
+alias mv='mv -i '
+alias cp='cp -i '
+
+These are about 250 bytes, this is to say perhaps a better choice would be a finer granularity for queries between say 100 and 2000 bytes.
+----------- Questions to Authors -----------
+Q1: Please at least provide the top aliases, the shell and the semantic. It would be useful to users.
+
+Q2: Explain if aliases such as ls --color=auto or grep --color=auto you listed are user defined or the side effect of default system bash settings when the user login
+
+
+----------------------- REVIEW 3 ---------------------
+SUBMISSION: 23
+TITLE: An Exploratory Analysis of Shell Aliases
+AUTHORS: Michael Schröder and Jürgen Cito
+
+----------- Overall evaluation -----------
+SCORE: -2 (strong reject)
+----- TEXT:
+Summary: In this paper, the authors conducted an exploratory study on over 4.7M shell alias definitions found on GitHub. The study consists of the distribution, usage of default parameters, autocorrection, compression, chaining, safety and interactive mode, and bookmarks. Based on the results, the authors noted some implications for improving developers' shell usages.
+
+Points for:
++ New data
++ New analysis
+
+Points against:
+- Unclear motivation for each study
+- Insufficient implication
+
+Suggestions:
+The severest problem in this paper is that the motivation of the conducted analyses is unclear. The reviewer understands that it is not possible to clarify all their motivation in advance when conducting an exploratory study. However, at the stage of conducting each study, authors should have already known what its motivation is. The current paper first describes the methods and then results for each study, and attempts to link the obtained findings to the future in the discussion section at the end of the paper. This makes it difficult for readers to understand *why* each study was performed. In addition, most of the topics in the discussion were not directly linked to the quantitative results obtained in the previous sections, which also makes it difficult to connect the empirical studies and implications.
+
+For example, Section 4.4 introduces two very long aliases. These are fun facts, and the reviewer enjoyed reading it. However, given that this paper is an academic manuscript, it is necessary for authors to link the findings to academic contributions, and there is a large gap between them. To fill in these gaps, the reviewer recommends describing what is the motivation of the study before each study.  It is possible to write them in such a way while keeping this study exploratory;  motivations of later studies arise according to the results of prior studies.
+
+Technically, the reviewer believes that this study still involves a big threat. The authors have described in Section 6 that the aliases found on GitHub can be regarded as being aware by developers. The reviewer disagrees with this; as the authors have already pointed out, the dataset includes many "imported" items such as oh-my-zsh plugins. These were installed or copied rather than written by developers. In particular, the reviewer wonders a case that developers installed them just for a subset of their features, and they were not aware of most of the others. One possibility to mitigate this is to check whether the repository author *modified* the files after they copied. More advanced analysis of the usage history of commands similar to many studies of IDE usage logs would be very interesting (but the reviewer understands that this is very expensive).
+
+Minor:
+- Why did the authors treat only `sudo` as an exception? There should be other delegator commands having a similar situation to `sudo`, such as `time` or `nice`. Also, they may have another parameter before the command name parameter.
+
+- Table 6: Why /dev/null and ~/X are regarded as command names?
+----------- Questions to Authors -----------
+How much does the threat that I mentioned (installed/copied scripts) impact the investigated results?  Can you measure or estimate?
+
+
+
+-------------------------  REBUTTAL  ------------------------
+
+We thank the reviewers for their insightful comments. We summarize the points of criticism, which we firmly believe can be addressed as part of the camera-ready version, as follows: 
+
+- Clearer motivation: Make the motivation for this research (and the underlying analyses) clearer 
+- Coding: Provide more details on the qualitative coding procedure 
+- Duplication: When accounting for duplication, the distributions of our results do not change (specifically, zsh plugins were mentioned as a major threat) 
+
+We provide more details on these points by answering the questions directly. Where applicable/requested for the argument, we also provided data as part of an anonymized Pastebin entry. 
+
+R1Q1 
+We should definitely add details about our procedure: (i) coding was performed by two authors independently, (ii) we retrieved the top-200 commands where command names were grouped together with their top distributions of arguments and alias names, (iii) for each command name-argument-alias combination authors provided tags independently. After the first iteration, the coders compared emerging categories, consolidating different naming conventions. In consecutive iterations, the coders identified ways of formalizing the emerged categories, potentially identifying boundary conditions. The discussion of the formalization additionally served to establish a better, shared understanding. 
+
+R2Q1 
+We decided not to report the top alias definitions as a whole (alias name=value), as minor variations in command arguments would lead to a misleading ranking. Thus Table 1 provides the top alias names, commands and arguments separately. See https://pastebin.com/PFmQJk4M for the top 50 whole aliases. 
+
+As for the shell: In general, we can’t know for which shell an alias was defined. Using the filename as a loose heuristic, we can repeat the summary queries for files matching “*bash*” (https://pastebin.com/bcFUcznY) and “*zsh*” (https://pastebin.com/1kz1Qets). 
+
+R2Q2 
+It would indeed be interesting to know whether an alias was user-defined or provided by the system. This information can, unfortunately, not be inferred. However, the fact that it has been persisted in a file and shared on GitHub is a signal of intent for us. Regardless of these specificities, the goal of this study is also to build a general understanding of the phenomena and to release the full dataset for further analysis. 
+
+R2 
+To clarify some additional points: 
+- All aliases used as examples in the paper are from the dataset. 
+- As described in 3.1, we sampled down to a granularity of 1 byte. Between 0 and 100 bytes, we collected 19808 files, containing a cumulative 30524 aliases. Between 100 and 2000 bytes, we collected 244904 files, containing 1583606 aliases. 
+
+R3Q1 
+This is a good point and we debated whether to report separate analyses for duplicated files (i.e. identical SHAs). However, we erred on the side of believing intent is expressed through the explicit action of sharing, as described in the threats). A quick analysis also shows that the overall distributions, when accounting for duplicates, do not change. The absolute values obviously differ, but the overall relative trends we are attempting to show stay consistent. See https://pastebin.com/YGiLy8hE
+
+
+-------------------------  METAREVIEW  ------------------------
+The discussion of the paper revolved around two questions: its actionability and the provenance of the aliases. Its actionability was strongly debated. The reviewers think this work is promising and encourage the authors to better make the case for the actionability of script alias mining.  All reviewers wondered about the provenance of the aliases. Precisely detailing how they were collected and from which data sources will address this concern. Specifically, which aliases come from user scripts, which from system scripts (i.e. /etc) and which from scripts that configure libraries or start applications?

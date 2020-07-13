@@ -1,0 +1,95 @@
+TOP ALIAS NAMES FOR FILES MATCHING *zsh*
+----------------------------------------
+sqlite> select alias.name, count(*) from alias join file using (file_id) where file.name like '%zsh%' group by alias.name order by count(*) desc limit 10;
+ls|36199
+zshconfig|31208
+ohmyzsh|30615
+ll|19781
+la|14307
+l|12171
+urlencode|12156
+urldecode|12050
+grep|11452
+mv|8694
+
+TOP COMMANDS FOR FOR FILES MATCHING *zsh*
+-----------------------------------------
+sqlite> select command.name, count(*) from command join alias using (alias_id) join file using (file_id) where file.name like '%zsh%' group by command.name order by count(*) desc limit 10;
+git|414171
+ls|95231
+cd|76653
+wp|66107
+zypper|66038
+mate|60721
+zeus|52202
+"$ROOT"|43400
+grep|39028
+pacman|37816
+
+TOP ARGUMENTS FOR FILES MATCHING *zsh*
+--------------------------------------
+sqlite> select argument.name, count(*) from argument join command using (command_id) join alias using (alias_id) join file using (file_id) where file.name like '%zsh%' group by argument.name order by count(*) desc limit 10;
+-v|44946
+~/.zshrc|41996
+update|41566
+-e|39987
+commit|39636
+list|37456
+clean|35119
+install|34501
+push|34184
+-i|32101
+
+TOP 50 WHOLE ALIAS DEFINITIONS FOR FILES MATCHING *zsh*
+-------------------------------------------------------
+sqlite> select alias.name, alias.value, count(*) from alias join file using (file_id) where file.name like '%zsh%' group by alias.value, alias.name order by count(*) desc limit 50;
+ohmyzsh|mate ~/.oh-my-zsh|28814
+zshconfig|mate ~/.zshrc|28388
+ll|ls -l|5870
+ls|ls -G|5797
+g|git|5588
+gd|git diff|5386
+vim|nvim|4882
+gb|git branch|4742
+grep|grep --color=auto|4601
+gco|git checkout|4503
+rm|rm -i|4458
+ga|git add|4438
+cp|cp -i|4355
+ls|ls --color=auto|4296
+mv|mv -i|4223
+h|history|4118
+gp|git push|4112
+..|cd ..|4028
+ls|gls --color=tty|3956
+vi|vim|3948
+be|bundle exec|3902
+gs|git status|3778
+gst|git status|3163
+L|| less|3072
+gm|git merge|3058
+G|| grep|3040
+acs|apt-cache search|2976
+afs|apt-file search --regexp|2908
+la|ls -a|2908
+mydeb|time dpkg-buildpackage -rfakeroot -us -uc|2902
+afu|sudo apt-file update|2864
+...|cd ../..|2860
+mkdir|nocorrect mkdir|2809
+ll|ls -lh|2754
+mv|nocorrect mv|2711
+gf|git fetch|2648
+gcd|git checkout develop|2635
+gl|git pull|2462
+H|| head|2403
+st|subl|2398
+gc|git commit -v|2394
+df|df -h|2365
+gba|git branch -a|2352
+man|nocorrect man|2352
+gcp|git cherry-pick|2339
+c|clear|2287
+grep|grep --color|2271
+_|sudo|2263
+ls|ls --color=tty|2257
+mysql|nocorrect mysql|2213

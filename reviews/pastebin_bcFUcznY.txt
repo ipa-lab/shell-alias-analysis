@@ -1,0 +1,95 @@
+TOP ALIAS NAMES FOR FILES MATCHING *bash*
+-----------------------------------------
+sqlite> select alias.name, count(*) from alias join file using (file_id) where file.name like '%bash%' group by alias.name order by count(*) desc limit 10;
+ls|71550
+ll|55812
+grep|44906
+la|41133
+l|40015
+egrep|35083
+fgrep|34719
+dir|33010
+vdir|30675
+alert|20702
+
+TOP COMMANDS FOR FILES MATCHING *bash*
+--------------------------------------
+sqlite> select command.name, count(*) from command join alias using (alias_id) join file using (file_id) where file.name like '%bash%' group by command.name order by count(*) desc limit 10;
+ls|231238
+git|128484
+cd|88042
+grep|66519
+egrep|36632
+fgrep|34719
+dir|29605
+vdir|28521
+notify-send|20764
+vim|20216
+
+TOP ARGUMENTS FOR FILES MATCHING *bash*
+---------------------------------------
+sqlite> select argument.name, count(*) from argument join command using (command_id) join alias using (alias_id) join file using (file_id) where file.name like '%bash%' group by argument.name order by count(*) desc limit 10;
+--color=auto|221722
+-i|61504
+-A|35384
+-CF|31017
+-l|27006
+-alF|23763
+-a|21217
+--urgency=low|20597
+"$(history|tail -n1|sed -e |20575
+"$([ $? = 0 ] && echo terminal || echo error)"|20561
+
+TOP 50 WHOLE ALIAS DEFINITIONS FOR FILES MATCHING *bash*
+--------------------------------------------------------
+sqlite> select alias.name, alias.value, count(*) from alias join file using (file_id) where file.name like '%bash%' group by alias.value, alias.name order by count(*) desc limit 50;
+ls|ls --color=auto|41565
+grep|grep --color=auto|36558
+egrep|egrep --color=auto|33229
+fgrep|fgrep --color=auto|33044
+la|ls -A|30683
+l|ls -CF|29887
+dir|dir --color=auto|28627
+vdir|vdir --color=auto|28441
+ll|ls -alF|22990
+alert|notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e |20483
+ll|ls -l|11837
+rm|rm -i|10682
+..|cd ..|9299
+cp|cp -i|9253
+mv|mv -i|8567
+vi|vim|5077
+gs|git status|4782
+df|df -h|4741
+c|clear|4212
+ls|ls -G|4209
+...|cd ../..|3989
+g|git|3446
+gd|git diff|3245
+ga|git add|2897
+gb|git branch|2790
+....|cd ../../..|2678
+h|history|2664
+grep|grep --color|2561
+cd..|cd ..|2352
+la|ls -a|2136
+du|du -h|2094
+dir|ls --color=auto --format=vertical|2044
+vdir|ls --color=auto --format=long|2038
+gco|git checkout|2011
+cls|clear|1988
+gp|git push|1950
+mv|mv -iv|1933
+cp|cp -iv|1870
+vim|nvim|1843
+gc|git commit|1758
+be|bundle exec|1680
+v|vim|1671
+more|less|1667
+gst|git status|1662
+path|echo -e ${PATH//:/\\n}|1619
+ll|ls -la|1603
+.....|cd ../../../..|1568
+ls|ls $LS_OPTIONS|1552
+ll|ls -al|1526
+ls|ls --color|1521

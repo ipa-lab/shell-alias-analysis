@@ -1,0 +1,53 @@
+TOP 50 WHOLE ALIAS DEFINITIONS
+------------------------------
+sqlite> select name, value, count(*) from alias group by value, name order by count(*) desc limit 50;
+'${1+"$@"}'|"$@"|78265
+ls|ls --color=auto|49045
+grep|grep --color=auto|45699
+egrep|egrep --color=auto|38045
+fgrep|fgrep --color=auto|37668
+la|ls -A|33854
+l|ls -CF|32049
+dir|dir --color=auto|29913
+vdir|vdir --color=auto|29669
+ohmyzsh|mate ~/.oh-my-zsh|28884
+zshconfig|mate ~/.zshrc|28453
+ll|ls -alF|24506
+alert|notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e |21069
+ll|ls -l|20824
+..|cd ..|18043
+rm|rm -i|17026
+cp|cp -i|15173
+mv|mv -i|14405
+gs|git status|11358
+g|git|11253
+ls|ls -G|11210
+vi|vim|11198
+...|cd ../..|10208
+gd|git diff|10166
+app|cd /app|9571
+df|df -h|9263
+c|clear|8853
+h|history|8754
+gb|git branch|8720
+ga|git add|8595
+vim|nvim|7781
+gco|git checkout|7552
+....|cd ../../..|7185
+gp|git push|6980
+be|bundle exec|6343
+la|ls -a|5660
+gst|git status|5578
+grep|grep --color|5457
+cls|clear|4906
+ll|ls -lh|4888
+.....|cd ../../../..|4825
+gc|git commit|4768
+cd..|cd ..|4703
+sudo|sudo |4523
+v|vim|4194
+gm|git merge|4160
+more|less|4049
+path|echo -e ${PATH//:/\\n}|3978
+ls|gls --color=tty|3967
+python|/home/leexa/installations/Python-2.6.6/python ;|3819

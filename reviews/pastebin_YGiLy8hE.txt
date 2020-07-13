@@ -1,0 +1,41 @@
+TOP ALIAS NAMES WITHOUT FILE DUPLICATES
+---------------------------------------
+sqlite> select alias.name, count(*) from alias join file_unique_sha using (file_id) group by alias.name order by count(*) desc limit 10;
+ls|90397
+ll|67642
+'${1+"$@"}'|62000
+grep|47975
+la|47509
+l|44133
+egrep|30785
+zshconfig|30781
+ohmyzsh|30059
+fgrep|29982
+
+TOP COMMANDS WITHOUT FILE DUPLICATES
+------------------------------------
+sqlite> select command.name, count(*) from command join alias using (alias_id) where file_id in (select file_id from file_unique_sha) group by command.name order by count(*) desc limit 10;
+git|340806
+ls|283475
+cd|174371
+grep|97234
+"$@"|62009
+mate|57159
+vim|49063
+echo|34906
+egrep|34079
+ssh|33985
+
+TOP ARGUMENTS WITHOUT FILE DUPLICATES
+-------------------------------------
+sqlite> select argument.name, count(*) from argument join command using (command_id) join alias using (alias_id) where file_id in (select file_id from file_unique_sha) group by argument.name order by count(*) desc limit 10;
+--color=auto|205400
+-i|77423
+-a|45568
+-l|44735
+~/.zshrc|41100
+-v|37871
+-A|35654
+commit|33531
+~/.oh-my-zsh|30009
+-f|29609
