@@ -36,7 +36,7 @@ In general, an alias definition takes the form
 \begin{CVerbatim}
 alias name=value
 \end{CVerbatim}
-where \verb|value| can optionally be enclosed in single (\verb|'|) or double (\verb|"|) quotes and \verb|name| can be any identifier that is a valid command name.\footnote{Some shells allow for an alternative alias syntax without the equals sign between \texttt{name} and \texttt{value}. In this paper we only look at POSIX-compliant alias definitions.}
+where \verb|value| can optionally be enclosed in single (\verb|'|) or double (\verb|"|) quotes and \verb|name| can be any identifier that is a valid command name.\footnote{Some shells allow for an alternative alias syntax without the equals sign between \texttt{name} and \texttt{value}. In this paper we only look at POSIX-compliant alias definitions.}% TODO: technically not quite correct, see FSE review 2
 In particular, the alias name can be an existing command, so a re-definition like
 \begin{CVerbatim}
 alias grep='grep --color=always'
@@ -47,7 +47,7 @@ is possible.
 
 Aliases can be entered directly on the command line, in which case they are valid until the shell session ends.
 To make an alias definition permanent, it is common practice to enter it into a file that is read and executed by the shell on startup.
-The names of these shell configuration files differ by platform, but common ones are \verb|.bashrc|, \verb|.zshrc| or \verb|.profile|.
+The names of these configuration files differ by shell, but common ones are \verb|.bashrc|, \verb|.zshrc| or \verb|.profile|.
 Often, aliases are also stored in other files referred to by these startup scripts.
 
 These kinds of files --- text-based configuration files that store system or application settings --- are also known as \emph{dotfiles}, because their filenames usually start with a dot (\verb|.|) so that they are hidden by default on most Unix-based systems.
