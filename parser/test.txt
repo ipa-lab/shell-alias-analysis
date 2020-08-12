@@ -44,6 +44,12 @@ alias = hello
 alias=x
 alias # hey x = alias y
 alias alias alias x = y alias
+echo "alias a=b" >> test.txt
+
+# this shouldn't count according to our definition, but whatever
+echo "
+alias a=b
+"
 
 alias "ll=ls -lha"
 
@@ -77,3 +83,28 @@ alias +x='chmod u+x'
 
 # this is against the spec (no spaces around = allowed)
 alias rm = 'echo Saved!'
+
+alias 'll'='ls -l --color=auto'
+alias 'la'='ll -a'
+alias '..'='cd ..'
+alias '...'='cd ../../'
+
+alias sl=ls # often screw this up
+alias abbrev='#'
+alias where=which # sometimes i forget
+
+alias +x='chmod +x'
+alias fs="stat -f \"%z bytes\""
+
+alias ans=ansible \
+    -u vagrant \
+    --private-key ~/.vagrant.d/insecure_private_key
+
+alias phpunit-report-runtime="phpunit --log-json php://stdout \
+  | awk '\$NF ~ '/,/' && \$1 ~ /\"(test|time)\"/' \
+  | cut -d: -f2- \
+  | sed \"N;s/\n/--/\"  \
+  | sed \"s/,//\"   \
+  | awk 'BEGIN{FS=\"--\"}; {print \$2 \$1}' | sort -r \
+  | head -n 5"
+
