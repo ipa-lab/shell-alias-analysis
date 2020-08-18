@@ -3,6 +3,8 @@ shell-alias-analysis.pdf
 
 .vscode/
 
+.ipynb_checkpoints/
+
 *.db
 
 # TeX
