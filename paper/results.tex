@@ -1,6 +1,37 @@
-\section{Shell Aliases in the Wild}
+\section{Analysis}
 
-\input{summary_stats}
+\input{tables/top-summary.tex}
+
+\Cref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
+The most common alias name we found is \texttt{ls}, appearing a total number of \num{83782} times, which is \per{3.8} of all alias definitions.
+Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \texttt{ls} \emph{command}, which appears \num{260156} times (\per{10.27}).
+This is a bit less often than \texttt{git}, the most common command, which appears in \num{327786} aliases (\per{12.93}).
+The most common argument, across all commands, is \texttt{--color=auto}, appearing \num{153931} times (\per{4.24})
+
+\input{tables/command-summary.tex}
+\input{table-use-cases.tex} % TODO: update
+
+Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
+\Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
+Here we can already identify some of the different customization practices involving aliases.
+Looking at \texttt{ls}, we find that aliases are used
+to redefine the command with a default argument (\verb|alias ls="ls --color=auto"|);
+to shorten a common invocation (\verb|alias ll="ls -alF"|);
+and to correct a spelling mistake (\verb|alias sl=ls|).
+We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
+
+%TODO describe coding for use cases / config practices
+
+
+% TODO: update numbers below
+Aliases are used differently for different commands and indeed different command categories.
+We looked at the top 200 aliased commands and identified roughly six command categories: system tools, like \texttt{ls} or \texttt{grep}, but also \texttt{ssh} (making up \per{46.12} of the top aliased commands); version control, like \texttt{git} (\per{15.61}); development tools, like compilers or databases (\per{14.09}); package managers, both system-wide and for specific programming environments (\per{12.05}); text editors (\per{4.27}); infrastructure tools, like \texttt{docker}, \texttt{kubernetes} or \texttt{vagrant} (\per{3.02}). The rest (\per{4.83}) were deemed unclassifiable.
+\Cref{tab:use-cases} presents a selection of commands from each of these categories and gives a quantitative overview about the kinds of aliases they are commonly used in.
+For each command, it shows how many uses of that command involve one of the different use cases.
+In addition to the three use cases already mentioned (default arguments, compression and autocorrect), we identified another three (command chaining, safety and bookmarks) and will now discuss each of these six use cases in more detail.
+
+
+%\input{summary_stats}
 
 \input{default_arguments}
 

@@ -90,8 +90,6 @@ echo "hello world"
 is parsed as one command (\texttt{echo}) with one argument (\texttt{"hello world"}).
 See \Cref{fig:parser} for a more elaborate example.
 
-\input{top-alias-commad-args}
-
 Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
 While there are some conventions around command line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
 \begin{itemize}
@@ -114,20 +112,7 @@ Files that did not contain any aliases were removed from the database, as was re
 \num{194218} files from \num{138112} repositories, or \per{52.09} of the original sample without duplicates, contained aliases.
 The majority of aliases in our dataset (\per{86.2}) originate from common startup scripts, like \texttt{.bashrc} or \texttt{.profile} (see \Cref{tab:file-names}).
 
-\begin{table}
-	\caption{Distribution of common file names}
-    \label{tab:file-names}
-    \begin{tabular}{rrlll}
-        \toprule
-                  \% &         Files &           Name Pattern &        Aliases &           \% \\
-        \midrule
-         \num{14.55} &  \num{28255}  &         \verb|*alias*| &  \num{626071}  &   \num{28.4} \\
-         \num{27.73} &  \num{53855}  &        \verb|*bashrc*| &  \num{591482}  &  \num{26.83} \\
-         \num{22.15} &  \num{43011}  &         \verb|*zshrc*| &  \num{487002}  &  \num{22.09} \\
-          \num{9.42} &  \num{18305}  &       \verb|*profile*| &  \num{199168}  &   \num{9.04} \\
-        \bottomrule
-        \end{tabular}
-\end{table}
+\input{tables/file-names.tex}
 
 \subsection{Reproducibility}
 \label{sec:reproducibility}
