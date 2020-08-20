@@ -1,0 +1,201 @@
+name,value
+monitor_aws_es,title 'aws-es' ; tmux new -s aws-es \ ; source-file ~/profiles/tmux/sessions/aws_es_layout \ ;
+memCheck,valgrind --tool=memcheck --leak-check=full --error-limit=no --show-reachable=no --log-file=/home/liyuanheng/memlog.org
+unibeproxy,echo Setup Browser to use SOCKS proxy through port 7777 ; ssh -D7777 gomez@$UNIBEGATEWAY
+ct,bash $SCRIPTS/createTextFile.sh
+ht,hydra -P /usr/share/wordlists/rockyou.txt
+cdp,cd ~/Code/ ; cd $(ls ~/Code/ | pick | cut -c 6-)
+gap.debug,"open -a ""Google Chrome"" ""http://localhost:8080/client/#anonymous"" --args --disable-web-security"
+mkvirt,mkvirtualenv --no-site-packages
+ccp,"enprod && rm -rf app/cache/* web/media/cache/* && app/console assets:install --env=""prod"" && app/console assetic:dump --env=""prod"""
+lhr,ls -hG
+cc,codecept.phar
+bes,be spring
+mapcaps,setxkbmap -option 'ctrl:swapcaps'
+f,foreman run bundle exec
+arm-rebuild,sh ${TOOL_DIR}/rebuild-armada.sh $@
+wisebot-id,"cat /home/pi/.config/wisebot/config.json | jq . | grep '\""id\"": \""' | awk '{print $2}'"
+mux,tmux new -s Home
+d3s,~/Documents/d3s
+tmuxb,/usr/bin/tmux attach -t Alt || /usr/bin/tmux new -s Alt
+gitac,python /Users/apple/Documents/Projects/Snippets/git-add-commit/git_add_commit.py
+glgb,git log --topo-order --pretty=short
+rb_get_database,adb pull /data/data/com.carloseduardo.renewer.books/databases/renewer.db $HOME/databases/renewer.db
+mplayer.br,mplayer -profile br
+install_laravel,composer create-project --prefer-dist laravel/laravel
+gr,gradle bootRun
+knife,sudo docker run -it --rm --entrypoint=/knife_entrypoint.sh -e DEV_UID=$UID -e DEV_GID=$GID -v $PWD:/tmp/workdir sebbrochet/docker-chef-centos-workstation
+ls,`print -n =gls` --color=auto --escape -l --file-type -h --time-style=long-iso
+ch,cd /cygdrive/c/Users/eric/
+gpu-drivers,lspci -nnk | grep -i vga -A3 | grep 'in use'
+la,LC_COLLATE=C ls -alF --color=auto
+psql,psql ping
+waw,cd /c/Projects/Github/WadeWegner
+kinect_node,cd ~/code/realsense_ws ; source devel/setup.bash ; roslaunch openni_launch openni.launch
+grow,/Users/zackyma/bin/grow
+_clone_core,cd ~/repositories/sdos/core-clone
+everlane_mix,bundle exec rake db:drop db:create db:schema:load mix util:create_review_app_users util:create_review_app_orders util:create_review_app_pos_roles cache:schedule_collection_refresh util:prepare_reach_env
+emacs,emacsclient -c -nw
+distupgrade,sudo aptitude dist-upgrade
+eb,"function _eb(){ exec=$(command -v ""$1"") ; emacsclient --no-wait ${exec} ; } ; _eb"
+psqa11,pstree -aAhlnp qa11
+update,sudo softwareupdate -i -a ; brew update ; brew upgrade ; brew cask upgrade ; ncu -g ; gcloud components update
+kate,runkate
+diff-sum,diff -wbBdu
+pg,cd ~/programming/git
+rw,sed --follow-symlinks -i 's/[[:space:]]*$//'
+cp,nice -n 19 ionice -c2 -n7 cp -i
+addpass,$DDB_DEPLOY_DBHOME/src/addpass.sh
+scanhome,clamscan -r -i /home
+dqst,dpkg-query -s
+mystart,/sbin/service mysql start
+cheat,vi ~/.oh-my-zsh/custom/aliases.zsh
+bcl,brew update ; brew upgrade --all ; brew cleanup ; brew cask cleanup
+trsn,tr ' ' '\n'
+svnstm,"svn st | grep -v ""^X"" | grep -v ""^Perf"" | grep -v ""^\?"" | uniq"
+t2,"printf ""\e[3;586;0t"""
+expedia,cd /d/anx/sources/git/suppliers/anixe_travelobjects_hotel_expedia
+gx,gygexec
+ll,ls -lh --time-style=long-iso --color=auto
+ahoy,source $AHOY_HOME/tools/workstation/aliases.sh
+v,"vi $(find . -path ""./.git*"" -prune -o -print | peco)"
+x,builtin cd $XDG_CONFIG_HOME
+devel,sudo -i -u devel
+lsort,sort | uniq -c | sort -n
+h23,history -23000
+pamarq,php artisan make:request
+nettop,nettop -c -m tcp
+kpods,kubectl get pods -owide
+kgbuild,telin gbuild
+rain,/Applications/VLC.app/Contents/MacOS/VLC --quiet -Idummy http://yp.shoutcast.com/sbin/tunein-station.pls?id=2340 2> /dev/null
+dcb,cdd ; cb
+aliasedit,nano ~/.bash_aliases
+s,surf-manager
+gtree,git log --oneline --graph
+getTmuxLayout,"tmux list-windows -F ""#{window_active} #{window_layout}"" | grep ""^1"" | cut -d "" "" -f 2"
+grosu,git remote set-url
+casino-up,cd ~/www/casino-sw-backend-infrastructure && ~/www/casino-sw-backend-infrastructure/run/up.sh && cd -
+dtorrent,tmux new-session -A -s torrent rtorrent
+google,proxychains -q googler -n 5 --np -l zh
+la,ls -a ${ARGLSDIR}
+config,/usr/bin/git --git-dir=/home/sjyoon/.cfg/ --work-tree=/home/sjyoon
+grep_On_IBlack,GREP_COLOR=$grep_color_On_IBlack
+diral,dog $ALIASES/diraliases.sh
+exa,exa -la --git
+esws,print $SAYCMD
+TV_crime2,livestreamer -p mplayer http://veetle.com/v/50bd64fd087cb best
+pass,cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 18 | head -n 1
+pacs,sudo dnf search
+favs,cd ~/favorites
+:wq,echo Reminder: You are not editing a file!
+sshdeploy,ssh tools2.flickr.corp.bf1.yahoo.com
+lta,ls -atr --color=auto
+io,ssh -Y -o GSSAPIAuthentication=no aperloff@io.physics.tamu.edu
+adb-battery,adb shell dumpsys battery
+lobase,GTK2_RC_FILES=~/.gtkrc-2.0-loffice lobase
+di,"docker info --format=""{{json .}}"" | jq ""."""
+trim,awk '{\$1=\$1;print}'
+relogin,. /etc/profile #
+dks,sudo service docker start
+present!,defaults write com.apple.finder CreateDesktop -bool true && killall Finder
+tolaptop,i3-msg move workspace to output eDP1
+killw,ps -aux | grep mysql-workbench-bin | grep -v grep | tr -s ' ' | cut -d ' ' -f 2 | xargs kill
+gitcleanbranches,go master ; git branch --merged | grep -v '^*' | xargs -n 1 git branch -d
+devel,"export PATH=""/user/cqi/compiler/gcc-8.1.0/x86_64-rhel6.9/bin:/home/amursi/usr/bin:/wv/amursi/bin:$PATH"" ; export LD_LIBRARY_PATH=""/user/cqi/compiler/gcc-8.1.0/x86_64-rhel6.9/lib64:/home/amursi/usr/lib:/usr/lib:/usr/lib64:/wv/amursi/lib:$LD_LIBRARY_PATH"" ; alias sudo=""sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH, PATH=$PATH "" ;"
+brutalconnect,"brutalz -connect $localip:10666 +CL_Password ""callmemurphy"""
+karma,pynt js
+dotfiles,cd ${HOME}/Documents/dotfiles
+cdw2,cd ~/opendoor/web2
+grepgo,grep -r --exclude-dir=vendor --exclude-dir=.git
+apksigner,/Users/yanai/Library/Android/sdk/build-tools/26.0.1/apksigner
+ssh-dev,ssh semenov@semenov.tutu.pro
+c,cyclecloud
+usd82,ssh marian.chelmus@10.9.11.21 -p 8888
+$dotcmd,$expdotcmd
+pkgowns,pacman -Qo
+mutt,cd /home/pstyczewski/Downloads/mutt/ && mutt
+docker_puppet,docker run -itd --name puppetmaster -v ~/Gits/puppet-master/:/etc/puppet puppet
+Rebuild,time sudo revdep-rebuild -v -- --ask --keep-goin
+sa,ssh-add -t 8h
+undep,rm -r ./ && kubectl container clusters delete test_project
+spi-bus,tree /sys/bus/spi
+ls,ls -GphF
+ec2,ssh -i ~/aws/rohankey.pem ec2-user@ec2-54-227-104-125.compute-1.amazonaws.com
+emacs,emacsclient -nw -ca '' $@
+bi.,beet import .
+chown-files,find . -type f -print0 | xargs -0 chown danyadsmith:admin
+sf,cd $DEFAULT_WORKSPACE_SOFIA/android ; source ~/intel/bin/compilervars.sh ia32 ; source build/envsetup.sh ; lunch sofia3g_xges1_1_ages2_svb-userdebug
+docker-rmi-all,docker rmi $(docker images -aq)
+l.,ls -d .* --group-directories-first --color=auto
+cdwork,"cd ""$WORKSPACE_DIR"""
+connectmultik,"ssh pandora ""wol -h 192.168.0.0 10:7B:44:5D:5E:1A"" ; echo ""Connect to Multik after 60 seconds ..."" ; sleep 60 ; ssh multik"
+ip+,sudo ip addr add dev enp0s25
+dk-ips,docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \//\t/'
+gtree,git log --graph --oneline --all --decorate --show-signature --submodule --date-order --pretty=format:'%C(yellow)%h%Creset -%C(bold cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+hcat,highlight -O ansi --force
+logc,tail -f /var/log/eb-*
+agi,~/add-gitignore
+tmux,tmux -f $DOTFILES_DIR/tmux.conf
+crontab,/usr/bin/crontab -i
+sql,colourify mysql $SQL_ARGS
+gpfb,git push --force-with-lease origin `git rev-parse --abbrev-ref HEAD`
+rsync_mktree,"rsync -a -f""+ */"" -f""- *"""
+blih,blih -u darius.morel@epitech.eu
+gitrom,git rebase origin/master
+mi,be ruby -Itest
+lf,~/.config/scripts/fzf-git-log.sh
+rmigrate,bin/rails db:migrate
+cya,gnome-sound-recorder & ; pavucontrol &
+einfo,echo
+mute,pactl set-sink-mute 0 toggle
+ports.listen,"sudo lsof -i -nP | grep ""(LISTEN)"""
+lsuu,cd ~/.local/share/uzbl/userstyles
+lncommon,ln -s ~/pensco/common/discovery pensco-discovery && ln -s ~/pensco/common/server pensco-server && ln -s ~/pensco/common/environment pensco-environment
+pascr,php artisan schedule:run
+spde,sudo port deactivate
+gist,history | grep
+nuke,jst-nuke
+hb_datomic_console_local,$HB_DATOMIC_BIN/console -p 8080 local $HB_DATOMIC_LOCAL_URI_BASE
+ggc,"git log --graph --full-history --all --color --date=short --pretty=format:""%Cred%x09%h %Creset%ad%Cblue%d %Creset %s %C(bold)(%an)%Creset"""
+gitr,git co HEAD Gemfile.lock db/schema.rb
+lima-curl,"curl -H ""$(/home/fds/svc_lima/bin/lima_token $USER FDS | tr -d '\''\r'\'')"""
+server,"ruby -e 'require %q(sinatra); set :public_folder, %q(.); set :bind, %q(0.0.0.0)'"
+olb$i,ssh ops-lb$i.nm.flipkart.com
+htb_con,sudo openvpn ~/Documents/PenTest/hackthebox/Other/sarange.ovpn
+ett,cd $tcws/trunk/enterprise/toolkit-ee-system-tests
+cjd,access_jd_specific_function
+got,tgo
+dusk,du -s -k -c * | sort -rn | more
+psa,"ps -Axww -o pid,ruser,command"
+s,source source.sh
+ipa,$XTOOL/bin/gen_ipa.sh
+merge_tf,"func(){ cd /Users/gengshengjie/server if [ -n ""$1"" ] ; then git fetch -p pull $1 pull tf git merge $1 --no-edit fi } ; func"
+runpixel,/home/akad/Android/Sdk/tools/emulator -avd Pixel_XL_API_25
+bmpt,jruby -G -J-Xmn4096m -J-Xms8192m -J-Xmx8192m -J-server bin/test
+sshmaster,sshpersist -q -oControlMaster=yes
+sdst,sudo systemctl status
+svim,sudo -E ${EDITOR}
+mvnvd,mvn validate
+ssh_cl,ssh rhadidi@callalily.cc.gt.atl.ga.us
+nt,tab && exit
+monstergirlquest,wine /home/brady/Downloads/MGQ/MonsterGirlQuest.exe
+portmatriel8022,ssh -N -L 8022:matriel:22 mnagao@geo-ssh2.geo.titech.ac.jp
+cwd,pwd | tr -d '\n' | tr -d '\r' | pbcopy
+mintree,sed 's/─//g' | sed 's/ //g' | sed 's/  / /g'
+aeupdate_pub_key,export AE_PUB_KEY=`aepub_key`
+ps,__ps
+dmo,service lightdm start
+ple,pylint -E
+lsdvd,\lsdvd -avcs
+cp,cp --verbose --no-dereference --recursive --interactive --preserve
+ap,cd ~/Documents/project-Anthox/
+csh,"LS_COLORS="""" csh"
+gimme,"printf ""%s"" ""༼ つ ◕_◕ ༽つ"" | pbcopy && echo ""copied to clipboard ༼ つ ◕_◕ ༽つ"""
+gitbash,source /Users/j/mybin/gitsh
+artist,bash ~/vagary.sh github/gswd/gswd-adam-artist/projects/artist01
+lshd,"ls -la | grep "" \."""
+vlu,vfolookup -shot $SHOT -show $SHOW
+dpn,docker ps --format '{{.Names}}'
+dsdel,find . -name '.DS_Store' -type f -delete
+r,builtin cd /
+swm,brew services start chunkwm

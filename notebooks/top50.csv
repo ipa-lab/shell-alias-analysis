@@ -1,0 +1,1383 @@
+alias_name,alias_value
+gs,git status
+gst,git status
+gits,git status
+g,git
+gti,git
+got,git
+gco,git checkout
+gc,git checkout
+gch,git checkout
+gp,git push
+gps,git push
+push,git push
+gd,git diff
+gdiff,git diff
+gdf,git diff
+gpl,git pull
+gl,git pull
+gp,git pull
+gb,git branch
+gbr,git branch
+gitb,git branch
+ga,git add
+add,git add
+gad,git add
+gc,git commit
+gci,git commit
+gcm,git commit
+gcm,git commit -m
+gc,git commit -m
+gm,git commit -m
+ls,ls --color=auto
+l,ls --color=auto
+sl,ls --color=auto
+la,ls -A
+lsa,ls -A
+l.,ls -A
+l,ls -CF
+ls,ls -CF
+lf,ls -CF
+ll,ls -alF
+l,ls -alF
+la,ls -alF
+ll,ls -l
+l,ls -l
+lsd,ls -l | grep ^d
+l,ls
+sl,ls
+cls,cd $1 ; ls
+ls,ls -G
+l,ls -G
+sl,ls -G
+ll,ls -la
+la,ls -la
+lla,ls -la
+la,ls -a
+lsa,ls -a
+l,ls -a
+ll,ls -al
+la,ls -al
+l,ls -al
+..,cd ..
+cd..,cd ..
+...,cd ..
+...,cd ../..
+cd...,cd ../..
+..2,cd ../..
+....,cd ../../..
+..3,cd ../../..
+cd....,cd ../../..
+.....,cd ../../../..
+..4,cd ../../../..
+cd.....,cd ../../../..
+~,cd ~
+home,cd ~
+h,cd ~
+..,cd ../
+cd..,cd ../
+up,cd ../
+1,cd -
+cd-,cd -
+cdb,cd -
+c,cd
+xs,cd
+vf,cd
+.4,cd ../../../../
+.....,cd ../../../../
+....,cd ../../../../
+.3,cd ../../../
+....,cd ../../../
+...,cd ../../../
+grep,grep --color=auto
+g,grep --color=auto
+G,| grep --color=auto
+G,| grep
+psg,ps -ef | grep
+hg,history | grep
+grep,grep --color
+G,| grep --color
+g,grep --color
+grep,grep -i
+g,grep -i
+igrep,grep -i
+grep,grep --colour=auto
+cgrep,grep --colour=auto
+psgrep,ps -ef | grep --colour=auto
+psg,ps aux | grep -v grep | grep -i
+psgrep,ps aux | grep -v grep | grep
+files.usage.user,sudo fs_usage -e -f filesystem | grep -v CACHE_HIT | grep -v grep | grep Users
+grep,grep --color=always
+cgrep,grep --color=always
+crep,grep --color=always
+lsd,ls -lF | grep --color=never '^d'
+ld,ls -lF | grep --color=never '^d'
+lld,ls -lah | grep --color=never '^d'
+openPorts,lsof -i | grep LISTEN
+ports,netstat -nlpt | grep LISTEN
+netlisteners,lsof -i -P | grep LISTEN
+ips,"ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \""\""); print }'"
+ip,"ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \""\""); print }'"
+localip,"ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \""\""); print }'"
+vi,vim
+v,vim
+svim,sudo vim
+zshconfig,vim ~/.zshrc
+zshrc,vim ~/.zshrc
+vz,vim ~/.zshrc ; source ~/.zshrc
+vimrc,vim ~/.vimrc
+vrc,vim ~/.vimrc
+vimconfig,vim ~/.vimrc
+bashrc,vim ~/.bashrc && source ~/.bashrc
+brc,vim ~/.bashrc
+vb,vim ~/.bashrc
+vim,vim -p
+vi,vim -p
+v,vim -p
+bp,vim ~/.bash_profile
+profile,vim ~/.bash_profile ; sauce
+ebash,vim ~/.bash_profile
+ohmyzsh,vim ~/.oh-my-zsh
+omz,vim ~/.oh-my-zsh
+omzrc,vim ~/.oh-my-zsh
+et,vim ~/.tmux.conf
+tmuxconf,vim ~/.tmux.conf
+tmuxconfig,vim ~/.tmux.conf
+i3config,vim ~/.config/i3/config
+i3conf,vim ~/.config/i3/config
+cfi,vim ~/.config/i3/config
+view,vim -R
+vimr,vim -R
+vr,vim -R
+myip,curl http://ipecho.net/plain ; echo
+e,echo
+echo_r,echo
+path,echo -e ${PATH//:/\\n}
+paths,echo -e ${PATH//:/\\n}
+showpath,echo -e ${PATH//:/\\n}
+timer,"echo ""Timer started. Stop with Ctrl-D."" && date && time cat && date"
+stopwatch,"echo ""Timer started. Stop with Ctrl-D."" && date && time cat && date"
+timer2,"echo ""Timer started. Stop with Ctrl-D."" && date ""+%a, %d %b %H:%M:%S"" && time cat && date ""+%a, %d %b %H:%M:%S"""
+path,"echo $PATH | tr : ""\n"""
+ppath,"echo $PATH | tr -s "":"" ""\n"""
+echopath,"echo $PATH | tr "":"" ""\n"""
+numFiles,echo $(ls -1 | wc -l)
+numfiles,echo $(ls -1 | wc -l)
+numf,echo $(ls -1 | wc -l)
+disks,"echo ""╓───── m o u n t . p o i n t s"" ; echo ""╙────────────────────────────────────── ─ ─ "" ; lsblk -a ; echo """" ; echo ""╓───── d i s k . u s a g e"" ; echo ""╙────────────────────────────────────── ─ ─ "" ; df -h ;"
+toiletlist,"for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf ; do j=${i##*/} ; echo """" ; echo ""╓───── ""$j ; echo ""╙────────────────────────────────────── ─ ─ "" ; echo """" ; toilet -d ""${i%/*}"" -f ""$j"" ""${j%.*}"" ; done"
+gs,"echo """" ; echo ""*********************************************"" ; echo -e ""   DO NOT FORGET TO PULL BEFORE COMMITTING"" ; echo ""*********************************************"" ; echo """" ; git status"
+libpath,echo -e ${LD_LIBRARY_PATH//:/\\n}
+lib,echo -e ${LD_LIBRARY_PATH//:/\\n}
+ldpath,echo -e ${LD_LIBRARY_PATH//:/\\n}
+pubkey,more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'
+copyssh,more $HOME/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'
+ssh.pubkey,more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'
+echo_date,echo 【$(TZ=UTC-8 date -R +%Y年%m月%d日\ %X)】:
+echo,echo -e
+e,echo -e
+techo,echo -e
+s,ssh
+ssh,eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa) && ssh
+pwned,ssh
+ssh,ssh -X
+sshx,ssh -X
+s,ssh -X
+ssh,ssh -A
+sshA,ssh -A
+ssha,ssh -A
+ssh,ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+sshn,ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+nossh,ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+ssh,ssh -Y
+sshy,ssh -Y
+ssy,ssh -Y
+s,ssh -l root
+sr,ssh -l root
+ssr,ssh -l root
+ssh,ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+sssh,ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+sshi,ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+ptt,ssh bbsu@ptt.cc
+ptt1,ssh bbsu@ptt.cc
+sshPTT,ssh bbsu@ptt.cc
+sshpw,ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no
+sshpass,ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no
+sshp,ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no
+vm,ssh vagrant@127.0.0.1 -p 2222
+vssh,ssh vagrant@127.0.0.1 -p 2222
+vs,ssh vagrant@127.0.0.1 -p 2222
+egrep,egrep --color=auto
+grep,egrep --color=auto
+G,egrep --color=auto
+egrep,egrep --colour=auto
+grep,egrep --colour=auto
+g,egrep --colour=auto
+grep,egrep
+G,| egrep
+EG,|& egrep
+egrep,egrep --color
+grep,egrep --color
+g,egrep --color
+egrep,egrep --color=always
+egrepc,egrep --color=always
+grep,egrep --color=always
+ldir,ls -al | egrep '^d'
+ld,ls -hablLfF | egrep '^d'
+ldi,ls -Fh $l | egrep '^d'
+lf,ls -hablLfF | egrep -v '^d'
+lfi,ls -Fh $l | egrep -v '^d'
+lfile,ls | egrep -v '^d'
+g,egrep -i
+G,| egrep -i
+igrep,egrep -i
+l.,ls -A | egrep '^\.'
+lsdot,ls -A --group-directories-first | egrep '^\.'
+lsh,ls -a | egrep '^\.'
+gclean,"git branch --merged | egrep -v ""(^\*|master|dev)"" | xargs git branch -d"
+gitdelmerged,"git branch --merged | egrep -v ""(^\*|master|dev)"" | xargs git branch -d"
+delete_merged_branches,"git branch --merged | egrep -v ""(^\*|master|dev)"" | xargs git branch -d"
+d,docker
+dk,docker
+docker,sudo docker
+di,docker images
+dki,docker images
+dim,docker images
+dps,docker ps
+dp,docker ps
+dkps,docker ps
+dpa,docker ps -a
+dpsa,docker ps -a
+dps,sudo docker ps -a
+drmf,docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+dockercleanc,"printf ""\n>>> Deleting stopped containers\n\n"" && docker rm $(docker ps -a -q)"
+drm,docker rm $(docker ps -a -q)
+drmf,docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+dstop,docker stop $(docker ps -a -q)
+docker-stop-all,docker stop $(docker ps -a -q)
+drm,docker rm
+dkrm,docker rm
+dr,docker rm
+drmi,docker rmi
+dkrmi,docker rmi
+dri,docker rmi
+dl,docker ps -l -q
+dklcid,docker ps -l -q
+dkl,docker ps -l -q
+de,docker exec -it
+dex,docker exec -it
+dexec,docker exec -it
+fgrep,fgrep --color=auto
+fgr,fgrep --color=auto
+fg,fgrep --color=auto
+fgrep,fgrep --colour=auto
+fgrep,fgrep --color
+fgrep-c,fgrep --color
+rgrep,fgrep --color
+fgrep,fgrep --color=always
+f,fgrep --color=always
+fgrepc,fgrep --color=always
+fgrep,fgrep
+FG,| fgrep
+pss,ps aux | head -n1 ; ps aux | fgrep -v grep | fgrep
+fgrep,fgrep -G
+fgrep,fgrep --color=tty -d skip
+fgrpe,fgrep --color=tty -d skip
+fgrep,fgrep -i --color=auto
+fgrep,fgrep $LS_OPTIONS
+egrep,fgrep $LS_OPTIONS
+fgrep,fgrep -n --color=auto
+fgrepc,fgrep -n --color=auto
+rm,rm -i
+rmi,rm -i
+del,rm -i
+rmf,rm -rf
+rm,rm -rf
+rmrf,rm -rf
+emptytrash,sudo rm -rfv /Volumes/*/.Trashes ; sudo rm -rfv ~/.Trash ; sudo rm -rfv /private/var/log/asl/*.asl
+empty-trash,sudo rm -rfv /Volumes/*/.Trashes ; sudo rm -rfv $HOME/.Trash ;
+trash,sudo rm -rfv /Volumes/*/.Trashes ; sudo grm -rfv $HOME/.Trash ; sudo rm -rfv /private/var/log/asl/*.asl ; sudo rm /private/var/vm/sleepimage
+emptytrash,rm -rfv ~/.Trash
+empty,sudo rm -rfv /Volumes/*/.Trashes ; rm -rfv ~/.Trash
+empty-trash,sudo rm -rfv ~/.Trash
+emptytrash,sudo rm -rfv /Volumes/*/.Trashes ; sudo rm -rfv ~/.Trash ; sudo rm -rfv /private/var/log/asl/*.asl
+cleanup,brew cleanup ; rm -rf ~/.Trash ; sudo rm -rfv /private/var/log/asl/*.asl
+empty,sudo rm -rfv ~/.Trash ; sudo rm -rfv /private/var/log/asl/*.asl
+rm,rm -v
+rmv,rm -v
+surm,sudo rm -v
+rm,rm -iv
+del,"echo ""you should use the \""rm\"" command"" ; rm -iv"
+rmi,rm -iv
+rm,rm -I
+rmi,rm -I
+srm,rm -I
+rm,rm -r
+rmr,rm -r
+rr,rm -r
+rm,rm
+del,rm
+donotwant,rm
+reload,source ~/.zshrc
+sz,source ~/.zshrc
+src,source ~/.zshrc
+reload,source ~/.bashrc
+sb,source ~/.bashrc
+bashrc,source ~/.bashrc
+reload,source ~/.bash_profile
+sbp,source ~/.bash_profile
+src,source ~/.bash_profile
+so,source
+.,source
+s,source
+venv,source venv/bin/activate
+activate,source venv/bin/activate
+sv,source venv/bin/activate
+reload,source $HOME/.zshrc
+reloadcli,source $HOME/.zshrc
+sz,source $HOME/.zshrc
+reload,source $HOME/.bashrc
+sb,source $HOME/.bashrc
+bashrc,vim $HOME/.bashrc && source $HOME/.bashrc
+reload,source ~/.profile
+sp,source ~/.profile
+spr,source ~/.profile ; echo '~/.profile reloaded.'
+activate,source env/bin/activate
+act,source env/bin/activate
+venv,source env/bin/activate
+sa,"source ~/.bash_aliases ; echo ""Bash aliases sourced"""
+aliases,sudo vim ~/.bash_aliases ; sudo sort ~/.bash_aliases -o ~/.bash_aliases ; unalias -a ; source ~/.bash_aliases
+realias,source ~/.bash_aliases
+tmux,tmux -2
+t,tmux -2
+tm,tmux -2
+t,tmux attach || tmux
+tm,tmux
+tmux,tput reset ; tmux
+tls,tmux ls
+tl,tmux ls
+tml,tmux ls
+ta,tmux attach -t
+tat,tmux attach -t
+tma,tmux attach -t
+ta,tmux attach
+tma,tmux attach
+tm,tmux attach
+tk,tmux kill-session -t
+tkill,tmux kill-session -t
+tmk,tmux kill-session -t
+tl,tmux list-sessions
+tml,tmux list-sessions
+tls,tmux list-sessions
+tn,tmux new -s
+tnew,tmux new -s
+tmn,tmux new -s
+ts,tmux new-session -s
+tns,tmux new-session -s
+tn,tmux new-session -s
+tmux,tmux -u
+t,tmux -u
+tm,tmux -u attach -d || tmux -u
+c,clear
+cls,clear
+cl,clear
+clear,clear -x
+c,clear -x
+cd,clear -x ; cd
+clc,clear all
+cls,clear screen
+c,clear all
+yt,clear screen && bash && youtube-dl -f 18
+rwf,cd /Volumes/Data/Documents/Programming ; clear ls -ltr
+rwfcpp,cd /Volumes/Data/Documents/Programming/C++ ; clear ls -ltr
+rwfpy,cd /Volumes/Data/Documents/Programming/Python ; clear ls -ltr
+lsalias,clear : && alias -p
+screenfetch,clear : ; screenfetch
+c,clear clear
+cc,clear clear
+cl,clear ls
+cls,clear ls
+cls,clear sc
+tailc,clear tail -n 20 current
+cp,cp -i
+cpi,cp -i
+copy,cp -i
+cp,cp -iv
+cpi,cp -iv
+scp,sudo cp -iv
+cp,cp -v
+cpv,cp -v
+cv,cp -v
+cp,cp
+copy,cp
+dowant,cp
+cp,cp -r
+cpr,cp -r
+cpd,cp -r
+cp,cp -vi
+cpi,cp -vi
+sucp,sudo cp -vi
+cp,cp -R
+cpr,cp -R
+cpdir,cp -R
+cp,cp -ip
+copy,cp -ip
+cp,cp -p
+cp2,cp -p
+cp,cp -rv
+cr,cp -rv
+cprv,cp -rv
+vim,nvim
+vi,nvim
+v,nvim
+vimdiff,nvim -d
+nvimdiff,nvim -d
+vd,nvim -d
+zshconfig,nvim ~/.zshrc
+zshrc,nvim ~/.zshrc
+ez,nvim ~/.zshrc
+vimrc,nvim ~/.config/nvim/init.vim
+nvimrc,nvim ~/.config/nvim/init.vim
+nvimconfig,nvim ~/.config/nvim/init.vim
+vimrc,nvim ~/.vimrc
+vimconfig,nvim ~/.vimrc
+vrc,nvim ~/.vimrc
+i3config,nvim ~/.config/i3/config
+i3conf,nvim ~/.config/i3/config
+i3c,nvim ~/.config/i3/config
+vim,nvim -p
+nvim,nvim -p
+vi,nvim -p
+tmuxconfig,nvim ~/.tmux.conf
+et,nvim ~/.tmux.conf
+tmuxconf,nvim ~/.tmux.conf
+view,nvim -R
+nview,nvim -R
+vir,nvim -R
+ohmyzsh,nvim ~/.oh-my-zsh
+omz,nvim ~/.oh-my-zsh
+omzs,nvim ~/.oh-my-zsh
+o,open
+op,open
+start,open
+o,open .
+oo,open .
+f,open .
+f,open -a Finder ./
+finder,open -a Finder ./
+of,open -a Finder ./
+subl,"open -a ""Sublime Text"""
+s,"open -a ""Sublime Text"""
+sublime,"open -a ""Sublime Text"""
+chrome,"open -a ""Google Chrome"""
+ch,"open -a ""Google Chrome"""
+chr,"open -a ""Google Chrome"""
+chrome,open -a Google Chrome
+preview,open -a Preview
+pre,open -a Preview
+prev,open -a Preview
+google-chrome,open -a Google Chrome
+chr,open -a Google Chrome
+mvim,open -a MacVim
+gvim,open -a MacVim
+macvim,open -a MacVim
+f,open -a Finder
+finder,open -a Finder
+fnd,open -a Finder
+chrome,open -a 'Google Chrome'
+google-chrome,open -a 'Google Chrome'
+og,open -a 'Google Chrome'
+be,bundle exec
+bx,bundle exec
+b,bundle exec
+bi,bundle install
+b,bundle install
+rbi,bundle install
+b,bundle
+bu,bundle
+rbb,bundle
+ber,bundle exec rake
+rake,bundle exec rake
+brake,bundle exec rake
+bu,bundle update
+rbbu,bundle update
+rbu,bundle update
+ber,bundle exec rspec
+rspec,bundle exec rspec
+rs,bundle exec rspec
+migrate,bundle exec rake db:migrate
+rdm,bundle exec rake db:migrate
+rdbm,bundle exec rake db:migrate
+rails,bundle exec rails
+r,bundle exec rails
+ber,bundle exec rails
+rc,bundle exec rails console
+berc,bundle exec rails console
+sc,bundle exec rails console
+rc,bundle exec rails c
+berc,bundle exec rails c
+c,bundle exec rails c
+alert,"notify-send --urgency=low -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+notify,"notify-send --urgency=low -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+notify-alert,"notify-send --urgency=low -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+ns,notify-send
+notify,notify-send
+n,notify-send
+alert,"notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png ""[$?] $(alert_helper)"""
+s,"notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png ""[$?] $(alert_helper)"" ; espeak -v en ""Task complete: $(alert_helper)"""
+alert,"notify-send --urgency=critical -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+emergency,"notify-send --urgency=critical -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+myalert,"notify-send --urgency=critical -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+upgr,notify-send -i ~/.scripts/larbs.png 'Upgrade started' & neofetch && yay -Syyuv --noconfirm && notify-send -i ~/.scripts/larbs.png 'Upgrade complete'.
+upgr,notify-send -i ~/.scripts/larbs.png 'Upgrade started' & neofetch && yay -Syyuv --noconfirm && notify-send -i ~/.scripts/larbs.png 'Upgrade complete'.
+alert,"notify-send --urgency=low -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history | tail -n1 | sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"""
+reckm,rm -r ./devel ./build && command catkin_make && notify-send catkin_make completed
+reckmd,rm -r ./devel ./build && command catkin_make -DCMAKE_BUILD_TYPE=Debug && notify-send catkin_make completed
+reckmr,rm -r ./devel ./build && command catkin_make -DCMAKE_BUILD_TYPE=Release && notify-send catkin_make completed
+alert,notify-send --urgency=low
+alert,"notify-send --urgency=low -i ""$([ $? = 0 ] && echo terminal || echo error)"" ""$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s
+/[;&|]\s*alert$//'\'')"""
+L,| less
+more,less
+l,less
+less,less -R
+L,| less -R
+ll,ls -alGh | less -R
+less,less -r
+gd,"git diff --color | sed ""s/^\([^-+ ]*\)[-+ ]/\\1/"" | less -r"
+more,less -r
+less,less -FSRXc
+lless,less -FSRXc
+m,less -FSRXc
+less,less -S
+LS,| less -S
+ELS,|& less -S
+apacheLogs,less +F /var/log/apache2/error_log
+apachelogs,less +F /var/log/apache2/error_log
+aplogs,less +F /var/log/apache2/error_log
+less,less -N
+lessn,less -N
+nless,less -N
+less,less -i
+i,less -i
+li,less -i
+less,less -M
+lv,less -M
+more,less -M
+less,less --quiet
+gk,gitk --all &
+es,"XMODIERS=""@im=none"" emacs 2>/dev/null &"
+logs,find /var/log -type f -exec file {} \ ; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f
+cleanup,find . -type f -name '*.DS_Store' -ls -delete
+cleanupDS,find . -type f -name '*.DS_Store' -ls -delete
+cleanupds,find . -type f -name '*.DS_Store' -ls -delete
+qfind,find . -name
+f,find . -name
+fn,find . -name
+f,find .
+tree,pwd ; find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'
+ff,find . | grep
+tree,find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+tre,find . -print | sed -e 's;[^/]*/;|-- ;g;s;-- |;   |;g'
+fpl,"find . -print | grep -v ""\.git"" | less"
+filecount,find . -type f | wc -l
+ff,find . -type f
+count,find . -type f | wc -l
+ff,find . -type f -name
+ffil,find . -type f -name
+findf,find . -type f -name
+f,find . -iname
+ff,find . -iname
+fhere,find . -iname
+cleanup,find . -name '*.DS_Store' -type f -ls -delete
+dsstore,find . -name '*.DS_Store' -type f -ls -delete
+cleanup_dsstore,find . -name '*.DS_Store' -type f -ls -delete
+fd,find . -type d -name
+fdir,find . -type d -name
+findd,find . -type d -name
+f,find
+find,sudo find
+ff,find | ack-grep -i -r
+update,sudo pacman -Syu
+pacupg,sudo pacman -Syu
+pacup,sudo pacman -Syu
+pacman,sudo pacman
+p,pacman
+pac,sudo pacman
+pacin,sudo pacman -S
+pac,sudo pacman -S
+install,sudo pacman -S
+pacs,pacman -Ss
+pacreps,pacman -Ss
+pacse,pacman -Ss
+pacre,sudo pacman -R
+pacr,sudo pacman -R
+remove,sudo pacman -R
+pacupd,pacman -Sy
+pacupa,pacman -Sy && sudo abs
+update,sudo pacman -Sy
+update,sudo pacman -Syyu
+upd,sudo pacman -Syyu
+udpate,sudo pacman -Syyu
+pacrep,pacman -Si
+pacinfo,pacman -Si
+paci,pacman -Si
+pacrem,sudo pacman -Rns
+pacr,sudo pacman -Rns
+remove,sudo pacman -Rns
+pacins,sudo pacman -U
+pacinu,pacman -U
+pacu,sudo pacman -U
+update,sudo brew update && sudo brew upgrade
+brewup,brew update && brew upgrade && brew cask update
+brewu,brew update && brew upgrade && brew cleanup
+update,sudo brew update && sudo brew upgrade
+brewup,brew update && brew upgrade && brew cask update
+brewu,brew update && brew upgrade && brew cleanup
+update,sudo softwareupdate -i -a ; brew update ; brew upgrade ; brew cleanup ; npm install npm -g ; npm update -g ; sudo gem update --system ; sudo gem update
+brewup,brew update ; brew upgrade ; brew prune ; brew cleanup ; brew doctor
+brewu,brew update && brew upgrade && brew cleanup
+brewup,brew update ; brew upgrade ; brew prune ; brew cleanup ; brew doctor
+brewu,brew update && brew upgrade && brew cleanup && brew doctor
+brewski,brew update && brew upgrade && brew cleanup ; brew doctor
+bi,brew install
+brewi,brew install
+bin,brew install
+bs,brew search
+brews,brew search
+bsr,brew search
+brewup,brew update ; brew upgrade ; brew prune ; brew cleanup ; brew doctor
+brewu,brew update && brew upgrade && brew cleanup && brew prune && brew doctor
+brew_update,brew -v update ; brew upgrade --force-bottle --cleanup ; brew cleanup ; brew cask cleanup ; brew prune ; brew doctor ; npm-check -g -u
+cask,brew cask
+bout,brew outdated
+bubo,brew update && brew outdated
+refreshbrew,brew outdated | while read cask ; do brew upgrade $cask ; done
+bc,brew cask
+brc,brew cask
+update,brew update ; brew upgrade --all ; brew cleanup ; cask-update ; cask-clean ; nvm install node --reinstall-packages-from=node ; nvm alias default node ; npm update -g ; sudo gem update --system ; sudo gem update ; upgrade_oh_my_zsh ; composer self-update ;
+brewu,brew update && brew upgrade --all
+bup,brew update && brew upgrade --all
+hidedesktop,defaults write com.apple.finder CreateDesktop -bool false && killall Finder
+showdesktop,defaults write com.apple.finder CreateDesktop -bool true && killall Finder
+hide,defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder
+flush,sudo dscacheutil -flushcache ; sudo killall -HUP mDNSResponder
+flushdns,sudo killall -HUP mDNSResponder
+dnsflush,dscacheutil -flushcache && killall -HUP mDNSResponder
+showFiles,defaults write com.apple.finder AppleShowAllFiles YES ; killall Finder /System/Library/CoreServices/Finder.app
+hideFiles,defaults write com.apple.finder AppleShowAllFiles NO ; killall Finder /System/Library/CoreServices/Finder.app
+showfiles,defaults write com.apple.finder AppleShowAllFiles YES ; killall Finder /System/Library/CoreServices/Finder.app
+ka,killall
+nomnom,killall
+k,killall
+killdock,killall Dock
+dockspace,"defaults write com.apple.dock persistent-apps -array-add '{\""tile-type\""=\""spacer-tile\"";}' ; killall Dock"
+kd,killall Dock
+ka9,killall -9
+k9,killall -9
+killz,killall -9
+fixcam,sudo killall VDCAssistant
+fixcamera,sudo killall VDCAssistant
+camera,sudo killall VDCAssistant
+kc,killall conky
+killconky,killall conky
+rconky,killall conky && conky
+fixaudio,sudo killall coreaudiod
+fix-audio,sudo killall coreaudiod
+restart-audio,sudo killall coreaudiod
+spoticon,sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search ; killall SystemUIServer
+killui,killall SystemUIServer
+spothide,sudo mv /System/Library/CoreServices/Search.bundle /System/Library/CoreServices/Search.bundle.bak && killall SystemUIServer
+chromekill,ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill
+killchrome,ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill
+tmuxkillall,"tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
+map,xargs -n1
+x1,xargs -n1
+rubycheck,git status | xargs -n1 | grep .rb | xargs ruby -c
+gdmb,"git branch --merged | grep -v ""\*"" | xargs -n 1 git branch -d"
+gitclean,git branch --merged | grep -v '\*' | xargs -n 1 git branch -d
+gclean,"git branch --merged master | grep -v ""\* master"" | xargs -n 1 git branch -d"
+gclean,"git branch --merged | egrep -v ""(^\*|master|dev)"" | xargs git branch -d"
+gbd,git branch --merged | grep -v '*' | xargs git branch -d
+gbdm,"git branch --merged | egrep -v ""(^\*|master|staging)"" | xargs git branch -d && gbp"
+X,| xargs
+x,xargs
+xargs,xargs
+gbr,"git checkout master ; git pull origin master ; git fetch --all ; git branch | grep -v ""master"" | xargs git branch -D"
+gclean,"git branch | grep -v ""^*"" | grep -v ""^master$"" | fzf -m | xargs git branch -D"
+gbdall,git branch | grep -v 'master' | xargs git branch -D
+grm,git status | grep deleted | awk '{print \$3}' | xargs git rm
+gitrm,git ls-files -d | xargs git rm
+grma,git status | grep deleted | awk '{print \$3}' | xargs git rm
+drmi,docker images | grep none | awk '{print \$3}' | xargs docker rmi
+dkrmui,docker images -q -f dangling=true | xargs docker rmi
+docker-clean,docker ps -aqf status=exited | xargs docker rm && docker images -qf dangling=true | xargs docker rmi
+drm,docker ps -a | grep Exited | cut -d ' ' -f 1 | xargs docker rm
+docker-clean,docker ps -a | grep 'Exited\|Created' | cut -d ' ' -f 1 | xargs docker rm
+drma,docker ps -aq | xargs docker rm
+XG,| xargs grep
+xg,xargs grep
+f,find ~/.zsh_history -type f -print | xargs grep
+py,python
+p,python
+py2,python
+serve,python -m SimpleHTTPServer
+server,python -m SimpleHTTPServer
+http-serve,python -m SimpleHTTPServer
+json,python -m json.tool | less
+prettyjson,python -m json.tool
+pp,python -m json.tool
+urlencode,"python -c ""import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"""
+encode,"python -c ""import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"""
+urlen,"python -c ""import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"""
+json,python -mjson.tool
+pp,python -mjson.tool
+pjson,python -mjson.tool
+pm,python manage.py
+dj,python manage.py
+m,python manage.py
+runserver,python manage.py runserver
+pmr,python manage.py runserver
+rs,clear ; python manage.py runserver
+serve,python -m SimpleHTTPServer 8000
+server,python -m SimpleHTTPServer 8000
+www,python -m SimpleHTTPServer 8000
+serve,python -m http.server
+mkhttp,python -m http.server
+httpserver,python -m http.server
+migrate,python manage.py migrate
+pmm,python manage.py migrate
+m,python manage.py migrate
+mv,mv -i
+mvi,mv -i
+move,mv -i
+mv,mv -iv
+mvi,mv -iv
+move,mv -iv
+mv,mv -v
+mvv,mv -v
+sumv,sudo mv -v
+mv,mv
+gtfo,mv
+move,mv
+mv,mv -vi
+mvi,mv -vi
+sumv,sudo mv -vi
+mv,mv --interactive
+mv,mv -f
+mvf,mv -f
+mv!,mv -f
+mv,mv -i -v
+cn,mv -i -v
+mv,mv --interactive --verbose
+mv,mv -v -i
+psg,ps aux | grep
+psgrep,ps aux | grep -v grep | grep
+psa,ps aux
+ps,ps auxf
+psmem,ps auxf | sort -nr -k 4
+pscpu,ps auxf | sort -nr -k 3
+psg,ps -ef | grep
+psef,ps -ef
+p,ps -ef
+chromekill,ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill
+ps,ps ux
+psu,ps ux
+cpu_hogs,"ps wwaxr -o pid,stat,%cpu,time,command | head -10"
+cpuHogs,"ps wwaxr -o pid,stat,%cpu,time,command | head -10"
+cpuhogs,"ps wwaxr -o pid,stat,%cpu,time,command | head -10"
+memHogsPs,"ps wwaxm -o pid,stat,vsize,rss,time,command | head -10"
+memhogsps,"ps wwaxm -o pid,stat,vsize,rss,time,command | head -10"
+mem_hogs_ps,"ps wwaxm -o pid,stat,vsize,rss,time,command | head -10"
+psg,ps ax | grep
+ps?,ps ax | grep
+pg,ps ax | grep
+psg,ps -aux | grep $1
+ps,ps -aux
+psa,ps -aux
+pg,ps -Af | grep $1
+pgg,ps -Af | grep
+psg,ps -Af | grep $1
+psg,ps -A | grep
+psa,ps -A
+ps,ps -A
+du,du -h
+duh,du -h
+dh,du -h
+du,du -kh
+duh,du -kh
+du5,du -kh | tail -5
+du,du -sh
+dush,du -sh
+size,du -sh
+folders,du -h --max-depth=1
+du1,du -h --max-depth=1
+du,du -h --max-depth=1
+duf,du -sh * | sort -hr
+dus,du -sh *
+du,du -sh *
+du,du -ch
+duch,"du -ch | grep insgesamt | sed -e ""s_[0-9]*,[0-9]*[B|G|K|M|T]_\x1b[32m&\x1b[0m_"""
+usage,du -ch | grep total
+du,du -c -h
+dirsize,du -c -h
+du-sum,du -c -h
+diskspace,du -S | sort -n -r | more
+dus,du -S | sort -n
+disk,du -S | sort -n -r | more
+du,du -hs
+d,du -hs
+dus,du -hs
+dud,du -d 1 -h | sort -hr
+du,du -d 1 -h
+duh,du -d 1 -h | sort -h
+S,| sort
+history-stat,history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head
+profileme,"history | awk '{print \$2}' | awk 'BEGIN{FS=\""|\""}{print \$1}' | sort | uniq -c | sort -nr | head -n 20"
+top10,print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10
+dus,"du -k * | sort -nr | cut -f2 | xargs -d ""\n"" du -sh"
+profileme,"history | awk '{print \$2}' | awk 'BEGIN{FS=\""|\""}{print \$1}' | sort | uniq -c | sort -nr | head -n 20"
+profileme,"history | awk '{print \$2}' | awk 'BEGIN{FS=\""|\""}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+ipview,"netstat -anpl | grep :80 | awk {'print \$5'} | cut -d"":"" -f1 | sort | uniq -c | sort -n | sed -e 's/^ *//' -e 's/ *\$//'"
+dus,du -ksx * | sort -n
+ducks,du -cks * | sort -rn | head
+folders,find . -maxdepth 10 -type d -print | xargs du -sk | sort -rn
+folderssort,find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn
+diskspace,du -S | sort -n -r | more
+history-stat,history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head
+sortnr,sort -n -r
+du,du -ach | sort -h
+dus,du -hs * | sort -h
+duh,du -h --max-depth=1 | sort -h
+psmem,ps auxf | sort -nr -k 4
+psmem10,ps auxf | sort -nr -k 4 | head -10
+mem10,ps auxf | sort -nr -k 4 | head -10
+pscpu,ps auxf | sort -nr -k 3
+pscpu10,ps auxf | sort -nr -k 3 | head -10
+cpu10,ps auxf | sort -nr -k 3 | head -10
+es,sed -f $srcdir/manlinks.sed $inalias | sort -u
+US,| sort -u
+progs,(pacman -Qet && pacman -Qm) | sort -u
+gtv,git tag | sort -V
+gtls,git tag -l | sort -V
+gt,git tag | sort -V
+update,sudo apt-get update
+upgrade,sudo apt-get update && sudo apt-get upgrade
+agu,apt-get update
+install,sudo apt-get install
+agi,sudo apt-get install
+apti,sudo apt-get install
+upgrade,sudo apt-get upgrade
+update,sudo apt-get update && sudo apt-get upgrade
+up,apt-get upgrade
+apt-get,sudo apt-get
+ag,apt-get
+sag,sudo apt-get
+remove,sudo apt-get remove
+agr,sudo apt-get remove
+aptr,sudo apt-get remove
+autoremove,sudo apt-get autoremove
+clean,sudo apt-get autoclean && sudo apt-get autoremove
+agar,sudo apt-get autoremove
+update,apt-get update && apt-get upgrade && apt-get dist-upgrade
+upgrade,sudo apt-get dist-upgrade
+dist-upgrade,sudo apt-get dist-upgrade
+clean,sudo apt-get autoclean && sudo apt-get autoremove
+autoclean,sudo apt-get autoclean
+cleanup,sudo apt-get clean && sudo apt-get autoclean && kxt homeclean
+upgrade,apt update && apt upgrade && apt-get autoremove && apt-get clean
+clean,sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove
+agc,sudo apt-get clean
+upgrade,sudo apt-get update -y && sudo apt-get upgrade -y
+update,sudo apt-get update && sudo apt-get upgrade -y
+up,sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade
+ni,npm install
+npmi,npm install
+nombom,npm cache clear --force && bower cache clean && rm -rf node_modules bower_components && npm install && bower install
+update,sudo softwareupdate -i -a ; brew update ; brew upgrade ; brew cleanup ; npm install npm -g ; npm update -g ; sudo gem update --system ; sudo gem update
+update_brew_npm_gem,brew_update ; npm install npm -g ; npm update -g ; sudo gem update --system ; sudo gem update --no-rdoc --no-ri
+u,sudo softwareupdate --install --all && brew update && brew upgrade && brew cleanup && npm install -g npm && npm update -g
+ns,npm start
+npms,npm start
+start,npm start
+nr,npm run
+run,npm run
+npmr,npm run
+update,sudo softwareupdate -i -a ; brew update ; brew upgrade ; brew cleanup ; npm install npm -g ; npm update -g ; sudo gem update --system ; sudo gem update
+update_brew_npm_gem,brew_update ; npm install npm -g ; npm update -g ; sudo gem update --system ; sudo gem update --no-rdoc --no-ri
+npmu,npm install npm -g ; npm update -g ; gem update --system ; gem update --no-document
+nt,npm test
+npmt,npm test
+nit,npm install && npm test
+n,npm
+npm,sudo npm
+nom,npm
+nrd,npm run dev
+dev,npm run dev
+nd,npm run dev
+nid,npm install --save-dev
+nrb,npm run build
+nb,npm run build
+nisd,npm install --save-dev
+build,npm run build
+npmisd,npm install --save-dev
+k,kubectl
+kc,kubectl
+kb,kubectl
+kgp,kubectl get pods
+kp,kubectl get pods
+pods,kubectl get pods
+kg,kubectl get
+kcg,kubectl get
+kget,kubectl get
+kd,kubectl describe
+kdes,kubectl describe
+kcd,kubectl describe
+kl,kubectl logs
+klogs,kubectl logs
+kcl,kubectl logs
+kcuc,kubectl config use-context
+kcu,kubectl config use-context
+kuc,kubectl config use-context
+kdel,kubectl delete
+krm,kubectl delete
+kd,kubectl delete
+kaf,kubectl apply -f
+ka,kubectl apply -f
+kcaf,kubectl apply -f
+kccc,kubectl config current-context
+kcc,kubectl config current-context
+kc,kubectl config current-context
+kgc,kubectl config get-contexts
+kcg,kubectl config get-contexts
+kcgc,kubectl config get-contexts
+dc,docker-compose
+dco,docker-compose
+dkc,docker-compose
+dcu,docker-compose up
+dcup,docker-compose up
+dup,docker-compose up
+dcd,docker-compose down
+dcdown,docker-compose down
+dcdn,docker-compose down
+dcu,docker-compose up -d
+dcup,docker-compose up -d
+dcud,docker-compose up -d
+dcb,docker-compose build
+dcbuild,docker-compose build
+dbuild,docker-compose build
+dcs,docker-compose stop
+dcstop,docker-compose stop
+dstop,docker-compose stop
+dce,docker-compose exec
+de,docker-compose exec
+dkce,docker-compose exec
+dcps,docker-compose ps
+dcp,docker-compose ps
+dps,docker-compose ps
+dcr,docker-compose run --rm
+dcrun,docker-compose run --rm
+dcrr,docker-compose run --rm
+dcr,docker-compose run
+dcrun,docker-compose run
+dkcr,docker-compose run
+myip,curl ip.appspot.com
+whatismyip,curl ip.appspot.com
+ip,curl ip.appspot.com ; echo
+weather,curl wttr.in
+wttr,curl wttr.in
+wtr,curl wttr.in
+ip,curl icanhazip.com
+myip,curl icanhazip.com
+showip,curl icanhazip.com
+myip,curl http://ipecho.net/plain ; echo
+ip,curl http://ipecho.net/plain ; echo
+exip,curl http://ipecho.net/plain ; echo
+myip,curl ifconfig.me
+ip,curl ifconfig.me
+ipinfo,curl ifconfig.me && curl ifconfig.me/host
+ipe,curl ipinfo.io/ip
+myip,curl ipinfo.io/ip
+ip,curl ipinfo.io/ip
+sprunge,curl -F 'sprunge=<-' http://sprunge.us
+paste,curl -F 'sprunge=<-' http://sprunge.us
+spr,curl -F 'sprunge=<-' http://sprunge.us
+header,curl -I
+headers,curl -I
+icurl,curl -I
+get,curl --continue-at - --location --progress-bar --remote-name --remote-time
+dl,curl --continue-at - --location --progress-bar --remote-name --remote-time
+wget,curl -O
+get,curl -O
+download,curl -O
+h,history
+hist,history | grep --color
+hg,history | grep
+ch,history -c && > ~/.bash_history
+hc,history -c ; clear
+hclear,history -c ; clear
+history-stat,history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head
+history,history 0
+h,history 0
+history,history 1
+h,history 1 | less +G
+defhist,"history 1 | grep ""defaults"""
+h,history 25
+hi,history -n | peco
+u,history -n
+hu,history -n
+hi,history 25
+hist,history 25
+he,history -a
+exit,history -a && exit
+hs,history -a
+h,history 20
+h2,history 20
+hh,history 20
+h,history 10
+h1,history 10
+gitjk,history 10 | tac | gitjk_cmd
+history,history -E
+h,history -E
+hs,history -E
+T,| tail
+t,tail
+ET,|& tail
+tf,tail -f
+tailf,tail -f
+t,tail -f
+devlog,tail -f log/development.log
+tfdl,tail -f log/development.log
+tlog,tail -f log/development.log
+herr,tail /var/log/httpd/error_log
+apacheerr,tail /var/log/httpd/error_log
+httpErr,tail /var/log/httpd/error_log
+cbhs,cat $HISTFILE | tail -n 1 | cb
+last,tail -n 1
+t1,tail -n 1
+TL,| tail -20
+hi,history | tail -20
+ETL,|& tail -20
+tftl,tail -f log/test.log
+testlog,tail -f log/test.log
+tailtest,tail -f log/test.log
+usage,du -ch 2> /dev/null | tail -1
+t1,tail -1
+cpuUsage,mpstat | tail -1 | awk '{print 100-\$(NF-1)}'
+profileme,"history | awk '{print \$2}' | awk 'BEGIN{FS=\""|\""}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+dt,demsg | tail -n 20
+memoryhog,ps aux | sort -nk +4 | tail -n 20
+apkinstall,adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r $1
+clearapp,adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell pm clear $1
+rmapp,adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X uninstall $1
+df,df -h
+dfh,df -h
+dh,df -h
+df,df -kTh
+dfh,df -kTh
+dh,df -kTh
+df,df -H
+dfh,df -H
+disk,df -H
+df,df -hT
+mountedinfo,df -hT
+dfh,df -hT
+df,df -kh
+disk_usage,df -kh
+du,df -kh
+df,df -Th
+dfh,df -Th
+fdf,echo && free -lth && echo && df -Th
+df,df --human-readable
+dfh,df --human-readable
+disk,df --human-readable | grep -e /dev/sd -e Filesystem
+df,df -Tha --total
+dfdisk,df -Tha --total
+dft,df -Tha --total
+diskspace_report,df -P -kHl
+diskspace,df -P -kHl
+ds,df -P -kHl
+df,df
+pkc,df ; apt-get clean ; echo ; df
+disk,df
+hidedesktop,defaults write com.apple.finder CreateDesktop -bool false && killall Finder
+hidedeskicons,defaults write com.apple.finder CreateDesktop -bool false && killall Finder
+hide-desktop-icons,defaults write com.apple.finder CreateDesktop -bool false && killall Finder
+showdesktop,defaults write com.apple.finder CreateDesktop -bool true && killall Finder
+showdeskicons,defaults write com.apple.finder CreateDesktop -bool true && killall Finder
+show-desktop-icons,defaults write com.apple.finder CreateDesktop -bool true && killall Finder
+show,defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder
+showdotfiles,defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder
+showfiles,defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder
+hide,defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder
+hidedotfiles,defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder
+hidefiles,defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder
+showFiles,defaults write com.apple.finder AppleShowAllFiles YES ; killall Finder /System/Library/CoreServices/Finder.app
+showfiles,defaults write com.apple.finder AppleShowAllFiles YES
+show,defaults write com.apple.finder AppleShowAllFiles YES ; killall Finder /System/Library/CoreServices/Finder.app
+hideFiles,defaults write com.apple.finder AppleShowAllFiles NO ; killall Finder /System/Library/CoreServices/Finder.app
+hidefiles,defaults write com.apple.finder AppleShowAllFiles NO
+hide,defaults write com.apple.finder AppleShowAllFiles NO ; killall Finder /System/Library/CoreServices/Finder.app
+finderHideHidden,defaults write com.apple.finder ShowAllFiles FALSE
+finderhidehidden,defaults write com.apple.finder ShowAllFiles FALSE
+hide_all,defaults write com.apple.finder ShowAllFiles FALSE && killall Dock
+finderShowHidden,defaults write com.apple.finder ShowAllFiles TRUE
+finderShow,defaults write com.apple.finder ShowAllFiles TRUE
+findershowhidden,defaults write com.apple.finder ShowAllFiles TRUE
+showhidden,defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder
+show_files,defaults write com.apple.finder AppleShowAllFiles TRUE ; killall Finder
+showfiles,defaults write com.apple.finder AppleShowAllFiles TRUE ; killall Finder
+hidehidden,defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder
+hide_files,defaults write com.apple.finder AppleShowAllFiles FALSE ; killall Finder
+hidefiles,defaults write com.apple.finder AppleShowAllFiles FALSE ; killall Finder
+mkdir,mkdir -p
+md,mkdir -p
+mk,mkdir -p
+mkdir,mkdir -pv
+mkd,mkdir -pv
+md,mkdir -pv
+md,mkdir
+icanhas,mkdir
+mk,mkdir
+mkdir,mkdir -p -v
+md,mkdir -p -v
+mkdr,mkdir -p -v
+mkdir,mkdir -v
+mk,mkdir -v
+mdv,mkdir -v
+mkdir,mkdir -vp
+mkd,mkdir -vp
+mvp,mkdir -vp
+quick,rm -rf build/ && mkdir build && cd build && cmake ..
+mkbuild,mkdir build ; cd build
+rebuild,time rm -rf build && rm -rf devel && mkdir build && cd build && cmake .. && time make -j4
+mkdir,mkdir --parents --verbose
+md,mkdir --parents --verbose
+mkdirpv,mkdir --parents --verbose
+mkdir,mkdir --parents
+md,mkdir --parents
+mkd,mkdir --parents
+md,mkdir $1
+mcd,mkdir $1 && cd $1
+mkcd,mkdir $1 && cd $1
+H,| head
+lh,l | head
+history-stat,history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head
+cpu_hogs,"ps wwaxr -o pid,stat,%cpu,time,command | head -10"
+memHogsPs,"ps wwaxm -o pid,stat,vsize,rss,time,command | head -10"
+psmem10,ps auxf | sort -nr -k 4 | head -10
+memHogsTop,top -l 1 -o rsize | head -20
+HL,|& head -20
+lt,ls -alt | head -20
+top10,print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10
+hist10,print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10
+h10,head -n 10
+psg,ps -Af | head -1 && ps -Af | grep
+branch_oldest_ancestor,"/usr/bin/diff -u <(git rev-list --first-parent master) <(git rev-list --first-parent HEAD) | sed -ne ""s/^ //p"" | head -1"
+h1,head -1
+psg,ps auxwww | head -n 1 ; ps auxwww | grep -Ei
+h1,head -n 1
+psme,"ps -o ppid,pid,euser,stat,%cpu,rss,args | head -n 1 ; ps -eH -o ppid,pid,euser,stat,%cpu,rss,args | grep $USER"
+ducks,du -cks * | sort -rn | head -11
+sd,find -maxdepth 1 -print0 | xargs -0i du -ks {} | sort -rn | head -11 | cut -f2 | xargs -i du -hs {}
+topd,du -sch .[!.]* * | sort -rh | head -11
+freq,cat $HISTFILE | cut -f1 -d' ' | sort | uniq -c | sort -nr | head -n 30
+genpasswd,strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n' ; echo
+pw,strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n' ;
+pg,ps aux | head -n1 ; ps aux | grep -i
+pss,"processes=`ps aux` ; echo ""$processes"" | head -n1 ; echo ""$processes"" | grep -E"
+np,"mpc --format "".: %title% by %artist% #[%album%#] :."" | head -n1"
+breakitdown,history | awk '{a[$2]++ } END{for(i in a){print a[i] ' ' i}}' | sort -rn | head -n 20
+profileme,"history | awk '{print \$2}' | awk 'BEGIN{FS=\""|\""}{print \$1}' | sort | uniq -c | sort -nr | head -n 20"
+top20,print -l $$${(o)history%% *} | uniq -c | sort -nr | head -n 20
+sc,systemctl
+systemctl,sudo systemctl
+SS,sudo systemctl
+suspend,systemctl suspend
+sus,sudo systemctl suspend
+sleep,systemctl suspend
+poweroff,systemctl poweroff
+shutdown,sudo systemctl poweroff
+off,sudo systemctl poweroff
+reboot,sudo systemctl reboot
+restart,sudo systemctl reboot
+reb,systemctl reboot
+restart,systemctl restart
+srestart,sudo systemctl restart
+scr,sudo systemctl restart
+start,sudo systemctl start
+sstart,sudo systemctl start
+scs,systemctl start
+status,systemctl status
+scs,systemctl status
+sstatus,sudo systemctl status
+stop,sudo systemctl stop
+sstop,sudo systemctl stop
+sysstop,sudo systemctl stop
+scu,systemctl --user
+userctl,systemctl --user
+sysu,systemctl --user
+hibernate,systemctl hibernate
+hib,systemctl hibernate
+hiber,sudo systemctl hibernate
+tree,find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+findfolders,find . -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' | less
+tree-bash,find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+S,| sed
+gsed,sed
+E,| sed
+logs,find /var/log -type f -exec file {} \ ; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f
+allogs,sudo find /var/log -type f -exec file {} \ ; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f
+b-logs,find /var/log -type f -exec file {} \ ; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f
+ips,ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'
+network.ips,ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'
+localips,ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'
+es,sed -f $top_srcdir/man/manlinks.sed $inalias | sort -u
+gdi,"git status --porcelain --short --ignored | sed -n ""s/^!! //p"""
+${gprefix}di,"git status --porcelain --short --ignored | sed -n ""s/^!! //p"""
+gfo,"git status --porcelain --short --ignored | sed -n ""s/^!! //p"""
+ipview,"netstat -anpl | grep :80 | awk {'print \$5'} | cut -d"":"" -f1 | sort | uniq -c | sort -n | sed -e 's/^ *//' -e 's/ *\$//'"
+b-connections,"netstat -anpl | grep :80 | awk {'print \$5'} | cut -d"":"" -f1 | sort | uniq -c | sort -n | sed -e 's/^ *//' -e 's/ *\$//'"
+myip,ifconfig en1 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'
+localip,ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'
+ip,ifconfig en0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'
+sed,sed -E
+esed,sed -E
+sed-regex,sed -E
+gd,"git diff --color | sed ""s/^\([^-+ ]*\)[-+ ]/\\1/"" | less -r"
+gdiff,"git diff --color | sed ""s/^\([^-+ ]*\)[-+ ]/\\1/"" | less -r"
+strip-diff-prefix,"sed ""s/^\([^-+ ]*\)[-+ ]/\\1/"""
+:q,exit
+q,exit
+x,exit
+q,exit 0
+:q,exit 0
+upgrade,sudo apt-get -y update && sudo apt-get -y --allow-unauthenticated upgrade && sudo apt-get autoclean && sudo apt-get autoremove && exit 0
+getoptarg,"if test $OPTLNG -eq 1 -o -z ""$OPTOPT"" ; then shift ; OPTARG=""$1"" ; else OPTARG=""$OPTOPT"" ; OPTOPT="""" ; fi ; test -z ""$OPTARG"" && { echo ""$OPT needs argument"" ; exit 1 ; }"
+fail,{ echo $LINENO ; exit 1 ; }
+quit,exit 1
+exit_on_error,"err=$? ; [[ ""$err"" != ""0"" ]] && echo ""erreur sur la commande "" $CMD && exit $err"
+handle_exit,exit $return_value
+q,exit 0 2>/dev/null
+type,"find ./.computer.o >& ~/_ || echo ""There is nothing on which you could type."" ; find ./.computer.o >& ~/_ && find ~/HW1/.blocked/description >& ~/_ && echo ""You type on the keyboard, but your characters do not even echo."" ; find ./.computer.o >& ~/_ && find ~/HW1/.blocked/computeron >& ~/_ && ~/HW1/.blocked/fauxUNIX && ~/HW1/.blocked/login.x toukmond robert && exit 0 >& ~/_"
+rexit,is_sourced && return 6 || exit 7
+xx,exit \n exit
+gge,gg && exit $?
+kk,konsole && exit $?
+java8,export JAVA_HOME=$JAVA_8_HOME
+jdk8,export JAVA_HOME=$JAVA_8_HOME
+use_java8,export JAVA_HOME=$JAVA_8_HOME
+setJdk8,export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+java8,export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+j8,export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) ; java -version
+ED,export DISPLAY=:0.0
+sd,export DISPLAY=:0.0
+getx,export DISPLAY=:0.0
+aws-ip,"export instanceIp=`aws ec2 describe-instances --filters ""Name=instance-id,Values=$instanceId"" --query ""Reservations[0].Instances[0].PublicIpAddress""` && echo $instanceIp"
+aws-start,"aws ec2 start-instances --instance-ids $instanceId && aws ec2 wait instance-running --instance-ids $instanceId && export instanceIp=`aws ec2 describe-instances --filters ""Name=instance-id,Values=$instanceId"" --query ""Reservations[0].Instances[0].PublicIpAddress""` && echo $instanceIp"
+aws-get-ip,"export instanceIp=`aws ec2 describe-instances --filters ""Name=instance-id,Values=$instanceId"" --query ""Reservations[0].Instances[0].PublicIpAddress""` && echo $instanceIp"
+j8,export JAVA_HOME=`/usr/libexec/java_home -v 1.8` ; java -version
+java8,export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+jdk8,export JAVA_HOME=`/usr/libexec/java_home -v 1.8` ; java -version
+setJdk7,export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+j7,export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+java7,export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+jdk7,export JAVA_HOME=$JAVA_7_HOME
+java7,export JAVA_HOME=$JAVA_7_HOME
+use_java7,export JAVA_HOME=$JAVA_7_HOME
+setproxy,export ALL_PROXY=socks5://127.0.0.1:1080
+proxy,export ALL_PROXY=socks5://127.0.0.1:1080
+set_proxy,export ALL_PROXY=socks5://127.0.0.1:1080
+e,export
+exp,export
+EXP,export
+j8,export JAVA_HOME=$JDK8 && export PATH=$JAVA_HOME/bin:$PATH
+java8,export JAVA_HOME=$JAVA_HOME8 ; export PATH=$JAVA_HOME/bin:$PATH
+java7,java7(){ export JAVA_HOME=/global/share/jdk1.7.0_71/ ; export PATH=$JAVA_HOME/bin:$PATH ; export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar ; } ; java7 ;
+mkdir,nocorrect mkdir
+md,nocorrect mkdir
+mv,nocorrect mv
+cp,nocorrect mv
+cp,nocorrect cp
+man,nocorrect man
+sudo,nocorrect sudo
+nsudo,nocorrect sudo
+s,nocorrect sudo
+rm,nocorrect rm
+mysql,nocorrect mysql
+gist,nocorrect gist
+heroku,nocorrect heroku
+h,nocorrect heroku
+ebuild,nocorrect ebuild
+sudo,sudo
+_,sudo
+please,sudo
+activateSpotlight,sudo sudo mdutil -i off
+act_as,sudo sudo -u $@ bash -i
+arm,sudo sudo -u debian-tor arm
+networkscan,sudo sudo arp-scan --interface=en0 --localnet
+wp-normal,sudo sudo chown -R cs public_html/smuff.ro/public/
+ka,sudo sudo killall $1
+pacrlo,sudo sudo pacman -Rs $(pacman -Qtdq)
+super,sudo sudo su -
+pipall,"sudo sudo sudo sudo sudo sudo sudo sudo pip freeze --local | grep -v ""^\-e"" | cut -d = -f 1 | xargs -n1 pip install -U"
+scat,sudo cat
+c,cat
+invisible,cat
+pubkey,cat ~/.ssh/id_rsa.pub
+sshkey,cat ~/.ssh/id_rsa.pub | pbcopy && echo 'Copied to pasteboard.'
+publickey,cat ~/.ssh/id_rsa.pub | pbcopy
+busy,"cat /dev/urandom | hexdump -C | grep ""ca fe"""
+lookbusy,"cat /dev/urandom | hexdump -C | grep ""34 32"""
+zb,"cat /dev/urandom | hexdump -C | grep --color=auto ""ca fe"""
+catn,cat -n
+cat,cat -n
+C,| cat -n
+CA,2>&1 | cat -A
+cata,cat -A
+gsadiff,git diff --color -M --staged | cat -A | lessr
+pbpaste,cat /dev/clipboard
+getclip,cat /dev/clipboard
+paste,cat /dev/clipboard && echo
+cbrc,cat ~/.bashrc
+b,cat ~/.bashrc | grep
+ghelp,"cat ~/.bashrc | grep ""alias g"""
+show,cat ~/.dirs
+L,cat ~/.dirs
+smarks,cat ~/.dirs
+cpu,"cat /proc/cpuinfo | grep ""cpu MHz"""
+cpuinfo,cat /proc/cpuinfo
+sysinfo,"echo -e ""\n\e[1;93mVERSION\e[0m"" && cat /etc/issue | head -1 | cut -d"" "" -f1-3 && echo -e ""\n\e[1;93mKERNEL\e[0m"" && uname -r && echo -e ""\n\e[1;93mPROCESSOR\e[0m"" && cat /proc/cpuinfo | grep processor | wc -l | xargs echo -n && echo -e "" processors"" && cat /proc/cpuinfo | grep MHz | uniq && echo -e ""\n\e[1;93mNETWORK\e[0m"" && ifconfig | grep -A1 ""eth"" && echo -e ""\n\e[1;93mLOADAVG\e[0m"" && cat /proc/loadavg && echo -e ""\n\e[1;93mMEMORY\e[0m"" && free -m && echo -e ""\n\e[1;93mDISK SPACE\e[0m"" && df -h && echo -e ""\n"""
+cbhs,cat $HISTFILE | tail -n 1 | cb
+cliphs,cat $HISTFILE | tail -n 1 | cb
+history,cat $HISTFILE
+vu,vagrant up
+vup,vagrant up
+vgu,vagrant up
+vssh,vagrant ssh
+vs,vagrant ssh
+vsh,vagrant ssh
+v,vagrant
+vg,vagrant
+va,vagrant
+vh,vagrant halt
+vhalt,vagrant halt
+vgh,vagrant halt
+vs,vagrant status
+vst,vagrant status
+vstat,vagrant status
+vd,vagrant destroy
+vdestroy,vagrant destroy
+vgd,vagrant destroy
+vr,vagrant reload
+vreload,vagrant reload
+vrl,vagrant reload
+vp,vagrant provision
+vgp,vagrant provision
+vprov,vagrant up && vagrant provision
+vs,vagrant suspend
+vsus,vagrant suspend
+vsuspend,vagrant suspend
+vgs,vagrant global-status
+v,vagrant global-status
+vg,vagrant global-status
