@@ -21,10 +21,11 @@ and to correct a spelling mistake (\verb|alias sl=ls|).
 We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
 
 To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
+Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \cite{thomas:06}.
+It is an iterative process between theoretical sampling and comparing data within emerging themes \cite{dey:03}.
 We looked at 1381 alias definitions derived in a similar way as \Cref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
 In addition, we took a random sample of 200 alias definitions that each occur only once in the dataset to represent the long tail.
-Coding was then performed independently by two authors, who labelled each alias definition in the cross-section with descriptive tags, taking the semantics of the commands as much as possible into account.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
-Inductive coding is an iterative process between theoretical sampling and comparing data within emerging themes \cite{thomas:06,dey:03}.
+Coding was then performed independently by two authors, who labelled each alias definition in the cross-section with descriptive tags, taking the semantics of the commands into account as much as possible.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
 After a first iteration, the coders compared their labels, consolidating different naming conventions.
 In consecutive iterations, the coders identified ways of formalizing the emerged categories, i.e. constructing automated mechanisms for classifying alias definitions as belonging into a certain category or not.
 The discussion of the formalizations additionally served to establish a better shared understanding.
@@ -40,6 +41,14 @@ We will now discuss each of the \TODO customization practices in more detail.
 
 %\input{summary_stats}
 
+renaming: giving a new name, but not otherwise changing the semantics of the command
+redefine: declare an alias of the same name as the command that calls the command with certain arguments
+shortcut: defines a name for a commonly used invocation of a command with certain arguments
+scripting: by composing multiple commands we effectively create a mini-script
+
+
+
+
 \input{default_arguments}
 
 \input{autocorrect}
@@ -47,6 +56,14 @@ We will now discuss each of the \TODO customization practices in more detail.
 \input{compression}
 
 \input{chaining}
+
+scripting:
+aliases often defined for inline mini scripts
+summary of operators etc
+pipe most interesting, classic unix, flow diagram
+an interesting phenomenon is chains of subcommands, most commonly for apt-get, brew etc
+
+
 
 \input{safety}
 
