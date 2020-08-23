@@ -6,6 +6,7 @@ shell-alias-analysis.pdf
 .ipynb_checkpoints/
 
 *.db
+*.so
 
 # TeX
 *.aux
