@@ -43,14 +43,18 @@ Ultimately, the coders reached a saturation point at which further coding and an
 %\input{summary_stats}
 
 \subsection{Autocorrect}
+
 Aliases can be used to correct common misspellings of commands, like typing \verb|got| instead of \verb|git|.
 While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
 We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
 We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
 It is a robust measure that in addition to tracking the number of insertions, deletions, and substitutions between two strings, also captures the transposition of two characters, a common occurrence in misspelled commands.
 We computed the distance measure for all applicable aliases, and determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
-We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules.
-Common autocorrections are due to transposition (\verb|grpe| $\rightarrow$ \verb|grep|), localization (\verb|pluralise| $\rightarrow$ \verb|pluralize|), case-sensitivity (\verb|Jupyter| $\rightarrow$ \verb|jupyter|) and punctuation (\verb|docker-build| $\rightarrow$ \verb|docker_build|).
+We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most commonly involving transposition (\verb|grpe| $\rightarrow$ \verb|grep|), case-sensitivity (\verb|Jupyter| $\rightarrow$ \verb|jupyter|), localization (\verb|pluralise| $\rightarrow$ \verb|pluralize|), and punctuation (\verb|docker-build| $\rightarrow$ \verb|docker_build|).
+
+On the flip side, aliases are also used to disable autocorrect mechanisms.
+The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
+There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
 
 %\input{default_arguments}
