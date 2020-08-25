@@ -27,7 +27,7 @@ We looked at 1381 alias definitions derived in a similar way as \Cref{tab:comman
 In addition, we took a random sample of 200 alias definitions that each occur only once in the dataset to represent the long tail.
 Coding was then performed independently by two authors, who labelled each alias definition in the cross-section with descriptive tags, taking the semantics of the commands into account as much as possible.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
 After a first iteration, the coders compared their labels, consolidating different naming conventions.
-In consecutive iterations, the coders identified ways of formalizing the emerged categories, i.e. constructing automated mechanisms for classifying alias definitions as belonging into a certain category or not.
+In consecutive iterations, the coders identified ways of formalizing the emerged categories, i.e., constructing mechanisms for classifying alias definitions as belonging to certain categories.
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
@@ -69,6 +69,25 @@ The pipe embodies the Unix philosophy of small tools doing one thing well, which
 	\label{fig:flow}
 \end{figure*}
 
+\subsection{Subcommand Chains}
+
+An interesting pattern found in aliases composed of multiple commands are chains of subcommand invocations.
+For example, the package manager \verb|brew| has a subcommand \verb|update|, for updating the package database, and a subcommand \verb|upgrade|, for upgrading previously installed packages to the latest available versions.
+\per{28.08} percent of all aliases involving the \verb|brew| command contain the composition
+\begin{CVerbatim}
+brew update && brew upgrade
+\end{CVerbatim}
+(sometimes with \verb|;| instead of \verb|&&|), with alias names like \verb|update|, \verb|brewup|, \verb|bup|, etc.
+This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \verb|brew|, \verb|apt-get|, \verb|npm| or \verb|gem|, mostly fulfilling roughly the same function as in the \verb|brew| example.
+
+The command with the highest absolute number of aliases showing this pattern is \verb|git|, however, with \num{12063} occurrences (\per{3.89} of all aliases using \verb|git|).
+Here, the uses are more varied:
+\begin{CVerbatim}
+alias commit='git add . && git commit -m'
+alias whoops='git reset --hard && git clean -df'
+alias gitpull='git stash && git pull && git stash pop'
+\end{CVerbatim}
+are just some examples of aliases combining the various \verb|git| subcommands.
 
 %\input{default_arguments}
 
