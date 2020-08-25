@@ -13,7 +13,7 @@ The most common argument, across all commands, is \texttt{--color=auto}, appeari
 
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
 \Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
-Here we can already identify some of the different customization practices involving aliases.
+Here we can already identify some of the typical alias use cases.
 Looking at \texttt{ls}, we find that aliases are used
 to redefine the command with a default argument (\verb|alias ls="ls --color=auto"|);
 to shorten a common invocation (\verb|alias ll="ls -alF"|);
@@ -31,43 +31,39 @@ In consecutive iterations, the coders identified ways of formalizing the emerged
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
-We could identify \TODO customization practices involving aliases:
+%We could identify \TODO customization practices involving aliases:
 
 \TODO
 
-\Cref{tab:use-cases} breaks down the customization practices by command, presenting a selection of commands with a quantitative overview about the kinds of aliases each command is commonly used in.
+%\Cref{tab:use-cases} breaks down the customization practices by command, presenting a selection of commands with a quantitative overview about the kinds of aliases each command is commonly used in.
 
-We will now discuss each of the \TODO customization practices in more detail.
+%We will now discuss each of the \TODO customization practices in more detail.
+
 
 %\input{summary_stats}
 
-renaming: giving a new name, but not otherwise changing the semantics of the command
-redefine: declare an alias of the same name as the command that calls the command with certain arguments
-shortcut: defines a name for a commonly used invocation of a command with certain arguments
-scripting: by composing multiple commands we effectively create a mini-script
+\subsection{Autocorrect}
+Aliases can be used to correct common misspellings of commands, like typing \verb|got| instead of \verb|git|.
+While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
+We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
+We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
+It is a robust measure that in addition to tracking the number of insertions, deletions, and substitutions between two strings, also captures the transposition of two characters, a common occurrence in misspelled commands.
+We computed the distance measure for all applicable aliases, and determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
+We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules.
+Common autocorrections are due to transposition (\verb|grpe| $\rightarrow$ \verb|grep|), localization (\verb|pluralise| $\rightarrow$ \verb|pluralize|), case-sensitivity (\verb|Jupyter| $\rightarrow$ \verb|jupyter|) and punctuation (\verb|docker-build| $\rightarrow$ \verb|docker_build|).
 
 
+%\input{default_arguments}
 
+%\input{autocorrect}
 
-\input{default_arguments}
+%\input{compression}
 
-\input{autocorrect}
+%\input{chaining}
 
-\input{compression}
+%\input{safety}
 
-\input{chaining}
-
-scripting:
-aliases often defined for inline mini scripts
-summary of operators etc
-pipe most interesting, classic unix, flow diagram
-an interesting phenomenon is chains of subcommands, most commonly for apt-get, brew etc
-
-
-
-\input{safety}
-
-\input{bookmarks}
+%\input{bookmarks}
 
 % for potential related work (including method), google 'usability smells'
 % e.g. https://www.sciencedirect.com/science/article/pii/S1071581916301215
