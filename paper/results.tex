@@ -56,6 +56,19 @@ On the flip side, aliases are also used to disable autocorrect mechanisms.
 The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
 There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
+\subsection{Pipelines}
+
+The most interesting shell operator is certainly the pipe (\verb`|`), since it creates an interface between two otherwise separate programs.
+The pipe embodies the Unix philosophy of small tools doing one thing well, which can be connected together to accomplish more complex tasks.
+\Cref{fig:flow} shows a flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage.
+
+\begin{figure*}[h]
+	\centering    
+	\includegraphics[width=0.9\linewidth]{figures/flow_250.png}
+	\caption{Flow diagram for top 3-command pipelines}
+	\label{fig:flow}
+\end{figure*}
+
 
 %\input{default_arguments}
 

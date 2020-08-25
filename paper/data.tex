@@ -7,7 +7,7 @@ Our analysis is based on \num{2204199} alias definitions found on GitHub, collec
 \begin{figure*}
 	\centering
 	%\vspace{2em}
-	\includegraphics[width=0.85\textwidth]{graphics/parser_breakdown.pdf}
+	\includegraphics[width=0.85\textwidth]{figures/parser_breakdown.pdf}
 	\caption{Decomposition of \texttt{alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"}.}
 	\label{fig:parser}
 \end{figure*}
@@ -75,7 +75,7 @@ The database schema is given in \Cref{fig:schema}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\columnwidth]{graphics/schema.pdf}
+    \includegraphics[width=0.9\columnwidth]{figures/schema.pdf}
     \caption{Relational database schema.}
     \label{fig:schema}
 \end{figure}
@@ -111,6 +111,7 @@ After parsing, we ended up with \num{2204199} alias definitions, broken down int
 Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
 \num{194218} files from \num{138112} repositories, or \per{52.09} of the original sample without duplicates, contained aliases.
 The majority of aliases in our dataset (\per{86.2}) originate from common startup scripts, like \texttt{.bashrc} or \texttt{.profile} (see \Cref{tab:file-names}).
+% TODO: explain the renaming 14%
 
 \input{tables/file-names.tex}
 
