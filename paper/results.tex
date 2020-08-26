@@ -32,7 +32,7 @@ Ultimately, the coders reached a saturation point at which further coding and an
 
 We identified 11 customization practices involving shell aliases, which can be roughly divided into three groups:
 \begin{itemize}
-    \item \textsc{Naming} practices introduce new names for \emph{abbreviating commands}, \emph{describing actions}, \emph{correcting misspellings}, or \emph{bookmarking locations}.
+    \item \textsc{Naming} practices introduce new names for \emph{abbreviating subcommands}, \emph{describing actions}, \emph{correcting misspellings}, or \emph{bookmarking locations}.
     \item \textsc{Changing} practices change the semantics of existing commands, often by \emph{substituting commands} or \emph{overriding defaults}, but also by \emph{elevating privilege}, or, surprisingly often, by \emph{colorizing output}.    
     \item \textsc{Composing} practices combine multiple commands for the purposes of \emph{building tools}, \emph{transforming data} or \emph{chaining subcommands} together.
 \end{itemize} 
@@ -48,13 +48,14 @@ We will now discuss each of these customization practices in more detail.
 
 \subsection{Naming}
 
-The most common use of aliases is to simplify complex expressions by giving them short, memorable names.
-\TODO not changing their semantics
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figures/compression.pdf}
+    \caption{Distribution of alias compression ratios}
+    \label{fig:compression}
+\end{figure}
 
-\paragraph{\bf Abbreviating Commands}
-
-\TODO subcommand shortcuts
-
+The most obvious use of an alias is to give a complex expression a short and/or memorable name.
 The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
 If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
 For example, the definition
@@ -64,34 +65,28 @@ alias gs='git status'
 has a compression ratio of 5.
 \Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
-The highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
-When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.95\columnwidth]{figures/compression.pdf}
-    \caption{Distribution of alias compression ratios}
-    \label{fig:compression}
-\end{figure}
-
-\paragraph{\bf Describing Actions}
-
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
 There are \num{26055} aliases (\per{1.18}) with names longer than their values.
-Among them, we found many descriptive names, like
-\begin{itemize}
-    \item \verb|git-last-commit-message|
-    \item \verb|docker_list_all_containers|
-    \item \verb|generate_random_password|
-\end{itemize}
-and similar wordy descriptions of command invocations.
 
 The two longest alias names we found are from joke definitions.
 The first is \num{1772} characters long and is comprised of the letter `f' repeated \num{1053} times, followed by the letter `u' repeated 719 times.
 It is an alias for the \verb|cat| command with a similarly named file as an argument.
 The second longest alias name is a Swedish compound word of \num{131} characters,\footnote{Translating, roughly, to northwestern-glacier-artillery-flight-thrust-simulator-plant-equipment-maintenance-follow-up-systems-discussion-posts-preparation-works.} aliasing the \verb|ls| command.
 
-\TODO names from dictionary
+On the other end of the spectrum, the highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
+When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
+
+Stepping back from a purely syntactical viewpoint, a few distinct naming practices become visible, each with different goals.
+
+\paragraph{\bf Abbreviating Subcommands}
+
+\TODO subcommand shortcuts
+
+\paragraph{\bf Describing Actions}
+
+Among the aliases whose names are longer than their values, we found many descriptive names, like \texttt{git-\allowbreak{}last-\allowbreak{}commit-\allowbreak{}message}, \texttt{docker\_\allowbreak{}list\_\allowbreak{}all\_\allowbreak{}containers} or \texttt{generate\_\allowbreak{}random\_\allowbreak{}password}.
+
+\TODO dictionary?
 
 \paragraph{\bf Correcting Misspellings}
 
@@ -154,11 +149,27 @@ alias zshconfig="vim ~/.zshrc"
 
 \subsection{Changing}
 
+\TODO changing the semantics of a command, usually by redefining the command itself (substituting, overriding) or but not necessarily (color, elevating)
+
 \paragraph{\bf Substituting Commands}
+
+When the name of an alias is identical to the name of a pre-existing command, the alias defines a substitution for the command.
+A common example is \verb|alias more=less|, replacing a standard Unix utility (\verb|more|) with a more capable but similar command (\verb|less|).
+This can also be used for subterfuge, as in \verb|alias emacs=vim| (appearing 132 times in our dataset) or indeed \verb|alias vim=emacs| (86 times, alas).
+
+To determine which alias names are also names of actual commands, we compared them to known Unix commands,\footnote{\url{https://en.wikipedia.org/wiki/List_of_Unix_commands} and \url{https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands}} as well as a curated sample of commands from our dataset (taking care to not include names that appear in a command position but are actually just other aliases).
+To determine proper substitutions, we only count aliases whose value does not also include the name of the command (which would point to an overriding alias, see below).
+We find that \num{100564} aliases (\per{4.56}) are used to substitute one command for another.
+The top three substitutions are \verb|vi| $\rightarrow$ \verb|vim|, \verb|vim| $\rightarrow$ \verb|nvim|, and \verb|vi| $\rightarrow$ \verb|nvim|.
 
 \paragraph{\bf Overriding Defaults}
 
+When the alias name is not just an existing command, but this command is part of the alias value, as in \verb|alias ls='ls -G'|, then the alias effectively overrides the default settings of the command.
+
+
 \paragraph{\bf Colorizing Output}
+
+\TODO diff to colordiff
 
 \paragraph{\bf Elevating Privilege}
 
