@@ -106,7 +106,48 @@ There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autoc
 
 \paragraph{\bf Bookmarking Locations}
 
+When an aliased command is called with an argument that references some specific local or remote location, e.g., a file path, domain, or IP address, the alias acts as a bookmark to that location.
+For instance,
+\begin{CVerbatim}
+alias starwars="telnet towel.blinkenlights.nl"    
+\end{CVerbatim}
+and \verb|alias dl="cd ~/Downloads"|
+are both bookmark aliases.
 
+To find such bookmarking uses in our dataset, we searched for arguments that are locations, which we take to be any of the following:
+\begin{itemize}
+    \item A string containing a forward slash (\verb|/|), indicating a path.
+    \item An IPv4 address, matched by the liberal regular expression \verb|[0-9]+.[0-9]+.[0-9]+.[0-9]+|
+    \item A string containing one of the known top-level domains\footnote{From \url{http://data.iana.org/TLD/tlds-alpha-by-domain.txt} (retrieved January 14, 2020)} preceded by a dot (\verb|.|) and followed by a slash (\verb|/|), colon (\verb|:|) or the end of the string.
+\end{itemize}
+To avoid false positives, we sampled the top 300 search results according to the above criteria and determined some exclusion patterns.
+For instance, \texttt{/dev/null} is not a location for our purposes.
+Neither is \texttt{origin/master}, and thus 
+\begin{CVerbatim}
+alias gm="git merge origin/master"
+\end{CVerbatim}
+does not count as a bookmark.
+We also exclude aliases that are merely referencing unnamed relative directories (e.g., \verb|../..|).
+
+By our definition, \num{321546} aliases (\per{14.59}) are bookmarks.
+Of these, \num{59931} are remote bookmarks containing URLs or IP addresses (\per{15.92} of all bookmarks).
+Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily in bookmark aliases.
+Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations,
+or outputting log files, as in
+\begin{CVerbatim}
+alias onoz="cat /var/log/errors.log"
+\end{CVerbatim}
+or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself:
+\begin{CVerbatim}
+alias zshconfig="vim ~/.zshrc"
+\end{CVerbatim}
+\Cref{tab:locations} shows the top local and remote locations found in aliases.
+
+\begin{table}
+    \caption{Top 5 local and remote locations found in aliases}
+    \label{tab:locations}
+    \input{tables/locations.tex}
+\end{table}
 
 \subsection{Changing}
 
