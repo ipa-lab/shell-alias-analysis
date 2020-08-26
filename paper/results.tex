@@ -1,4 +1,4 @@
-\section{Analysis}
+\section{Findings}
 
 \input{tables/top-summary.tex}
 
@@ -9,7 +9,6 @@ This is a bit less often than \texttt{git}, the most common command, which appea
 The most common argument, across all commands, is \texttt{--color=auto}, appearing \num{153931} times (\per{4.24})
 
 \input{tables/command-summary.tex}
-\input{table-use-cases.tex} % TODO: update
 
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
 \Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
@@ -31,18 +30,67 @@ In consecutive iterations, the coders identified ways of formalizing the emerged
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
-%We could identify \TODO customization practices involving aliases:
+We identified 11 customization practices involving shell aliases,
 
-\TODO
+of \emph{naming}, \emph{changing} and \emph{composing}.
 
-%\Cref{tab:use-cases} breaks down the customization practices by command, presenting a selection of commands with a quantitative overview about the kinds of aliases each command is commonly used in.
+\Cref{tab:practices} lists the practices we found, with examples, and how ... in the dataset.
+Note that an alias might exhibit multiple practices, so the percentages do not add up to 100.
+Some of the practices, while not quantitavely ..., are qualtiatively distinct enough to merit \dots
 
-%We will now discuss each of the \TODO customization practices in more detail.
+Table \TODO breaks down the customization practices by command.
 
+We will now discuss each of the 11 practices in more detail.
 
-%\input{summary_stats}
+\input{tables/practices.tex} % TODO: fill in
+\input{tables/practices-by-command.tex} % TODO: update
 
-\subsection{Autocorrect}
+\subsection{Naming}
+
+The most common use of aliases is to simplify complex expressions by giving them short, memorable names.
+\TODO not changing their semantics
+
+\paragraph{\bf Abbreviating Commands}
+
+The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
+If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
+For example, the definition
+\begin{CVerbatim}
+alias gs='git status'
+\end{CVerbatim}
+has a compression ratio of 5.
+\Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
+The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
+The highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
+When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figures/compression.pdf}
+    \caption{Distribution of alias compression ratios}
+    \label{fig:compression}
+\end{figure}
+
+\paragraph{\bf Describing Actions}
+
+A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
+There are \num{26055} aliases (\per{1.18}) with names longer than their values.
+Among them, we found many descriptive names, like
+\begin{itemize}
+    \item \verb|git-last-commit-message|
+    \item \verb|docker_list_all_containers|
+    \item \verb|generate_random_password|
+\end{itemize}
+and similar wordy descriptions of command invocations.
+
+The two longest alias names we found are from joke definitions.
+The first is \num{1772} characters long and is comprised of the letter `f' repeated \num{1053} times, followed by the letter `u' repeated 719 times.
+It is an alias for the \verb|cat| command with a similarly named file as an argument.
+The second longest alias name is a Swedish compound word of \num{131} characters,\footnote{Translating, roughly, to northwestern-glacier-artillery-flight-thrust-simulator-plant-equipment-maintenance-follow-up-systems-discussion-posts-preparation-works.} aliasing the \verb|ls| command.
+
+\TODO names from dictionary
+
+\paragraph{\bf Correcting Misspellings}
 
 Aliases can be used to correct common misspellings of commands, like typing \verb|got| instead of \verb|git|.
 While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
@@ -56,11 +104,30 @@ On the flip side, aliases are also used to disable autocorrect mechanisms.
 The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
 There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
-\subsection{Pipelines}
+\paragraph{\bf Bookmarking Locations}
+
+
+
+\subsection{Changing}
+
+\paragraph{\bf Substituting Commands}
+
+\paragraph{\bf Overriding Defaults}
+
+\paragraph{\bf Colorizing Output}
+
+\paragraph{\bf Elevating Privilege}
+
+\subsection{Composing}
+
+\paragraph{\bf Building Tools}
+
+\paragraph{\bf Transforming Data}
 
 The most interesting shell operator is certainly the pipe (\verb`|`), since it creates an interface between two otherwise separate programs.
 The pipe embodies the Unix philosophy of small tools doing one thing well, which can be connected together to accomplish more complex tasks.
 \Cref{fig:flow} shows a flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage.
+\TODO
 
 \begin{figure*}[h]
 	\centering    
@@ -69,7 +136,8 @@ The pipe embodies the Unix philosophy of small tools doing one thing well, which
 	\label{fig:flow}
 \end{figure*}
 
-\subsection{Subcommand Chains}
+
+\paragraph{\bf Chaining Subcommands}
 
 An interesting pattern found in aliases composed of multiple commands are chains of subcommand invocations.
 For example, the package manager \verb|brew| has a subcommand \verb|update|, for updating the package database, and a subcommand \verb|upgrade|, for upgrading previously installed packages to the latest available versions.
@@ -88,19 +156,3 @@ alias whoops='git reset --hard && git clean -df'
 alias gitpull='git stash && git pull && git stash pop'
 \end{CVerbatim}
 are just some examples of aliases combining the various \verb|git| subcommands.
-
-%\input{default_arguments}
-
-%\input{autocorrect}
-
-%\input{compression}
-
-%\input{chaining}
-
-%\input{safety}
-
-%\input{bookmarks}
-
-% for potential related work (including method), google 'usability smells'
-% e.g. https://www.sciencedirect.com/science/article/pii/S1071581916301215
-%      https://link.springer.com/chapter/10.1007/978-3-662-44811-3_13

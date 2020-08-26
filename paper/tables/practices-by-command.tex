@@ -1,0 +1,64 @@
+
+\newcommand{\rot}[1]{\makebox[1em][l]{\rotatebox{45}{#1}}}
+
+\newcommand{\full}{$\CIRCLE$}
+\newcommand{\half}{$\LEFTcircle$}
+\newcommand{\empt}{$\Circle$}
+
+\newcommand{\hist}[1]{\includegraphics[height=1em, trim=1em 1em 1em 1em, clip]{compression/#1.pdf}}
+
+\newcommand*{\pie}[1]{\begin{tikzpicture}[scale=0.15]%
+    \draw (0,0) circle (1);
+    \fill[fill opacity=1,fill=black] (0,0) -- (90:1) arc (90:90-#1*3.6:1) -- cycle;
+    \end{tikzpicture}}
+
+\begin{table*}
+    \caption{\TODO}
+    \label{tab:practices-by-command}
+    \begin{tabular}{llrlllllllllllllccc}
+        & & \# & &\rot{Abbreviating Commands} & \rot{Describing Actions} & \rot{Correcting Misspellings} & \rot{Bookmarking Locations} & & \rot{Substituting Commands} & \rot{Overriding Defaults} & \rot{Colorizing Output} & \rot{Elevating Privilege} & & \rot{Building Tools} & \rot{Transforming Data} & \rot{Chaining Subcommands} & & Compression Ratio \\
+        \midrule
+        \multicolumn{2}{l}{Version Control} \\
+            & \texttt{git} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{git} \\
+            & \texttt{hg} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{hg} \\
+        \midrule
+        \multicolumn{2}{l}{System Tools} \\
+        & \texttt{ls} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{ls} \\
+        & \texttt{cd} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{cd} \\
+        & \texttt{grep}* & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{grep} \\
+        & \texttt{echo} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{echo} \\
+        & \texttt{xargs} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{xargs} \\
+        & \texttt{ssh} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{ssh} \\
+        & \texttt{rm} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{rm} \\
+        & \texttt{dir} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{dir} \\
+        & \texttt{cp} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{cp} \\
+        & \texttt{mv} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{mv} \\
+        & \texttt{sort} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{sort} \\
+        & \texttt{head} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{head} \\
+        & \texttt{cat} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{cat} \\
+        \midrule
+        \multicolumn{2}{l}{Package Managers} \\
+        & \texttt{apt}* & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{apt} \\
+        & \texttt{zypper} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{zypper} \\
+        & \texttt{pacman} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{pacman} \\
+        & \texttt{mvn} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{mvn} \\
+        & \texttt{yaourt} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{yaourt} \\
+        & \texttt{brew} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{brew} \\
+        & \texttt{port} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{port} \\
+        \midrule
+        \multicolumn{2}{l}{Text Editors}  \\
+        & \texttt{mate} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{mate} \\
+        & \texttt{vim} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{vim} \\
+        & \texttt{nvim} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{nvim} \\
+        & \texttt{emacs} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{emacs} \\
+        \midrule
+        \multicolumn{2}{l}{Infrastructure} \\
+        & \texttt{docker}* & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{docker} \\
+        & \texttt{kubectl}* & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{kubectl} \\
+        & \texttt{vagrant} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{vagrant} \\
+        \midrule
+        \multicolumn{2}{l}{Other} \\
+        & \texttt{ffmpeg} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{ffmpeg} \\
+        & \texttt{beep} & \num{999999} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & \pie{0} & & \pie{0} & \pie{0} & \pie{0} & & \hist{beep} \\
+    \end{tabular}
+\end{table*}

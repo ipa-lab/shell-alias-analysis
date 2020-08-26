@@ -1,0 +1,26 @@
+\begin{table}
+	\caption{Customization practices involving shell aliases}
+    \label{tab:practices}
+    \begin{tabular}{llrr}
+        \toprule
+        & & \# & \% \\
+        \midrule
+        \multicolumn{2}{l}{\textsc{Naming}} & & \\
+        & Abbreviating Commands     & \num{999999} & 00.00 \\ % & \verb|alias gc='git commit'| \\
+        & Describing Actions        & \num{999999} & 00.00 \\ % & \verb|alias download_file='wget -q -O -'| \\
+        & Correcting Misspellings   & \num{999999} & 00.00 \\ % & \verb|alias sduo=sudo| \\
+        & Bookmarking Locations     & \num{999999} & 00.00 \\
+        \midrule
+        \multicolumn{2}{l}{\textsc{Changing}} & & \\
+        & Substituting Commands     & \num{999999} & 00.00 \\ % & \verb|alias more=less| \\
+        & Overriding Defaults       & \num{999999} & 00.00 \\ % & \verb|alias rm='rm -i'| \\ %du -ach | sort -h
+        & Colorizing Output         & \num{999999} & 00.00 \\ % & \verb|alias grep='grep --color=always'| \\
+        & Elevating Privilege       & \num{999999} & 00.00 \\ % & \verb|alias apti='sudo apt-get install'| \\
+        \midrule
+        \multicolumn{2}{l}{\textsc{Composing}} & & \\
+        & Building Tools            & \num{999999} & 00.00 \\ % & \verb|alias drm='docker rm $(docker ps -a -q)'| \\
+        & Transforming Data         & \num{999999} & 00.00 \\ % & \verb|alias mem10='ps auxf | sort -nr -k 4 | head -10'| \\
+        & Chaining Subcommands      & \num{999999} & 00.00 \\ % & \verb|alias brewu='brew update && brew upgrade && brew cleanup'| \\
+        \bottomrule
+        \end{tabular}
+\end{table}
