@@ -30,17 +30,18 @@ In consecutive iterations, the coders identified ways of formalizing the emerged
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
-We identified 11 customization practices involving shell aliases,
+We identified 11 customization practices involving shell aliases, which can be roughly divided into three groups:
+\begin{itemize}
+    \item \textsc{Naming} practices introduce new names for \emph{abbreviating commands}, \emph{describing actions}, \emph{correcting misspellings}, or \emph{bookmarking locations}.
+    \item \textsc{Changing} practices change the semantics of existing commands, often by \emph{substituting commands} or \emph{overriding defaults}, but also by \emph{elevating privilege}, or, surprisingly often, by \emph{colorizing output}.    
+    \item \textsc{Composing} practices combine multiple commands for the purposes of \emph{building tools}, \emph{transforming data} or \emph{chaining subcommands} together.
+\end{itemize} 
 
-of \emph{naming}, \emph{changing} and \emph{composing}.
+\Cref{tab:practices} gives a quantitative overview of the prevalence of each of these practices in the dataset, together with illustrative examples.
+Any alias can be an expression of multiple practices at once, and some practices only occur with certain commands.
+\Cref{tab:practices-by-command} breaks down the customization practices by command.
 
-\Cref{tab:practices} lists the practices we found, with examples, and how ... in the dataset.
-Note that an alias might exhibit multiple practices, so the percentages do not add up to 100.
-Some of the practices, while not quantitavely ..., are qualtiatively distinct enough to merit \dots
-
-Table \TODO breaks down the customization practices by command.
-
-We will now discuss each of the 11 practices in more detail.
+We will now discuss each of these customization practices in more detail.
 
 \input{tables/practices.tex} % TODO: fill in
 \input{tables/practices-by-command.tex} % TODO: update
@@ -51,6 +52,8 @@ The most common use of aliases is to simplify complex expressions by giving them
 \TODO not changing their semantics
 
 \paragraph{\bf Abbreviating Commands}
+
+\TODO subcommand shortcuts
 
 The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
 If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
@@ -159,6 +162,16 @@ alias zshconfig="vim ~/.zshrc"
 
 \paragraph{\bf Elevating Privilege}
 
+The \verb|sudo| command allows the user to execute another command with superuser privileges.
+This is often necessary if the command needs to modify critical parts of the system.
+In our dataset, we found \num{93683} aliases (\per{4.25}) in which a command is prefixed with \verb|sudo|.
+The top \texttt{sudo}-prefixed command is the package manager \verb|apt-get|, appearing \num{10467} times with \verb|sudo|.
+Remarkably, these are \per{89.35} of all occurrences of \verb|apt-get|.
+In fact, \per{72.45} of all occurrences of the package managers \verb|apt|* (Debian and derivatives; including \verb|apt|, \verb|apt-get|, \verb|apt-cache|, \verb|aptitude|, and \verb|$apt_pref|), \verb|pacman|, \verb|abs| and \verb|aur| (Arch Linux), \verb|yum| (RPM), \verb|dnf| (Fedora), \verb|zypper| (openSUSE), \verb|port| (macOS), and \verb|gem| (Ruby) are with \verb|sudo| and these package managers account for \per{29.1} of all \verb|sudo| occurrences.
+Interestingly, the macOS package manager \verb|brew| rarely appears with \verb|sudo| (only \per{1.07}), even though it is the third most occurring package manager overall, behind \verb|apt|* and \verb|pacman|.
+
+Other commands that more often than not demand elevated privileges are system utilities like \verb|systemctl|, \verb|shutdown|, \verb|lsof| or \verb|mount|.
+
 \subsection{Composing}
 
 \paragraph{\bf Building Tools}
@@ -176,7 +189,6 @@ The pipe embodies the Unix philosophy of small tools doing one thing well, which
 	\caption{Flow diagram for top 3-command pipelines}
 	\label{fig:flow}
 \end{figure*}
-
 
 \paragraph{\bf Chaining Subcommands}
 
