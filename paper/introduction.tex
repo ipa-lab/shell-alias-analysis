@@ -13,18 +13,22 @@ The set of aliases users define provides a window into their preferences express
 Many users have publicly shared these configurations on social coding platforms such as GitHub.
 To study these preferences, we performed an exploratory analysis of over 2.2 million alias definitions on GitHub, which provides a rich dataset to investigate how command line users customize their tasks and workflows.
 
-We find that aliases have multiple complex use cases: \TODO
-Users often redefine existing commands to include \emph{default arguments} they want to have implicitly included in every execution, rather than specifying them explicitly.
-For instance, aliases for \verb|rm|, \verb|cp|, and \verb|mv| are often redefined to introduce the option \verb|-i| to add the interactive safety feature by default.
-Aliases are also introduced to redefine different kinds of misspellings to provide a hand-crafted autocorrect feature in the command line. 
-Short, memorable names are often introduced as aliases to simplify complex expressions (the average length of an alias name is 4.43 characters, whereas the average length of its substitution is 21.15).
-Aliases were also used as bookmarks to local and remote locations (e.g., \verb|cd| or \verb|ssh| together with complicated paths, URLs, or IP addresses).
-When further analyzing the compression induced by aliases, we saw that they are not only used to abbreviate and simplify longer commands and chains.
-They were also defined to lend more descriptive names to otherwise cryptic and complicated command and argument structures.
-When composition is used in aliases, the structures are most often chained by pipes (\verb|||), where further analysis allowed us to ascertain common data flows between different commands.
+We find that there are three types of aliases, supporting a number of customization practices:
+\textsc{Shortcuts} introduce new names.
+They can be used for \emph{nicknaming commands} (and correcting misspellings in the process),
+\emph{abbreviating subcommands} like \texttt{git push},
+and \emph{bookmarking locations} for quick navigation.
+\textsc{Modifications} change the semantics of commands.
+We can use these types of aliases for \emph{substituting commands}, such as replacing \cmd{more} with \cmd{less},
+for \emph{overriding defaults} to customize commands to personal contexts, 
+which often involves \emph{colorizing output},
+and also running certain commands as root by \emph{elevating privilege}.
+Aliases that combine multiple commands are \textsc{Scripts}.
+They enable many ways of \emph{transforming data} using Unix pipes, 
+and allow for automating repetitive workflows by \emph{chaining subcommands}.
 
-Our insights can help improve the usability for particular tools and the command line experience in general.
+\TODO Our insights can help improve the usability for particular tools and the command line experience in general.
 Our results on default arguments indicate usability issues for a wide range of tools, but also shows that defaults can sometimes be contextual (e.g., \verb|-i| interactive mode by default in the command line, but not when executing scripts).
 We also envision that our results and dataset can be used to learn repair rules, in order to correct not only user errors, but also provide usage hints to introduce newcomers to common workflows.
 
-In the following, we introduce more background by describing usage and syntax of aliases. We further describe our data collection and parsing process. We then present results from our exploratory analysis on shell aliases in the wild, followed by a discussion on implications for usability. We finally discuss threats to validity and review related work in the broader context of this study. 
+In the following, we introduce more background by describing usage and syntax of aliases. We further describe our data collection and parsing process. We then present the findings from our exploratory analysis on shell aliases in the wild, followed by a discussion on implications for usability. We finally discuss threats to validity and review related work in the broader context of this study. 
