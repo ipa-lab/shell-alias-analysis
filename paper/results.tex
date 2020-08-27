@@ -1,7 +1,16 @@
 \section{Findings}
 
-\input{tables/top-summary.tex}
-\input{tables/command-summary.tex}
+\begin{table*}[t]
+    \caption{Top alias names, commands and arguments}
+    \label{tab:top-summary}
+    \input{tables/top-summary.tex}
+\end{table*}
+
+\begin{table}
+    \caption{Top two commands with top arguments and aliases}
+    \label{tab:command-summary}
+    \input{tables/command-summary.tex}
+\end{table}
 
 \Cref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
 The most common alias name we found is \texttt{ls}, appearing a total number of \num{83782} times, which is \per{3.8} of all alias definitions.
@@ -29,7 +38,12 @@ In consecutive iterations, the coders identified ways of formalizing the emerged
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
-\input{tables/practices.tex} % TODO: fill in
+\begin{table}
+	\caption{Alias types and customization practices}
+    \label{tab:practices}
+    \input{tables/practices.tex} % TODO: fill in
+\end{table}
+
 \input{tables/practices-by-command.tex} % TODO: update
 
 We identified nine customization practices among three types of aliases:
