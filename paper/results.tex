@@ -14,10 +14,10 @@ Looking at each part of an alias definition in isolation can only get us so far,
 \Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
 Here we can already identify some of the typical alias use cases.
 Looking at \texttt{ls}, we find that aliases are used
-to redefine the command with a default argument (\verb|alias ls="ls --color=auto"|);
-to shorten a common invocation (\verb|alias ll="ls -alF"|);
-and to correct a spelling mistake (\verb|alias sl=ls|).
-We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
+to redefine the command with a default argument (\alias{ls}{ls --color=auto});
+to shorten a common invocation (\alias{ll}{ls -alF});
+and to correct a spelling mistake (\alias{sl}{ls}).
+We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \alias{gd}{git diff}).
 
 To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
 Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \cite{thomas:06}.
@@ -58,11 +58,7 @@ We will now discuss each of these customization practices in more detail.
 The most obvious use of an alias is to give a complex expression a short and/or memorable name.
 The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
 If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
-For example, the definition
-\begin{CVerbatim}
-alias gs='git status'
-\end{CVerbatim}
-has a compression ratio of 5.
+For example, the alias \alias{gs}{git status} has a compression ratio of 5.
 \Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
@@ -82,26 +78,16 @@ Stepping back from a purely syntactical viewpoint, a few distinct naming practic
 
 stepping back from this purely syntiactical viewpoint, we find three distinct naming practices that have specific goals beyond simply 
 
-\TODO: Renaming Commands as a practice? occurs in 10-14 per of aliases! could subsume autocorrect?
+\TODO: regular shortcuts?
 
-\paragraph{\bf Abbreviating Subcommands}
+\paragraph{\bf Renaming Commands}
 
-\TODO explain subcommands
-We identified \TODO commands that take subcommands, like \TODO
-\TODO percent of aliases contain a command that can take a subcommands.
-\TODO percent of all aliases are purely abbreviations of subcommands, without adding additional arguments or ...
-
-\TODO subcommand shortcuts
-
-\paragraph{\bf Describing Actions}
-
-Among the aliases whose names are longer than their values, we found many descriptive names, like \texttt{git-\allowbreak{}last-\allowbreak{}commit-\allowbreak{}message}, \texttt{docker\_\allowbreak{}list\_\allowbreak{}all\_\allowbreak{}containers} or \texttt{generate\_\allowbreak{}random\_\allowbreak{}password}.
-
-\TODO drop this?
+\TODO: Renaming Commands as a practice? occurs in 10-14 per of aliases! could subsume autocorrect? and even subcommand shortcuts?
 
 \paragraph{\bf Correcting Misspellings}
 
-Aliases can be used to correct common misspellings of commands, like typing \verb|got| instead of \verb|git|.
+A special case of renaming occurs when the new name is a common misspelling of the renamed command.
+In this case, the alias acts like an autocorrect mechanism, as in \alias{got}{git}.
 While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
 We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
 We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
@@ -109,19 +95,25 @@ It is a robust measure that in addition to tracking the number of insertions, de
 We computed the distance measure for all applicable aliases, and determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
 We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most commonly involving transposition (\alias{grpe}{grep}), case-sensitivity (\alias{Jupyter}{jupyter}), localization (\alias{pluralise}{pluralize}), and punctuation (\alias{docker-build}{docker\_build}).
 
-On the flip side, aliases are also used to disable autocorrect mechanisms.
-The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
-There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
+%On the flip side, aliases are also used to disable autocorrect mechanisms.
+%The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
+%There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
+
+\paragraph{\bf Abbreviating Subcommands}
+
+Many commands can operate in different modes, or act as interfaces to a variety of different \emph{subcommands}.
+The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
+For example, \texttt{git push --tags} executes the \texttt{push} subcommand of \cmd{git} with the \texttt{--tags} flag enabled.
+We identified 67 commands in our dataset that take subcommands, such as \cmd{git}, \cmd{docker}, or \cmd{systemctl}.
+Noticeably, we found \num{194850} aliases (\per{8.84}) that are purely abbreviations of subcommands, without adding any additional arguments.
+For example, \alias{gs}{git status} or \alias{gd}{git diff}.
+The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, where \num{113980} aliases are defined purely for abbreviating one of its subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
+The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
 
 \paragraph{\bf Bookmarking Locations}
 
 When an aliased command is called with an argument that references some specific local or remote location, e.g., a file path, domain, or IP address, the alias acts as a bookmark to that location.
-For instance,
-\begin{CVerbatim}
-alias starwars="telnet towel.blinkenlights.nl"    
-\end{CVerbatim}
-and \verb|alias dl="cd ~/Downloads"|
-are both bookmark aliases.
+For instance, \alias{starwars}{telnet towel.blinkenlights.nl} and \alias{dl}{cd \textasciitilde/Downloads} are both bookmark aliases.
 
 To find such bookmarking uses in our dataset, we searched for arguments that are locations, which we take to be any of the following:
 \begin{itemize}
@@ -131,25 +123,14 @@ To find such bookmarking uses in our dataset, we searched for arguments that are
 \end{itemize}
 To avoid false positives, we sampled the top 300 search results according to the above criteria and determined some exclusion patterns.
 For instance, \texttt{/dev/null} is not a location for our purposes.
-Neither is \texttt{origin/master}, and thus 
-\begin{CVerbatim}
-alias gm="git merge origin/master"
-\end{CVerbatim}
-does not count as a bookmark.
+Neither is \texttt{origin/master}, and thus \alias{gm}{git merge origin/master} does not count as a bookmark.
 We also exclude aliases that are merely referencing unnamed relative directories (e.g., \verb|../..|).
 
 By our definition, \num{321546} aliases (\per{14.59}) are bookmarks.
 Of these, \num{59931} are remote bookmarks containing URLs or IP addresses (\per{15.92} of all bookmarks).
 Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily in bookmark aliases.
 Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations,
-or outputting log files, as in
-\begin{CVerbatim}
-alias onoz="cat /var/log/errors.log"
-\end{CVerbatim}
-or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself:
-\begin{CVerbatim}
-alias zshconfig="vim ~/.zshrc"
-\end{CVerbatim}
+or outputting log files, as in \alias{onoz}{cat /var/log/errors.log}, or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself: \alias{zshconfig}{vim \textasciitilde/.zshrc}.
 \Cref{tab:locations} shows the top local and remote locations found in aliases.
 
 \begin{table}
@@ -158,7 +139,8 @@ alias zshconfig="vim ~/.zshrc"
     \input{tables/locations.tex}
 \end{table}
 
-\subsection{Changing}
+\subsection{Adapting}
+
 
 Beyond introducing names for 
 subcommands, file system locations etc
@@ -249,19 +231,18 @@ The pipe embodies the Unix philosophy of small tools doing one thing well, which
 \paragraph{\bf Chaining Subcommands}
 
 An interesting pattern found in aliases composed of multiple commands are chains of subcommand invocations.
-For example, the package manager \verb|brew| has a subcommand \verb|update|, for updating the package database, and a subcommand \verb|upgrade|, for upgrading previously installed packages to the latest available versions.
-\per{28.08} percent of all aliases involving the \verb|brew| command contain the composition
+For example, the package manager \cmd{brew} has a subcommand \texttt{update}, for updating the package database, and a subcommand \texttt{upgrade}, for upgrading previously installed packages to the latest available versions.
+\per{28.08} percent of all aliases involving the \cmd{brew} command contain the composition
 \begin{CVerbatim}
 brew update && brew upgrade
 \end{CVerbatim}
 (sometimes with \verb|;| instead of \verb|&&|), with alias names like \verb|update|, \verb|brewup|, \verb|bup|, etc.
-This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \verb|brew|, \verb|apt-get|, \verb|npm| or \verb|gem|, mostly fulfilling roughly the same function as in the \verb|brew| example.
+This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \cmd{brew}, \cmd{apt-get}, \cmd{npm} or \cmd{gem}, mostly fulfilling roughly the same function as in the \cmd{brew} example.
 
-The command with the highest absolute number of aliases showing this pattern is \verb|git|, however, with \num{12063} occurrences (\per{3.89} of all aliases using \verb|git|).
+The command with the highest absolute number of aliases showing this pattern is \cmd{git}, however, with \num{12063} occurrences (\per{3.89} of all aliases using \cmd{git}).
 Here, the uses are more varied:
-\begin{CVerbatim}
-alias commit='git add . && git commit -m'
-alias whoops='git reset --hard && git clean -df'
-alias gitpull='git stash && git pull && git stash pop'
-\end{CVerbatim}
-are just some examples of aliases combining the various \verb|git| subcommands.
+\begin{center}
+\alias{commit}{git add . \&\& git commit -m}\\
+\alias{whoops}{git reset --hard \&\& git clean -df}\\
+\alias{gitpull}{git stash \&\& git pull \&\& git stash pop}        
+\end{center}
