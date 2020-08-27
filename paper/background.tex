@@ -36,7 +36,8 @@ In general, an alias definition takes the form
 \begin{CVerbatim}
 alias name=value
 \end{CVerbatim}
-where \verb|value| can optionally be enclosed in single (\verb|'|) or double (\verb|"|) quotes and \verb|name| can be any identifier that is a valid command name.\footnote{Some shells allow for an alternative alias syntax without the equals sign between \texttt{name} and \texttt{value}. In this paper we only look at POSIX-compliant alias definitions.}% TODO: technically not quite correct, see FSE review 2
+where \verb|value| can optionally be enclosed in single (\verb|'|) or double (\verb|"|) quotes and \verb|name| can be any identifier that is a valid command name.\footnote{Some shells allow for an alternative alias syntax without the equals sign between \texttt{name} and \texttt{value}. In this paper we only look at POSIX-compliant alias definitions.}
+% TODO: technically not quite correct, see FSE review 2
 In particular, the alias name can be an existing command, so a re-definition like
 \begin{CVerbatim}
 alias grep='grep --color=always'
