@@ -64,29 +64,24 @@ The median compression ratio is 4.25, meaning half of all alias values are at le
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
 
 There are \num{26055} aliases (\per{1.18}) with names longer than their values.
-\TODO Among these, we found many descriptive names, like ...
 The two longest alias names we found are from joke definitions.
 The first is \num{1772} characters long and is comprised of the letter `f' repeated \num{1053} times, followed by the letter `u' repeated 719 times.
 It is an alias for the \verb|cat| command with a similarly named file as an argument.
 The second longest alias name is a Swedish compound word of \num{131} characters,\footnote{Translating, roughly, to northwestern-glacier-artillery-flight-thrust-simulator-plant-equipment-maintenance-follow-up-systems-discussion-posts-preparation-works.} aliasing the \verb|ls| command.
 
-On the other end of the spectrum, the highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
+On the other end of the spectrum, an alias named \texttt{line} echoes \num{23635} dashes, achieving a compression ratio of \num{5911}.
+The second highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
 When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
-\TODO `line` that echoes 23635 dashes.
 
-Stepping back from a purely syntactical viewpoint, a few distinct naming practices become visible, each with different goals.
+Stepping back from a purely syntactical viewpoint, we can see a few distinct practices related to the naming of things.
 
-stepping back from this purely syntiactical viewpoint, we find three distinct naming practices that have specific goals beyond simply 
+\paragraph{\bf Nicknaming Commands}
 
-\TODO: regular shortcuts?
+There are \num{244872} aliases in our dataset (\per{11.11}) that merely give a new name to a command, without adding any arguments, and without the name belonging to a different command (that would be a substitution, see below).
+The most often occurring nicknames are \alias{g}{git}, \alias{c}{clear}, \alias{h}{history}, and \alias{v}{vim}.
+Almost all (\per{93.03}) of these kinds of aliases introduce a nickname that is shorter than the command they are referring to, and about half (\per{50.58}) introduce a name that is only one or two characters long.
 
-\paragraph{\bf Renaming Commands}
-
-\TODO: Renaming Commands as a practice? occurs in 10-14 per of aliases! could subsume autocorrect? and even subcommand shortcuts?
-
-\paragraph{\bf Correcting Misspellings}
-
-A special case of renaming occurs when the new name is a common misspelling of the renamed command.
+A special case of nicknaming occurs when the new name is a common misspelling of the command.
 In this case, the alias acts like an autocorrect mechanism, as in \alias{got}{git}.
 While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
 We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
@@ -105,7 +100,7 @@ Many commands can operate in different modes, or act as interfaces to a variety 
 The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
 For example, \texttt{git push --tags} executes the \texttt{push} subcommand of \cmd{git} with the \texttt{--tags} flag enabled.
 We identified 67 commands in our dataset that take subcommands, such as \cmd{git}, \cmd{docker}, or \cmd{systemctl}.
-Noticeably, we found \num{194850} aliases (\per{8.84}) that are purely abbreviations of subcommands, without adding any additional arguments.
+Noticeably, we found \num{194850} aliases (\per{8.84}) that are purely abbreviations of subcommands, without adding any additional arguments beyond the name of the subcommand.
 For example, \alias{gs}{git status} or \alias{gd}{git diff}.
 The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, where \num{113980} aliases are defined purely for abbreviating one of its subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
 The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
@@ -131,13 +126,13 @@ Of these, \num{59931} are remote bookmarks containing URLs or IP addresses (\per
 Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily in bookmark aliases.
 Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations,
 or outputting log files, as in \alias{onoz}{cat /var/log/errors.log}, or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself: \alias{zshconfig}{vim \textasciitilde/.zshrc}.
-\Cref{tab:locations} shows the top local and remote locations found in aliases.
+%\Cref{tab:locations} shows the top local and remote locations found in aliases.
 
-\begin{table}
-    \caption{Top 5 local and remote locations found in aliases}
-    \label{tab:locations}
-    \input{tables/locations.tex}
-\end{table}
+% \begin{table}
+%     \caption{Top 5 local and remote locations found in aliases}
+%     \label{tab:locations}
+%     \input{tables/locations.tex}
+% \end{table}
 
 \subsection{Adapting}
 
@@ -194,10 +189,6 @@ Taking all these varieties into account, more than half of all command redefinit
 This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
 If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases ensure that a command's output is not just in black and white.
 
-\subsection{Composing}
-
-\TODO
-
 \paragraph{\bf Elevating Privilege}
 
 The \cmd{sudo} command allows the user to execute another command with superuser privileges.
@@ -210,16 +201,20 @@ Interestingly, the macOS package manager \cmd{brew} rarely appears with \cmd{sud
 
 Other commands that more often than not demand elevated privileges are system utilities like \cmd{systemctl}, \cmd{shutdown}, \cmd{lsof} or \cmd{mount}.
 
-\paragraph{\bf Building Tools}
+\subsection{Composing}
+
+\paragraph{\bf Automating Workflows}
 
 \TODO
 
 \paragraph{\bf Transforming Data}
 
 The most interesting shell operator is certainly the pipe (\verb`|`), since it creates an interface between two otherwise separate programs.
-The pipe embodies the Unix philosophy of small tools doing one thing well, which can be connected together to accomplish more complex tasks.
+The pipe embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
+There are \num{74719} aliases (\per{3.39}) combining two or more commands using only the pipe operator.
+The most common command occurring in these pipelines by far is \cmd{grep}, which makes an appearance in almost half of all pipelines (\per{46.16}), more than three times as often as \cmd{xargs} and \cmd{sort}, the next most common commands used for transforming data.
+The most common data sources in pipelines are the commands \cmd{ps}, \cmd{git}, and \cmd{ls}, which can be found at the beginning of almost a third (\per{32}) of all pipelines.
 \Cref{fig:flow} shows a flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage.
-\TODO
 
 \begin{figure*}[h]
 	\centering    
