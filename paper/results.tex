@@ -30,7 +30,7 @@ In consecutive iterations, the coders identified ways of formalizing the emerged
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
-We identified 11 customization practices involving shell aliases, which can be roughly divided into three groups:
+We identified 11 customization practices involving shell aliases, which can be roughly divided into three groups: \TODO
 \begin{itemize}
     \item \textsc{Naming} practices introduce new names for \emph{abbreviating subcommands}, \emph{describing actions}, \emph{correcting misspellings}, or \emph{bookmarking locations}.
     \item \textsc{Changing} practices change the semantics of existing commands, often by \emph{substituting commands} or \emph{overriding defaults}, but also by \emph{elevating privilege}, or, surprisingly often, by \emph{colorizing output}.    
@@ -66,8 +66,9 @@ has a compression ratio of 5.
 \Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
-There are \num{26055} aliases (\per{1.18}) with names longer than their values.
 
+There are \num{26055} aliases (\per{1.18}) with names longer than their values.
+\TODO Among these, we found many descriptive names, like ...
 The two longest alias names we found are from joke definitions.
 The first is \num{1772} characters long and is comprised of the letter `f' repeated \num{1053} times, followed by the letter `u' repeated 719 times.
 It is an alias for the \verb|cat| command with a similarly named file as an argument.
@@ -75,10 +76,20 @@ The second longest alias name is a Swedish compound word of \num{131} characters
 
 On the other end of the spectrum, the highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
 When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
+\TODO `line` that echoes 23635 dashes.
 
 Stepping back from a purely syntactical viewpoint, a few distinct naming practices become visible, each with different goals.
 
+stepping back from this purely syntiactical viewpoint, we find three distinct naming practices that have specific goals beyond simply 
+
+\TODO: Renaming Commands as a practice? occurs in 10-14 per of aliases! could subsume autocorrect?
+
 \paragraph{\bf Abbreviating Subcommands}
+
+\TODO explain subcommands
+We identified \TODO commands that take subcommands, like \TODO
+\TODO percent of aliases contain a command that can take a subcommands.
+\TODO percent of all aliases are purely abbreviations of subcommands, without adding additional arguments or ...
 
 \TODO subcommand shortcuts
 
@@ -86,7 +97,7 @@ Stepping back from a purely syntactical viewpoint, a few distinct naming practic
 
 Among the aliases whose names are longer than their values, we found many descriptive names, like \texttt{git-\allowbreak{}last-\allowbreak{}commit-\allowbreak{}message}, \texttt{docker\_\allowbreak{}list\_\allowbreak{}all\_\allowbreak{}containers} or \texttt{generate\_\allowbreak{}random\_\allowbreak{}password}.
 
-\TODO dictionary?
+\TODO drop this?
 
 \paragraph{\bf Correcting Misspellings}
 
@@ -96,7 +107,7 @@ We opt for a conservative criterion (potentially underestimating the true extent
 We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
 It is a robust measure that in addition to tracking the number of insertions, deletions, and substitutions between two strings, also captures the transposition of two characters, a common occurrence in misspelled commands.
 We computed the distance measure for all applicable aliases, and determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
-We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most commonly involving transposition (\verb|grpe| $\rightarrow$ \verb|grep|), case-sensitivity (\verb|Jupyter| $\rightarrow$ \verb|jupyter|), localization (\verb|pluralise| $\rightarrow$ \verb|pluralize|), and punctuation (\verb|docker-build| $\rightarrow$ \verb|docker_build|).
+We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most commonly involving transposition (\alias{grpe}{grep}), case-sensitivity (\alias{Jupyter}{jupyter}), localization (\alias{pluralise}{pluralize}), and punctuation (\alias{docker-build}{docker\_build}).
 
 On the flip side, aliases are also used to disable autocorrect mechanisms.
 The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
@@ -149,13 +160,27 @@ alias zshconfig="vim ~/.zshrc"
 
 \subsection{Changing}
 
+Beyond introducing names for 
+subcommands, file system locations etc
+
+, aliases can also ....
+thus changing the semantics of commands (as we already saw with aliases for \emph{bookmarking locations}, where )
+
+aliases are used to change the semantics of commands.
+
+
+Beyond giving names to things
+aliases can provide arguments
+and change the semantics of commands (as we already saw in the case of bookmarking locations)
+There are a few particularly intersting or outstanding ways where aliases are used to change the semantics of commands.
+
 \TODO changing the semantics of a command, usually by redefining the command itself (substituting, overriding) or but not necessarily (color, elevating)
 
 \paragraph{\bf Substituting Commands}
 
 When the name of an alias is identical to the name of a pre-existing command, the alias defines a substitution for the command.
-A common example is \verb|alias more=less|, replacing a standard Unix utility (\verb|more|) with a more capable but similar command (\verb|less|).
-This can also be used for subterfuge, as in \verb|alias emacs=vim| (appearing 132 times in our dataset) or indeed \verb|alias vim=emacs| (86 times, alas).
+A common example is \alias{more}{less}, replacing a standard Unix utility (\cmd{more}) with a more capable but similar command (\cmd{less}).
+This can also be used for subterfuge, as in \alias{emacs}{vim} (appearing 132 times in our dataset) or indeed \alias{vim}{emacs} (86 times, alas).
 
 To determine which alias names are also names of actual commands, we compared them to known Unix commands,\footnote{\url{https://en.wikipedia.org/wiki/List_of_Unix_commands} and \url{https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands}} as well as a curated sample of commands from our dataset (taking care to not include names that appear in a command position but are actually just other aliases).
 To determine proper substitutions, we only count aliases whose value does not also include the name of the command (which would point to an overriding alias, see below).
@@ -164,28 +189,44 @@ The top three substitutions are \verb|vi| $\rightarrow$ \verb|vim|, \verb|vim| $
 
 \paragraph{\bf Overriding Defaults}
 
-When the alias name is not just an existing command, but this command is part of the alias value, as in \verb|alias ls='ls -G'|, then the alias effectively overrides the default settings of the command.
-\TODO
+When the name of the alias is a pre-existing command that is also part of the alias itself, as in \alias{ls}{ls -G}, then the alias re-defines the command and effectively overrides its default settings.
+Any time the command is now executed, it will be with the arguments specified in the alias.
+There are \num{319239} aliases in our dataset (\per{14.48}) that are used to override defaults in this way.
+Aliases to override the defaults of the \cmd{grep} family of commands (\cmd{grep}, \cmd{egrep}, \cmd{fgrep}) occur \num{96970} times, which is \per{68.27} of all \cmd{grep} appearances and accounts for \per{4.4} of all alias definitions.
+The \cmd{ls} command is redefined with new defaults \num{75374} times (\per{28.99} of \cmd{ls} appearances), accounting for \per{3.42} of all aliases.
+Also of note are the file system commands \cmd{mv}, \cmd{cp}, and \cmd{rm}, where redefinitions account for \per{89.3}, \per{80.9}, and \per{55.37} of all appearances of these commands, respectively.
+
+Looking in detail at the new defaults of these redefined commands, we find they reveal a variety of user preferences, especially in the diverse long tail, where we find a lot of unique alias definitions and argument combinations.
+Two areas of customization stand out, however: formatting output and adding safety.
+The majority of overrides for file system commands (\cmd{mv}, \cmd{cp}, and \cmd{rm}, but also \cmd{ln}, for creating symbolic links) are to enable interactive mode (\texttt{-i} and variations), which prompts the user before performing potentially destructive actions.
+Verbose output (\texttt{-v}) also plays a role here, describing exactly what kind of effects a command execution had or will have.
+Enabling verbosity can also be seen as a kind of output formatting, although much more common is the wish for human-readable output.
+For example, the alias \alias{df}{df -h} ensures that the available disk space is displayed in common size units, as opposed to just the raw number of bytes.
+But by far the most common reason for overriding defaults is to enable colorized output.
+This behavior is so prevalent that we count it as a customization practice in its own right.
 
 \paragraph{\bf Colorizing Output}
 
-\TODO diff to colordiff
-
-\paragraph{\bf Elevating Privilege}
-
-The \verb|sudo| command allows the user to execute another command with superuser privileges.
-This is often necessary if the command needs to modify critical parts of the system.
-In our dataset, we found \num{93683} aliases (\per{4.25}) in which a command is prefixed with \verb|sudo|.
-The top \texttt{sudo}-prefixed command is the package manager \verb|apt-get|, appearing \num{10467} times with \verb|sudo|.
-Remarkably, these are \per{89.35} of all occurrences of \verb|apt-get|.
-In fact, \per{72.45} of all occurrences of the package managers \verb|apt|* (Debian and derivatives; including \verb|apt|, \verb|apt-get|, \verb|apt-cache|, \verb|aptitude|, and \verb|$apt_pref|), \verb|pacman|, \verb|abs| and \verb|aur| (Arch Linux), \verb|yum| (RPM), \verb|dnf| (Fedora), \verb|zypper| (openSUSE), \verb|port| (macOS), and \verb|gem| (Ruby) are with \verb|sudo| and these package managers account for \per{29.1} of all \verb|sudo| occurrences.
-Interestingly, the macOS package manager \verb|brew| rarely appears with \verb|sudo| (only \per{1.07}), even though it is the third most occurring package manager overall, behind \verb|apt|* and \verb|pacman|.
-
-Other commands that more often than not demand elevated privileges are system utilities like \verb|systemctl|, \verb|shutdown|, \verb|lsof| or \verb|mount|.
+Enabling colored output can be done in many different ways: adding an argument (like \texttt{less -R} or \cmd{grep --color=always}), setting an environment variable (as in \alias{ssh}{TERM=xterm256color ssh}), running the command through a tool that colorizes its output (like \cmd{grcat} or \cmd{pygmentize}), or even replacing a command outright (\alias{diff}{colordiff}).
+Taking all these varieties into account, more than half of all command redefinitions (\per{57.21}) enable colored output by default.
+This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
+If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases ensure that a command's output is not just in black and white.
 
 \subsection{Composing}
 
 \TODO
+
+\paragraph{\bf Elevating Privilege}
+
+The \cmd{sudo} command allows the user to execute another command with superuser privileges.
+Combining a command with \cmd{sudo} is often necessary if the other command needs to modify critical parts of the system.
+In our dataset, we found \num{93683} aliases (\per{4.25}) in which a command is prefixed with \cmd{sudo}.
+The top \cmd{sudo}-prefixed command is the package manager \cmd{apt-get}, appearing \num{10467} times with \cmd{sudo}.
+Remarkably, these are \per{89.35} of all occurrences of \cmd{apt-get}.
+In fact, \per{72.45} of all occurrences of the package managers \cmd{apt}* (Debian and derivatives; including \cmd{apt}, \cmd{apt-get}, \cmd{apt-cache}, \cmd{aptitude}, and \cmd{\$apt\_pref}), \cmd{pacman}, \cmd{abs} and \cmd{aur} (Arch Linux), \cmd{yum} (RPM), \cmd{dnf} (Fedora), \cmd{zypper} (openSUSE), \cmd{port} (macOS), and \cmd{gem} (Ruby) are together with \cmd{sudo}, and these package managers account for \per{29.1} of all \cmd{sudo} occurrences.
+Interestingly, the macOS package manager \cmd{brew} rarely appears with \cmd{sudo} (only \per{1.07}), even though it is the third most occurring package manager overall, behind \cmd{apt}* and \cmd{pacman}.
+
+Other commands that more often than not demand elevated privileges are system utilities like \cmd{systemctl}, \cmd{shutdown}, \cmd{lsof} or \cmd{mount}.
 
 \paragraph{\bf Building Tools}
 
