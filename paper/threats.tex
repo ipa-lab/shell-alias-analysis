@@ -15,11 +15,13 @@ Third, aliases might not reflect intent as much as we assume.
 En-masse copy-pasting of aliases by users, without them knowing exactly what they are copying, is certainly a realistic scenario.
 System distributions and configuration frameworks like \emph{ohmyzsh} ship with numerous aliases by default or as part of easily enabled plugins.
 Users might not even be aware of the aliases they have on their system.
-This is mitigated by the fact that all of the aliases we collected were publicly shared by users.
-It stands to reason that even if a user is not aware of all the details of their system configuration, they confirm their attachment to this configuration and its aliases by publicly sharing them---even if only for the purposes of synchronizing them across the users' own machines.
+We mitigate this concern by removing all duplicate files from our dataset that would indicate sheer copy/pasting.
+We also particularly exclude alias definitions that come bundled with operating systems and particular shells (e.g., zsh).
+%This is mitigated by the fact that all of the aliases we collected were publicly shared by users.
+%It stands to reason that even if a user is not aware of all the details of their system configuration, they confirm their attachment to this configuration and its aliases by publicly sharing them---even if only for the purposes of synchronizing them across the users' own machines.
 
 Fourth, we might not actually be able to see the true user intent, if it exists, as quantitative measures might hide a long tail of minor variations and individual user preference.
 Conclusions about common aliases or selected subsets might not be generalizable.
-To mitigate these summarizing effects, we established use cases as a vehicle to take a deeper dive into the details of certain alias usage.
+To mitigate these summarizing effects, we established customization practices as a vehicle to take a deeper dive into the details of certain alias usage.
 Since we sampled almost the whole available population, we are confident in the strength of our data and the conclusions we can draw from particular instances.
 Our replication package includes our whole toolchain and all alias data in a relational format ready for further analysis.
