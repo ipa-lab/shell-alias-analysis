@@ -21,13 +21,12 @@ For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} co
 %\paragraph{\bf Object Protocols}
 Similarly, in the practice of \emph{chaining subcommands} we can clearly see the prevalence of object protocols~\cite{beckman:11}, which are implicit rules determining the order in which commands have to be executed.
 We can improve usability by enabling the discovery of these implicit rules and by exposing the dependency structure based on our customization data.
-For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset. \TODO better example
+For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset. 
 
 \paragraph{\bf Uncovering Conceptual Design Flaws}
 
 Customization can also be an indicator for problems in the underlying conceptual design, manifesting as usability frustrations that require adaptation by the user.
-Briefly comparing our findings to the qualitative analysis on conceptual design flaws in \cmd{git} by Perez and Jackson~\cite{perez:13}, we can clearly see the same frustrations with committing and switching branches,\footnote{``Just Let Me Commit!" and ``I Just Want to Switch Branches" in the paper~\cite{perez:13}} based on the alias definitions in our dataset.
-For example, \TODO
+Briefly comparing our findings to the qualitative analysis on conceptual design flaws in \cmd{git} by Perez and Jackson~\cite{perez:13}, we can clearly see the same frustrations with committing and switching branches,\footnote{``Just Let Me Commit!" and ``I Just Want to Switch Branches" in the paper~\cite{perez:13}} based on the alias definitions in our dataset (e.g., \alias{commit}{git add . \&\& git commit -m}).
 
 We want to emphasize that we are not suggesting that large-scale quantitative data of customization practices can replace qualitative analysis, but rather that the corpus we provide, together with our findings, can support exploration and provide new insights for usability research.
 
