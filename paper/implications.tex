@@ -1,25 +1,58 @@
 \section{Implications}
 
-\paragraph{\bf Repair}
+Through our large-scale analysis 
+%of unique files that contain over 2.2 million alias definitions, 
+we gained insight into practices detailing how users customize their command-line interface.
+Based on our observations, we outline discussion points that go beyond single customization practices and identify implications that can address shortcomings in command-line user experience.
+Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
-\TODO
+\paragraph{\bf Learning Repair Rules}
 
-\paragraph{\bf Discovery}
+The complexity of commands and arguments can cause users to introduce errors when working in a command line interface.
+Figuring out specifically how to fix these errors is often a convoluted process.
+There is a popular open source project that attempts to navigate this issue.\footnote{\url{https://github.com/nvbn/thefuck}}
+It uses a set of rules to suggest possible error corrections to the command.
+While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large scale dataset to learn rules that form the basis for different kinds of suggestions.
+%An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
+\paragraph{\bf Discovering Workflows}
+We can also see how our dataset would enable a world beyond only trying to fix immediate errors, but also provide usage hints that could introduce users to common parameters and workflows overall.
+\TODO example for workflow
+%\paragraph{\bf Object Protocols}
+Similar to workflows, we have also seen the prevalence of object protocols~\cite{beckman:11}, which are implicit rules determining  the order in which commands have to be executed.
+We can improve usability by enabling the discovery of these rules and exposing the dependency structure from our customization data.
+For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead based on the customization patterns we found on chaining subcommands.
 
-\TODO
+\paragraph{\bf Uncovering Conceptual Design Flaws}
 
-\paragraph{\bf Missing Features}
+Customization can also be an indicator for problems in the underlying conceptual design that manifest as usability frustrations that require adaption.
+e want to briefly compare to the qualitative analysis on conceptual design flaws in \verb|git| by Perez and Jackson~\cite{perez:13}.
+Particularly, we found the frustrations with committing and switching branches\footnote{``Just Let Me Commit!" and ``I Just Want to Switch Branches" in the paper~\cite{perez:13}} presented as in many customizations in our dataset.
+\TODO list the particular connections from our data to the paper
 
-\TODO
+We want to emphasize that we are not suggesting that data on large-scale customization practice can replace qualitative analysis, but rather that the corpus we provide insights for exploration and usability research.
 
-\paragraph{\bf Interactive vs Batch/Script}
+\paragraph{\bf Contextual Defaults}
 
-\TODO
+Choosing proper defaults in user interfaces is a pillar of user experience design~\cite{nielsen2005power}.
+We see approximately 14\% (XXX) of our customizations are overriding default use in various ways.
+%This practice is invasive. 
+It means \emph{all} uses of this command are overwritten to adhere to the customization. 
+%We can see different interpretations for this practice.
+We see overriding defaults as an indication that the assumed default does not match the usage profile.
+The variety of different defaults in the data indicate what we call contextual defaults, where context could be the expertise level of a command-line user or a certain persona (e.g., sysadmin, data scientist, software engineer).
+%Different kinds of users require different default entry points from a command.
 
-\paragraph{\bf Object Protocol Discovery}
+We could imagine providing a different set of aliases to different users (e.g., alias starter packs for different levels of expertise) generated from our data.
 
-\TODO
+%We  a particular argument of a command (or set of arguments) repeatedly show up in customizations where that command is redefined as a new default,  
+%it could be an indicator for the repeated argument structure to become a default.
 
-\paragraph{\bf Wrong/Contextual Defaults}
 
-\TODO
+
+\paragraph{\bf Interactive Shell vs Batch-Processing}
+
+Context can be also seen as the environment a command is executed in. 
+There is a difference in use of commands as part of scripting for batch-processing, compared to interactive use on the command-line.
+Our findings highlight the tension between commands used in scripting for automation, and as part of an interactive medium to interface with the operating system.
+This particularly comes to light when highlighting our findings on customizations that redefine commands with defaults for interactive safety:
+While it makes no sense to use the \verb|--interactive| or \verb|-i| argument, our findings show that it is a highly desired customization practice for interactive command-line use.
