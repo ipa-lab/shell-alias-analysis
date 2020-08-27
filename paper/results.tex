@@ -1,6 +1,16 @@
 \section{Findings}
 
-\input{tables/top-summary.tex}
+\begin{table*}[t]
+    \caption{Top alias names, commands and arguments}
+    \label{tab:top-summary}
+    \input{tables/top-summary.tex}
+\end{table*}
+
+\begin{table}
+    \caption{Top two commands with top arguments and aliases}
+    \label{tab:command-summary}
+    \input{tables/command-summary.tex}
+\end{table}
 
 \Cref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
 The most common alias name we found is \texttt{ls}, appearing a total number of \num{83782} times, which is \per{3.8} of all alias definitions.
@@ -8,16 +18,14 @@ Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \te
 This is a bit less often than \texttt{git}, the most common command, which appears in \num{327786} aliases (\per{12.93}).
 The most common argument, across all commands, is \texttt{--color=auto}, appearing \num{153931} times (\per{4.24})
 
-\input{tables/command-summary.tex}
-
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
 \Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
 Here we can already identify some of the typical alias use cases.
 Looking at \texttt{ls}, we find that aliases are used
-to redefine the command with a default argument (\verb|alias ls="ls --color=auto"|);
-to shorten a common invocation (\verb|alias ll="ls -alF"|);
-and to correct a spelling mistake (\verb|alias sl=ls|).
-We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \verb|alias gd="git diff"|).
+to redefine the command with a default argument (\alias{ls}{ls --color=auto});
+to shorten a common invocation (\alias{ll}{ls -alF});
+and to correct a spelling mistake (\alias{sl}{ls}).
+We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \alias{gd}{git diff}).
 
 To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
 Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \cite{thomas:06}.
@@ -30,23 +38,25 @@ In consecutive iterations, the coders identified ways of formalizing the emerged
 The discussion of the formalizations additionally served to establish a better shared understanding.
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
-We identified 11 customization practices involving shell aliases, which can be roughly divided into three groups: \TODO
-\begin{itemize}
-    \item \textsc{Naming} practices introduce new names for \emph{abbreviating subcommands}, \emph{describing actions}, \emph{correcting misspellings}, or \emph{bookmarking locations}.
-    \item \textsc{Changing} practices change the semantics of existing commands, often by \emph{substituting commands} or \emph{overriding defaults}, but also by \emph{elevating privilege}, or, surprisingly often, by \emph{colorizing output}.    
-    \item \textsc{Composing} practices combine multiple commands for the purposes of \emph{building tools}, \emph{transforming data} or \emph{chaining subcommands} together.
-\end{itemize} 
+\begin{table}
+	\caption{Alias types and customization practices}
+    \label{tab:practices}
+    \input{tables/practices.tex} % TODO: fill in
+\end{table}
 
-\Cref{tab:practices} gives a quantitative overview of the prevalence of each of these practices in the dataset, together with illustrative examples.
-Any alias can be an expression of multiple practices at once, and some practices only occur with certain commands.
-\Cref{tab:practices-by-command} breaks down the customization practices by command.
-
-We will now discuss each of these customization practices in more detail.
-
-\input{tables/practices.tex} % TODO: fill in
 \input{tables/practices-by-command.tex} % TODO: update
 
-\subsection{Naming}
+We identified nine customization practices among three types of aliases:
+\textsc{Shortcuts} introduce new names and are often used for \emph{nicknaming commands}, \emph{abbreviating subcommands}, and \emph{bookmarking locations};
+\textsc{Modifications} change the semantics of commands by \emph{substituting commands}, \emph{overriding defaults}, \emph{colorizing output}, and \emph{elevating privilege};
+and \textsc{Scripts} combine multiple commands, often for the purposes of \emph{transforming data} or \emph{chaining subcommands}.
+\Cref{tab:practices} gives a quantitative overview of the prevalence of each of these practices in the dataset.
+Any alias can be an expression of multiple customization practices at once, and some practices only occur with certain commands.
+\Cref{tab:practices-by-command} breaks down the customization practices by command.
+
+We will now discuss the alias types and customization practices in more detail.
+
+\subsection{Shortcuts}
 
 \begin{figure}
     \centering
@@ -58,50 +68,31 @@ We will now discuss each of these customization practices in more detail.
 The most obvious use of an alias is to give a complex expression a short and/or memorable name.
 The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
 If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
-For example, the definition
-\begin{CVerbatim}
-alias gs='git status'
-\end{CVerbatim}
-has a compression ratio of 5.
+For example, the alias \alias{gs}{git status} has a compression ratio of 5.
 \Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
 
 There are \num{26055} aliases (\per{1.18}) with names longer than their values.
-\TODO Among these, we found many descriptive names, like ...
 The two longest alias names we found are from joke definitions.
 The first is \num{1772} characters long and is comprised of the letter `f' repeated \num{1053} times, followed by the letter `u' repeated 719 times.
 It is an alias for the \verb|cat| command with a similarly named file as an argument.
 The second longest alias name is a Swedish compound word of \num{131} characters,\footnote{Translating, roughly, to northwestern-glacier-artillery-flight-thrust-simulator-plant-equipment-maintenance-follow-up-systems-discussion-posts-preparation-works.} aliasing the \verb|ls| command.
 
-On the other end of the spectrum, the highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
+On the other end of the spectrum, an alias named \texttt{line} echoes \num{23635} dashes, achieving a compression ratio of \num{5911}.
+The second highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
 When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
-\TODO `line` that echoes 23635 dashes.
 
-Stepping back from a purely syntactical viewpoint, a few distinct naming practices become visible, each with different goals.
+Beyond just compression and expansion of strings, we can see a few distinct practices related to the naming of things.
 
-stepping back from this purely syntiactical viewpoint, we find three distinct naming practices that have specific goals beyond simply 
+\paragraph{\bf Nicknaming Commands}
 
-\TODO: Renaming Commands as a practice? occurs in 10-14 per of aliases! could subsume autocorrect?
+There are \num{244872} aliases in our dataset (\per{11.11}) that merely give a new name to a command, without adding any arguments, and without the name belonging to a different command (that would be a substitution, see below).
+The most often occurring nicknames are \alias{g}{git}, \alias{c}{clear}, \alias{h}{history}, and \alias{v}{vim}.
+Almost all (\per{93.03}) of these kinds of aliases introduce a nickname that is shorter than the command they are referring to, and about half (\per{50.58}) introduce a name that is only one or two characters long.
 
-\paragraph{\bf Abbreviating Subcommands}
-
-\TODO explain subcommands
-We identified \TODO commands that take subcommands, like \TODO
-\TODO percent of aliases contain a command that can take a subcommands.
-\TODO percent of all aliases are purely abbreviations of subcommands, without adding additional arguments or ...
-
-\TODO subcommand shortcuts
-
-\paragraph{\bf Describing Actions}
-
-Among the aliases whose names are longer than their values, we found many descriptive names, like \texttt{git-\allowbreak{}last-\allowbreak{}commit-\allowbreak{}message}, \texttt{docker\_\allowbreak{}list\_\allowbreak{}all\_\allowbreak{}containers} or \texttt{generate\_\allowbreak{}random\_\allowbreak{}password}.
-
-\TODO drop this?
-
-\paragraph{\bf Correcting Misspellings}
-
-Aliases can be used to correct common misspellings of commands, like typing \verb|got| instead of \verb|git|.
+A special case of nicknaming occurs when the new name is a common misspelling of the command.
+In this case, the alias acts like an autocorrect mechanism, as in \alias{got}{git}.
 While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
 We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
 We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
@@ -109,19 +100,25 @@ It is a robust measure that in addition to tracking the number of insertions, de
 We computed the distance measure for all applicable aliases, and determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
 We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most commonly involving transposition (\alias{grpe}{grep}), case-sensitivity (\alias{Jupyter}{jupyter}), localization (\alias{pluralise}{pluralize}), and punctuation (\alias{docker-build}{docker\_build}).
 
-On the flip side, aliases are also used to disable autocorrect mechanisms.
-The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
-There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
+%On the flip side, aliases are also used to disable autocorrect mechanisms.
+%The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
+%There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
+
+\paragraph{\bf Abbreviating Subcommands}
+
+Many commands can operate in different modes, or act as interfaces to a variety of different \emph{subcommands}.
+The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
+For example, \texttt{git push --tags} executes the \texttt{push} subcommand of \cmd{git} with the \texttt{--tags} flag enabled.
+We identified 67 commands in our dataset that take subcommands, such as \cmd{git}, \cmd{docker}, or \cmd{systemctl}.
+Noticeably, we found \num{194850} aliases (\per{8.84}) that are purely abbreviations of subcommands, without adding any additional arguments beyond the name of the subcommand.
+For example, \alias{gs}{git status} or \alias{gd}{git diff}.
+The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, where \num{113980} aliases are defined purely for abbreviating one of its subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
+The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
 
 \paragraph{\bf Bookmarking Locations}
 
 When an aliased command is called with an argument that references some specific local or remote location, e.g., a file path, domain, or IP address, the alias acts as a bookmark to that location.
-For instance,
-\begin{CVerbatim}
-alias starwars="telnet towel.blinkenlights.nl"    
-\end{CVerbatim}
-and \verb|alias dl="cd ~/Downloads"|
-are both bookmark aliases.
+For instance, \alias{starwars}{telnet towel.blinkenlights.nl} and \alias{dl}{cd \textasciitilde/Downloads} are both bookmark aliases.
 
 To find such bookmarking uses in our dataset, we searched for arguments that are locations, which we take to be any of the following:
 \begin{itemize}
@@ -131,50 +128,26 @@ To find such bookmarking uses in our dataset, we searched for arguments that are
 \end{itemize}
 To avoid false positives, we sampled the top 300 search results according to the above criteria and determined some exclusion patterns.
 For instance, \texttt{/dev/null} is not a location for our purposes.
-Neither is \texttt{origin/master}, and thus 
-\begin{CVerbatim}
-alias gm="git merge origin/master"
-\end{CVerbatim}
-does not count as a bookmark.
+Neither is \texttt{origin/master}, and thus \alias{gm}{git merge origin/master} does not count as a bookmark.
 We also exclude aliases that are merely referencing unnamed relative directories (e.g., \verb|../..|).
 
 By our definition, \num{321546} aliases (\per{14.59}) are bookmarks.
 Of these, \num{59931} are remote bookmarks containing URLs or IP addresses (\per{15.92} of all bookmarks).
 Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily in bookmark aliases.
 Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations,
-or outputting log files, as in
-\begin{CVerbatim}
-alias onoz="cat /var/log/errors.log"
-\end{CVerbatim}
-or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself:
-\begin{CVerbatim}
-alias zshconfig="vim ~/.zshrc"
-\end{CVerbatim}
-\Cref{tab:locations} shows the top local and remote locations found in aliases.
+or outputting log files, as in \alias{onoz}{cat /var/log/errors.log}, or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself: \alias{zshconfig}{vim \textasciitilde/.zshrc}.
+%\Cref{tab:locations} shows the top local and remote locations found in aliases.
 
-\begin{table}
-    \caption{Top 5 local and remote locations found in aliases}
-    \label{tab:locations}
-    \input{tables/locations.tex}
-\end{table}
+% \begin{table}
+%     \caption{Top 5 local and remote locations found in aliases}
+%     \label{tab:locations}
+%     \input{tables/locations.tex}
+% \end{table}
 
-\subsection{Changing}
+\subsection{Modifications}
 
-Beyond introducing names for 
-subcommands, file system locations etc
-
-, aliases can also ....
-thus changing the semantics of commands (as we already saw with aliases for \emph{bookmarking locations}, where )
-
-aliases are used to change the semantics of commands.
-
-
-Beyond giving names to things
-aliases can provide arguments
-and change the semantics of commands (as we already saw in the case of bookmarking locations)
-There are a few particularly intersting or outstanding ways where aliases are used to change the semantics of commands.
-
-\TODO changing the semantics of a command, usually by redefining the command itself (substituting, overriding) or but not necessarily (color, elevating)
+Aliases are not only used syntactically, for naming purposes, but also in ways that change the semantics of certain commands.
+We found four customization practices where aliases modify commands.
 
 \paragraph{\bf Substituting Commands}
 
@@ -212,10 +185,6 @@ Taking all these varieties into account, more than half of all command redefinit
 This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
 If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases ensure that a command's output is not just in black and white.
 
-\subsection{Composing}
-
-\TODO
-
 \paragraph{\bf Elevating Privilege}
 
 The \cmd{sudo} command allows the user to execute another command with superuser privileges.
@@ -228,16 +197,24 @@ Interestingly, the macOS package manager \cmd{brew} rarely appears with \cmd{sud
 
 Other commands that more often than not demand elevated privileges are system utilities like \cmd{systemctl}, \cmd{shutdown}, \cmd{lsof} or \cmd{mount}.
 
-\paragraph{\bf Building Tools}
+\subsection{Scripts}
 
-\TODO
+Alias values are not limited to single commands and their arguments, but can be arbitrarily complex compositions of multiple commands.
+In our dataset, \num{204142} aliases (\per{9.26}) are composed of more than one command.
+The most popular way to combine commands is with a pipe (\verb`|`), used by \per{39.66} percent of multi-command aliases, followed by the operators for simple chaining (\verb|;|), with \per{29.61}, and logical conjunction (\verb|&|), with \per{26.88}.
+Other operators (\verb|&&|, \verb`||`, \verb`|&`) appear in only \per{3.85} of multi-command aliases.
+
+Aliases that combine multiple commands are basically tiny shell scripts.
+Two scripting practices are of particular interest.
 
 \paragraph{\bf Transforming Data}
 
 The most interesting shell operator is certainly the pipe (\verb`|`), since it creates an interface between two otherwise separate programs.
-The pipe embodies the Unix philosophy of small tools doing one thing well, which can be connected together to accomplish more complex tasks.
+The pipe embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
+There are \num{74719} aliases (\per{3.39}) combining two or more commands using only the pipe operator.
+The most common command occurring in these pipelines by far is \cmd{grep}, which makes an appearance in almost half of all pipelines (\per{46.16}), more than three times as often as \cmd{xargs} and \cmd{sort}, the next most common commands used for transforming data.
+The most common data sources in pipelines are the commands \cmd{ps}, \cmd{git}, and \cmd{ls}, which can be found at the beginning of almost a third (\per{32}) of all pipelines.
 \Cref{fig:flow} shows a flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage.
-\TODO
 
 \begin{figure*}[h]
 	\centering    
@@ -249,19 +226,18 @@ The pipe embodies the Unix philosophy of small tools doing one thing well, which
 \paragraph{\bf Chaining Subcommands}
 
 An interesting pattern found in aliases composed of multiple commands are chains of subcommand invocations.
-For example, the package manager \verb|brew| has a subcommand \verb|update|, for updating the package database, and a subcommand \verb|upgrade|, for upgrading previously installed packages to the latest available versions.
-\per{28.08} percent of all aliases involving the \verb|brew| command contain the composition
+For example, the package manager \cmd{brew} has a subcommand \texttt{update}, for updating the package database, and a subcommand \texttt{upgrade}, for upgrading previously installed packages to the latest available versions.
+\per{28.08} percent of all aliases involving the \cmd{brew} command contain the composition
 \begin{CVerbatim}
 brew update && brew upgrade
 \end{CVerbatim}
 (sometimes with \verb|;| instead of \verb|&&|), with alias names like \verb|update|, \verb|brewup|, \verb|bup|, etc.
-This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \verb|brew|, \verb|apt-get|, \verb|npm| or \verb|gem|, mostly fulfilling roughly the same function as in the \verb|brew| example.
+This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \cmd{brew}, \cmd{apt-get}, \cmd{npm} or \cmd{gem}, mostly fulfilling roughly the same function as in the \cmd{brew} example.
 
-The command with the highest absolute number of aliases showing this pattern is \verb|git|, however, with \num{12063} occurrences (\per{3.89} of all aliases using \verb|git|).
+The command with the highest absolute number of aliases showing this pattern is \cmd{git}, however, with \num{12063} occurrences (\per{3.89} of all aliases using \cmd{git}).
 Here, the uses are more varied:
-\begin{CVerbatim}
-alias commit='git add . && git commit -m'
-alias whoops='git reset --hard && git clean -df'
-alias gitpull='git stash && git pull && git stash pop'
-\end{CVerbatim}
-are just some examples of aliases combining the various \verb|git| subcommands.
+\begin{center}
+\alias{commit}{git add . \&\& git commit -m}\\
+\alias{whoops}{git reset --hard \&\& git clean -df}\\
+\alias{gitpull}{git stash \&\& git pull \&\& git stash pop}        
+\end{center}
