@@ -11,12 +11,15 @@ This can be achieved by defining shell aliases.
 An alias substitutes a given name, the \emph{alias}, with a string value that defines an arbitrarily complex command (or chain of commands).
 The set of aliases users define provides a window into their preferences expressed as part of their personal configuration.
 These command customizations can therefore provide insight into the tasks that they repeatedly perform, how well the standard environment supports those tasks, and ways in which this standard environment could be productively extended or modified.
-Many users have publicly shared these configurations on social coding platforms such as GitHub.
-To study these preferences, we performed an exploratory analysis on the population of alias definitions on GitHub, which provides a rich dataset to investigate how command-line users customize their tasks and workflows. The paper makes the following contributions:
+Many users publicly share these configurations on social coding platforms such as GitHub.
+To study these preferences, we performed an exploratory analysis on the population of alias definitions on GitHub, which provides a rich dataset to investigate how command-line users customize their tasks and workflows. 
+This paper makes the following contributions:
 \begin{itemize}[leftmargin=0.3cm]
-	\item \textbf{Dataset for User Research and Discovery:} While our findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset of over 2.2 million customizations as aliases as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
-
-	\item \textbf{Identifying Customization Practices:} We find that there are 9 types of customization practices that can be grouped into 3 high-level themes:
+	\item A \textbf{Dataset of Command-Line Customizations}, consisting of over 2.2 million shell aliases collected from GitHub.
+	We view our dataset as a playground for fine-grained discovery that can benefit researchers, tool-builders, and command-line users.
+	\smallskip
+	
+	\item We identified nine \textbf{Customization Practices}, grouped into three high-level themes:
 	\textsc{Shortcuts} introduce new names.
 	They can be used for \emph{nicknaming commands} (and correcting misspellings in the process),
 	\emph{abbreviating subcommands} like \texttt{git push},
@@ -29,11 +32,13 @@ To study these preferences, we performed an exploratory analysis on the populati
 	Aliases that combine multiple commands are \textsc{Scripts}.
 	They enable many ways of \emph{transforming data} using Unix pipes, 
 	and allow for automating repetitive workflows by \emph{chaining subcommands}.
+	\smallskip
 	
-	\item \textbf{Implications: } We formulate implications that go beyond single customization practices that can address shortcomings and tie them to existing user experience research:
-	\emph{Learning repair rules} and \emph{discovering workflows} are enabled by codifying emergent behavior~\cite{fast:14} found in our customizations. We are able to \emph{uncover conceptual design flaws} where customizations indicate frustrations with underlying command structures~\cite{perez:13}.
-	Based on the prevalence of highly variable command redefinitions, we propose \emph{contextual defaults}, the ability to suggest different preferences in commands based on user context~\cite{stefanidis:11}.
-	Overall, we find that many customizations deal with the tension between \emph{interactive shell use} and \emph{script batch-processing}: commands being used to interactively navigate systems, while at the same time being used within scripts for batch-processing.
+	\item We formulate \textbf{Implications for Command-Line Usability} that go beyond single customization practices to address shortcomings and tie them to existing user experience research.
+	Codifying emergent behavior~\cite{fast:14} found in our customizations enables \emph{learning repair rules} and \emph{discovering workflows}.
+	We are able to \emph{uncover conceptual design flaws}, where customizations indicate frustrations with underlying command structures~\cite{perez:13}.
+	Based on the prevalence of highly variable command redefinitions, we propose \emph{contextual defaults}, the ability to suggest different command preferences based on user context~\cite{stefanidis:11}.
+	Overall, we find that many customizations deal with the tension of \emph{Interactivity vs Batch-Processing}: commands being used to interactively navigate systems, while at the same time being used within scripts for batch-processing.
 \end{itemize}
 
-We now describe usage and syntax of aliases as a vehicle for customization. We further describe our data collection and coding process, followed by a presentation of customization practices. We finally discuss implications for usability and review related work in the broader context of this study.
+We now describe usage and syntax of aliases as a vehicle for customization. We further describe our data collection and coding process, followed by a presentation of customization practices. Finally, we discuss implications for usability and review related work in the broader context of this study.
