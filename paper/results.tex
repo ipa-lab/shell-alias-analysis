@@ -232,9 +232,7 @@ brew update && brew upgrade
 This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \cmd{brew}, \cmd{apt-get}, \cmd{npm} or \cmd{gem}, mostly fulfilling roughly the same function as in the \cmd{brew} example.
 
 The command with the highest absolute number of aliases showing this pattern is \cmd{git}, however, with \num{12063} occurrences (\per{3.89} of all aliases using \cmd{git}).
-Here, the uses are more varied:
-\begin{center}
-\alias{commit}{git add . \&\& git commit -m}\\
-\alias{whoops}{git reset --hard \&\& git clean -df}\\
-\alias{gitpull}{git stash \&\& git pull \&\& git stash pop}        
-\end{center}
+Here, the uses are more varied, 
+e.g., \alias{commit}{git add . \&\& git commit -m}, 
+or \alias{gitpull}{git stash \&\& git pull \&\& git stash pop},
+or indeed \alias{whoops}{git reset --hard \&\& git clean -df}.
