@@ -12,10 +12,10 @@ An alias substitutes a given name, the \emph{alias}, with a string value that de
 The set of aliases users define provides a window into their preferences expressed as part of their personal configuration.
 These command customizations can therefore provide insight into the tasks that they repeatedly perform, how well the standard environment supports those tasks, and ways in which this standard environment could be productively extended or modified.
 Many users have publicly shared these configurations on social coding platforms such as GitHub.
-To study these preferences, we performed an exploratory analysis of over 2.2 million alias definitions on GitHub, which provides a rich dataset to investigate how command-line users customize their tasks and workflows.
-
-\noindent The paper makes the following contributions:
+To study these preferences, we performed an exploratory analysis on the population of alias definitions on GitHub, which provides a rich dataset to investigate how command-line users customize their tasks and workflows. The paper makes the following contributions:
 \begin{itemize}[leftmargin=0.3cm]
+	\item \textbf{Dataset for User Research and Discovery:} While our findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset of over 2.2 million customizations as aliases as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
+
 	\item \textbf{Identifying Customization Practices:} We find that there are 9 types of customization practices that can be grouped into 3 high-level themes:
 	\textsc{Shortcuts} introduce new names.
 	They can be used for \emph{nicknaming commands} (and correcting misspellings in the process),
@@ -30,13 +30,10 @@ To study these preferences, we performed an exploratory analysis of over 2.2 mil
 	They enable many ways of \emph{transforming data} using Unix pipes, 
 	and allow for automating repetitive workflows by \emph{chaining subcommands}.
 	
-	\item \textbf{Implications: } We formulate implications that go beyond single customization practices that can address shortcomings in command-line user experience:
-	\textsc{Learning repair rules} and \textsc{Discovering workflows} are enabled by codifying emergent behavior found in our customizations. We are able to \textsc{uncover conceptual design flaws} where customizations indicate frustrations with underlying command structures.
-	Based on the prevalence of command redefinitions, we propose \textsc{Contextual Defaults}, the ability to suggest different default arguments for commands based on user context.
-	Overall, we find that many customizations deal with the tension between the \textsc{Interactive Shell Use vs. Script Batch-Processing}: commands being used to interactively navigate systems, while at the same time being used within scripts for batch-processing.
-	
-	\item \textbf{Dataset for User Research and Discovery:} While our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
-	
+	\item \textbf{Implications: } We formulate implications that go beyond single customization practices that can address shortcomings and tie them to user experience research from psychology and human-computer interaction:
+	\emph{Learning repair rules} and \emph{discovering workflows} are enabled by codifying emergent behavior~\cite{fast:14} found in our customizations. We are able to \emph{uncover conceptual design flaws} where customizations indicate frustrations with underlying command structures~\cite{perez:13}.
+	Based on the prevalence of highly variable command redefinitions, we propose \emph{contextual defaults}, the ability to suggest different preferences in commands based on user context~\cite{stefanidis:11}.
+	Overall, we find that many customizations deal with the tension between \emph{interactive shell use} and \emph{script batch-processing}: commands being used to interactively navigate systems, while at the same time being used within scripts for batch-processing.
 \end{itemize}
 
 We now describe usage and syntax of aliases as a vehicle for customization. We further describe our data collection and coding process, followed by a presentation of customization practices. We finally discuss implications for usability and review related work in the broader context of this study.
