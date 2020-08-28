@@ -14,7 +14,7 @@
 
 \begin{table*}
     \centering
-    \caption{Customization practices broken down by command. \protect\linebreak \textnormal{We present a selection of common commands and display the percentage of each command's involvement in a customization practice with a pie chart symbol, if it is more than \per{1}. The compression ratio plots are log-log histograms, with the red line marking compression ratio 1.}}
+    \caption{Customization practices broken down by command. \protect\linebreak \textnormal{We present a selection of common commands and display the percentage of each command's involvement in a customization practice with a pie chart symbol, if it is more than \per{1}. The compression ratio plots are log-log histograms, with the red line marking compression ratio 1.} \protect\linebreak}
     \label{tab:practices-by-command}
 \begin{tabular}{llr|ccc|cccc|cc|c}
 & & \multicolumn{1}{r}{\#} & \multicolumn{1}{c}{\rot{Nicknaming Commands}} & \multicolumn{1}{c}{\rot{Abbreviating Subcommands}} & \multicolumn{1}{c}{\rot{Bookmarking Locations}} & \multicolumn{1}{c}{\rot{Substituting Commands}} & \multicolumn{1}{c}{\rot{Overriding Defaults}} & \multicolumn{1}{c}{\rot{Colorizing Output}} & \multicolumn{1}{c}{\rot{Elevating Privilege}} & \multicolumn{1}{c}{\rot{Transforming Data}} & \multicolumn{1}{c}{\rot{Chaining Subcommands}} & Compression \\
@@ -35,6 +35,7 @@
 &          \texttt{sort} &   \num{10802} &                     &                          &                       &            \pie{1.46} &                     &                   &                     &       \pie{95.97} &                      &          \hist{sort} \\
 &         \texttt{mkdir} &   \num{10351} &         \pie{10.11} &                          &            \pie{4.37} &            \pie{2.02} &         \pie{57.72} &                   &                     &                   &                      &         \hist{mkdir} \\
 &            \texttt{df} &   \num{10266} &                     &                          &                       &            \pie{4.41} &         \pie{82.09} &                   &                     &                   &                      &            \hist{df} \\
+&          \texttt{diff} &    \num{4697} &                     &                          &                       &           \pie{46.18} &         \pie{32.13} &       \pie{91.95} &                     &                   &                      &          \hist{diff} \\
 \midrule
 \multicolumn{2}{l}{Text Editors} & & & & & & & & & & & \\
 &           \texttt{vim} &   \num{99521} &          \pie{8.68} &                          &           \pie{29.12} &           \pie{50.52} &          \pie{1.68} &                   &          \pie{3.41} &                   &                      &           \hist{vim} \\
