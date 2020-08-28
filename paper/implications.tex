@@ -3,7 +3,7 @@
 Through our large-scale analysis 
 %of unique files that contain over 2.2 million alias definitions, 
 we gained insight into practices detailing how users customize their command-line interface.
-Based on our observations, we outline discussion points that go beyond single customization practices and identify implications that can address shortcomings in command-line user experience.
+Based on our observations, we outline discussion points that go beyond single customization practices and identify implications that can address shortcomings in command-line usability and tie them to existing user experience research.
 Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
 \paragraph*{\bf Learning Repair Rules}
@@ -13,10 +13,11 @@ Figuring out specifically how to fix these errors is often a convoluted process.
 There is a popular open source project that attempts to navigate this issue.\footnote{\url{https://github.com/nvbn/thefuck}}
 It uses a set of rules to suggest possible error corrections to the command.
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
+This is in line with work in leveraging emergent behavior from corpora~\cite{fast:14} that we can codify based on our customization data.
 %An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
 
 \paragraph*{\bf Discovering Workflows}
-We can also see how our dataset would enable a world beyond only trying to fix immediate errors, by providing usage hints that could introduce users to common parameters and workflows.
+Following a different thread of leveraging emergent practices, we can also see how our dataset would enable a world beyond only trying to fix immediate errors, by providing usage hints that could introduce users to common parameters and workflows.
 For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} command, the alias \alias{mem10}{ps auxf | sort -nr -k 4 | head -10} can serve as a suggestion for the complex but common data transformation that results in showing the ten most memory-intensive processes.
 %\paragraph*{\bf Object Protocols}
 Similarly, in the practice of \emph{chaining subcommands} we can clearly see the prevalence of object protocols~\cite{beckman:11}, which are implicit rules determining the order in which commands have to be executed.
@@ -37,6 +38,7 @@ The fact that \per{14.48} of the customizations in our dataset are for \emph{ove
 We see \emph{overriding defaults} not necessarily as an indictment of the involved commands, but rather as an indication that the assumed user context does not in all cases match the actual usage profile.
 Indeed, the variety of different defaults in the data indicate what we call \emph{contextual} defaults, where context could be a reflection of the level of expertise of a command-line user, or a certain persona (e.g., system administrator, data scientist, or software engineer).
 We could imagine providing different sets of defaults to different users, effectively alias starter packs, generated from our data.
+We see parallels to work that investigates contextual preferences and personalization in information systems~\cite{de:15, stefanidis:11} and privacy research~\cite{wijesekera:18, alom:19}. 
 
 \paragraph*{\bf Interactive Shell vs Batch-Processing}
 
