@@ -17,3 +17,6 @@ shell-alias-analysis.pdf
 *.synctex.gz
 *.bbl
 *.blg
+*.bcf
+*.run.xml
+*.cpt
