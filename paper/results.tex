@@ -26,7 +26,7 @@ We also notice that in the case of \texttt{git}, most aliases are used for short
 To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
 Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \cite{thomas:06}.
 It is an iterative process between theoretical sampling and comparing data within emerging themes \cite{dey:03}.
-We looked at 1381 alias definitions derived in a similar way as \Cref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
+We looked at \num{1381} alias definitions derived in a similar way as \Cref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
 In addition, we took a random sample of 200 alias definitions that each occur only once in the dataset to represent the long tail.
 Coding was then performed independently by two authors, who labelled each alias definition in the cross-section with descriptive tags, taking the semantics of the commands into account as much as possible.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
 After a first iteration, the coders compared their labels, consolidating different naming conventions.
@@ -59,7 +59,7 @@ If we divide the length of an alias value by the length of the alias name, we ge
 For example, the alias \alias{gs}{git status} has a compression ratio of 5.
 \Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
-A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
+A compression ratio less than 1 indicates a name that is longer than the value it aliases.
 
 There are \num{26055} aliases (\per{1.18}) with names longer than their values.
 The two longest alias names we found are from joke definitions.
@@ -67,11 +67,11 @@ The first is \num{1772} characters long and is comprised of the letter `f' repea
 It is an alias for the \verb|cat| command with a similarly named file as an argument.
 The second longest alias name is a Swedish compound word of \num{131} characters,\footnote{Translating, roughly, to northwestern-glacier-artillery-flight-thrust-simulator-plant-equipment-maintenance-follow-up-systems-discussion-posts-preparation-works.} aliasing the \verb|ls| command.
 
-On the other end of the spectrum, an alias named \texttt{line} echoes \num{23635} dashes, achieving a compression ratio of \num{5911}.
-The second highest compression ratio in any alias definition comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
+On the other end of the spectrum, an alias named \texttt{line} echoes \num{23635} dashes, achieving a compression ratio of \num{5911}, the highest among all aliases.
+The second highest comes from an alias named \verb|BEEP|, which invokes the Linux \verb|beep| utility 9 times in succession, with a combined \num{4471} arguments.
 When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aerodynamic}.
 
-Beyond just compression and expansion of strings, we can see a few distinct practices related to the naming of things.
+Beyond just compression and expansion of strings, we can see a few distinct customization practices related to naming.
 
 \paragraph*{\bf Nicknaming Commands}
 
@@ -81,11 +81,12 @@ Almost all (\per{93.03}) of these kinds of aliases introduce a nickname that is 
 
 A special case of nicknaming occurs when the new name is a common misspelling of the command.
 In this case, the alias acts like an autocorrect mechanism, as in \alias{got}{git}.
-While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
-We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
-We surveyed and experimented with different distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
-It is a robust measure that in addition to tracking the number of insertions, deletions, and substitutions between two strings, also captures the transposition of two characters, a common occurrence in misspelled commands.
-We computed the distance measure for all applicable aliases, and determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
+%While it is easy for the human eye to determine instances of these typographical errors, it is not as straightforward to formalize all different cases and to distinguish them from regular command shortcuts.
+%We opt for a conservative criterion (potentially underestimating the true extent of the phenomenon) that looks only at aliases whose names are of the same length as their aliased commands, with a string distance measure above an empirically determined threshold.
+To determine instances of these typographical errors, we surveyed and experimented with different string distance measures~\cite{navarro:01} and decided on using the Damerau-Levenshtein algorithm~\cite{damerau:64}.
+%It is a robust measure that in addition to tracking the number of insertions, deletions, and substitutions between two strings, also captures the transposition of two characters, a common occurrence in misspelled commands.
+%We computed the distance measure for all applicable aliases, and 
+We determined empirically that a distance measure of 2 seems like a good threshold to decide whether or not an alias corrects a misspelling.
 We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most commonly involving transposition (\alias{grpe}{grep}), case-sensitivity (\alias{Jupyter}{jupyter}), localization (\alias{pluralise}{pluralize}), and punctuation (\alias{docker-build}{docker\_build}).
 
 %On the flip side, aliases are also used to disable autocorrect mechanisms.
@@ -105,21 +106,21 @@ Many commands can operate in different modes, or act as interfaces to a variety 
 The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
 For example, \texttt{git push --tags} executes the \texttt{push} subcommand of \cmd{git} with the \texttt{--tags} flag enabled.
 We identified 67 commands in our dataset that take subcommands, such as \cmd{git}, \cmd{docker}, or \cmd{systemctl}.
-Noticeably, we found \num{194850} aliases (\per{8.84}) that are purely abbreviations of subcommands, without adding any additional arguments beyond the name of the subcommand.
+Noticeably, we found \num{194850} aliases (\per{8.84}) that are purely abbreviations of subcommands, without adding any additional arguments beyond the subcommand.
 For example, \alias{gs}{git status} or \alias{gd}{git diff}.
-The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, where \num{113980} aliases are defined purely for abbreviating one of its subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
+The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, with \num{113980} aliases defined purely for abbreviating \cmd{git} subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
 The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
 
 \paragraph*{\bf Bookmarking Locations}
 
-When an aliased command is called with an argument that references some specific local or remote location, e.g., a file path, domain, or IP address, the alias acts as a bookmark to that location.
+When an aliased command is called with an argument that references some specific local or remote location, like a file path or domain, the alias acts as a bookmark to that location.
 For instance, \alias{starwars}{telnet towel.blinkenlights.nl} and \alias{dl}{cd \textasciitilde/Downloads} are both bookmark aliases.
 
 To find such bookmarking uses in our dataset, we searched for arguments that are locations, which we take to be any of the following:
 \begin{itemize}
     \item A string containing a forward slash (\verb|/|), indicating a path.
     \item An IPv4 address, matched by the liberal regular expression \verb|[0-9]+.[0-9]+.[0-9]+.[0-9]+|
-    \item A string containing one of the known top-level domains\footnote{From \url{http://data.iana.org/TLD/tlds-alpha-by-domain.txt} (retrieved January 14, 2020)} preceded by a dot (\verb|.|) and followed by a slash (\verb|/|), colon (\verb|:|) or the end of the string.
+    \item A string containing one of the known top-level domains\footnote{\url{http://data.iana.org/TLD/tlds-alpha-by-domain.txt}} preceded by a dot (\verb|.|) and followed by a slash (\verb|/|), colon (\verb|:|) or the end of the string.
 \end{itemize}
 To avoid false positives, we sampled the top 300 search results according to the above criteria and determined some exclusion patterns.
 For instance, \texttt{/dev/null} is not a location for our purposes.
@@ -128,9 +129,9 @@ We also exclude aliases that are merely referencing unnamed relative directories
 
 By our definition, \num{321546} aliases (\per{14.59}) are bookmarks.
 Of these, \num{59931} are remote bookmarks containing URLs or IP addresses (\per{15.92} of all bookmarks).
-Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily in bookmark aliases.
-Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations,
-or outputting log files, as in \alias{onoz}{cat /var/log/errors.log}, or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself: \alias{zshconfig}{vim \textasciitilde/.zshrc}.
+Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily.
+Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations, opening frequently edited files, or outputting logs, as in \alias{onoz}{cat /var/log/errors.log}
+%, or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself: \alias{zshconfig}{vim \textasciitilde/.zshrc}.
 %\Cref{tab:locations} shows the top local and remote locations found in aliases.
 
 % \begin{table}
@@ -144,31 +145,30 @@ or outputting log files, as in \alias{onoz}{cat /var/log/errors.log}, or opening
 \subsection{Modifications}
 
 Aliases are not only used syntactically, for naming purposes, but also in ways that change the semantics of certain commands.
-We found four customization practices where aliases modify commands.
+We found four customization practices related to command modification.
 
 \paragraph*{\bf Substituting Commands}
 
-When the name of an alias is identical to the name of a pre-existing command, the alias defines a substitution for the command.
+When an alias name is identical to the name of a pre-existing command, the alias defines a substitution for that command.
 A common example is \alias{more}{less}, replacing a standard Unix utility (\cmd{more}) with a more capable but similar command (\cmd{less}).
 This can also be used for subterfuge, as in \alias{emacs}{vim} (appearing 132 times in our dataset) or indeed \alias{vim}{emacs} (86 times, alas).
 
-To determine which alias names are also names of actual commands, we compared them to known Unix commands,\footnote{\url{https://en.wikipedia.org/wiki/List_of_Unix_commands} and \url{https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands}} as well as a curated sample of commands from our dataset (taking care to not include names that appear in a command position but are actually just other aliases).
+To determine which alias names are also actual command names, we compared them to known Unix commands\footnote{\url{https://en.wikipedia.org/wiki/List_of_Unix_commands}\\ and \url{https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands}} and a curated sample of commands from our dataset (taking care to not include names that appear in a command position but are actually just other aliases).
 To determine proper substitutions, we only count aliases whose value does not also include the name of the command (which would point to an overriding alias, see below).
 We find that \num{100564} aliases (\per{4.56}) are used to substitute one command for another.
 The top three substitutions are \verb|vi| $\rightarrow$ \verb|vim|, \verb|vim| $\rightarrow$ \verb|nvim|, and \verb|vi| $\rightarrow$ \verb|nvim|.
 
 \paragraph*{\bf Overriding Defaults}
 
-When the name of the alias is a pre-existing command that is also part of the alias itself, as in \alias{ls}{ls -G}, then the alias re-defines the command and effectively overrides its default settings.
+When an alias has the same name as the command it aliases, as in \alias{ls}{ls -G}, then the alias re-defines the command and effectively overrides its default settings.
 Any time the command is now executed, it will be with the arguments specified in the alias.
 There are \num{319239} aliases in our dataset (\per{14.48}) that are used to override defaults in this way.
-Aliases to override the defaults of the \cmd{grep} family of commands (\cmd{grep}, \cmd{egrep}, \cmd{fgrep}) occur \num{96970} times, which is \per{68.27} of all \cmd{grep} appearances and accounts for \per{4.4} of all alias definitions.
-The \cmd{ls} command is redefined with new defaults \num{75374} times (\per{28.99} of \cmd{ls} appearances), accounting for \per{3.42} of all aliases.
-Also of note are the file system commands \cmd{mv}, \cmd{cp}, and \cmd{rm}, where redefinitions account for \per{89.3}, \per{80.9}, and \per{55.37} of all appearances of these commands, respectively.
+Aliases to override the defaults of the \cmd{grep} family of commands (\cmd{grep}, \cmd{egrep}, \cmd{fgrep}) occur \num{96970} times, accounting for \per{4.4} of all alias definitions (and \per{68.27} of all \cmd{grep} appearances).
+The \cmd{ls} command is redefined with new defaults \num{75374} times, accounting for \per{3.42} of all aliases (\per{28.99} of \cmd{ls} appearances).
 
-Looking in detail at the new defaults of these redefined commands, we find they reveal a variety of user preferences, especially in the diverse long tail, where we find a lot of unique alias definitions and argument combinations.
+Looking at the new defaults of these redefined commands, they reveal a variety of user preferences, especially in the diverse long tail, where we find a lot of unique alias definitions and argument combinations.
 Two areas of customization stand out, however: formatting output and adding safety.
-The majority of overrides for file system commands (\cmd{mv}, \cmd{cp}, and \cmd{rm}, but also \cmd{ln}, for creating symbolic links) are to enable interactive mode (\texttt{-i} and variations), which prompts the user before performing potentially destructive actions.
+The majority of overrides for file system commands (\cmd{mv}, \cmd{cp}, and \cmd{rm}, but also \cmd{ln}, for creating symbolic links) enable interactive mode (\texttt{-i} and variations), which prompts the user before performing potentially destructive actions.
 Verbose output (\texttt{-v}) also plays a role here, describing exactly what kind of effects a command execution had or will have.
 Enabling verbosity can also be seen as a kind of output formatting, although much more common is the wish for human-readable output.
 For example, the alias \alias{df}{df -h} ensures that the available disk space is displayed in common size units, as opposed to just the raw number of bytes.
@@ -180,7 +180,7 @@ This behavior is so prevalent that we count it as a customization practice in it
 Enabling colored output can be done in many different ways: adding an argument (like \texttt{less -R} or \cmd{grep --color=always}), setting an environment variable (as in \alias{ssh}{TERM=xterm256color ssh}), running the command through a tool that colorizes its output (like \cmd{grcat} or \cmd{pygmentize}), or even replacing a command outright (\alias{diff}{colordiff}).
 Taking all these varieties into account, more than half of all command redefinitions (\per{57.21}) enable colored output by default.
 This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
-If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases ensure that a command's output is not just in black and white.
+If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases colorize a command's output.
 
 \paragraph*{\bf Elevating Privilege}
 
@@ -196,40 +196,35 @@ Other commands that more often than not demand elevated privileges are system ut
 
 \subsection{Scripts}
 
-Alias values are not limited to single commands and their arguments, but can be arbitrarily complex compositions of multiple commands.
-In our dataset, \num{204142} aliases (\per{9.26}) are composed of more than one command.
-The most popular way to combine commands is with a pipe (\verb`|`), used by \per{39.66} percent of multi-command aliases, followed by the operators for simple chaining (\verb|;|), with \per{29.61}, and logical conjunction (\verb|&&|), with \per{26.88}.
+Aliases that combine multiple commands are basically tiny shell scripts.
+In our dataset, \num{204142} aliases (\per{9.26}) compose multiple commands.
+The most popular composition operator is the pipe (\verb`|`), used in \per{39.66} percent of alias scripts, followed by the operators for simple chaining (\verb|;|), with \per{29.61}, and logical conjunction (\verb|&&|), with \per{26.88}.
 Other operators (\verb`||`, \verb`|&`) appear in only \per{3.85} of multi-command aliases.
 
-Aliases that combine multiple commands are basically tiny shell scripts.
-Two scripting practices are of particular interest.
+There are two scripting practices that are of particular interest.
 
 \paragraph*{\bf Transforming Data}
 
-The most interesting shell operator is certainly the pipe (\verb`|`), since it creates an interface between two otherwise separate programs.
-The pipe embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
+The pipe (\verb`|`) creates an interface between two otherwise separate programs.
+It embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
 There are \num{74719} aliases (\per{3.39}) combining two or more commands using only the pipe operator.
-The most common command occurring in these pipelines by far is \cmd{grep}, which makes an appearance in almost half of all pipelines (\per{46.16}), more than three times as often as \cmd{xargs} and \cmd{sort}, the next most common commands used for transforming data.
-The most common data sources in pipelines are the commands \cmd{ps}, \cmd{git}, and \cmd{ls}, which can be found at the beginning of almost a third (\per{32}) of all pipelines.
-\Cref{fig:flow} shows a flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage.
+The most common command occurring after a pipe, by far, is \cmd{grep}, which makes an appearance in almost half of all pipelines (\per{46.16}), more than three times as often as \cmd{xargs} and \cmd{sort}.
+The most common data sources are \cmd{ps}, \cmd{git}, and \cmd{ls}, which are found at the beginning of almost a third (\per{32}) of all pipelines.
+\Cref{fig:flow} shows a flow diagram of the top pipelines with three commands.
 
 \begin{figure*}[h]
 	\centering    
 	\includegraphics[width=0.78\linewidth]{figures/flow_250.png}
-	\caption{Flow diagram for top 3-command pipelines}
+	\caption{Flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage}
 	\label{fig:flow}
 \end{figure*}
 
 \paragraph*{\bf Chaining Subcommands}
 
-An interesting pattern found in aliases composed of multiple commands are chains of subcommand invocations.
+An interesting pattern appearing in alias scripts are chains of subcommand invocations.
 For example, the package manager \cmd{brew} has a subcommand \texttt{update}, for updating the package database, and a subcommand \texttt{upgrade}, for upgrading previously installed packages to the latest available versions.
-\per{28.08} percent of all aliases involving the \cmd{brew} command contain the composition
-\begin{CVerbatim}
-brew update && brew upgrade
-\end{CVerbatim}
-(sometimes with \verb|;| instead of \verb|&&|), with alias names like \verb|update|, \verb|brewup|, \verb|bup|, etc.
-This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \cmd{brew}, \cmd{apt-get}, \cmd{npm} or \cmd{gem}, mostly fulfilling roughly the same function as in the \cmd{brew} example.
+\per{28.08} percent of all aliases involving the \cmd{brew} command contain the composition \verb|brew update && brew upgrade| (sometimes with \verb|;| instead of \verb|&&|), with alias names like \verb|update|, \verb|brewup|, \verb|bup|, etc.
+This pattern of repeated subcommand invocations can be found in \num{22062} aliases (\per{1}), and it is most prevalent among package managers, like \cmd{brew}, \cmd{apt-get}, \cmd{npm} or \cmd{gem}, mostly for the same purpose as in the \cmd{brew} example.
 
 The command with the highest absolute number of aliases showing this pattern is \cmd{git}, however, with \num{12063} occurrences (\per{3.89} of all aliases using \cmd{git}).
 Here, the uses are more varied, 

@@ -13,7 +13,7 @@ Our analysis is based on \num{2204199} alias definitions found on GitHub, collec
 \end{figure*}
 
 Alias definitions can appear in any Shell script, but we anticipated that they would predominantly be found in personal configuration files (like \verb|.bashrc| or \verb|.bash_profile|).
-While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
+%While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
 Unfortunately, this rules out using some prominent existing datasets for our study~\cite{mombach}:
 The public GitHub archive on BigQuery,\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}} while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
 This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.
@@ -27,7 +27,7 @@ Alas, the GitHub Code Search API comes with its own set of limitations:
     \item only files smaller than 384 KB are searchable
     \item forks are not included
     \item requests are rate limited at 30 per minute and there are additional opaque abuse detection mechanisms that impose further restrictions in an unforeseeable manner
-    \item the number of results is limited to 1000 per search request
+    \item the number of results is limited to \num{1000} per search request
 \end{enumerate}
 The first two limitations do not really affect us, as we are interested in smaller files and do not have to consider forks.
 The rate limiting, while significantly slowing down the retrieval process, is also not a fatal obstacle.
@@ -40,17 +40,17 @@ For example, the query
 \begin{CVerbatim}
 alias language:Shell size:101..200
 \end{CVerbatim}
-returns up to 1000 Shell language files containing the string ``alias'' that have a file size between 101 and 200 bytes (inclusive).
+returns up to \num{1000} Shell language files containing the string ``alias'' that have a file size between 101 and 200 bytes (inclusive).
 Repeating the search with 
 \begin{CVerbatim}
 alias language:Shell size:201..300
 \end{CVerbatim}
-returns up to 1000 files of a size between 201 and 300 bytes, and so on.
+returns up to \num{1000} files of a size between 201 and 300 bytes, and so on.
 Repeatedly searching with the same search term but different non-overlapping file size ranges allows us to significantly increase our sample of the overall population.
 Another trick further improves on this: 
 the API gives us an option to sort the results by most or least recently indexed;
 if we run a search using a specific sort order, then we can effectively double the sample size by repeating the same search with the opposite sort order.
-Thus we can get up to 2000 results per search per file size range.
+Thus we can get up to \num{2000} results per search per file size range.
 
 Additionally, while GitHub does not allow us to retrieve more than a limited number of files per query, it does return the total count of files matching the query.
 While this count is usually very erratic on broad searches, fluctuating wildly between repeated requests, it turns out to be fairly accurate for searches with a small number of results, such as those conditioned on a narrow range of file sizes.
@@ -125,6 +125,6 @@ Files that did not contain any aliases were removed from the database, as was re
 \label{sec:reproducibility}
 
 To enable reproducibility and follow-up studies, we have made all data and our entire tool-chain publicly available.
-Our entire dataset (1.45 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata) is available on Zenodo.\footnote{\url{https://doi.org/10.5281/zenodo.3778824}}
-The parsing script, the executable Jupyter notebooks containing all SQL queries and additional Python code used during our analysis, as well as this paper, are available on GitHub.\footnote{Omitted for double blind review.}
+Our dataset (1.45 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and metadata) is available on Zenodo.\footnote{\url{https://doi.org/10.5281/zenodo.3778824}}
+The parsing script and the executable Jupyter notebooks, containing all SQL queries and additional Python code used during our analysis, are available on GitHub.\footnote{Omitted for double blind review.}
 %\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}
