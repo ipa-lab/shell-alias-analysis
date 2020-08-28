@@ -6,7 +6,7 @@ we gained insight into practices detailing how users customize their command-lin
 Based on our observations, we outline discussion points that go beyond single customization practices and identify implications that can address shortcomings in command-line user experience.
 Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
-\paragraph{\bf Learning Repair Rules}
+\paragraph*{\bf Learning Repair Rules}
 
 The complexity of commands and arguments can cause users to introduce errors when working in a command line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
@@ -15,22 +15,22 @@ It uses a set of rules to suggest possible error corrections to the command.
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
 %An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
 
-\paragraph{\bf Discovering Workflows}
+\paragraph*{\bf Discovering Workflows}
 We can also see how our dataset would enable a world beyond only trying to fix immediate errors, by providing usage hints that could introduce users to common parameters and workflows.
 For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} command, the alias \alias{mem10}{ps auxf | sort -nr -k 4 | head -10} can serve as a suggestion for the complex but common data transformation that results in showing the ten most memory-intensive processes.
-%\paragraph{\bf Object Protocols}
+%\paragraph*{\bf Object Protocols}
 Similarly, in the practice of \emph{chaining subcommands} we can clearly see the prevalence of object protocols~\cite{beckman:11}, which are implicit rules determining the order in which commands have to be executed.
 We can improve usability by enabling the discovery of these implicit rules and by exposing the dependency structure based on our customization data.
 For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset. 
 
-\paragraph{\bf Uncovering Conceptual Design Flaws}
+\paragraph*{\bf Uncovering Conceptual Design Flaws}
 
 Customization can also be an indicator for problems in the underlying conceptual design, manifesting as usability frustrations that require adaptation by the user.
 Briefly comparing our findings to the qualitative analysis on conceptual design flaws in \cmd{git} by Perez and Jackson~\cite{perez:13}, we can clearly see the same frustrations with committing and switching branches,\footnote{``Just Let Me Commit!" and ``I Just Want to Switch Branches" in the paper~\cite{perez:13}} based on the alias definitions in our dataset (e.g., \alias{commit}{git add . \&\& git commit -m}).
 
 We want to emphasize that we are not suggesting that large-scale quantitative data of customization practices can replace qualitative analysis, but rather that the corpus we provide, together with our findings, can support exploration and provide new insights for usability research.
 
-\paragraph{\bf Contextual Defaults}
+\paragraph*{\bf Contextual Defaults}
 
 Choosing proper defaults in user interfaces is a pillar of user experience design~\cite{nielsen2005power}.
 The fact that \per{14.48} of the customizations in our dataset are for \emph{overriding defaults} suggests that, at least for some groups of users, the default settings of their tools could be improved.
@@ -38,7 +38,7 @@ We see \emph{overriding defaults} not necessarily as an indictment of the involv
 Indeed, the variety of different defaults in the data indicate what we call \emph{contextual} defaults, where context could be a reflection of the level of expertise of a command-line user, or a certain persona (e.g., system administrator, data scientist, or software engineer).
 We could imagine providing different sets of defaults to different users, effectively alias starter packs, generated from our data.
 
-\paragraph{\bf Interactive Shell vs Batch-Processing}
+\paragraph*{\bf Interactive Shell vs Batch-Processing}
 
 Context extends to the environment a command is executed in, particularly whether it is used on an interactive command-line or as part of a script for batch-processing.
 Our findings highlight the tension between these different ways of execution and how a human user can have needs different from an automated workflow.

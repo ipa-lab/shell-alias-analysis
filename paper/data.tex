@@ -8,7 +8,7 @@ Our analysis is based on \num{2204199} alias definitions found on GitHub, collec
 	\centering
 	%\vspace{2em}
 	\includegraphics[width=0.85\textwidth]{figures/parser_breakdown.pdf}
-	\caption{Decomposition of \texttt{alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"}.}
+	\cprotect\caption{Decomposition of \verb`alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"`.}
 	\label{fig:parser}
 \end{figure*}
 
@@ -67,6 +67,14 @@ Our sample represents \per{94.09} of the estimated population of \num{897182} fi
 The file contents, together with repository metadata, were stored in an SQLite database.
 After removing duplicates, our database contains \num{372816} unique files from \num{205126} repositories.
 
+% NOTE: this table is from the next section, but the LaTeX gods demand I place it here
+\begin{table*}[!ht]
+    \centering
+    \caption{Top alias names, commands and arguments}
+    \label{tab:top-summary}
+    \input{tables/top-summary.tex}
+\end{table*}
+
 \subsection{Parsing}
 
 After collecting files with potential aliases, we ran a parsing script to find actual alias definitions and decompose them into their constituent parts for analysis.
@@ -92,20 +100,18 @@ See \Cref{fig:parser} for a more elaborate example.
 
 Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
 While there are some conventions around command line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
-\begin{itemize}
-    \item single-dash short arguments combined with double-dash long-form arguments, e.g. \verb|ls -l -a --color=always|
-    \item combined short arguments without a dash, e.g. \\ \verb|tar xvzf archive.tar|
-    \item dictionary-style arguments, e.g. \\ \verb|dd if=/dev/zero of=/dev/sda|
-    \item subcommands, e.g. \verb|git commit -m "wip"|
-\end{itemize}
+single-dash short arguments combined with double-dash long-form arguments (e.g., \texttt{ls -l -a --color=always});
+combined short arguments without a dash (e.g., \texttt{tar xvzf archive.tar});
+dictionary-style arguments (e.g., \texttt{dd if=/dev/zero of=/dev/sda});
+subcommands (e.g., \texttt{git commit -m "wip"});
 and many more.
 Since the parser can not know the intentions of any command, it simply treats each token as a separate argument.
-There is one exception: if the command is \texttt{sudo}, then its first argument is taken as the real command. 
+There is one exception: if the command is \cmd{sudo}, then its first argument is taken as the real command. 
 For example,
 \begin{CVerbatim}
 sudo apt-get install
 \end{CVerbatim} 
-is parsed as the command \texttt{apt-get} with argument \texttt{install} and the sudo flag set.
+is parsed as the command \cmd{apt-get} with argument \texttt{install} and the sudo flag set.
 
 After parsing, we ended up with \num{2204199} alias definitions, broken down into \num{2534167} commands and \num{3630423} arguments.
 Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
@@ -119,6 +125,6 @@ Files that did not contain any aliases were removed from the database, as was re
 \label{sec:reproducibility}
 
 To enable reproducibility and follow-up studies, we have made all data and our entire tool-chain publicly available.
-Our entire dataset (1.25 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata) is available on Zenodo.\footnote{\url{https://doi.org/10.5281/zenodo.3778824}}
+Our entire dataset (1.45 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and repository metadata) is available on Zenodo.\footnote{\url{https://doi.org/10.5281/zenodo.3778824}}
 The parsing script, the executable Jupyter notebooks containing all SQL queries and additional Python code used during our analysis, as well as this paper, are available on GitHub.\footnote{Omitted for double blind review.}
 %\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}

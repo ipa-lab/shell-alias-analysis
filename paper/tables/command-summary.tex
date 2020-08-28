@@ -1,5 +1,6 @@
-\newcommand{\numx}[1]{{\small (\num{#1})}}
-\begin{tabular}{@{}lrll@{}}
+\newcommand{\numx}[1]{{\footnotesize (\num{#1})}}
+\begin{adjustbox}{width=\columnwidth,center}
+\begin{tabular}{@{}l@{}rll@{}}
     \toprule
                 &           \% &            Arguments &                                                                 Aliases (\%) \\
     \midrule
@@ -25,5 +26,5 @@
                 &   \num{2.67} &            \verb|-a| &                                                       \verb|la| \numx{76.94} \\
                 &   \num{1.92} &           \verb|-al| &         \verb|ll| \numx{49.69}, \verb|la| \numx{12.23}, \verb|l| \numx{8.49} \\
     \bottomrule
-\end{tabular}
-
+\end{tabular}%
+\end{adjustbox}

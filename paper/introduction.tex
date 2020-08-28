@@ -2,7 +2,7 @@
 
 A command line interface, also called a \emph{shell}, is a textual interface that allows users to interact with the underlying operating system by issuing commands.
 Expert users, such as system administrators, software developers, researchers, and data scientists, routinely use the shell as it affords them flexibility and the ability to compose multiple commands.
-They perform a variety of tasks on their systems including navigating and interacting with the filesystem (e.g., \verb|ls|, \verb|mv|, \verb|cd|), using version control (e.g., \verb|git|, \verb|hg|), installing packages (e.g., \verb|apt-get|, \verb|npm|), or dealing with infrastructure (e.g., \verb|docker|).
+They perform a variety of tasks on their systems including navigating and interacting with the filesystem (e.g., \cmd{ls}, \cmd{mv}, \cmd{cd}), using version control (e.g., \cmd{git}, \cmd{hg}), installing packages (e.g., \cmd{apt-get}, \cmd{npm}), or dealing with infrastructure (e.g., \cmd{docker}).
 Experts can adapt and play with a multitude of commands and arguments, chaining them together to create more complex workflows.
 All this versatility introduces a common problem in user interfaces of recognition over recall~\cite{nielsen:05}, where users have to recall the particularities of syntax and argument combinations, instead of enabling them to use a more recognizable symbol (as in graphical user interfaces).
 
@@ -14,7 +14,7 @@ These command customizations can therefore provide insight into the tasks that t
 Many users have publicly shared these configurations on social coding platforms such as GitHub.
 To study these preferences, we performed an exploratory analysis of over 2.2 million alias definitions on GitHub, which provides a rich dataset to investigate how command-line users customize their tasks and workflows.
 
-\subsection{Command-Line Customization Practices} We find that there are three high-level types of customization practices:
+We find that there are three high-level types of customization practices:
 \textsc{Shortcuts} introduce new names.
 They can be used for \emph{nicknaming commands} (and correcting misspellings in the process),
 \emph{abbreviating subcommands} like \texttt{git push},
@@ -35,5 +35,4 @@ We also find that many customizations redefine the default way particular comman
 We envision that our findings and dataset can be used to learn repair rules, in order to correct not only user errors, but also enable usage discovery to introduce newcomers to different argument structures and workflows within commands.
 Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
-
-In the following, we introduce more background by describing usage and syntax of aliases. We further describe our data collection and parsing process. We then present the findings from our exploratory analysis on customization practices expressed throuh these aliases, followed by a discussion on implications for usability. We finally discuss threats to validity and review related work in the broader context of this study. 
+In the following, we introduce more background by describing usage and syntax of aliases. We further describe our data collection and parsing process. We then present the findings from our exploratory analysis on customization practices expressed through these aliases, followed by a discussion on implications for usability. We finally discuss threats to validity and review related work in the broader context of this study. 

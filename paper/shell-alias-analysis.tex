@@ -1,14 +1,18 @@
-\documentclass[sigconf,review, anonymous]{acmart}
-\acmConference[ESEC/FSE 2020]{The 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{8 - 13 November, 2020}{Sacramento, California, United States}
+\documentclass[10pt,conference]{IEEEtran}
 \usepackage[utf8]{inputenc}
+\usepackage{url}
 \usepackage[noabbrev,nameinlink]{cleveref}
 \usepackage[autolanguage]{numprint}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{wasysym}
 \usepackage{fancyvrb}
+\usepackage{fvextra}
 \usepackage{setspace}
 \usepackage{tikz}
+\usepackage{cprotect}
+\usepackage{float}
+\usepackage{adjustbox}
 
 \usepackage{xspace}
 \newcommand*{\TODO}{\textcolor{red}{TODO}\xspace}
@@ -27,6 +31,7 @@
 
 \title{An Empirical Study of Command-Line Customization}
 
+\author{Anonymous Author(s)}
 %\author{Michael Schröder}
 %\affiliation{%
 %	\institution{TU Wien}
@@ -41,11 +46,11 @@
 %	\state{MA}}
 %\email{jcito@mit.edu}
 
+\maketitle
+
 \begin{abstract}
 	\input{abstract}
 \end{abstract}
-
-\maketitle
 
 \input{introduction}
 
@@ -63,7 +68,7 @@
 
 \input{conclusion}
 
-\bibliographystyle{ACM-Reference-Format}
-\bibliography{references}
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,references}
 
 \end{document}

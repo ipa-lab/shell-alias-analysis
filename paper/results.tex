@@ -1,11 +1,5 @@
 \section{Findings}
 
-\begin{table*}[t]
-    \caption{Top alias names, commands and arguments}
-    \label{tab:top-summary}
-    \input{tables/top-summary.tex}
-\end{table*}
-
 \begin{table}
     \caption{Top two commands with top arguments and aliases}
     \label{tab:command-summary}
@@ -27,7 +21,7 @@ to shorten a common invocation (\alias{ll}{ls -alF});
 and to correct a spelling mistake (\alias{sl}{ls}).
 We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \alias{gd}{git diff}).
 
-\paragraph{\bf Characterizing Customization Practices}
+\paragraph*{\bf Characterizing Customization Practices}
 
 To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
 Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \cite{thomas:06}.
@@ -41,12 +35,11 @@ The discussion of the formalizations additionally served to establish a better s
 Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
 
 \begin{table}
+    \centering
 	\caption{Alias types and customization practices}
     \label{tab:practices}
     \input{tables/practices.tex} % TODO: fill in
 \end{table}
-
-\input{tables/practices-by-command.tex} % TODO: update
 
 We identified nine customization practices among three types of aliases:
 \textsc{Shortcuts} introduce new names and are often used for \emph{nicknaming commands}, \emph{abbreviating subcommands}, and \emph{bookmarking locations};
@@ -59,13 +52,6 @@ Any alias can be an expression of multiple customization practices at once, and 
 We will now discuss the alias types and customization practices in more detail.
 
 \subsection{Shortcuts}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.95\columnwidth]{figures/compression.pdf}
-    \caption{Distribution of alias compression ratios}
-    \label{fig:compression}
-\end{figure}
 
 The most obvious use of an alias is to give a complex expression a short and/or memorable name.
 The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
@@ -87,7 +73,7 @@ When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aer
 
 Beyond just compression and expansion of strings, we can see a few distinct practices related to the naming of things.
 
-\paragraph{\bf Nicknaming Commands}
+\paragraph*{\bf Nicknaming Commands}
 
 There are \num{244872} aliases in our dataset (\per{11.11}) that merely give a new name to a command, without adding any arguments, and without the name belonging to a different command (that would be a substitution, see below).
 The most often occurring nicknames are \alias{g}{git}, \alias{c}{clear}, \alias{h}{history}, and \alias{v}{vim}.
@@ -106,7 +92,14 @@ We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most c
 %The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
 %There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
-\paragraph{\bf Abbreviating Subcommands}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figures/compression.pdf}
+    \caption{Distribution of alias compression ratios}
+    \label{fig:compression}
+\end{figure}
+
+\paragraph*{\bf Abbreviating Subcommands}
 
 Many commands can operate in different modes, or act as interfaces to a variety of different \emph{subcommands}.
 The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
@@ -117,7 +110,7 @@ For example, \alias{gs}{git status} or \alias{gd}{git diff}.
 The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, where \num{113980} aliases are defined purely for abbreviating one of its subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
 The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
 
-\paragraph{\bf Bookmarking Locations}
+\paragraph*{\bf Bookmarking Locations}
 
 When an aliased command is called with an argument that references some specific local or remote location, e.g., a file path, domain, or IP address, the alias acts as a bookmark to that location.
 For instance, \alias{starwars}{telnet towel.blinkenlights.nl} and \alias{dl}{cd \textasciitilde/Downloads} are both bookmark aliases.
@@ -146,12 +139,14 @@ or outputting log files, as in \alias{onoz}{cat /var/log/errors.log}, or opening
 %     \input{tables/locations.tex}
 % \end{table}
 
+\input{tables/practices-by-command.tex} % TODO: update
+
 \subsection{Modifications}
 
 Aliases are not only used syntactically, for naming purposes, but also in ways that change the semantics of certain commands.
 We found four customization practices where aliases modify commands.
 
-\paragraph{\bf Substituting Commands}
+\paragraph*{\bf Substituting Commands}
 
 When the name of an alias is identical to the name of a pre-existing command, the alias defines a substitution for the command.
 A common example is \alias{more}{less}, replacing a standard Unix utility (\cmd{more}) with a more capable but similar command (\cmd{less}).
@@ -162,7 +157,7 @@ To determine proper substitutions, we only count aliases whose value does not al
 We find that \num{100564} aliases (\per{4.56}) are used to substitute one command for another.
 The top three substitutions are \verb|vi| $\rightarrow$ \verb|vim|, \verb|vim| $\rightarrow$ \verb|nvim|, and \verb|vi| $\rightarrow$ \verb|nvim|.
 
-\paragraph{\bf Overriding Defaults}
+\paragraph*{\bf Overriding Defaults}
 
 When the name of the alias is a pre-existing command that is also part of the alias itself, as in \alias{ls}{ls -G}, then the alias re-defines the command and effectively overrides its default settings.
 Any time the command is now executed, it will be with the arguments specified in the alias.
@@ -180,14 +175,14 @@ For example, the alias \alias{df}{df -h} ensures that the available disk space i
 But by far the most common reason for overriding defaults is to enable colorized output.
 This behavior is so prevalent that we count it as a customization practice in its own right.
 
-\paragraph{\bf Colorizing Output}
+\paragraph*{\bf Colorizing Output}
 
 Enabling colored output can be done in many different ways: adding an argument (like \texttt{less -R} or \cmd{grep --color=always}), setting an environment variable (as in \alias{ssh}{TERM=xterm256color ssh}), running the command through a tool that colorizes its output (like \cmd{grcat} or \cmd{pygmentize}), or even replacing a command outright (\alias{diff}{colordiff}).
 Taking all these varieties into account, more than half of all command redefinitions (\per{57.21}) enable colored output by default.
 This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
 If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases ensure that a command's output is not just in black and white.
 
-\paragraph{\bf Elevating Privilege}
+\paragraph*{\bf Elevating Privilege}
 
 The \cmd{sudo} command allows the user to execute another command with superuser privileges.
 Combining a command with \cmd{sudo} is often necessary if the other command needs to modify critical parts of the system.
@@ -209,7 +204,7 @@ Other operators (\verb`||`, \verb`|&`) appear in only \per{3.85} of multi-comman
 Aliases that combine multiple commands are basically tiny shell scripts.
 Two scripting practices are of particular interest.
 
-\paragraph{\bf Transforming Data}
+\paragraph*{\bf Transforming Data}
 
 The most interesting shell operator is certainly the pipe (\verb`|`), since it creates an interface between two otherwise separate programs.
 The pipe embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
@@ -220,12 +215,12 @@ The most common data sources in pipelines are the commands \cmd{ps}, \cmd{git}, 
 
 \begin{figure*}[h]
 	\centering    
-	\includegraphics[width=0.9\linewidth]{figures/flow_250.png}
+	\includegraphics[width=0.78\linewidth]{figures/flow_250.png}
 	\caption{Flow diagram for top 3-command pipelines}
 	\label{fig:flow}
 \end{figure*}
 
-\paragraph{\bf Chaining Subcommands}
+\paragraph*{\bf Chaining Subcommands}
 
 An interesting pattern found in aliases composed of multiple commands are chains of subcommand invocations.
 For example, the package manager \cmd{brew} has a subcommand \texttt{update}, for updating the package database, and a subcommand \texttt{upgrade}, for upgrading previously installed packages to the latest available versions.
