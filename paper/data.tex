@@ -14,10 +14,10 @@ Our analysis is based on \num{2204199} alias definitions found on GitHub, collec
 
 Alias definitions can appear in any Shell script, but we anticipated that they would predominantly be found in personal configuration files (like \verb|.bashrc| or \verb|.bash_profile|).
 %While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
-Unfortunately, this rules out using some prominent existing datasets for our study~\cite{mombach}:
+Unfortunately, this rules out using some prominent existing datasets for our study~\citep{mombach}:
 The public GitHub archive on BigQuery,\footnote{\url{https://bigquery.cloud.google.com/table/bigquery-public-data:github_repos.files}} while containing over 1.5 TB of source code, only includes ``notable projects'' (presumably those with a certain number of stars on GitHub) that additionally have an explicit open source license. 
 This leaves out many of the repositories we are interested in, as users sharing configuration scripts for personal use do not usually add a license file and their repositories are generally not ``notable''.
-GHTorrent~\cite{ghtorrent}, another popular archive of GitHub data, only contains metadata but not file contents.
+GHTorrent~\citep{ghtorrent}, another popular archive of GitHub data, only contains metadata but not file contents.
 
 Therefore, we found it necessary to write our own tooling to directly collect the data from GitHub ourselves.
 We used the GitHub Code Search API to find files written in Shell language\footnote{GitHub uses the Linguist library to classify code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
@@ -32,8 +32,7 @@ Alas, the GitHub Code Search API comes with its own set of limitations:
 The first two limitations do not really affect us, as we are interested in smaller files and do not have to consider forks.
 The rate limiting, while significantly slowing down the retrieval process, is also not a fatal obstacle.
 The maximum number of returned search results, however, is a critical limitation.
-To get around it, we wrote a Python tool called \verb|BLINDED-SEARCHER| that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
-% \verb|github-searcher|\footnote{\TODO: url/paper} 
+To get around it, we wrote a Python tool called \verb|github-searcher|\footnote{\url{https://github.com/ipa-lab/github-searcher}} that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
 
 The sampling strategy is based on the GitHub API allowing code search queries to be conditioned on file sizes. 
 For example, the query 

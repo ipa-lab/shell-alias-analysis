@@ -3,7 +3,7 @@
 A shell is a command interpreter allowing the user to interact with an underlying system.
 The concept of the operating system shell as an independent process executing outside the kernel originated in Multics and was further developed into the original Unix shell \texttt{sh} and its various descendants.
 %  (\TODO references)
-The POSIX family of standards defines a Shell Command Language~\cite{posix_standard, greenberg:17}, whose standard implementation is still the \texttt{sh} utility, but there exist a wide variety of popular POSIX-compliant shells like \texttt{bash} or \texttt{zsh}.
+The POSIX family of standards defines a Shell Command Language~\citep{posix_standard, greenberg:17}, whose standard implementation is still the \texttt{sh} utility, but there exist a wide variety of popular POSIX-compliant shells like \texttt{bash} or \texttt{zsh}.
 These implementations are free to extend the functionality of the shell, but all share a common subset of core commands and programming language constructs.
 In this paper, we focus on the built-in \texttt{alias} command, available on all POSIX shells.
 
@@ -21,9 +21,9 @@ So the alias \texttt{ll} (present in many system configurations) is used to spec
 
 Alias values can be arbitrarily complex strings and can substitute not only simple commands and arguments, but whole chains of commands. 
 The definition
-\begin{Verbatim}[breaklines=true]
+\begin{CVerbatim}
 alias ducks="du -cksh * | sort -hr | head -n 15"
-\end{Verbatim}
+\end{CVerbatim}
 defines the new command \cmd{ducks} by chaining together three different command line tools in order to return the 15 largest files in the current directory.
 
 %alias ip=ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d' ' -f2
@@ -44,7 +44,8 @@ alias grep='grep --color=always'
 \end{CVerbatim}
 is possible.
 
-In the remainder of this paper, we will use the more compact notation \alias{a}{b} to indicate an alias that replaces the name \texttt{a} with the value \texttt{b}.
+In the remainder of this paper, we will use the more compact notation
+\begin{center}\alias{a}{b}\end{center} to indicate an alias that replaces the name \texttt{a} with the value \texttt{b}.
 
 \subsection{Dotfiles}
 
