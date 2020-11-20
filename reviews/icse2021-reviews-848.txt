@@ -1,0 +1,139 @@
+ICSE 2021 Paper #848 Reviews and Comments
+===========================================================================
+Paper #848 An Empirical Study of Command-Line Customization
+
+
+Review #848A
+===========================================================================
+* Updated: 2 Nov 2020 1:22:27pm AoE
+
+Overall merit
+-------------
+2. Weak reject
+
+Paper summary
+-------------
+The paper reports an empirical study of customizations of command line instructions collected from 2.2 million shell alias definitions found in Github. Through inductive coding, patterns in the aliases in these customizations are developed and categorized. Implications with respect to improvements in the usability of command-line programs for a better user experience conclude the paper.
+
+Strengths and weaknesses
+------------------------
++ The paper is very well written, clear study goals and methodology, results and threats to validity
++ Interesting patterns in the shell commands customizations
++ Decent effort is made to draw implications for improving the usability of interfaces of command-line programs 
++ research data set available for reproducibility
+
+- unclear motivation for the study
+
+Comments for authors
+--------------------
+I really enjoyed reading this paper. For someone interested in command-line programming, the patterns identified in the study represent interesting insights, tough nothing surprising. 
+
+Soundness. The study seems very sound. The authors clearly explain the methodology for collecting and processing to identify alias definitions; I liked how they explain the decisions they made in response to some data challenges. The threats to validity are also  detailed; although the dataset might be not representative, it seems exhaustive on GH. 
+
+Novelty. Work on improving user experience at command line seems to exist. The novelty of this work it would be in the dataset analyzed as far as i can see. 
+
+Significance. As much as i like the implications discussed in the paper, I am not convinced about the need for this study. Is there prior research indicating the problems users have when using the shell commands, such as errors, etc.? 
+
+Wth respect to the implications discussed in Section V, I am in two boats. While I am not sure that the learning repair rules are novel (given the related work cited), the discovery of workflows and the contextual defaults would be very useful for designing improved UI (at least in educational settings). The reason I am still unconvinced is that CLI users are typically power users and so I am not sure to what extent the errors they make cause that much trouble. Perhaps the fact that the real problem solved by this analysis is not well explained is at the core of my indecisiveness of significance of the results. 
+
+Verifiability. The authors provide the research data set.
+
+Questions for authors to respond to
+-----------------------------------
+1. What are the problems that this analysis tries to contribute insights to?
+2. Is there related work that indicates that CLI users have problems and therefore create aliases, or don't know which aliases to use in their work?
+
+
+
+Review #848B
+===========================================================================
+
+Overall merit
+-------------
+2. Weak reject
+
+Paper summary
+-------------
+The paper presents an exploratory empirical study on command line customization. The dataset used was configurations shared on GitHub for aliases in particular. The results show three types of aliases being used: shortcuts, modifications, and scripts. The case is made that identifying the common custmization practices can point to usability issues.
+
+Strengths and weaknesses
+------------------------
+Strengths
++ dataset for command line customizations is presented.
++ customization practices identified.
+
+Weaknesses
+- scripts not analyzed. 
+- presentation issues in results. 
+- no specific list of usablity issues was identified.
+
+Comments for authors
+--------------------
+I am not sure how useful the categorization you have actually is for software developers for software tasks such as refactoring for example.  For example I would have liked to see more details on the scripts alias.  What are these scripts and what do they do?  That is more interesting in my opinion.  We all know people write scripts.  That is common knowledge. I do agree with you that your dataset provides good ground work for fine grained discovery.  
+
+Can you take this analysis one step further to delve deeper into what the scripts for? That category seems very interesting to me.  I'd like to see what they are being used for. I am assuming you did not have access to the scripts?  The uncurated data set you provide is 4GB which means it is possible to have these in the set.  Please clarify. I did not check for this. 
+
+Are the implications you present a result of the analysis you did on the dataset? It was not very clear based on how it was written in the third bullet point in the introduction. For example did you uncover design flaws or was it uncovered by reference 3? Did you enable learning repair rules and propose contextual defaults or are you implying others did that.  Please make clear what is your contribution vs. what others have said about this in the field. 
+
+Integrated development environments do make developers more productive (people can argue). Many of the commands such as the git that are used frequently are built into the IDE and done with a click of a button.  I was trying to figure out how these results can help developers that use an IDE for example in addition with a command line. This is why I was interested in learning more about the scripting aspect of your dataset. 
+
+What does the black area shaded in the pie chart refer to (is it the percentage?)? I also didnt know if the white or the black was the relevant data. Please specify in table caption.  I also did not quite understand how to decode your compression column in Table IV. Teh red line appears in the same place everywhere. The distribution (not sure what the blue bars are) looks different. Also did you center this column?  Better left justifying it to keep it the same start. 
+
+It was unclear to me how the authors come up with the implications of how the complexity of commands can cause users to introduce errors.  Were these implications just based on your experience because I truly fail to see how these can be used ot uncover design flaws and learn repair rules. 
+
+Soundness: The dataset and tooling used for the analysis of the paper seems sound for this exploratory study. 
+
+Significance: I failed to see a huge significance to the results given. Had the authors gone into the details of the scripts there might have been more insights. For example what types of transforming of data or chaining subcommands were used in scripts?  Were these the only types of script used? 
+
+Novelty: I did not find the results to be novel.  Resuls in Table IV are pretty much expected. I was interested in how scripts were used. 
+
+Verifiability: The dataset is made available on zenodo. Jupyter notebooks are also provided to run SQL queries.  I commend the authors for providing these tools.  The dataset seems very useful. 
+
+Presentation: The paper is well written. Some presentation issues.  See my comment on Table IV in review.
+
+Questions for authors to respond to
+-----------------------------------
+Q.1. Were the implications given in the paper just based on your experience or directly derived from the dataset?
+
+Q.2. Why were the scripts not analyzed?
+
+
+
+Review #848C
+===========================================================================
+
+Overall merit
+-------------
+1. Reject
+
+Paper summary
+-------------
+The paper presents a large-scale analysis examining the practices of command-line customizations. The analysis is based on a dataset of over 372K dotfiles containing aliases that were retrieved from GitHub, and an inductive coding of more than 1300 alias definitions. The paper presents a categorization of the nine identified customization practices, including shortcuts, modifications and scripts, their frequency and implications, such as the learning of repair rules that can address some of the shortcomings in todays command-line interfaces.
+
+Strengths and weaknesses
+------------------------
+Strengths
+- large-scale dataset, analysis and statistics of shell aliases
+- reproducibility
+
+Weaknesses
+- significance and value of the work
+
+Comments for authors
+--------------------
+The paper presents a categorization and descriptive statistics of a novel and large-scale dataset of shell aliases. The retrieval steps for the data set and the steps of the analysis are described in much detail making them easy to reproduce. Also, the paper is easy to read.
+
+The major concern is the value, relevance and significance of the work. For instance, while there is a fairly high-level discussion of some implications, these implications are not novel and there is little value to practice or research in the SE domain. Similarly, it is not clear why the categorization or the nine customization practices and their frequencies are relevant to the community.
+At this point, it is more like a descriptive statistics section of a paper that is easy to read and provides a reasonable classification, but without many actionable take-aways or of high significance and the next step is somewhat missing, for instance, something that concretely improves the situation to support developers.
+
+The paper is well written, the paper and methods appear to be sound and verifiable, the dataset of shell aliases is novel but overall the novelty and significance of the results and implications is limited.
+
+Questions for authors to respond to
+-----------------------------------
+1. Why is the categorization and the frequency counts of the shell aliases of importance to the SE community and what is its significance?
+
+
+
+Response by Jürgen Cito <juergen.cito@tuwien.ac.at>
+---------------------------------------------------------------------------
+Thank you for your feedback. We have decided to withdraw the paper at this point to incorporate your suggestions for the next version of this paper.
