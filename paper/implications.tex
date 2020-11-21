@@ -8,7 +8,7 @@ Further, while our presented findings already give us an understanding of custom
 
 \paragraph{Learning Repair Rules}
 
-The complexity of commands and arguments can cause users to introduce errors when working in a command line interface.
+The complexity of commands and arguments can cause users to introduce errors when working in a command-line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
 A popular open source project that attempts to navigate this issue\footnote{\url{https://github.com/nvbn/thefuck}} uses a set of rules to suggest possible error corrections for commands.
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
@@ -41,7 +41,7 @@ We see parallels to work that investigates contextual preferences and personaliz
 
 \paragraph{Interactivity vs Batch-Processing}
 
-Context extends to the environment a command is executed in, particularly whether it is used on an interactive command-line or as part of a script for batch-processing.
+Context extends to the environment a command is executed in, particularly whether it is used on an interactive command line or as part of a script for batch-processing.
 Our findings highlight the tension between these different ways of execution and how a human user can have needs different from an automated workflow.
 This particularly comes to light in the customization practices of \emph{colorizing output} and \emph{overriding defaults}.
-While human-readable output or prompting for destructive actions makes no sense in scripts and is usually seen as cumbersome for expert users even on the command-line, our findings show that aliases like \alias{mv}{mv -i} are nonetheless highly desired by some.
+While human-readable output or prompting for destructive actions makes no sense in scripts and is usually seen as cumbersome for expert users even on the command line, our findings show that aliases like \alias{mv}{mv -i} are nonetheless highly desired by some.
