@@ -15,14 +15,13 @@ For example, the definition
 alias gs='git status'
 \end{CVerbatim}
 has a compression ratio of 5.
-\Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
+Fig.~\ref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.2, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates an alias name that is longer than the value it aliases.
-\Cref{tab:use-cases} gives at-a-glance compression distributions for aliases using common commands in first position.
+Table~\ref{tab:use-cases} gives at-a-glance compression distributions for aliases using common commands in first position.
 The mini-histograms are log-log scaled; red lines mark the compression ratio 1.
 
-There are \num{157542} aliases (\per{3.3}) with names longer than their values.%
-\footnote{The curious spike at 0.36 in \Cref{fig:compression} is the \texttt{zsh} portability hack described earlier.
+There are \num{157542} aliases (\per{3.3}) with names longer than their values.%\footnote{The curious spike at 0.36 in Fig.~\ref{fig:compression} is the \texttt{zsh} portability hack described earlier.
 It makes up \per{49.68} of long alias names.}
 Among them, we found many descriptive names, like
 \begin{itemize}

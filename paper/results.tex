@@ -1,19 +1,20 @@
 \section{Findings}
 
-\begin{table}
-    \caption{Top two commands with top arguments and aliases}
-    \label{tab:command-summary}
-    \input{tables/command-summary.tex}
-\end{table}
-
-\Cref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
+Table~\ref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
 The most common alias name we found is \texttt{ls}, appearing a total number of \num{83782} times, which is \per{3.8} of all alias definitions.
 Note that this is \texttt{ls} as an \emph{alias name}, a redefinition of the \texttt{ls} \emph{command}, which appears \num{260156} times (\per{10.27}).
 This is a bit less often than \texttt{git}, the most common command, which appears in \num{327786} aliases (\per{12.93}).
 The most common argument, across all commands, is \texttt{--color=auto}, appearing \num{153931} times (\per{4.24})
 
+\begin{table}
+    \centering
+    \caption{Top alias names, commands and arguments.}
+    \label{tab:top-summary}
+    \input{tables/top-summary.tex}
+\end{table}
+
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
-\Cref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
+Table~\ref{tab:command-summary} gives a more informative view for the top two commands, \texttt{git} and \texttt{ls}, showing us the top arguments given with each and the most common alias names by which the command/argument combinations are referred to.
 Here we can already identify some of the typical alias use cases.
 Looking at \texttt{ls}, we find that aliases are used
 to redefine the command with a default argument (\alias{ls}{ls --color=auto});
@@ -21,12 +22,19 @@ to shorten a common invocation (\alias{ll}{ls -alF});
 and to correct a spelling mistake (\alias{sl}{ls}).
 We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \alias{gd}{git diff}).
 
+\begin{table}
+    \centering
+    \caption{Top two commands with top arguments and aliases.}
+    \label{tab:command-summary}
+    \input{tables/command-summary.tex}
+\end{table}
+
 \paragraph{Characterizing Customization Practices}
 
 To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
 Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \citep{thomas:06}.
 It is an iterative process between theoretical sampling and comparing data within emerging themes \citep{dey:03}.
-We looked at \num{1381} alias definitions derived in a similar way as \Cref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
+We looked at \num{1381} alias definitions derived in a similar way as Table~\ref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
 In addition, we took a random sample of 200 alias definitions that each occur only once in the dataset to represent the long tail.
 Coding was then performed independently by two authors, who labelled each alias definition in the cross-section with descriptive tags, taking the semantics of the commands into account as much as possible.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
 After a first iteration, the coders compared their labels, consolidating different naming conventions.
@@ -45,11 +53,13 @@ We identified nine customization practices among three types of aliases:
 \textsc{Shortcuts} introduce new names and are often used for \emph{nicknaming commands}, \emph{abbreviating subcommands}, and \emph{bookmarking locations};
 \textsc{Modifications} change the semantics of commands by \emph{substituting commands}, \emph{overriding defaults}, \emph{colorizing output}, and \emph{elevating privilege};
 and \textsc{Scripts} combine multiple commands, often for the purposes of \emph{transforming data} or \emph{chaining subcommands}.
-\Cref{tab:practices} gives a quantitative overview of the prevalence of each of these practices in the dataset.
+Table~\ref{tab:practices} gives a quantitative overview of the prevalence of each of these practices in the dataset.
 Any alias can be an expression of multiple customization practices at once, and some practices only occur with certain commands.
-\Cref{tab:practices-by-command} breaks down the customization practices by command, counting the number of aliases that a command is involved in (including aliases that redefine the command).
+Table~\ref{tab:practices-by-command} breaks down the customization practices by command, counting the number of aliases that a command is involved in (including aliases that redefine the command).
 
 We will now discuss the alias types and customization practices in more detail.
+
+\input{tables/practices-by-command.tex}
 
 \subsection{Shortcuts}
 
@@ -57,9 +67,16 @@ The most obvious use of an alias is to give a complex expression a short and/or 
 The average length of an alias name is 4.3 characters, whereas the average length of an alias value is 23.7 characters.
 If we divide the length of an alias value by the length of the alias name, we get the \emph{compression ratio} of the alias.
 For example, the alias \alias{gs}{git status} has a compression ratio of 5.
-\Cref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
+Fig.~\ref{fig:compression} shows the distribution of compression ratios over all aliases in the dataset.
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates a name that is longer than the value it aliases.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\columnwidth]{figures/compression.pdf}
+    \caption{Distribution of alias compression ratios}
+    \label{fig:compression}
+\end{figure}
 
 There are \num{26055} aliases (\per{1.18}) with names longer than their values.
 The two longest alias names we found are from joke definitions.
@@ -93,13 +110,6 @@ We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most c
 %The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
 %There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.95\columnwidth]{figures/compression.pdf}
-    \caption{Distribution of alias compression ratios}
-    \label{fig:compression}
-\end{figure}
-
 \paragraph{Abbreviating Subcommands}
 
 Many commands can operate in different modes, or act as interfaces to a variety of different \emph{subcommands}.
@@ -132,15 +142,13 @@ Of these, \num{59931} are remote bookmarks containing URLs or IP addresses (\per
 Bookmarks are used predominantly for file system navigation, and the \verb|cd| command is featured heavily.
 Most other uses seem to be development related, like starting services such as web servers or databases with pre-defined locations, opening frequently edited files, or outputting logs, as in \alias{onoz}{cat /var/log/errors.log}
 %, or opening frequently edited files, as in the most common alias for the most common location, which is for editing the shell configuration itself: \alias{zshconfig}{vim \textasciitilde/.zshrc}.
-%\Cref{tab:locations} shows the top local and remote locations found in aliases.
+%Table~\ref{tab:locations} shows the top local and remote locations found in aliases.
 
 % \begin{table}
 %     \caption{Top 5 local and remote locations found in aliases}
 %     \label{tab:locations}
 %     \input{tables/locations.tex}
 % \end{table}
-
-\input{tables/practices-by-command.tex}
 
 \subsection{Modifications}
 
@@ -210,14 +218,14 @@ It embodies the Unix philosophy of small tools doing one thing well, which can t
 There are \num{74719} aliases (\per{3.39}) combining two or more commands using only the pipe operator.
 The most common command occurring after a pipe, by far, is \cmd{grep}, which makes an appearance in almost half of all pipelines (\per{46.16}), more than three times as often as \cmd{xargs} and \cmd{sort}.
 The most common data sources are \cmd{ps}, \cmd{git}, and \cmd{ls}, which are found at the beginning of almost a third (\per{32}) of all pipelines.
-\Cref{fig:flow} shows a flow diagram of the top pipelines with three commands.
+Fig.~\ref{fig:flow} shows a flow diagram of the top pipelines with three commands.
 
-\begin{figure*}[h]
+\begin{figure}
 	\centering    
-	\includegraphics[width=\linewidth]{figures/flow_250.png}
+	\includegraphics[width=\columnwidth]{figures/flow_250.png}
 	\caption{Flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage}
 	\label{fig:flow}
-\end{figure*}
+\end{figure}
 
 \paragraph{Chaining Subcommands}
 

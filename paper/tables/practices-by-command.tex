@@ -14,8 +14,9 @@
 
 \begin{table*}
     \centering
-    \caption{Customization practices broken down by command. \protect\linebreak \textnormal{We present a selection of common commands and display the percentage of each command's involvement in a customization practice with a pie chart symbol, if it is more than \per{1}. The compression ratio plots are log-log histograms, with the red line marking compression ratio 1.} \protect\linebreak}
+    \caption{Customization practices broken down by command. We present a selection of common commands and display the percentage of each command's involvement in a customization practice with a pie chart symbol, if it is more than \per{1}. The compression ratio plots are log-log histograms, with the red line marking compression ratio 1.}
     \label{tab:practices-by-command}
+\begin{adjustbox}{width=\columnwidth,center}
 \begin{tabular}{llr|ccc|cccc|cc|c}
 & & \multicolumn{1}{r}{\#} & \multicolumn{1}{c}{\rot{Nicknaming Commands}} & \multicolumn{1}{c}{\rot{Abbreviating Subcommands}} & \multicolumn{1}{c}{\rot{Bookmarking Locations}} & \multicolumn{1}{c}{\rot{Substituting Commands}} & \multicolumn{1}{c}{\rot{Overriding Defaults}} & \multicolumn{1}{c}{\rot{Colorizing Output}} & \multicolumn{1}{c}{\rot{Elevating Privilege}} & \multicolumn{1}{c}{\rot{Transforming Data}} & \multicolumn{1}{c}{\rot{Chaining Subcommands}} & Compression \\
 \midrule
@@ -60,4 +61,5 @@
 &          \texttt{brew} &    \num{8555} &          \pie{3.12} &              \pie{32.24} &                       &            \pie{1.48} &                     &                   &          \pie{1.68} &                   &          \pie{33.77} &          \hist{brew} \\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \end{table*}

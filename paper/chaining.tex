@@ -4,7 +4,7 @@ In addition to the number of arguments, another source of complexity in aliases 
 \num{351060} aliases (\per{7.36}) are composed of more than one command.
 The most popular way to combine commands is with a pipe (\verb!|!), used by \per{35.2} of multi-command aliases, closely followed by logical conjunction (\verb|&&|), used by \per{29.75}, and simple chaining (\verb|;|), used by \per{28.4}.
 Other operators (\verb|&|, \verb!||!, \verb!|&!) appear in only \per{6.65} of multi-command aliases.
-\Cref{tab:operators} shows the top commands in 2nd, 3rd and 4th position of a command chain, for each possible preceding operator.
+Table~\ref{tab:operators} shows the top commands in 2nd, 3rd and 4th position of a command chain, for each possible preceding operator.
 
 \begin{table}[h]
 	\caption{Top commands following operators}
@@ -43,7 +43,7 @@ Other operators (\verb|&|, \verb!||!, \verb!|&!) appear in only \per{6.65} of mu
 % I think this table might be misleading, because it ranks commands by relative occurrence with operators, rather then normalizing with overall command occurrence. That's probably why git dominates &&
 
 The most interesting operator is certainly the pipe (\verb!|!), since it creates an interface between two otherwise separate programs.
-\Cref{fig:flow} shows a flow diagram of the top 200 pipelines with three commands that make up at least \per{10} of one participating command's usage.
+Fig.~\ref{fig:flow} shows a flow diagram of the top 200 pipelines with three commands that make up at least \per{10} of one participating command's usage.
 
 \begin{figure*}[h]
 	\centering    
