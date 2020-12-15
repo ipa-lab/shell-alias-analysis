@@ -90,7 +90,7 @@ When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aer
 
 Beyond just compression and expansion of strings, we can see a few distinct customization practices related to naming.
 
-\paragraph{Nicknaming Commands}
+\paragraph{Nicknaming Commands.}
 
 There are \num{244872} aliases in our dataset (\per{11.11}) that merely give a new name to a command, without adding any arguments, and without the name belonging to a different command (that would be a substitution, see below).
 The most often occurring nicknames are \alias{g}{git}, \alias{c}{clear}, \alias{h}{history}, and \alias{v}{vim}.
@@ -110,7 +110,7 @@ We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most c
 %The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
 %There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
-\paragraph{Abbreviating Subcommands}
+\paragraph{Abbreviating Subcommands.}
 
 Many commands can operate in different modes, or act as interfaces to a variety of different \emph{subcommands}.
 The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
@@ -121,7 +121,7 @@ For example, \alias{gs}{git status} or \alias{gd}{git diff}.
 The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, with \num{113980} aliases defined purely for abbreviating \cmd{git} subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
 The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
 
-\paragraph{Bookmarking Locations}
+\paragraph{Bookmarking Locations.}
 
 When an aliased command is called with an argument that references some specific local or remote location, like a file path or domain, the alias acts as a bookmark to that location.
 For instance, \alias{starwars}{telnet towel.blinkenlights.nl} and \alias{dl}{cd \textasciitilde/Downloads} are both bookmark aliases.
@@ -155,7 +155,7 @@ Most other uses seem to be development related, like starting services such as w
 Aliases are not only used syntactically, for naming purposes, but also in ways that change the semantics of certain commands.
 We found four customization practices related to command modification.
 
-\paragraph{Substituting Commands}
+\paragraph{Substituting Commands.}
 
 When an alias name is identical to the name of a pre-existing command, the alias defines a substitution for that command.
 A common example is \alias{more}{less}, replacing a standard Unix utility (\cmd{more}) with a more capable but similar command (\cmd{less}).
@@ -166,7 +166,7 @@ To determine proper substitutions, we only count aliases whose value does not al
 We find that \num{100564} aliases (\per{4.56}) are used to substitute one command for another.
 The top three substitutions are \verb|vi| $\rightarrow$ \verb|vim|, \verb|vim| $\rightarrow$ \verb|nvim|, and \verb|vi| $\rightarrow$ \verb|nvim|.
 
-\paragraph{Overriding Defaults}
+\paragraph{Overriding Defaults.}
 
 When an alias has the same name as the command it aliases, as in \alias{ls}{ls -G}, then the alias re-defines the command and effectively overrides its default settings.
 Any time the command is now executed, it will be with the arguments specified in the alias.
@@ -183,14 +183,14 @@ For example, the alias \alias{df}{df -h} ensures that the available disk space i
 But by far the most common reason for overriding defaults is to enable colorized output.
 This behavior is so prevalent that we count it as a customization practice in its own right.
 
-\paragraph{Colorizing Output}
+\paragraph{Colorizing Output.}
 
 Enabling colored output can be done in many different ways: adding an argument (like \texttt{less -R} or \cmd{grep --color=always}), setting an environment variable (as in \alias{ssh}{TERM=xterm256color ssh}), running the command through a tool that colorizes its output (like \cmd{grcat} or \cmd{pygmentize}), or even replacing a command outright (\alias{diff}{colordiff}).
 Taking all these varieties into account, more than half of all command redefinitions (\per{57.21}) enable colored output by default.
 This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
 If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases colorize a command's output.
 
-\paragraph{Elevating Privilege}
+\paragraph{Elevating Privilege.}
 
 The \cmd{sudo} command allows the user to execute another command with superuser privileges.
 Combining a command with \cmd{sudo} is often necessary if the other command needs to modify critical parts of the system.
@@ -211,7 +211,7 @@ Other operators (\verb`||`, \verb`|&`) appear in only \per{3.85} of multi-comman
 
 There are two scripting practices that are of particular interest.
 
-\paragraph{Transforming Data}
+\paragraph{Transforming Data.}
 
 The pipe (\verb`|`) creates an interface between two otherwise separate programs.
 It embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
@@ -227,7 +227,7 @@ Fig.~\ref{fig:flow} shows a flow diagram of the top pipelines with three command
 	\label{fig:flow}
 \end{figure}
 
-\paragraph{Chaining Subcommands}
+\paragraph{Chaining Subcommands.}
 
 An interesting pattern appearing in alias scripts are chains of subcommand invocations.
 For example, the package manager \cmd{brew} has a subcommand \texttt{update}, for updating the package database, and a subcommand \texttt{upgrade}, for upgrading previously installed packages to the latest available versions.
