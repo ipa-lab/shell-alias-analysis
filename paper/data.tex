@@ -60,7 +60,7 @@ After removing duplicates, our database contains \num{372816} unique files from 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{figures/schema2.pdf}
+    \includegraphics[width=\columnwidth]{fig-schema.pdf}
     \caption{Relational database schema.}
     \label{fig:schema}
 \end{figure}
@@ -80,7 +80,7 @@ See Fig.~\ref{fig:parser} for a more elaborate example.
 \begin{figure}
 	\centering
 	\vspace{0.5cm}
-	\includegraphics[width=\textwidth]{figures/parser_breakdown.pdf}
+	\includegraphics[width=\textwidth]{fig-parser_breakdown.pdf}
 	\cprotect\caption{Decomposition of \verb`alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"`.}
 	\label{fig:parser}
 \end{figure}
@@ -102,7 +102,7 @@ Files that did not contain any aliases were removed from the database, as was re
 %The majority of aliases in our dataset (\per{86.2}) originate from common startup scripts, like \texttt{.bashrc} or \texttt{.profile} (see Table~\ref{tab:file-names}).
 % TODO: explain the renaming 14%
 
-%\input{tables/file-names.tex}
+%\input{table-file-names.tex}
 
 \subsection{Reproducibility}
 \label{sec:reproducibility}

@@ -10,7 +10,7 @@ The most common argument, across all commands, is \texttt{--color=auto}, appeari
     \centering
     \caption{Top alias names, commands and arguments.}
     \label{tab:top-summary}
-    \input{tables/top-summary.tex}
+    \input{table-top-summary.tex}
 \end{table}
 
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
@@ -26,7 +26,7 @@ We also notice that in the case of \texttt{git}, most aliases are used for short
     \centering
     \caption{Top two commands with top arguments and aliases.}
     \label{tab:command-summary}
-    \input{tables/command-summary.tex}
+    \input{table-command-summary.tex}
 \end{table}
 
 \paragraph{Characterizing Customization Practices}
@@ -46,7 +46,7 @@ Ultimately, the coders reached a saturation point at which further coding and an
     \centering
 	\caption{Alias types and customization practices}
     \label{tab:practices}
-    \input{tables/practices.tex}
+    \input{table-practices.tex}
 \end{table}
 
 We identified nine customization practices among three types of aliases:
@@ -59,7 +59,7 @@ Table~\ref{tab:practices-by-command} breaks down the customization practices by 
 
 We will now discuss the alias types and customization practices in more detail.
 
-\input{tables/practices-by-command.tex}
+\input{table-practices-by-command.tex}
 
 \subsection{Shortcuts}
 
@@ -73,7 +73,7 @@ A compression ratio less than 1 indicates a name that is longer than the value i
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\columnwidth]{figures/compression.pdf}
+    \includegraphics[width=0.75\columnwidth]{fig-compression.pdf}
     \caption{Distribution of alias compression ratios}
     \label{fig:compression}
 \end{figure}
@@ -147,7 +147,7 @@ Most other uses seem to be development related, like starting services such as w
 % \begin{table}
 %     \caption{Top 5 local and remote locations found in aliases}
 %     \label{tab:locations}
-%     \input{tables/locations.tex}
+%     \input{tables-locations.tex}
 % \end{table}
 
 \subsection{Modifications}
@@ -222,7 +222,7 @@ Fig.~\ref{fig:flow} shows a flow diagram of the top pipelines with three command
 
 \begin{figure}
 	\centering    
-	\includegraphics[width=\columnwidth]{figures/flow_250.png}
+	\includegraphics[width=\columnwidth]{fig-flow_250.png}
 	\caption{Flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage}
 	\label{fig:flow}
 \end{figure}
