@@ -1,9 +1,7 @@
-\RequirePackage{fix-cm}
-\documentclass[smallextended,natbib]{svjour3}
+\documentclass[sigconf,nonacm,screen]{acmart}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
-\usepackage[colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage[autolanguage]{numprint}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -16,6 +14,7 @@
 \usepackage{float}
 \usepackage{adjustbox}
 \usepackage{enumitem}
+\usepackage{microtype}
 
 \usepackage{xspace}
 \newcommand*{\TODO}{\textcolor{red}{TODO}\xspace}
@@ -30,24 +29,25 @@
 \newcommand{\alias}[2]{{\texttt{#1} $\rightarrow$ \texttt{#2}}}
 \newcommand{\cmd}[1]{{\texttt{#1}}}
 
-\journalname{Empirical Software Engineering}
-
 \begin{document}
 
 \title{An Empirical Investigation of Command-Line Customization}
 
-\author{Michael Schröder \and Jürgen Cito}
-\institute{%
-	Michael Schröder
-	\at TU Wien, Vienna, Austria\\
-	\email{michael.schroeder@tuwien.ac.at}
-	\and
-	Jürgen Cito
-	\at TU Wien \& MIT, Cambridge, MA\\
-	\email{jcito@mit.edu}
+\author{Michael Schröder}
+\orcid{0000-0003-1496-0531}
+\affiliation{%
+	\institution{TU Wien}
+	\country{}
 }
+\email{michael.schroeder@tuwien.ac.at}
 
-\maketitle
+\author{Jürgen Cito}
+\affiliation{%
+	\institution{MIT \& TU Wien}
+	\country{}
+}
+\email{jcito@mit.edu}
+
 
 \begin{abstract}
 	The interactive command line, also known as the shell, is a prominent mechanism used extensively by a wide range of software professionals (engineers, system administrators, data scientists, etc.). Shell customizations can therefore provide insight into the tasks they repeatedly perform, how well the standard environment supports those tasks, and ways in which the environment could be productively extended or modified.
@@ -59,8 +59,12 @@
 	and \textsc{Scripts} (for \emph{transforming data} and \emph{chaining subcommands}).
 	We conjecture that identifying common customization practices can point to particular usability issues within command-line programs, and that a deeper understanding of these practices can support researchers and tool developers in designing better user experiences.
 	In addition to our analysis, we provide an extensive reproducibility package in the form of a curated dataset together with well-documented computational notebooks enabling further knowledge discovery and a basis for learning approaches to improve command-line workflows.
-	\keywords{Command Line \and Customization Practices \and Collective Knowledge \and Inductive Coding}
 \end{abstract}
+
+%\keywords{Command Line, Customization Practices, Collective Knowledge, Inductive Coding}
+
+\settopmatter{printfolios=true}
+\maketitle
 
 \section{Introduction}
 
@@ -153,7 +157,7 @@ alias grep='grep --color=always'
 is possible.
 
 In the remainder of this paper, we will use the more compact notation
-\begin{center}\alias{a}{b}\end{center} to indicate an alias that replaces the name \texttt{a} with the value \texttt{b}.
+\alias{a}{b} to indicate an alias that replaces the name \texttt{a} with the value \texttt{b}.
 
 \subsection{Dotfiles}
 
@@ -171,6 +175,14 @@ This has the advantage of being able to sync one's configurations across differe
 Our analysis is based on \num{2204199} alias definitions found on GitHub, collected over a period of two-and-a-half weeks from December 20th 2019 to January 8th 2020.
 
 \subsection{Data Collection}
+
+\begin{figure*}
+	\centering
+	%\vspace{0.5cm}
+	\includegraphics[width=0.85\textwidth]{fig-parser_breakdown.pdf}
+	\cprotect\caption{Decomposition of \verb`alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"`.}
+	\label{fig:parser}
+\end{figure*}
 
 Alias definitions can appear in any Shell script, but we anticipated that they would predominantly be found in personal configuration files (like \verb|.bashrc| or \verb|.bash_profile|).
 %While we did not want to focus exclusively on these personal configuration scripts, as we want to study the wide range of different alias uses, it is important that they are appropriately accounted for in order for our data to be representative.
@@ -192,7 +204,7 @@ Alas, the GitHub Code Search API comes with its own set of limitations:
 The first two limitations do not really affect us, as we are interested in smaller files and do not have to consider forks.
 The rate limiting, while significantly slowing down the retrieval process, is also not a fatal obstacle.
 The maximum number of returned search results, however, is a critical limitation.
-To get around it, we wrote a Python tool called \verb|github-searcher|\footnote{\url{https://github.com/ipa-lab/github-searcher}} that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
+To get around it, we wrote a Python tool called \texttt{github-searcher}\footnote{\url{https://github.com/ipa-lab/github-searcher}} that uses a clever sampling strategy to vastly increase the number of results we are able to retrieve.
 
 The sampling strategy is based on the GitHub API allowing code search queries to be conditioned on file sizes. 
 For example, the query 
@@ -226,14 +238,14 @@ Our sample represents \per{94.09} of the estimated population of \num{897182} fi
 The file contents, together with repository metadata, were stored in an SQLite database.
 After removing duplicates, our database contains \num{372816} unique files from \num{205126} repositories.
 
+\subsection{Parsing}
+
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{fig-schema.pdf}
+    \includegraphics[width=0.85\columnwidth]{fig-schema-0.pdf}
     \caption{Relational database schema.}
     \label{fig:schema}
 \end{figure}
-
-\subsection{Parsing}
 
 After collecting files with potential aliases, we ran a parsing script to find actual alias definitions and decompose them into their constituent parts for analysis.
 The decomposed aliases are stored in the same SQLite database as the raw file contents to facilitate easy cross-referencing.
@@ -245,13 +257,12 @@ Arguments are separated by whitespace, but care is taken to handle quoted argume
 For example, \verb|echo "hello world"| is parsed as one command (\texttt{echo}) with one argument (\texttt{"hello world"}).
 See Fig.~\ref{fig:parser} for a more elaborate example.
 
-\begin{figure}
-	\centering
-	\vspace{0.5cm}
-	\includegraphics[width=\textwidth]{fig-parser_breakdown.pdf}
-	\cprotect\caption{Decomposition of \verb`alias ips="ifconfig | grep 'inet ' | cut -d' ' -f2"`.}
-	\label{fig:parser}
-\end{figure}
+\begin{table*}
+    \centering
+    \caption{Top alias names, commands and arguments.}
+    \label{tab:top-summary}
+    \input{table-top-summary.tex}
+\end{table*}
 
 Beyond quoting, which is defined by the Shell Command Language and thus uniform across all commands, the parser can not make any further considerations as to how arguments are meant to be interpreted.
 While there are some conventions around command-line argument handling, programs are generally free to do as they wish and there is a wide variety of argument styles in the wild:
@@ -293,9 +304,9 @@ The most common argument, across all commands, is \texttt{--color=auto}, appeari
 
 \begin{table}
     \centering
-    \caption{Top alias names, commands and arguments.}
-    \label{tab:top-summary}
-    \input{table-top-summary.tex}
+    \caption{Top two commands with top arguments and aliases.}
+    \label{tab:command-summary}
+    \input{table-command-summary.tex}
 \end{table}
 
 Looking at each part of an alias definition in isolation can only get us so far, as arguments only gain meaning in conjunction with commands and alias names can be identical between users, referring to the same command/argument combination, or indeed can overlap, meaning the same alias name is used differently by different users.
@@ -307,16 +318,9 @@ to shorten a common invocation (\alias{ll}{ls -alF});
 and to correct a spelling mistake (\alias{sl}{ls}).
 We also notice that in the case of \texttt{git}, most aliases are used for shortening \texttt{git} subcommand invocations (e.g. \alias{gd}{git diff}).
 
-\begin{table}
-    \centering
-    \caption{Top two commands with top arguments and aliases.}
-    \label{tab:command-summary}
-    \input{table-command-summary.tex}
-\end{table}
+\paragraph{\bf Characterizing Customization Practices}
 
-\paragraph{Characterizing Customization Practices}
-
-To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
+\sloppy To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
 Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \citep{thomas:06}.
 It is an iterative process between theoretical sampling and comparing data within emerging themes \citep{dey:03}.
 We looked at \num{1381} alias definitions derived in a similar way as Table~\ref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
@@ -356,13 +360,6 @@ Fig.~\ref{fig:compression} shows the distribution of compression ratios over all
 The median compression ratio is 4.25, meaning half of all alias values are at least four times as long as their alias names.
 A compression ratio less than 1 indicates a name that is longer than the value it aliases.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\columnwidth]{fig-compression.pdf}
-    \caption{Distribution of alias compression ratios}
-    \label{fig:compression}
-\end{figure}
-
 There are \num{26055} aliases (\per{1.18}) with names longer than their values.
 The two longest alias names we found are from joke definitions.
 The first is \num{1772} characters long and is comprised of the letter `f' repeated \num{1053} times, followed by the letter `u' repeated 719 times.
@@ -375,7 +372,15 @@ When executed, it appears to play Daft Punk's 2001 instrumental single \emph{Aer
 
 Beyond just compression and expansion of strings, we can see a few distinct customization practices related to naming.
 
-\paragraph{Nicknaming Commands.}
+\paragraph{\bf Nicknaming Commands.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{fig-compression.pdf}
+    \caption{Distribution of alias compression ratios}
+    \label{fig:compression}
+\end{figure}
+
 
 There are \num{244872} aliases in our dataset (\per{11.11}) that merely give a new name to a command, without adding any arguments, and without the name belonging to a different command (that would be a substitution, see below).
 The most often occurring nicknames are \alias{g}{git}, \alias{c}{clear}, \alias{h}{history}, and \alias{v}{vim}.
@@ -395,7 +400,7 @@ We found \num{9195} aliases (\per{0.42}) that serve as autocorrect rules, most c
 %The Z shell has built-in spelling correction, which can be selectively disabled using the \verb|nocorrect| command.
 %There are \num{7326} aliases (\per{0.33}) in our dataset disabling Z shell autocorrection for certain commands, most commonly the filesystem commands \verb|mv|, \verb|mkdir|, \verb|cp| and \verb|rm|.
 
-\paragraph{Abbreviating Subcommands.}
+\paragraph{\bf Abbreviating Subcommands.}
 
 Many commands can operate in different modes, or act as interfaces to a variety of different \emph{subcommands}.
 The subcommand is commonly specified as the first argument to the command, and takes its own set of arguments and flags.
@@ -406,7 +411,7 @@ For example, \alias{gs}{git status} or \alias{gd}{git diff}.
 The majority of such subcommand abbreviations (\per{58.5}) are for \cmd{git}, with \num{113980} aliases defined purely for abbreviating \cmd{git} subcommands, accounting for \per{36.77} of all aliases involving \cmd{git}.
 The command with the second-most subcommand abbreviations is the package manager \cmd{pacman}, with only \num{9918} instances (\per{5.09} of subcommand abbreviations, but \per{68.67} of all aliases involving \cmd{pacman}).
 
-\paragraph{Bookmarking Locations.}
+\paragraph{\bf Bookmarking Locations.}
 
 When an aliased command is called with an argument that references some specific local or remote location, like a file path or domain, the alias acts as a bookmark to that location.
 For instance, \alias{starwars}{telnet towel.blinkenlights.nl} and \alias{dl}{cd \textasciitilde/Downloads} are both bookmark aliases.
@@ -440,18 +445,18 @@ Most other uses seem to be development related, like starting services such as w
 Aliases are not only used syntactically, for naming purposes, but also in ways that change the semantics of certain commands.
 We found four customization practices related to command modification.
 
-\paragraph{Substituting Commands.}
+\paragraph{\bf Substituting Commands.}
 
 When an alias name is identical to the name of a pre-existing command, the alias defines a substitution for that command.
 A common example is \alias{more}{less}, replacing a standard Unix utility (\cmd{more}) with a more capable but similar command (\cmd{less}).
 This can also be used for subterfuge, as in \alias{emacs}{vim} (appearing 132 times in our dataset) or indeed \alias{vim}{emacs} (86 times, alas).
 
-To determine which alias names are also actual command names, we compared them to known Unix commands\footnote{\url{https://en.wikipedia.org/wiki/List_of_Unix_commands}\\ and \url{https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands}} and a curated sample of commands from our dataset (taking care to not include names that appear in a command position but are actually just other aliases).
+To determine which alias names are also actual command names, we compared them to known Unix commands\footnote{\url{https://en.wikipedia.org/wiki/List_of_Unix_commands} and \url{https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands}} and a curated sample of commands from our dataset (taking care to not include names that appear in a command position but are actually just other aliases).
 To determine proper substitutions, we only count aliases whose value does not also include the name of the command (which would point to an overriding alias, see below).
 We find that \num{100564} aliases (\per{4.56}) are used to substitute one command for another.
 The top three substitutions are \verb|vi| $\rightarrow$ \verb|vim|, \verb|vim| $\rightarrow$ \verb|nvim|, and \verb|vi| $\rightarrow$ \verb|nvim|.
 
-\paragraph{Overriding Defaults.}
+\paragraph{\bf Overriding Defaults.}
 
 When an alias has the same name as the command it aliases, as in \alias{ls}{ls -G}, then the alias re-defines the command and effectively overrides its default settings.
 Any time the command is now executed, it will be with the arguments specified in the alias.
@@ -468,14 +473,21 @@ For example, the alias \alias{df}{df -h} ensures that the available disk space i
 But by far the most common reason for overriding defaults is to enable colorized output.
 This behavior is so prevalent that we count it as a customization practice in its own right.
 
-\paragraph{Colorizing Output.}
+\paragraph{\bf Colorizing Output.}
 
 Enabling colored output can be done in many different ways: adding an argument (like \texttt{less -R} or \cmd{grep --color=always}), setting an environment variable (as in \alias{ssh}{TERM=xterm256color ssh}), running the command through a tool that colorizes its output (like \cmd{grcat} or \cmd{pygmentize}), or even replacing a command outright (\alias{diff}{colordiff}).
 Taking all these varieties into account, more than half of all command redefinitions (\per{57.21}) enable colored output by default.
 This amounts to a surprising \num{182623} aliases, or \per{8.29} percent of all aliases in the dataset.
 If we extend this count to also include aliases that introduce new names (like \alias{ll}{ls -l --color=auto}), then more than \per{10} of aliases colorize a command's output.
 
-\paragraph{Elevating Privilege.}
+\begin{figure*}
+	\centering    
+	\includegraphics[width=0.73\linewidth]{fig-flow_250.png}
+	\caption{Flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage}
+	\label{fig:flow}
+\end{figure*}
+
+\paragraph{\bf Elevating Privilege.}
 
 The \cmd{sudo} command allows the user to execute another command with superuser privileges.
 Combining a command with \cmd{sudo} is often necessary if the other command needs to modify critical parts of the system.
@@ -496,7 +508,7 @@ Other operators (\verb`||`, \verb`|&`) appear in only \per{3.85} of multi-comman
 
 There are two scripting practices that are of particular interest.
 
-\paragraph{Transforming Data.}
+\paragraph{\bf Transforming Data.}
 
 The pipe (\verb`|`) creates an interface between two otherwise separate programs.
 It embodies the Unix philosophy of small tools doing one thing well, which can then be connected together to accomplish more complex tasks.
@@ -505,14 +517,7 @@ The most common command occurring after a pipe, by far, is \cmd{grep}, which mak
 The most common data sources are \cmd{ps}, \cmd{git}, and \cmd{ls}, which are found at the beginning of almost a third (\per{32}) of all pipelines.
 Fig.~\ref{fig:flow} shows a flow diagram of the top pipelines with three commands.
 
-\begin{figure}
-	\centering    
-	\includegraphics[width=\columnwidth]{fig-flow_250.png}
-	\caption{Flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage}
-	\label{fig:flow}
-\end{figure}
-
-\paragraph{Chaining Subcommands.}
+\paragraph{\bf Chaining Subcommands.}
 
 An interesting pattern appearing in alias scripts are chains of subcommand invocations.
 For example, the package manager \cmd{brew} has a subcommand \texttt{update}, for updating the package database, and a subcommand \texttt{upgrade}, for upgrading previously installed packages to the latest available versions.
@@ -533,7 +538,7 @@ we gained insight into practices detailing how users customize their command-lin
 Based on our observations, we outline discussion points that go beyond single customization practices and identify implications that can address shortcomings in command-line usability and tie them to existing user experience research.
 Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
-\paragraph{Learning Repair Rules.}
+\paragraph{\bf Learning Repair Rules.}
 
 The complexity of commands and arguments can cause users to introduce errors when working in a command-line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
@@ -542,22 +547,22 @@ While these rules are all hard-coded, we envision leveraging the global wisdom o
 This is in line with work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
 %An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
 
-\paragraph{Discovering Workflows.}
+\paragraph{\bf Discovering Workflows.}
 Following a different thread of leveraging emergent practices, we can also see how our dataset would enable a world beyond only trying to fix immediate errors, by providing usage hints that could introduce users to common parameters and workflows.
 For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} command, the alias \alias{mem10}{ps auxf | sort -nr -k 4 | head -10} can serve as a suggestion for the complex but common data transformation that results in showing the ten most memory-intensive processes.
-%\paragraph*{\bf Object Protocols}
+%\paragraph{\bf Object Protocols}
 Similarly, in the practice of \emph{chaining subcommands} we can clearly see the prevalence of object protocols~\citep{beckman:11}, which are implicit rules determining the order in which commands have to be executed.
 We can improve usability by enabling the discovery of these implicit rules and by exposing the dependency structure based on our customization data.
 For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset. 
 
-\paragraph{Uncovering Conceptual Design Flaws.}
+\paragraph{\bf Uncovering Conceptual Design Flaws.}
 
 Customization can also be an indicator for problems in the underlying conceptual design, manifesting as usability frustrations that require adaptation by the user.
 Briefly comparing our findings to the qualitative analysis on conceptual design flaws in \cmd{git} by \cite{perez:13}, we can clearly see the same frustrations with committing and switching branches,\footnote{``Just Let Me Commit!" and ``I Just Want to Switch Branches" in \cite{perez:13}} based on the alias definitions in our dataset (e.g., \alias{commit}{git add . \&\& git commit -m}).
 
 We want to emphasize that we are not suggesting that large-scale quantitative data of customization practices can replace qualitative analysis, but rather that the corpus we provide, together with our findings, can support exploration and provide new insights for usability research.
 
-\paragraph{Contextual Defaults.}
+\paragraph{\bf Contextual Defaults.}
 
 Choosing proper defaults in user interfaces is a pillar of user experience design~\citep{nielsen2005power}.
 The fact that \per{14.48} of the customizations in our dataset are for \emph{overriding defaults} suggests that, at least for some groups of users, the default settings of their tools could be improved.
@@ -566,7 +571,7 @@ Indeed, the variety of different defaults in the data indicate what we call \emp
 We could imagine providing different sets of defaults to different users, effectively alias starter packs, generated from our data.
 We see parallels to work that investigates contextual preferences and personalization in information systems~\citep{de:15, stefanidis:11} and privacy research~\citep{wijesekera:18, alom:19}. 
 
-\paragraph{Interactivity vs Batch-Processing.}
+\paragraph{\bf Interactivity vs Batch-Processing.}
 
 Context extends to the environment a command is executed in, particularly whether it is used on an interactive command line or as part of a script for batch-processing.
 Our findings highlight the tension between these different ways of execution and how a human user can have needs different from an automated workflow.
@@ -601,6 +606,7 @@ To mitigate these summarizing effects, we established customization practices as
 Since we sampled almost the whole available population, we are confident in the strength of our data and the conclusions we can draw from particular instances.
 Our replication package includes our whole toolchain and all alias data in a relational format ready for further analysis.
 
+\raggedbottom
 \section{Related Work}
 
 Related research in the broader context of our work has been conducted on the use of command-line interfaces and how to improve it, and the shell as a programming language for both scripting and interactive use. 
@@ -632,7 +638,7 @@ However, we have to also be aware that defaults can be highly contextual dependi
 We also see our dataset and results as a rich source for learning norms with respect to repair rules, data flows, and descriptive names for complex command structures.
 We provide a comprehensive replication package and see potential for future work based on our dataset and analyses.
 
-\bibliographystyle{spbasic}
+\bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 
 \end{document}
