@@ -37,16 +37,23 @@
 \orcid{0000-0003-1496-0531}
 \affiliation{%
 	\institution{TU Wien}
-	\country{}
+	\city{Vienna}
+	\country{Austria}
 }
 \email{michael.schroeder@tuwien.ac.at}
 
 \author{Jürgen Cito}
 \affiliation{%
-	\institution{MIT \& TU Wien}
-	\country{}
+	\institution{TU Wien}
+	\city{Vienna}
+	\country{Austria}
 }
-\email{jcito@mit.edu}
+\affiliation{%
+	\institution{Massachusetts Institute of Technology}
+	\city{Cambridge}
+	\country{U.S.A.}
+}
+\email{juergen.cito@tuwien.ac.at}
 
 
 \begin{abstract}
@@ -61,7 +68,7 @@
 	In addition to our analysis, we provide an extensive reproducibility package in the form of a curated dataset together with well-documented computational notebooks enabling further knowledge discovery and a basis for learning approaches to improve command-line workflows.
 \end{abstract}
 
-%\keywords{Command Line, Customization Practices, Collective Knowledge, Inductive Coding}
+\keywords{command line, customization practices, collective knowledge, inductive coding}
 
 \settopmatter{printfolios=true}
 \maketitle
@@ -482,8 +489,8 @@ If we extend this count to also include aliases that introduce new names (like \
 
 \begin{figure*}
 	\centering    
-	\includegraphics[width=0.73\linewidth]{fig-flow_250.png}
-	\caption{Flow diagram of the top 250 pipelines with three commands that make up at least \per{10} of one participating command's usage}
+	\includegraphics[width=0.76\linewidth]{fig-flow_250.png}
+	\caption{Flow diagram of the top 250 pipelines with 3 commands that make up at least \per{10} of one command's usage}
 	\label{fig:flow}
 \end{figure*}
 
@@ -606,7 +613,6 @@ To mitigate these summarizing effects, we established customization practices as
 Since we sampled almost the whole available population, we are confident in the strength of our data and the conclusions we can draw from particular instances.
 Our replication package includes our whole toolchain and all alias data in a relational format ready for further analysis.
 
-\raggedbottom
 \section{Related Work}
 
 Related research in the broader context of our work has been conducted on the use of command-line interfaces and how to improve it, and the shell as a programming language for both scripting and interactive use. 
