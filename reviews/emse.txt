@@ -1,0 +1,105 @@
+Thanks for submitting to the EMSE special issue. 
+
+
+All the three reviewers agree that the paper is interesting. However, several concerns are highlighted by reviewers need to be addressed carefully and I am recommending a major revision. 
+
+1) More details of certain methodology choice or experimental setting is required and justified (R1,R2,R3)
+
+2) The contribution of the paper is not sufficient and the contribution should be well justified (R1, R3)
+
+3) The implications and contributions on the roadmap of future research should be discussed in depth (R1,R2)
+
+4) More related work should be discussed (R1,R2)
+
+There are other comments provided by reviewers and I hope the authors find the comments are useful to improve their manuscript.
+
+
+Reviewer 1: Title: An Empirical Investigation of Command-Line Customization
+
+Summary: An alias is a short name that the shell can convert to another name or command. Shell aliases are useful that can replace a long command with a short one. This paper presents an empirical study on more than 2.2 million shell alias definitions collected from GitHub. Authors identified nine customization practices through manual analysis of those shell alias definitions that can be divided into three broad categories. These are Shortcuts, Modifications and Scripts. The Shortcuts category consists of shell alias definitions that are used for nicknaming commands, abbreviating subcommands and bookmarking locations. The modification category focuses on changing the semantics of commands and the authors identified four customization practices for this category. The last category of shell alias definitions (i.e., Scripts) focuses on combining multiple commands together to complete a sequence of tasks. Finally, the authors discussed the implications of the study.
+
+The idea of the paper is interesting. The paper reads well. The authors explained the data collection process and the study results with different examples. The command line customizations collected are also publicly available to replicate the study or to support any future research in this direction. The implications discussed by the authors cover various aspects of customization practices. However, there are some questions that need to be answered to understand the contribution of the paper better.
+
+I agree with the authors that many users can keep the configuration scripts for personal use. Thus, the selection of using GitHub code search API is useful. The authors mentioned that the GitHub code search API can search files smaller than 384 KB. However, the authors selected 29KB as the maximum file size. It is not clear to me what is the reason for such a selection. A discussion of the repositories containing those shell alias definitions would be helpful to understand the categories of websites that maintain those aliases (i.e., characterizing repositories containing those aliases).
+
+The authors performed a manual analysis of a set of aliases. It is not clear to me the reason for selecting 1,381 aliases. How the number is determined? The authors also mentioned that they also randomly sampled 200 alias definitions that each occur only once in the dataset. Again, the selection appears to be arbitrary. Instead, authors could analyze statistical representative samples of all collected aliases that can be more meaningful. What was the agreement between the coders? How did the authors determine the objective or the intent of alias definitions? What other information sources they consulted to reach their decisions? Pls. clarify these points better.
+
+My biggest concern about the paper is that I do not think the contribution is significant. First, the authors mentioned that the dataset they collected for the command-line customizations is an important contribution of the paper. While the dataset could be useful for other researchers, I do not agree with the point that this is a significant contribution. It becomes a standard practice to make the dataset and the scripts publicly available so that other researchers can replicate the study. The manual study performed by the user has its own merit and is a good contribution. However, the contribution is not sufficient in my view. Not all findings are interesting. For example, it is well known that shell alias definitions are useful to replace long commands with short names. How critical is it to learn these alias definitions? This needs to be explained better.
+
+The authors mentioned at the end of the paper possible implications of the study. However, I am not quite sure how useful would that be for the developers or command-line users. If the authors can show an application of the data (for example, where the data can be used to prevent command-line errors or writing command-line code) and also provide evidence that the selected application is useful for the developers or users of command-line applications, that can improve the quality of the paper. 
+
+References
+Authors can take a look at the work of code completions or program repairs that can be useful for mining repair rules. Please consider checking papers related to software configurations or customizing the configuration of IDEs (e.g., Do background colors improve program comprehension in the #ifdef hell?). 
+
+
+Reviewer 2: ---Paper Summary---
+This paper presents an empirical study of common patterns in command-line aliases. The authors first curated a dataset of over 2 million aliases definitions from configuration files on GitHub. They then manually labeled 1381 aliases and 200 randomly sampled aliases and conducted inductive coding on those labels. From this qualitative analysis, they identified nine command customization practices in three types of aliases. These findings shed light on why command-line users create aliases. The authors further discussed several implications on command-line usability and tool support.
+
+---Evaluation---
+This paper answers an interesting question about command-line customization. To my best knowledge, this question has not been investigated before, so this work is considered novel in this sense. The dataset of 2.2 million command-line aliases scraped from GitHub is a nice contribution to the community. The findings are interesting as well, and the implications seem to be insightful and actionable. Overall, I think this work is worth publishing but not in the current form since several key pieces are missing or unclear. 
+
+First, the introduction explains well what aliases are and why command-line users use aliases. However, it does not talk much about why it is important to study common practices in command-line aliases. The value of this work becomes much more clear after reading the implications in Section 5. I wish the authors better motivate the need of studying command-line aliases in the introduction as well. 
+
+Second, several methodology details in Section 4 are not clear, like how the 1381 aliases were sampled and how the categorization was performed on the entire dataset to generate Table 4 and Table 5. Please refer to my comments on Section 4.
+
+Third, the authors touched upon some interesting implications and future directions in Section 5. But the discussion is too vague. There is a lack of concrete examples and evidence. Please refer to my comments on Section 5.
+
+Finally, the related work only discusses related studies and tool support for shell commands, but misses the large body of work on code pattern mining in the software engineering community. Please refer to my comments on Section 7.
+
+
+---Detailed Comments---
+
+Section 4
+* How are the 1381 aliases sampled from the entire set of aliases? What is the confidence level? 
+* Table 4 seems to describe the distribution of the entire 2,204,199 alias definitions in different categories. However, the authors only manually categorized 1381 aliases in the inductive coding process. How is the distribution on the entire dataset derived? Have you built an automated classification method?
+* Are the patterns in the additional random sample of 200 aliases very different from the first sample of 1381 aliases? Findings from this random sample are not discussed in Section 4.  
+
+
+Section 5
+* It is unclear how the emerging patterns of shell command aliases can be used to learn repair rules. Can you be more specific and give some examples? Command repair tools like NoFAQ learn repair rules from examples of bug fixes in shell commands. Yet your dataset only contains alias definitions so I wonder how repair rules can be inferred from alias definitions.
+
+* Regarding the implication on uncovering conceptual design flaws, there is a related paper on using API usage data on the Internet to identify API design issues at CHI 2020. Though API usage and command-line aliases are two kinds of data, the ideas sound similar. I suggest the authors elaborate how these two ideas are similar or different from each other. 
+
+	Zhang, T., Hartmann, B., Kim, M. and Glassman, E.L., 2020, April. Enabling data-driven api design with community usage data: A need-finding study. In Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems (pp. 1-13).
+
+* Page 18, line 2: "we can clearly see the same frustrations with committing and switching branches" => It would be helpful if the authors can elaborate more on the frustrations of git users and how those frustrations are manifested by the patterns in the command-line alias data. 
+
+* Since the authors suggest contextual defaults based on certain personas like system administrators and data scientists, I wonder if such persona can be identified from GitHub projects, maybe from some project metadata. 
+
+* The discussion in "Interactivity vs Batch-Processing" is vague. For example, it's unclear why the colorizing output pattern reflects the tension between interactivity and automation.
+
+Section 7
+* The related work section only discusses empirical studies and tool support for shell commands. There are many similar studies that use online data to understand common practices in other domains, such as copy&paste behavior and bug fixing.
+
+	Yang, D., Martins, P., Saini, V. and Lopes, C., 2017, May. Stack overflow in github: any snippets there?. In 2017 IEEE/ACM 14th International Conference on Mining Software Repositories (MSR) (pp. 280-290). IEEE.
+	
+	Zhong, H. and Su, Z., 2015, May. An empirical study on real bug fixes. In 2015 IEEE/ACM 37th IEEE International Conference on Software Engineering (Vol. 1, pp. 913-923). IEEE.
+
+* Furthermore, it would be helpful to discuss some related work on how to leverage patterns learned from online code data to improve programmer productivity, especially for those activities mentioned in Section 5, like program repair, discovering design & usability issues, and user interface customization/personalization. 
+
+
+Minor issue:
+* Page 10, Line 31 and Line 43: "-color=auto" should be "--color=auto"
+* Page 16, Line 33: "3.42%ăof" => "3.42% of"
+
+
+
+Reviewer 3: #Summary
+In this article, the authors performed empirical studies on the patterns and complexities of command-line customization.
+In particular, they mined more than 2.2 million shell alias from Github. Then they categorized these shell aliases into three types (i.e., shortcut, modification, and script). Finally, they also provide implications for their empirical studies.
+
+# Advantage
+1、This article is well organized, with a clear structure.
+2、The authors describe the process of data collection and parsing steps. Moreover, the authors share their gathered data for other researchers to replicate and follow their study.
+3、The authors summarize different types of shell aliases and show corresponding examples.
+
+
+#Disadvantage
+I have the following concerns about this study.
+1、Based on Table 1 and Table 2, the authors may not have removed some duplicate shell aliases during the data gathering process. If the statistical analysis is based on duplicate shell aliases, it is clear that the frequently used commands will be at the top of the list (for example, git, ls, cd).
+2、How the authors guarantee the correctness of the gathered shell aliases?
+3、In this article, the authors summarize three types of shell aliases. For each type, the authors further classify this type into several subtypes. I want to know how the authors guarantee the correctness of the classification results.
+Moreover,  the alias type classifying standards are vague. For example, colorizing output type is more like a subset of overriding defaults type.
+4、In Section 4, the authors discuss some implications for their empirical studies. I suggest the authors should develop some tools to support these implications. Developing these tools will increase the contributions of this article.
+5、In Section 4.3, what is the alias name for transforming data type has not been stated. It is recommended to use some examples to illustrate it.
+6、In Table 4, the percentage that each pie chart symbol shows is confusing. The sum of these seems not to be one. The authors need to explain it.
