@@ -287,7 +287,7 @@ To enable reproducibility and follow-up studies, we have made all data and our e
 Our dataset (1.45 GB of parsed alias definitions, plus 4.3 GB unparsed file contents and metadata) is available on Zenodo.\footnote{\url{https://doi.org/10.5281/zenodo.4007049}}
 The parsing script and the executable Jupyter notebooks, containing all SQL queries and additional Python code used during our analysis, are available on GitHub.\footnote{\url{https://github.com/ipa-lab/shell-alias-analysis}}
 
-\section{Findings}
+\section{Analysis}
 
 Table~\ref{tab:top-summary} shows the most common alias names, commands, and arguments appearing in alias definitions.
 The most common alias name we found is \texttt{ls}, appearing a total number of \num{83782} times, which is \per{3.8} of all alias definitions.
@@ -318,18 +318,30 @@ We also notice that in the case of \texttt{git}, most aliases are used for short
     \input{table-command-summary.tex}
 \end{table}
 
-\paragraph{Characterizing Customization Practices}
+\subsection{Inductive Coding}
 
-To capture the range of patterns and use cases for which aliases are defined, we applied inductive coding methods on a selected cross-section of the dataset.
-Inductive coding is used when conducting exploratory research without prior expectations on themes in the data \citep{thomas:06}.
-It is an iterative process between theoretical sampling and comparing data within emerging themes \citep{dey:03}.
-We looked at \num{1381} alias definitions derived in a similar way as Table~\ref{tab:command-summary}, i.e. the most common aliases for the most common arguments for the most common commands.
-In addition, we took a random sample of 200 alias definitions that each occur only once in the dataset to represent the long tail.
-Coding was then performed independently by two authors, who labelled each alias definition in the cross-section with descriptive tags, taking the semantics of the commands into account as much as possible.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
-After a first iteration, the coders compared their labels, consolidating different naming conventions.
-In consecutive iterations, the coders identified ways of formalizing the emerged categories, i.e., constructing mechanisms for classifying alias definitions as belonging to certain categories.
-The discussion of the formalizations additionally served to establish a better shared understanding.
-Ultimately, the coders reached a saturation point at which further coding and analysis did not lead to further insights.
+To capture the range of patterns and use cases for which aliases are defined, we analyzed the dataset using inductive coding, a classic technique for qualitative data analysis \citep{saldana:16,thomas:06,dey:03}.
+Inductive coding is used when conducting exploratory research without prior expectations on themes in the data.
+The individual data points --- in our case, alias definitions --- are labelled with descriptive tags which try to capture the essence of the datum for later purposes of categorization.
+It is an iterative process between theoretical sampling and comparing data within emerging themes, continuing in cycles until no new themes emerge.
+
+Since manually coding the entire dataset is infeasible, we developed our themes by coding a representative sample.
+For this sample, we gathered the most common aliases for the most common arguments for the top 50 commands (cf.\ Table~\ref{tab:command-summary}), resulting in \num{1381} alias definitions, directly covering \per{28.77} percent of the dataset.
+Additionally, we drew a random sample of \num{200} alias definitions from the long tail of unique aliases.
+These are aliases that each occur only once in the entire dataset, making up \per{27.53} of all aliases.
+The commands that occur in this long tail are distributed in roughly the same manner as the commands in the whole dataset, the top commands being \cmd{cd}, \cmd{git}, \cmd{ssh}, \cmd{ls}, and \cmd{vim}.
+Unique aliases often contain user-specific file system paths (e.g. \alias{gitbash}{source /Users/j/mybin/gitsh}), happen to have a unique combination of arguments (e.g. \alias{ls}{ls -GphF}) or are otherwise highly particular (e.g. \alias{h23}{history -23000}).
+
+In total, we looked at \num{1581} aliases during the coding process.
+In order to reason about the intent of any particular alias, we had to take the semantics of each command into account, consulting their \texttt{man} pages and other forms of documentation.\footnote{The website \url{https://explainshell.com} has been an indispensable resource.}
+To increase the trustworthiness of our codes, coding was performed independently in parallel by the two authors.
+After a first iteration, we compared our labels, consolidating different naming conventions.
+In consecutive iterations, we identified ways of formalizing the emerged categories, i.e. constructing automated mechanisms for classifying alias definitions as belonging to certain categories.
+The suitability for mechanical classification was an important factor for the viability of any emerging themes.
+The discussion of these formalizations additionally served to establish a better shared understanding.
+Ultimately, we reached a saturation point at which further coding and analysis did not lead to further insights.
+
+\section{Customization Practices}
 
 \begin{table}
     \centering
@@ -342,6 +354,7 @@ We identified nine customization practices among three types of aliases:
 \textsc{Shortcuts} introduce new names and are often used for \emph{nicknaming commands}, \emph{abbreviating subcommands}, and \emph{bookmarking locations};
 \textsc{Modifications} change the semantics of commands by \emph{substituting commands}, \emph{overriding defaults}, \emph{colorizing output}, and \emph{elevating privilege};
 and \textsc{Scripts} combine multiple commands, often for the purposes of \emph{transforming data} or \emph{chaining subcommands}.
+We developed automated classification methods for each practice, which can be found in our replication package.
 Table~\ref{tab:practices} gives a quantitative overview of the prevalence of each of these practices in the dataset.
 Any alias can be an expression of multiple customization practices at once, and some practices only occur with certain commands.
 Table~\ref{tab:practices-by-command} breaks down the customization practices by command, counting the number of aliases that a command is involved in (including aliases that redefine the command).
