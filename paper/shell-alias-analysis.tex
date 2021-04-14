@@ -7,7 +7,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
-\usepackage[colorlinks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[autolanguage]{numprint}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -550,7 +550,7 @@ we gained insight into practices detailing how users customize their command-lin
 Based on our observations, we outline discussion points that go beyond single customization practices and identify implications that can address shortcomings in command-line usability and tie them to existing user experience research.
 Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
-\paragraph{Learning Repair Rules.}
+\subsection{Learning Repair Rules}
 
 The complexity of commands and arguments can cause users to introduce errors when working in a command-line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
@@ -559,7 +559,7 @@ While these rules are all hard-coded, we envision leveraging the global wisdom o
 This is in line with work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
 %An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
 
-\paragraph{Discovering Workflows.}
+\subsection{Discovering Workflows.}
 Following a different thread of leveraging emergent practices, we can also see how our dataset would enable a world beyond only trying to fix immediate errors, by providing usage hints that could introduce users to common parameters and workflows.
 For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} command, the alias \alias{mem10}{ps auxf | sort -nr -k 4 | head -10} can serve as a suggestion for the complex but common data transformation that results in showing the ten most memory-intensive processes.
 %\paragraph*{\bf Object Protocols}
@@ -567,14 +567,29 @@ Similarly, in the practice of \emph{chaining subcommands} we can clearly see the
 We can improve usability by enabling the discovery of these implicit rules and by exposing the dependency structure based on our customization data.
 For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset. 
 
-\paragraph{Uncovering Conceptual Design Flaws.}
+\subsection{Uncovering Conceptual Design Flaws}
 
 Customization can also be an indicator for problems in the underlying conceptual design, manifesting as usability frustrations that require adaptation by the user.
-Briefly comparing our findings to the qualitative analysis on conceptual design flaws in \cmd{git} by \cite{perez:13}, we can clearly see the same frustrations with committing and switching branches,\footnote{``Just Let Me Commit!" and ``I Just Want to Switch Branches" in \cite{perez:13}} based on the alias definitions in our dataset (e.g., \alias{commit}{git add . \&\& git commit -m}).
+In their analysis of Git, \cite{perez:13,perez:16} describe a number of flaws and operational misfits arising from the conceptual design of the software.
+The frustrations experienced by users because of these design flaws are evident based on the alias definitions in our dataset.
+
+For example, the difficulties some Git users have with the concept of \emph{staging} can be seen in aliases that ensure untracked files are included in a commit by explicitly adding them beforehand, like \alias{commit}{git add . \&\& git commit -m} or \alias{gac}{git add --all \&\& git commit}.\footnote{See ``Just Let Me Commit!'' in \cite{perez:13} and ``Incoherent Commit'' in \cite{perez:16}. Confusingly, \texttt{git commit -a}, while performing an implicit \texttt{add}, does not include untracked files.}
+
+Another frustration is having to use \texttt{git stash} to temporarily save uncommitted changes and clean the working directory in order to avoid conflicts when using other Git commands.
+Stashing in itself has no higher purpose in version control, it merely exists as a concept to work around limitations in Git.\footnote{See ``I Just Want To Switch Branches!'' in \cite{perez:13}, and especially ``Unmotivated Stash'' and ``Branch Coupling'' in \cite{perez:16}.}
+This can be seen in aliases like \alias{gspull}{git stash \&\& git pull \&\& git stash pop}, which defines a new type of pull command that stashes away ongoing work before pulling in remote changes and finally re-applying the stashed work.
+The same problem happens when switching branches, hence aliases like \alias{gsc}{git stash \&\& git checkout \$1 \&\& git stash pop}.
+
+\cite{church:14} found that version control systems are generally perceived as being risky to use, and sought explanations for this impression via an analysis of Git using a framework of cognitive dimensions \citep{green:96}.
+One of the dimensions that dominate the command-line interface of Git is \emph{Hidden Dependencies}.
+The are many hidden dependencies in Git, a prominent one being the dependency between the local branch and the remote repository.
+This is revealed by alias definitions like \alias{gitstatus}{git remote update \&\& git status}.
+Unless one first manually updates Git's local information about remote branches, the command \texttt{git status} will happily report that the local branch is up-to-date with respect to its remote origin, even if the remote repository is in fact many commits ahead.
 
 We want to emphasize that we are not suggesting that large-scale quantitative data of customization practices can replace qualitative analysis, but rather that the corpus we provide, together with our findings, can support exploration and provide new insights for usability research.
+Alias definitions can provide evidence for analytic theories based on cognitive or conceptual models of software use, because they codify workarounds for common annoyances and other customizations based in every-day use.
 
-\paragraph{Contextual Defaults.}
+\subsection{Contextual Defaults}
 
 Choosing proper defaults in user interfaces is a pillar of user experience design~\citep{nielsen2005power}.
 The fact that \per{14.48} of the customizations in our dataset are for \emph{overriding defaults} suggests that, at least for some groups of users, the default settings of their tools could be improved.
@@ -583,7 +598,7 @@ Indeed, the variety of different defaults in the data indicate what we call \emp
 We could imagine providing different sets of defaults to different users, effectively alias starter packs, generated from our data.
 We see parallels to work that investigates contextual preferences and personalization in information systems~\citep{de:15, stefanidis:11} and privacy research~\citep{wijesekera:18, alom:19}. 
 
-\paragraph{Interactivity vs Batch-Processing.}
+\subsection{Interactivity vs Batch-Processing}
 
 Context extends to the environment a command is executed in, particularly whether it is used on an interactive command line or as part of a script for batch-processing.
 Our findings highlight the tension between these different ways of execution and how a human user can have needs different from an automated workflow.
