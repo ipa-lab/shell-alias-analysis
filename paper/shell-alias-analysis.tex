@@ -573,9 +573,7 @@ Customization can also be an indicator for problems in the underlying conceptual
 In their analysis of Git, \cite{perez:13,perez:16} describe a number of flaws and operational misfits arising from the conceptual design of the software.
 The frustrations experienced by users because of these design flaws are evident based on the alias definitions in our dataset.
 
-For example, the difficulties some Git users have with the concept of \emph{staging} can be seen in aliases that ensure untracked files are included in a commit by explicitly adding them beforehand, like \alias{commit}{git add . \&\& git commit -m} or \alias{gac}{git add --all \&\& git commit}.\footnote{See ``Just Let Me Commit!'' in \cite{perez:13} and ``Incoherent Commit'' in \cite{perez:16}. Confusingly, \texttt{git commit -a}, while performing an implicit \texttt{add}, does not include untracked files.}
-
-Another frustration is having to use \texttt{git stash} to temporarily save uncommitted changes and clean the working directory in order to avoid conflicts when using other Git commands.
+For example, the difficulties some Git users have with the concept of \emph{staging} can be seen in aliases that ensure untracked files are included in a commit by explicitly adding them beforehand, like \alias{commit}{git add . \&\& git commit -m} or \alias{gac}{git add --all \&\& git commit}.\footnote{See ``Just Let Me Commit!'' in \cite{perez:13} and ``Incoherent Commit'' in \cite{perez:16}. Confusingly, \texttt{git commit -a}, while performing an implicit \texttt{add}, does not include untracked files.} Another frustration is having to use \texttt{git stash} to temporarily save uncommitted changes and clean the working directory in order to avoid conflicts when using other Git commands.
 Stashing in itself has no higher purpose in version control, it merely exists as a concept to work around limitations in Git.\footnote{See ``I Just Want To Switch Branches!'' in \cite{perez:13}, and especially ``Unmotivated Stash'' and ``Branch Coupling'' in \cite{perez:16}.}
 This can be seen in aliases like \alias{gspull}{git stash \&\& git pull \&\& git stash pop}, which defines a new type of pull command that stashes away ongoing work before pulling in remote changes and finally re-applying the stashed work.
 The same problem happens when switching branches, hence aliases like \alias{gsc}{git stash \&\& git checkout \$1 \&\& git stash pop}.
@@ -588,6 +586,9 @@ Unless one first manually updates Git's local information about remote branches,
 
 We want to emphasize that we are not suggesting that large-scale quantitative data of customization practices can replace qualitative analysis, but rather that the corpus we provide, together with our findings, can support exploration and provide new insights for usability research.
 Alias definitions can provide evidence for analytic theories based on cognitive or conceptual models of software use, because they codify workarounds for common annoyances and other customizations based in every-day use.
+According to a recent need-finding study by \cite{zhang:20}, API designers have a strong desire to know more about users' mental models, and wish to validate design hypotheses with examples of real-world API usage.
+Existing techniques for mining API usage fall short in this respect, and the study highlights the importance of, among other things, looking at how users deal with unanticipated corner cases and how they apply workarounds.
+We suspect makers of command-line software are in a similar situation as API designers and could similarly benefit from community usage data that highlights gaps between interface design and users' expectations.
 
 \subsection{Contextual Defaults}
 
