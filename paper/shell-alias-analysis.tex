@@ -271,14 +271,31 @@ For example, \texttt{sudo apt-get install} is parsed as the command \cmd{apt-get
 After parsing, we ended up with \num{2204199} alias definitions, broken down into \num{2534167} commands and \num{3630423} arguments.
 Files that did not contain any aliases were removed from the database, as was repository metadata that only referenced files without aliases.
 \num{194218} files from \num{138112} repositories, or \per{52.09} of the original sample without duplicates, contained aliases.
-%The majority of aliases in our dataset (\per{86.2}) originate from common startup scripts, like \texttt{.bashrc} or \texttt{.profile} (see Table~\ref{tab:file-names}).
-% TODO: explain the renaming 14%
 
-% \begin{table}
-% 	\caption{Distribution of common file names}
-%     \label{tab:file-names}
-%     \input{table-file-names.tex}
-% \end{table}
+\subsection{Provenance}
+
+The majority of aliases in our dataset (\per{85.74}) originate from common startup scripts, like \texttt{.bashrc}, \texttt{aliases.zsh} or \texttt{.profile} (see Table~\ref{tab:file-names}).
+We found another \per{2.78} of aliases originating from scripts related to Git, with file names like \texttt{git.plugin.zsh} or \texttt{git.bash}.
+The remaining aliases are more or less evenly distributed among a variety of file names, none of which contributes more than half a percent of aliases, in most cases significantly less.
+The average number of aliases per file is $11 \pm 18$, the median is 6.
+
+\begin{table}
+	\caption{Distribution of common file names}
+	\label{tab:file-names}
+	\input{table-file-names.tex}
+\end{table}
+
+\begin{table}
+	\caption{Most common words in repository descriptions}
+	\label{tab:repo-words}
+	\input{table-repo-words.tex}	
+\end{table}
+
+Table~\ref{tab:repo-words} shows the most commonly occurring words in repository descriptions on GitHub (excluding stop words), together with the amount of aliases found in repositories whose descriptions contain at least one of these words.
+Counting them all together, repositories mentioning any of the words listed in Table~\ref{tab:repo-words}, in either their description or their repository name, make up \per{74.48} of the repositories in our dataset, contributing \per{82.3} of all aliases.
+It is notable that more than half of the repositories in our dataset (\per{51.08}) have a name that includes the string \texttt{dot}, as in \texttt{dotfiles}, \texttt{dot-files}, \texttt{dots}, \texttt{mydotfiles}, and so on.
+Looking at these names and descriptions, we can see a clear bias towards personal configurations and settings management.
+On average, each repository contributes $16 \pm 28$ aliases, the median is 8.
 
 \subsection{Reproducibility}
 \label{sec:reproducibility}
@@ -605,6 +622,8 @@ Context extends to the environment a command is executed in, particularly whethe
 Our findings highlight the tension between these different ways of execution and how a human user can have needs different from an automated workflow.
 This particularly comes to light in the customization practices of \emph{colorizing output} and \emph{overriding defaults}.
 While human-readable output or prompting for destructive actions makes no sense in scripts and is usually seen as cumbersome for expert users even on the command line, our findings show that aliases like \alias{mv}{mv -i} are nonetheless highly desired by some.
+
+\TODO: modern best practice clig.dev, see Output: human-readable vs machine-readable, Interactivity
 
 \section{Threats to Validity}
 
