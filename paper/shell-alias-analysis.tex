@@ -568,6 +568,7 @@ Based on our observations, we outline discussion points that go beyond single cu
 Further, while our presented findings already give us an understanding of customization practices over many different kinds of commands, we view our collected dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users.
 
 \subsection{Learning Repair Rules}
+\label{sec:repair-rules}
 
 The complexity of commands and arguments can cause users to introduce errors when working in a command-line interface.
 Figuring out specifically how to fix these errors is often a convoluted process.
@@ -576,7 +577,9 @@ While these rules are all hard-coded, we envision leveraging the global wisdom o
 This is in line with work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
 %An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
 
-\subsection{Discovering Workflows.}
+\subsection{Discovering Workflows}
+\label{sec:discovering-workflows}
+
 Following a different thread of leveraging emergent practices, we can also see how our dataset would enable a world beyond only trying to fix immediate errors, by providing usage hints that could introduce users to common parameters and workflows.
 For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} command, the alias \alias{mem10}{ps auxf | sort -nr -k 4 | head -10} can serve as a suggestion for the complex but common data transformation that results in showing the ten most memory-intensive processes.
 %\paragraph*{\bf Object Protocols}
@@ -608,22 +611,36 @@ Existing techniques for mining API usage fall short in this respect, and the stu
 We suspect makers of command-line software are in a similar situation as API designers and could similarly benefit from community usage data that highlights gaps between interface design and users' expectations.
 
 \subsection{Contextual Defaults}
+\label{sec:contextual-defaults}
 
 Choosing proper defaults in user interfaces is a pillar of user experience design~\citep{nielsen2005power}.
 The fact that \per{14.48} of the customizations in our dataset are for \emph{overriding defaults} suggests that, at least for some groups of users, the default settings of their tools could be improved.
 We see \emph{overriding defaults} not necessarily as an indictment of the involved commands, but rather as an indication that the assumed user context does not in all cases match the actual usage profile.
 Indeed, the variety of different defaults in the data indicate what we call \emph{contextual} defaults, where context could be a reflection of the level of expertise of a command-line user, or a certain persona (e.g., system administrator, data scientist, or software engineer).
 We could imagine providing different sets of defaults to different users, effectively alias starter packs, generated from our data.
-We see parallels to work that investigates contextual preferences and personalization in information systems~\citep{de:15, stefanidis:11} and privacy research~\citep{wijesekera:18, alom:19}. 
+We see parallels to work that investigates contextual preferences and personalization in information systems~\citep{de:15, stefanidis:11} and privacy research~\citep{wijesekera:18, alom:19}.
+% TODO: reference the next section, the context being "interactive use" vs scripting 
 
-\subsection{Interactivity vs Batch-Processing}
+\subsection{Interactivity vs Scripting}
 
-Context extends to the environment a command is executed in, particularly whether it is used on an interactive command line or as part of a script for batch-processing.
-Our findings highlight the tension between these different ways of execution and how a human user can have needs different from an automated workflow.
-This particularly comes to light in the customization practices of \emph{colorizing output} and \emph{overriding defaults}.
-While human-readable output or prompting for destructive actions makes no sense in scripts and is usually seen as cumbersome for expert users even on the command line, our findings show that aliases like \alias{mv}{mv -i} are nonetheless highly desired by some.
+The first ``modern'' command line, the Bourne shell from 1977, had two primary goals: to provide an interactive command interpreter, and at the same time serve as a scripting system \citep{jones:11}.
+There is a natural tension between these two goals, which becomes evident when users are \emph{overriding defaults} with aliases like \alias{mv}{mv~-i}.
+Here, the \cmd{mv} command is redefined to always run interactively, prompting the user at critical points, i.e. before overwriting existing files.
+The default operating mode of \cmd{mv}, and most other commands, is to assume that the user is aware of and okay with the possible consequences of running it---and that they have not made any mistakes in its invocation.
+This is of course a much more useful assumption in a scripting context.
 
-\TODO: modern best practice clig.dev, see Output: human-readable vs machine-readable, Interactivity
+The bias of most command-line tools towards scripting is also evident in their output, which is usually minimal and not tailored for human ease-of-use.
+We can see this in aliases like \alias{df}{df~-h} or \alias{ll}{ls~-lh}, which change the default output of these commands so that file sizes are not shown simply in bytes, but rather in much more practical common units like Megabytes.
+The high prevalence of aliases for \emph{colorizing output} is also notable, as color only makes sense in an interactive context.
+In terminals, colorful text is achieved by inserting ANSI escape codes into the text stream.
+This is a hindrance for scripts, but tools could easily detect whether they are run in an interactive terminal or as part of a script and adjust their output accordingly.
+
+Note that the tension between interactivity and scripting is not the same as the divide between ``casual'' and ``power'' users.
+Experts are experiencing the same frustrations as amateurs when using the shell interactively.
+Recently, there has been a growing movement that sees today's command line as a \emph{human-first} text-based UI, rather than a \emph{machine-first} scripting platform \citep{clig}.
+This new generation of command-line users and tool authors embrace the Unix philosophy with its core tenet of simple tools that can be composed well together \citep{raymond:03}, but they want to modernize those tools to fit current environments, with a more humanistic approach to their interaction design.\footnote{It should be noted that \cite{ritchie:74}, in a paper that pre-dates the invention of the Bourne shell, explicitly highlight the interactivity of the Unix system over the batch-processing nature of its predecessors. Today's notion of interactivity is of course more advanced, and it is now the classic Unix systems with their shell scripts that evoke an atmosphere of ``batch processing.''}
+Emphasizing the conversational nature of the command line, they highlight the need for features such as error correction (cf. Section~\ref{sec:repair-rules}) or command suggestions (cf. Section~\ref{sec:discovering-workflows}), and confirming potentially destructive actions before they are executed.
+They see human-readable output as paramount and suggest tools should be more aware of their environment (cf. Section~\ref{sec:contextual-defaults}).
 
 \section{Threats to Validity}
 
