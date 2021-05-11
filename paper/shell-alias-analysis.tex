@@ -575,7 +575,25 @@ Figuring out specifically how to fix these errors is often a convoluted process.
 A popular open source project that attempts to navigate this issue\footnote{\url{https://github.com/nvbn/thefuck}} uses a set of rules to suggest possible error corrections for commands.
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
 This is in line with work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
-%An obvious choice from our analysis are autocorrecting aliases to learn repair rules.
+
+As an example, take the following erroneous command execution:
+\begin{Verbatim}[breaklines=true]
+$ apt-get install vim
+E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
+\end{Verbatim}
+Without having to consult a hard-coded rule involving knowledge about \cmd{apt-get}, or even looking at the specific error that is produced, a command repair system trained on our dataset of alias definitions could easily suggest the correct fix: \texttt{sudo apt-get install vim}.
+It is reasonable to assume that this could be inferred as the correct invocation, based on the fact that in aliases the command sequence \texttt{apt-get install} occurs almost exclusively pre-fixed with \cmd{sudo}.
+
+As another example, the following error is caused by the wrong order of arguments:
+\begin{Verbatim}
+$ systemctl docker status
+Unknown command verb docker.
+\end{Verbatim}
+The correct invocation is \texttt{systemctl status docker}.
+It is again very plausible that a repair rule for this type of error could be learned from our dataset, based on the prevalence of aliases containing the command \cmd{systemctl} together with an argument \texttt{status} that occurs in first position,
+%\footnote{There are \num{652} such aliases in our dataset, out of \num{709} aliases involving \cmd{systemctl} and a \texttt{status} argument.}
+indicating the latent knowledge that \texttt{status} is in fact a subcommand of \cmd{systemctl}.
 
 \subsection{Discovering Workflows}
 \label{sec:discovering-workflows}
