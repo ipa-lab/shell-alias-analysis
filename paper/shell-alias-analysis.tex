@@ -546,6 +546,24 @@ Fig.~\ref{fig:flow} shows a flow diagram of the top pipelines with three command
 	\label{fig:flow}
 \end{figure}
 
+The names of aliases for such pipelines are varied, speaking to the broad range of tasks that can be accomplished by combining various Unix tools. They range from the descriptive, as in \alias{diskspace}{du -S | sort -n -r | more} or  \alias{weather}{wget -qO - http://wttr.in/ | head -7}, to the very terse, as in \alias{h}{history | uniq | tail -15} or \alias{lll}{ls -trlh | less}.
+Interestingly, aliases with the same name usually describe pipelines with the same general shape (the same commands in the same order), but slightly different argument combinations:
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+lsd $\rightarrow$ ls -l | grep "\^{}d"
+lsd $\rightarrow$ ls -la | grep \^{}d
+lsd $\rightarrow$ ls -lGFA --color | grep -i "\^{}d.*/"
+lsd $\rightarrow$ ls -lh | grep --color=never '\^{}d'
+\end{Verbatim}
+% or
+% \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`^=7}]
+% pg $\rightarrow$ ps aux | grep
+% pg $\rightarrow$ ps -Af | grep \$1
+% pg $\rightarrow$ ps -ef | grep
+% pg $\rightarrow$ ps aux | grep -i
+% \end{Verbatim}
+% and so on.
+This highlights the highly personal nature of aliases, each customized for an individual use case.
+
 \paragraph{Chaining Subcommands.}
 
 An interesting pattern appearing in alias scripts are chains of subcommand invocations.
