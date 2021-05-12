@@ -228,7 +228,7 @@ We then re-sampled some high-population areas with smaller size increments in or
 In total, we collected \num{844140} files from \num{304361} GitHub repositories.
 Our sample represents \per{94.09} of the estimated population of \num{897182} files under 29 KB on GitHub written in Shell language and containing the word ``alias''.
 The file contents, together with repository metadata, were stored in an SQLite database.
-After removing duplicates, our database contains \num{372816} unique files from \num{205126} repositories.
+After removing duplicate files based on their SHA-1 hash value, our database contains \num{372816} unique files from \num{205126} repositories.
 
 \begin{figure}
     \centering
