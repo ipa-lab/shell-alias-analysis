@@ -652,12 +652,15 @@ We suspect makers of command-line software are in a similar situation as API des
 Choosing proper defaults in user interfaces is a pillar of user experience design~\citep{nielsen2005power}.
 The fact that \per{14.48} of the customizations in our dataset are for \emph{overriding defaults} suggests that, at least for some groups of users, the default settings of their tools could be improved.
 We see \emph{overriding defaults} not necessarily as an indictment of the involved commands, but rather as an indication that the assumed user context does not in all cases match the actual usage profile.
+This can be the case if the tool assumes a different execution environment than the one it is ultimately used in, e.g. personal notebook vs cloud deployment (where an alias like \alias{java}{java -ea -server} ensures that Java programs are always run on a server-optimized virtual machine) or interactive terminal vs shell script use (cf. Section~\ref{sec:interactivity-vs-scripting}), or if the tool assumes a certain type of user with different needs than the actual user.
+
 Indeed, the variety of different defaults in the data indicate what we call \emph{contextual} defaults, where context could be a reflection of the level of expertise of a command-line user, or a certain persona (e.g., system administrator, data scientist, or software engineer).
+For example, the top default alias for the \cmd{ffmpeg} command is \alias{ffmpeg}{ffmpeg -hide\_banner}, suppressing verbose default output that can be confusing for newcomers but is helpful for the tool developers when providing support and locating errors.\footnote{Coincidentally, we also found a ticket in the project's issue tracker requesting this top most default argument from our dataset to become the default option for the command: \url{https://trac.ffmpeg.org/ticket/7211}}
 We could imagine providing different sets of defaults to different users, effectively alias starter packs, generated from our data.
 We see parallels to work that investigates contextual preferences and personalization in information systems~\citep{de:15, stefanidis:11} and privacy research~\citep{wijesekera:18, alom:19}.
-% TODO: reference the next section, the context being "interactive use" vs scripting 
 
 \subsection{Interactivity vs Scripting}
+\label{sec:interactivity-vs-scripting}
 
 The first ``modern'' command line, the Bourne shell from 1977, had two primary goals: to provide an interactive command interpreter, and at the same time serve as a scripting system \citep{jones:11}.
 There is a natural tension between these two goals, which becomes evident when users are \emph{overriding defaults} with aliases like \alias{mv}{mv~-i}.
