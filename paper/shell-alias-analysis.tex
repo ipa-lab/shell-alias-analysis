@@ -134,7 +134,7 @@ So the alias \texttt{ll} (present in many system configurations) is used to spec
 Alias values can be arbitrarily complex strings and can substitute not only simple commands and arguments, but whole chains of commands. 
 The definition
 \begin{CVerbatim}
-alias ducks="du -cksh * | sort -hr | head -n 15"
+alias ducks='du -cksh * | sort -hr | head -n 15'
 \end{CVerbatim}
 defines the new command \cmd{ducks} by chaining together three different command-line tools in order to return the 15 largest files in the current directory.
 
