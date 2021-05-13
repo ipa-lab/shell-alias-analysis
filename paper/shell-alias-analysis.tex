@@ -669,8 +669,8 @@ The default operating mode of \cmd{mv}, and most other commands, is to assume th
 This is of course a much more useful assumption in a scripting context.
 
 The bias of most command-line tools towards scripting is also evident in their output, which is usually minimal and not tailored for human ease-of-use.
-We can see this in aliases like \alias{df}{df~-h} or \alias{ll}{ls~-lh}, which change the default output of these commands so that file sizes are not shown simply in bytes, but rather in much more practical common units like Megabytes.
-The high prevalence of aliases for \emph{colorizing output} is also notable, as color only makes sense in an interactive context.
+We can see this in aliases like \alias{mount}{mount | column -t}, which aligns the output of the \cmd{mount} command for easier reading, or \alias{df}{df~-h} or \alias{ll}{ls~-lh}, which change the default output of these commands so that file sizes are not shown simply in bytes but rather in much more practical common units like megabytes.
+The high prevalence of aliases for \emph{colorizing output} (e.g. \alias{grep}{grep --color=auto}) is also notable, as color only makes sense in an interactive context.
 In terminals, colorful text is achieved by inserting ANSI escape codes into the text stream.
 This is a hindrance for scripts, but tools could easily detect whether they are run in an interactive terminal or as part of a script and adjust their output accordingly.
 
