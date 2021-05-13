@@ -623,6 +623,14 @@ Similarly, in the practice of \emph{chaining subcommands} we can clearly see the
 We can improve usability by enabling the discovery of these implicit rules and by exposing the dependency structure based on our customization data.
 For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset (cf. Section~\ref{sec:repair-rules}).
 
+Our findings can also contribute to recent work on the parallelization and distribution of shell scripts.
+Systems like PaSh \citep{pash} and POSH \citep{posh} rely on manual annotation of commands and their arguments to effectively parallelize shell scripts.
+Our data can help focus these annotation efforts by informing the developers of these systems about which groups of commands and arguments are most frequently used together.
+The KumQuat system \citep{kumquat} leverages program synthesis techniques to search a large space of candidate solution to synthesize parallel shell scripts.
+The collective knowledge present in alias definitions can guide this search and justify certain intuitions about the latent data parallelism in Unix pipelines \citep{odfg}.
+For example, while a parallel version of the \cmd{comm} command for comparing sorted files line-by-line is not synthesizable in general, it becomes trivially parallelizable if each of its input lines is known to be unique.
+Evidence that this indeed the common case can be found in our dataset, where \per{41.29} of all occurrences of \cmd{comm} follow \texttt{sort | uniq} or \texttt{sort~-u}, and the remainder mostly have unique data sources as input, like \texttt{pacman -Qeq}.
+
 \subsection{Uncovering Conceptual Design Flaws}
 
 Customization can also be an indicator for problems in the underlying conceptual design, manifesting as usability frustrations that require adaptation by the user.
