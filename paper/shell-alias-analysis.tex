@@ -621,7 +621,7 @@ For example, as soon as a user tries to \cmd{sort} the output of the \cmd{ps} co
 %\paragraph*{\bf Object Protocols}
 Similarly, in the practice of \emph{chaining subcommands} we can clearly see the prevalence of object protocols~\citep{beckman:11}, which are implicit rules determining the order in which commands have to be executed.
 We can improve usability by enabling the discovery of these implicit rules and by exposing the dependency structure based on our customization data.
-For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset. 
+For instance, if executing \verb|brew upgrade| results in a failure, we can suggest using \verb|brew update && brew upgrade| instead, based on the patterns in our dataset (cf. Section~\ref{sec:repair-rules}).
 
 \subsection{Uncovering Conceptual Design Flaws}
 
