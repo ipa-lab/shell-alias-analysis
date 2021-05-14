@@ -721,10 +721,16 @@ Our replication package includes our whole toolchain and all alias data in a rel
 
 \section{Related Work}
 
-Related research in the broader context of our work has been conducted on the use of command-line interfaces and how to improve it, and the shell as a programming language for both scripting and interactive use. 
+Related research in the broader context of our work has been conducted on understanding common practices in the software engineering community based on public online data, on the use of command-line interfaces and how to improve them, and on the shell as a programming language for both scripting and interactive use.
 
-The earliest related study we found was by \cite{greenberg:88a}, which collected four months of continuous real-life use of the Unix \verb|csh| shell from 168 users. 
-The data was used in a follow up study to analyze the use of interactive systems by examining frequency of command invocations for different groups of users~\citep{greenberg:88b}.
+\cite{zhong:15} conducted an empirical study on real-world bug fixes in Java projects to distill insights that can guide automatic program repair.
+\cite{yang:17} mine Stack Overflow posts and GitHub repositories to find out how programmers use and adapt copy-pasted code snippets in open-source projects.
+\cite{baltes:19} investigate to what extent such snippets are copied without proper attribution.
+\cite{prana:19} conduct a qualitative study to categorize the content of GitHub README files and build an automated classifier to label README sections, easing information discovery.
+\cite{barnaby:20} present a tool that mines code bases for idiomatic usage examples of API methods.
+
+The earliest study we found on the use of command-line interfaces was by \cite{greenberg:88a}, who collected four months of continuous real-life use of the Unix \verb|csh| shell from 168 users. 
+The data was used in a follow up study to analyze the use of interactive systems by examining the frequency of command invocations for different groups of users~\citep{greenberg:88b}.
 In later work, \cite{davison:98} use probabilistic action modeling to predict user action sequences based on the same dataset.
 \cite{korvemaker:00} similarly predict future action sequences in command lines, but condition on actions of the particular user group with the goal of enabling adaptive user interfaces.
 Other work in the context of adaptive user interfaces by \cite{jacobs:01} uses association rule learning on the shell logs to produce scripts to automate common task sequences.
