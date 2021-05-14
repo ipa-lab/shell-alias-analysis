@@ -593,7 +593,8 @@ The complexity of commands and arguments can cause users to introduce errors whe
 Figuring out specifically how to fix these errors is often a convoluted process.
 A popular open source project that attempts to navigate this issue\footnote{\url{https://github.com/nvbn/thefuck}} uses a set of rules to suggest possible error corrections for commands.
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
-This is in line with work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
+This is in line with visions of integrating collective intelligence in software development \citep{bruch:10}, in particular work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
+We can also see approaches similar to work on learning code completions from examples \citep{bruch:09}, with our dataset of alias definitions serving as an oracle for an automatic software repair system \citep{monperrus:18} in the domain of shell commands.
 
 As an example, take the following erroneous command execution:
 \begin{Verbatim}[breaklines=true]
@@ -602,9 +603,9 @@ E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 \end{Verbatim}
 Without having to consult a hard-coded rule involving knowledge about \cmd{apt-get}, or even looking at the specific error that is produced, a command repair system trained on our dataset of alias definitions could easily suggest the correct fix: \texttt{sudo apt-get install vim}.
-It is reasonable to assume that this could be inferred as the correct invocation, based on the fact that in aliases the command sequence \texttt{apt-get install} occurs almost exclusively pre-fixed with \cmd{sudo}.
+It is reasonable to assume that this could be inferred as the correct invocation, because in aliases the command sequence \texttt{apt-get install} occurs almost exclusively pre-fixed with \cmd{sudo}.
 
-As another example, the following error is caused by the wrong order of arguments:
+As another example, the following error is caused by the wrong order of arguments to the \cmd{systemctl} command:
 \begin{Verbatim}
 $ systemctl docker status
 Unknown command verb docker.
