@@ -128,8 +128,7 @@ We now describe usage and syntax of aliases as a vehicle for customization. We f
 \section{Background}
 
 A shell is a command interpreter allowing the user to interact with an underlying system.
-The concept of the operating system shell as an independent process executing outside the kernel originated in Multics and was further developed into the original Unix shell \texttt{sh} and its various descendants.
-%  (\TODO references)
+The concept of the operating system shell as an independent process executing outside the kernel originated in Multics \citep{pouzin:65} and was further developed into the original Unix shell \texttt{sh} and its various descendants \citep{jones:11,seibold2020shell}.
 The POSIX family of standards defines a Shell Command Language~\citep{posix_standard, greenberg:17}, whose standard implementation is still the \texttt{sh} utility, but there exist a wide variety of popular POSIX-compliant shells like \texttt{bash} or \texttt{zsh}.
 These implementations are free to extend the functionality of the shell, but all share a common subset of core commands and programming language constructs.
 In this paper, we focus on the built-in \texttt{alias} command, available on all POSIX shells.
@@ -199,7 +198,7 @@ This leaves out many of the repositories we are interested in, as users sharing 
 GHTorrent~\citep{ghtorrent}, another popular archive of GitHub data, only contains metadata but not file contents.
 
 Therefore, we found it necessary to write our own tooling to directly collect the data from GitHub ourselves.
-We used the GitHub Code Search API to find files written in Shell language\footnote{GitHub uses the Linguist library to classify code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
+We used the GitHub Code Search API\footnote{\url{https://docs.github.com/en/rest/reference/search}} to find files written in Shell language\footnote{GitHub uses the Linguist library to classify code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
 
 Alas, the GitHub Code Search API comes with its own set of limitations:
 \begin{enumerate}
