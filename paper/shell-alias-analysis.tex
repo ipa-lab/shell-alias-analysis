@@ -178,7 +178,7 @@ In the remainder of this paper, we will use the more compact notation
 
 Aliases can be entered directly on the command line, in which case they are valid until the shell session ends.
 To make an alias definition permanent, it is common practice to enter it into a file that is read and executed by the shell on startup.
-The names of these configuration files differ by shell, but common ones are \verb|.bashrc|, \verb|.zshrc| or \verb|.profile|.
+The names of these configuration files differ by shell, but common ones are \verb|.bashrc|, \verb|.zshrc|, or \verb|.profile| and their main difference is the order in which they are executed.\footnote{\url{https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html} or \url{https://zsh.sourceforge.io/Doc/Release/Files.html}}
 Often, aliases are also stored in other files referred to by these startup scripts.
 
 These kinds of files --- text-based configuration files that store system or application settings --- are also known as \emph{dotfiles}, because their filenames usually start with a dot (\verb|.|) so that they are hidden by default on most Unix-based systems.
