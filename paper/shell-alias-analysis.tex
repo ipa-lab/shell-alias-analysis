@@ -85,7 +85,7 @@ Many users publicly share these configurations on social coding platforms such a
 We see our large-scale analysis on command-line user customizations manifested in alias definitions as a unique window of opportunity to study how the standard environment of the command line could be productively extended, modified, and improved. 
 Our work goes hand in hand with existing efforts to innovate on the experience of command lines that employ techniques from research in systems~\citep{posh, odfg}, software engineering and programming languages~\citep{pash, kumquat, dantoni:17}, human-computer interaction~\citep{bespoke:19, gandhi2020}, and artificial intelligence~\citep{clai, nl2bash, findcmd}.
 Particularly, our extensive qualitative and quantitative analysis, in conjunction with our dataset, form the basis for identifying opportunities for improving command-line experience in the following directions: by characterizing customization practices, we gain a categorical understanding underlying the needs and wants of command-line users; based on our analysis, we identify opportunities for innovation and formulate them as implications, accompanied with concrete scenarios and examples; % that aim to support command-line users, tool developers, and the design of the Shell in general. 
-further, our comprehensive dataset enables the foundation of learning approaches, as part of learning-based program synthesis, automated repair, and recommendation systems;
+further, our comprehensive dataset enables the foundation of learning approaches, as part of learning-based program synthesis \citep{bruch:09,raychev2014completion}, automated repair \citep{monperrus:18}, and recommendation systems~\citep{mens2014source};
 finally, we also see our results and datasets as a basis for usability research that can impact the design of tools and the future of the shell in general.
 
 %Consequently, we performed an exploratory analysis on the population of alias definitions on GitHub. 
@@ -610,6 +610,7 @@ A popular open source project that attempts to navigate this issue\footnote{\url
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
 This is in line with visions of integrating collective intelligence in software development \citep{bruch:10}, in particular work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
 We can also see approaches similar to work on learning code completions from examples \citep{bruch:09}, with our dataset of alias definitions serving as an oracle for an automatic software repair system \citep{monperrus:18} in the domain of shell commands.
+Using our dataset of known-good command invocations, it should be possible to train a statistical language model for command repair, akin to related work in code synthesis~\citep{raychev2014completion}.
 
 As an example, take the following erroneous command execution:
 \begin{Verbatim}[breaklines=true]
