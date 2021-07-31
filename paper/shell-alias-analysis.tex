@@ -737,13 +737,19 @@ Our replication package includes our whole toolchain and all alias data in a rel
 
 \section{Related Work}
 
-Related research in the broader context of our work has been conducted on understanding common practices in the software engineering community based on public online data, on the use of command-line interfaces and how to improve them, and on the shell as a programming language for both scripting and interactive use.
+Related research in the broader context of our work has been conducted on understanding common practices in the software engineering community based on public online data, on software configuration in general, on the use of command-line interfaces and how to improve them, and on the shell as a programming language for both scripting and interactive use.
 
 Empirical studies similar to ours, looking at community knowledge in software engineering to understand practices and distill insights, have been conducted in related domains:
 \cite{zhong:15} study real-world bug fixes in Java projects to help guide automatic program repair;
 \cite{yang:17} mine Stack Overflow posts and GitHub repositories to find out how programmers use and adapt copy-pasted code snippets in open-source projects, while \cite{baltes:19} investigate to what extent such snippets are copied without proper attribution;
 \cite{prana:19} conduct a qualitative study to categorize the content of GitHub README files and build an automated classifier to label README sections, easing information discovery;
 \cite{barnaby:20} present a tool that mines code bases for idiomatic usage examples of API methods.
+
+In the context of software configuration, \cite{sayagh2020survey} surveyed experts and the literature to identify a number of challenges and recommendations related to configuration practices.
+Our work reflects some of their findings, insofar as shell aliases are a form of personal configuration that can interact with---and counteract---other system configurations.
+For example, selecting good out-of-the-box default values is seen as an important issue by experts, and aliases are indeed often used to \emph{override defaults}.
+Related to our implications on contextual defaults (Section~\ref{sec:contextual-defaults}), \cite{zhen2011massconf} present MassConf, a system that proposes optimal software configurations based on a user's environment and existing configurations.
+Adjacent work in configuration mining includes the ConfigMiner tool by \cite{sayagh2020configminer}, which identifies appropriate configuration options based on related StackOverflow questions.
 
 The earliest study we found on the use of command-line interfaces was by \cite{greenberg:88a}, who collected four months of continuous real-life use of the Unix \verb|csh| shell from 168 users. 
 The data was used in a follow up study to analyze the use of interactive systems by examining the frequency of command invocations for different groups of users~\citep{greenberg:88b}.
