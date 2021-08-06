@@ -85,7 +85,7 @@ Many users publicly share these configurations on social coding platforms such a
 We see our large-scale analysis on command-line user customizations manifested in alias definitions as a unique window of opportunity to study how the standard environment of the command line could be productively extended, modified, and improved. 
 Our work goes hand in hand with existing efforts to innovate on the experience of command lines that employ techniques from research in systems~\citep{posh, odfg}, software engineering and programming languages~\citep{pash, kumquat, dantoni:17}, human-computer interaction~\citep{bespoke:19, gandhi2020}, and artificial intelligence~\citep{clai, nl2bash, findcmd}.
 Particularly, our extensive qualitative and quantitative analysis, in conjunction with our dataset, form the basis for identifying opportunities for improving command-line experience in the following directions: by characterizing customization practices, we gain a categorical understanding underlying the needs and wants of command-line users; based on our analysis, we identify opportunities for innovation and formulate them as implications, accompanied with concrete scenarios and examples; % that aim to support command-line users, tool developers, and the design of the Shell in general. 
-further, our comprehensive dataset enables the foundation of learning approaches, as part of learning-based program synthesis, automated repair, and recommendation systems;
+further, our comprehensive dataset enables the foundation of learning approaches, as part of learning-based program synthesis \citep{bruch:09,raychev2014completion}, automated repair \citep{monperrus:18}, and recommendation systems~\citep{mens2014source};
 finally, we also see our results and datasets as a basis for usability research that can impact the design of tools and the future of the shell in general.
 
 %Consequently, we performed an exploratory analysis on the population of alias definitions on GitHub. 
@@ -113,13 +113,14 @@ finally, we also see our results and datasets as a basis for usability research 
 	\smallskip
 	
 	\item A \textbf{Curated Dataset of Command-Line Customizations}, consisting of over 2.2 million shell aliases collected from GitHub.
-We view our dataset as a playground for fine-grained discovery that can benefit researchers, tool-builders, and command-line users.
+	We view our dataset as a playground for fine-grained discovery that can benefit researchers, tool-builders, and command-line users;
+	for example, researchers can use this knowledge base to discover which commands are frequently used together and how they are combined, while tool-builders can see how their programs are being customized.
 We also describe the effective mining technique we used to distill this knowledge, which allowed us to capture almost the whole population (\per{94.09}) of relevant shell configuration files.
 	\smallskip	
 	
 	\item We formulate \textbf{Implications for Improving Command-Line Experience} that go beyond single customization practices to address shortcomings and tie them to existing user experience research.
 	Codifying emergent behavior~\citep{fast:14} found in our customizations enables \emph{learning repair rules} and \emph{discovering workflows}.
-	We are able to \emph{uncover conceptual design flaws}, where customizations indicate frustrations with underlying command structures~\citep{perez:13}.
+	We are able to \emph{uncover conceptual design flaws}, where customizations indicate frustrations with underlying command structures, supporting prior research on potential flaws in the conceptual design of certain commands~\citep{perez:13}.
 	Based on the prevalence of highly variable command redefinitions, we propose \emph{contextual defaults}, the ability to suggest different command preferences based on user context~\citep{stefanidis:11}.
 	Overall, we find that many customizations deal with the tension of \emph{Interactivity vs Scripting}: commands being used to interactively navigate systems, while at the same time being used within scripts for batch-processing.
 \end{itemize}
@@ -128,8 +129,7 @@ We now describe usage and syntax of aliases as a vehicle for customization. We f
 \section{Background}
 
 A shell is a command interpreter allowing the user to interact with an underlying system.
-The concept of the operating system shell as an independent process executing outside the kernel originated in Multics and was further developed into the original Unix shell \texttt{sh} and its various descendants.
-%  (\TODO references)
+The concept of the operating system shell as an independent process executing outside the kernel originated in Multics \citep{pouzin:65} and was further developed into the original Unix shell \texttt{sh} and its various descendants \citep{jones:11,seibold2020shell}.
 The POSIX family of standards defines a Shell Command Language~\citep{posix_standard, greenberg:17}, whose standard implementation is still the \texttt{sh} utility, but there exist a wide variety of popular POSIX-compliant shells like \texttt{bash} or \texttt{zsh}.
 These implementations are free to extend the functionality of the shell, but all share a common subset of core commands and programming language constructs.
 In this paper, we focus on the built-in \texttt{alias} command, available on all POSIX shells.
@@ -178,7 +178,7 @@ In the remainder of this paper, we will use the more compact notation
 
 Aliases can be entered directly on the command line, in which case they are valid until the shell session ends.
 To make an alias definition permanent, it is common practice to enter it into a file that is read and executed by the shell on startup.
-The names of these configuration files differ by shell, but common ones are \verb|.bashrc|, \verb|.zshrc| or \verb|.profile|.
+The names of these configuration files differ by shell, but common ones are \verb|.bashrc|, \verb|.zshrc|, or \verb|.profile| and their main difference is the order in which they are executed.\footnote{\url{https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html} or \url{https://zsh.sourceforge.io/Doc/Release/Files.html}}
 Often, aliases are also stored in other files referred to by these startup scripts.
 
 These kinds of files --- text-based configuration files that store system or application settings --- are also known as \emph{dotfiles}, because their filenames usually start with a dot (\verb|.|) so that they are hidden by default on most Unix-based systems.
@@ -199,7 +199,7 @@ This leaves out many of the repositories we are interested in, as users sharing 
 GHTorrent~\citep{ghtorrent}, another popular archive of GitHub data, only contains metadata but not file contents.
 
 Therefore, we found it necessary to write our own tooling to directly collect the data from GitHub ourselves.
-We used the GitHub Code Search API to find files written in Shell language\footnote{GitHub uses the Linguist library to classify code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
+We used the GitHub Code Search API\footnote{\url{https://docs.github.com/en/rest/reference/search}} to find files written in Shell language\footnote{GitHub uses the Linguist library to classify code: \url{https://github.com/github/linguist}} that contain the string \verb|alias|.
 
 Alas, the GitHub Code Search API comes with its own set of limitations:
 \begin{enumerate}
@@ -610,6 +610,7 @@ A popular open source project that attempts to navigate this issue\footnote{\url
 While these rules are all hard-coded, we envision leveraging the global wisdom of customizations in our large-scale dataset to learn rules that form the basis for different kinds of suggestions.
 This is in line with visions of integrating collective intelligence in software development \citep{bruch:10}, in particular work in leveraging emergent behavior from corpora~\citep{fast:14} that we can codify based on our customization data.
 We can also see approaches similar to work on learning code completions from examples \citep{bruch:09}, with our dataset of alias definitions serving as an oracle for an automatic software repair system \citep{monperrus:18} in the domain of shell commands.
+Using our dataset of known-good command invocations, it should be possible to train a statistical language model for command repair, akin to related work in code synthesis~\citep{raychev2014completion}.
 
 As an example, take the following erroneous command execution:
 \begin{Verbatim}[breaklines=true]
@@ -736,13 +737,19 @@ Our replication package includes our whole toolchain and all alias data in a rel
 
 \section{Related Work}
 
-Related research in the broader context of our work has been conducted on understanding common practices in the software engineering community based on public online data, on the use of command-line interfaces and how to improve them, and on the shell as a programming language for both scripting and interactive use.
+Related research in the broader context of our work has been conducted on understanding common practices in the software engineering community based on public online data, on software configuration in general, on the use of command-line interfaces and how to improve them, and on the shell as a programming language for both scripting and interactive use.
 
-\cite{zhong:15} conducted an empirical study on real-world bug fixes in Java projects to distill insights that can guide automatic program repair.
-\cite{yang:17} mine Stack Overflow posts and GitHub repositories to find out how programmers use and adapt copy-pasted code snippets in open-source projects.
-\cite{baltes:19} investigate to what extent such snippets are copied without proper attribution.
-\cite{prana:19} conduct a qualitative study to categorize the content of GitHub README files and build an automated classifier to label README sections, easing information discovery.
+Empirical studies similar to ours, looking at community knowledge in software engineering to understand practices and distill insights, have been conducted in related domains:
+\cite{zhong:15} study real-world bug fixes in Java projects to help guide automatic program repair;
+\cite{yang:17} mine Stack Overflow posts and GitHub repositories to find out how programmers use and adapt copy-pasted code snippets in open-source projects, while \cite{baltes:19} investigate to what extent such snippets are copied without proper attribution;
+\cite{prana:19} conduct a qualitative study to categorize the content of GitHub README files and build an automated classifier to label README sections, easing information discovery;
 \cite{barnaby:20} present a tool that mines code bases for idiomatic usage examples of API methods.
+
+In the context of software configuration, \cite{sayagh2020survey} surveyed experts and the literature to identify a number of challenges and recommendations related to configuration practices.
+Our work reflects some of their findings, insofar as shell aliases are a form of personal configuration that can interact with---and counteract---other system configurations.
+For example, selecting good out-of-the-box default values is seen as an important issue by experts, and aliases are indeed often used to \emph{override defaults}.
+Related to our implications on contextual defaults (Section~\ref{sec:contextual-defaults}), \cite{zhen2011massconf} present MassConf, a system that proposes optimal software configurations based on a user's environment and existing configurations.
+Adjacent work in configuration mining includes the ConfigMiner tool by \cite{sayagh2020configminer}, which identifies appropriate configuration options based on related StackOverflow questions.
 
 The earliest study we found on the use of command-line interfaces was by \cite{greenberg:88a}, who collected four months of continuous real-life use of the Unix \verb|csh| shell from 168 users. 
 The data was used in a follow up study to analyze the use of interactive systems by examining the frequency of command invocations for different groups of users~\citep{greenberg:88b}.
@@ -755,7 +762,7 @@ Our work can be viewed as an input to this system that passes common shell workf
 
 There has been other work on enhancing user experience in command-line interfaces.
 NoFAQ~\citep{dantoni:17} provides repair suggestions for failed shell invocations based on a model learned from a curated set of fix patterns.
-NL2Bash~\citep{lin:18} implements a system that translates natural language phrases in English to shell commands.
+NL2Bash~\citep{nl2bash} implements a system that translates natural language phrases in English to shell commands.
 Recent work by \cite{greenberg:17} has been looking into understanding the POSIX shell as a programming language.
 More specifically, understanding word expansion in the shell to support interactivity~\citep{greenberg:18a} and concurrency~\citep{greenberg:18b}.
 
