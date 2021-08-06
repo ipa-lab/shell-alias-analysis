@@ -1,0 +1,36 @@
+Dear Authors, 
+
+Thanks for the efforts to improve manuscript. All the reviewers recognized the improvement.  Please fix the minor issues raised by the reviewers, and then it should be ready for publishing. 
+
+Thanks
+
+Shaowei
+
+Reviewer 1: Thanks to the authors for addressing my comments. I am happy that the authors worked on improving the implication section. I like the idea of including examples to support the discussion in the implication section. This helps to understand the problem better. However, I still believe that the related work section needs significant improvement. The authors include a paragraph but I do not see any connection between the papers they included. How they are related to the current work and how they are different from the current work needs to be explained better. I believe the works related to software configuration are also related to the work (e.g.,  ConfigMiner: Identifying the Appropriate Configuration Options for Config-related User Questions by Mining Online Forums, TSE 2020). Pls. Consider checking the related papers (further information about related papers can be found in this survey: Software Configuration Engineering in Practice - Interviews, Survey, and
+Systematic Literature Review, TSE, 2019). Even for the discussion of the implication section, pls. consider checking the section to include recent references where possible. 
+
+The current writing also raises some questions in some places that need to be checked and clarified. Pls. carefully recheck the writing. For example, the authors mentioned, "We are able to uncover conceptual design flaws, where customizations indicate frustrations with underlying command structures". It is not clear to me how do you know they are design flaws.  Pls. Consider clarifying this in your writing. In section 5, the authors wrote: "We developed automated classification methods for each practice, which can be found in our replication package". I am a bit confused on this part. I thought you have manually classified the aliases into different categories. Pls. clarify where and how the approach was applied. If you developed automated classification methods, what is the accuracy of the methods? This needs to be clarified. 
+
+Other comments:
+1. Pls. Include reference for Github Code Search API.
+2. Authors mentioned, "further, our comprehensive dataset enables the foundation of learning approaches, as part of learning-based program synthesis, automated repair, and recommendation systems; finally, we also see our results and datasets as a basis for usability research that can impact the design of tools and the future of the shell in general." —> include references to the described learning approaches
+3. Authors mentioned "We view our dataset as a playground for fine-grained discovery that can benefit researchers, tool builders, and command-line users."->  This was not clear (i.e., how this could be done) until I checked the implication section. Pls. clarify this better.
+4. Authors mentioned: "an independent process executing outside the kernel originated in Multics" —> Need a reference for Multics
+5. Authors mentioned that the names of the configuration files differ by the shell, but common ones are .bashrc, .zshrc or .profile. It would be better to briefly explain their differences. How many different configuration files did you find or considered in this study?
+
+
+Reviewer 2: I reviewed a previous version of this submission and my previous review can be identified as "Reviewer 2". So I will not repeat the paper summary as in a conventional paper review. 
+
+I'd like to thank the authors for their responses and revisions to the comments in my previous review. All my comments have been well addressed. The introduction now reads much better with the newly added synopsis of main contributions. The sampling and inductive coding processes are also clear now with the revisions in Section 4.1. Furthermore, the implication section is significantly expanded with more concrete examples and insightful discussions. I particularly like the implications of uncovering conceptual design flaws (Section 6.3) and interactivity vs. scripting (Section 6.6). Overall, I find that the large dataset of shell aliases, the comprehensive analysis, and the insightful discussions on future applications form a good basis for future research and therefore are a good contribution to the SE community. There are only a few small changes I wish the authors could incorporate in the final version. I don't think these changes require a new round of careful reviews,
+so I'll recommend "Minor Revision" this time.
+
+* In Section 4.1, when you explain the sampling strategy, can you also include the confidence level and confidence interval of that sample size (i.e., 1,581 aliases)?
+
+* In Section 6.1., it is not clear how a model can be trained on the dataset of shell aliases to repair shell commands. Most program repair models are trained with pairs of buggy code and correct code. But your dataset does not contain such pairs. On the other hand, one possible way is to train a language model of shell scripts using the alias dataset and then build downstream repair models using the language model. The authors should elaborate more on this.
+
+* Some references do not have venues, e.g., Vasilakis et al. 2020a & 2020b, Handa et al. 2020, Gandhi and Gandhi 2020, etc. Are these arxiv papers? If so, the reference should indicate so. You can check the reference formats on Google Scholar.
+
+* "et al" should be "et al."
+
+
+Reviewer 3: The authors have addressed the issues (concerns) I raised. Thank you!
